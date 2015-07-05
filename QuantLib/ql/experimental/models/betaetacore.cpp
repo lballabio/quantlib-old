@@ -33,12 +33,14 @@
 
 #include <ql/experimental/models/betaetatabulation.cpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
 BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
                          const Array &kappa, const Real &beta, const Real &eta)
     : times_(times), alpha_(alpha), kappa_(kappa), beta_(beta), eta_(eta),
-      integrateStdDevs_(8.0), ghPoints_(8) {
+      ghPoints_(8) {
 
     QL_REQUIRE(beta > 0.0, "beta (" << beta << ") must be positive");
     QL_REQUIRE(eta >= 0.0 && eta <= 1.0, " eta (" << eta
@@ -111,6 +113,18 @@ class BetaEtaCore::mIntegrand1 {
     }
 };
 
+// density
+class BetaEtaCore::mIntegrand1Check {
+    const BetaEtaCore *model_;
+    const Real t0_, x0_, t_;
+
+  public:
+    mIntegrand1Check(const BetaEtaCore *model, const Real t0, const Real x0,
+                     const Real t)
+        : model_(model), t0_(t0), x0_(x0), t_(t) {}
+    Real operator()(Real x) const { return model_->p(t0_, x0_, t_, x); }
+};
+
 // integrand to precompute M, 0 < eta < 1, eta != 0.5
 class BetaEtaCore::mIntegrand2 {
     const BetaEtaCore *model_;
@@ -178,22 +192,28 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
     }
 
     Real result;
+    Real singularProb = 0.0;
     if (useTabulation) {
         result = M_tabulated(t0, x0, t);
     } else {
-        // determine a suitable integration domain
         Real s = std::sqrt(tau(t0, t));
         if (close(s, 0.0))
             return 0.0;
-        Real a = std::max(x0 - integrateStdDevs_ * s, -1.0 / beta_);
-        Real b = x0 + integrateStdDevs_ * s;
+        mIntegrand1 in(this, t0, x0, t);
+        mIntegrand1Check inC(this, t0, x0, t);
+        std::clog << "integration domain ..." << std::endl;
+        std::pair<Real, Real> d = detail::domain(
+            inC, x0, 1E-10, 1E-12, 1E-6, 1E-4, -QL_MAX_REAL, QL_MAX_REAL);
+        Real a = std::max(d.first, -1.0 / beta_);
+        Real b = d.second;
+        std::clog << "... is " << a << "," << b << std::endl;
         try {
-            result = std::log(
-                integrator_->operator()(mIntegrand1(this, t0, x0, t), a, b));
+            result = std::log(integrator_->operator()(in, a, b));
+            singularProb = 1.0 - integrator_->operator()(inC, a, b);
         } catch (...) {
             try {
-                result = std::log(integrator2_->operator()(
-                    mIntegrand1(this, t0, x0, t), a, b));
+                result = std::log(integrator2_->operator()(in, a, b));
+                singularProb = 1.0 - integrator2_->operator()(inC, a, b);
             } catch (...) {
                 QL_FAIL("could not compute M(" << t0 << "," << x0 << "," << t
                                                << "), tried integration over "
@@ -203,11 +223,16 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
     }
 
     Real singularTerm =
-        singularTerm_y_0(t0, x0, t) * exp(-lambda * (-1.0 / beta_ - x0));
+        singularProb *
+        /*singularTerm_y_0(t0, x0, t)*/ exp(-lambda * (-1.0 / beta_ - x0));
     // only take the singular term into account if numerically significant
     if (singularTerm > std::exp(result) * QL_EPSILON) {
         result = std::log(std::exp(result) + singularTerm);
     }
+    // debug
+    std::clog << "M(" << t0 << "," << x0 << "," << t << ") " << singularProb
+              << " (" << singularTerm_y_0(t0, x0, t) << ") " << singularTerm
+              << std::endl;
     return result;
 };
 
@@ -292,54 +317,17 @@ const Real BetaEtaCore::M(const Real u0, const Real Su) const {
     } else {
         QL_REQUIRE(!close(eta_, 1.0), "M(u0,Su) is only defined for eta < 1");
         mIntegrand2 ig(this, Su / std::pow(u0, 2.0 - 0.5 * eta_), u0);
-        // bisection to determine the integration domain
-        Real t = 1E-10, t2 = 1E-12;
-        Real tmpMult = 0.01;
-        Real la, lb;
-        do {
-            la = u0;
-            lb = u0;
-            while (ig(la) > t && la > 1E-8)
-                la /= (1.0 + tmpMult);
-            while (ig(lb) > t)
-                lb *= (1.0 + tmpMult);
-            tmpMult /= 10.0;
-        } while (close(la, lb) && tmpMult > 1E-8);
-        Real tmpa = la;
-        Real tmpb = u0;
-        Real m = tmpa;
-        if ((ig(tmpa) - t) * (ig(tmpb) - t) < 0.0) {
-            while (std::fabs(tmpa - tmpb) > 1E-6 && ig(tmpa) < t2) {
-                m = (tmpa + tmpb) / 2.0;
-                if ((ig(tmpa) - t) * (ig(m) - t) < 0.0)
-                    tmpb = m;
-                else
-                    tmpa = m;
-            }
-        }
-        Real a = m;
-        tmpa = u0;
-        tmpb = lb;
-        m = tmpb;
-        if ((ig(tmpa) - t) * (ig(tmpb) - t) < 0.0) {
-            while (std::fabs(tmpa - tmpb) > 1E-6 && ig(tmpb) < t2) {
-                m = (tmpa + tmpb) / 2.0;
-                if ((ig(tmpa) - t) * (ig(m) - t) < 0.0)
-                    tmpb = m;
-                else
-                    tmpa = m;
-            }
-        }
-        Real b = m;
+        std::pair<Real, Real> d = detail::domain(ig, u0, 1E-10, 1E-12, 1E-6,
+                                                 1E-4, 1E-10, QL_MAX_REAL);
         try {
-            res = preIntegrator_->operator()(ig, a, b);
+            res = preIntegrator_->operator()(ig, d.first, d.second);
         } catch (...) {
             try {
-                res = preIntegrator2_->operator()(ig, a, b);
+                res = preIntegrator2_->operator()(ig, d.first, d.second);
             } catch (...) {
-                QL_FAIL("could not compute M("
-                        << u0 << "," << Su << "), tried integration over " << a
-                        << "..." << b);
+                QL_FAIL("could not compute M(" << u0 << "," << Su
+                                               << "), tried integration over "
+                                               << d.first << "..." << d.second);
             }
         }
     }

@@ -118,22 +118,21 @@ class BetaEtaCore {
     // avoid lambda expressions for compiler compatibility
     class mIntegrand1;
     friend class mIntegrand1;
+    class mIntegrand1Check;
+    friend class mIntegrand1Check;
     class mIntegrand2;
     friend class mIntegrand2;
-    class mIntegrand2a;
-    friend class mIntegrand2a;
     class mIntegrand3;
     friend class mIntegrand3;
 
     // constants
-    const Real integrateStdDevs_;
     const Size ghPoints_;
 };
 
 namespace detail {
 
-// tabulate values M(eta, u, v), a c++ source or
-// gnuplot file (for a single eta) is generated
+// tabulate values M(eta, u, v) and generate a c++ source file
+// or a gnuplot file
 
 enum betaeta_tabulation_type { Cpp, GnuplotEUV, GnuplotUEV, GnuplotVEU };
 
@@ -144,7 +143,57 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
                  const Size usize, const Size vsize, const Size etasteps,
                  const Real cu, const Real densityu, const Real cv,
                  const Real densityv, const Real ce, const Real densitye);
+
+// heuristic to determine reasonable integration domains;
+// given a function f with f(c) > t, f continuous and with
+// limit zero for x to plus and minus infinity we look for
+// a0 < a < c < b < b0 with t2 < f(a) < t, t2 < f(b) < t
+
+template <class F>
+std::pair<Real, Real>
+domain(const F &f, const Real c, const Real t, const Real t2,
+       const Real accuracy = 1E-6, const Real step = 1E-4,
+       const Real a0 = -QL_MAX_REAL, const Real b0 = QL_MAX_REAL) {
+
+    Real la, lb;
+    la = c;
+    lb = c;
+    while (f(la) > t && la > a0) {
+        la = std::max(la - step, a0);
+    }
+    while (f(lb) > t && lb < b0) {
+        lb = std::min(lb + step, b0);
+    }
+    Real tmpa = la;
+    Real tmpb = c;
+    Real m = tmpa;
+    if ((f(tmpa) - t) * (f(tmpb) - t) < 0.0) {
+        while (std::fabs(tmpa - tmpb) > accuracy && f(tmpa) < t2) {
+            m = (tmpa + tmpb) / 2.0;
+            if ((f(tmpa) - t) * (f(m) - t) < 0.0)
+                tmpb = m;
+            else
+                tmpa = m;
+        }
+    }
+    Real a = m;
+    tmpa = c;
+    tmpb = lb;
+    m = tmpb;
+    if ((f(tmpa) - t) * (f(tmpb) - t) < 0.0) {
+        while (std::fabs(tmpa - tmpb) > accuracy && f(tmpb) < t2) {
+            m = (tmpa + tmpb) / 2.0;
+            if ((f(tmpa) - t) * (f(m) - t) < 0.0)
+                tmpb = m;
+            else
+                tmpa = m;
+        }
+    }
+    Real b = m;
+    return std::make_pair(a, b);
 }
+
+} // namespace detail
 
 // implementation
 
