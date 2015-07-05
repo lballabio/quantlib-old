@@ -68,10 +68,10 @@ BetaEta::BetaEta(const Handle<YieldTermStructure> &termStructure,
     for (Size i = 0; i < volatilities.size(); ++i)
         volatilities_[i] =
             Handle<Quote>(boost::make_shared<SimpleQuote>(volatilities[i]));
-    reversions_.resize(reversions_.size());
+    reversions_.resize(reversions.size());
     for (Size i = 0; i < reversions_.size(); ++i)
         reversions_[i] =
-            Handle<Quote>(boost::make_shared<SimpleQuote>(volatilities[i]));
+            Handle<Quote>(boost::make_shared<SimpleQuote>(reversions[i]));
     beta_ = Handle<Quote>(boost::make_shared<SimpleQuote>(beta));
     eta_ = Handle<Quote>(boost::make_shared<SimpleQuote>(eta));
     initialize();
