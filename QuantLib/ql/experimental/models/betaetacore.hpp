@@ -110,7 +110,7 @@ class BetaEtaCore {
     boost::shared_ptr<Integrator> preIntegrator_, preIntegrator2_;
 
     // tabulation data
-    Size etaSize_, uSize_, vSize_;
+    Size etaSize_, uSize_, SuSize_;
     std::vector<Real> eta_pre_, u_pre_, Su_pre_;
     std::vector<boost::shared_ptr<Matrix> > M_datasets_;
     std::vector<boost::shared_ptr<Interpolation2D> > M_surfaces_;
@@ -130,6 +130,12 @@ class BetaEtaCore {
 };
 
 namespace detail {
+
+const unsigned int eta_pre_size = 100, u_pre_size = 100, Su_pre_size = 100;
+extern "C" const double eta_pre[];
+extern "C" const double u_pre[];
+extern "C" const double Su_pre[];
+extern "C" const double M_pre[eta_pre_size][u_pre_size][Su_pre_size];
 
 // tabulate values M(eta, u, v) and generate a c++ source file
 // or a gnuplot file
@@ -152,7 +158,7 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
 template <class F>
 std::pair<Real, Real>
 domain(const F &f, const Real c, const Real t, const Real t2,
-       const Real accuracy = 1E-6, const Real step = 1E-4,
+       const Real accuracy = 1E-6, const Real step = 1E-3,
        const Real a0 = -QL_MAX_REAL, const Real b0 = QL_MAX_REAL) {
 
     Real la, lb;

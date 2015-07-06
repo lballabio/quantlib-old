@@ -31,8 +31,6 @@
 #include <boost/math/special_functions/gamma.hpp>
 #include <boost/make_shared.hpp>
 
-#include <ql/experimental/models/betaetatabulation.cpp>
-
 #include <iostream>
 
 namespace QuantLib {
@@ -75,18 +73,18 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
     preIntegrator2_ = boost::make_shared<SegmentIntegral>(250);
 
     // tabulation data
-    etaSize_ = sizeof(detail::eta_pre) / sizeof(detail::eta_pre[0]);
-    uSize_ = sizeof(detail::u_pre) / sizeof(detail::u_pre[0]);
-    vSize_ = sizeof(detail::Su_pre) / sizeof(detail::Su_pre[0]);
+    etaSize_ = detail::eta_pre_size;
+    uSize_ = detail::u_pre_size;
+    SuSize_ = detail::Su_pre_size;
     eta_pre_ = std::vector<Real>(detail::eta_pre, detail::eta_pre + etaSize_);
     u_pre_ = std::vector<Real>(detail::u_pre, detail::u_pre + uSize_);
-    Su_pre_ = std::vector<Real>(detail::Su_pre, detail::Su_pre + vSize_);
+    Su_pre_ = std::vector<Real>(detail::Su_pre, detail::Su_pre + SuSize_);
     // spline interpolation
     for (Size i = 0; i < etaSize_; ++i) {
         boost::shared_ptr<Matrix> zTmp =
             boost::make_shared<Matrix>(Su_pre_.size(), u_pre_.size());
         for (Size uu = 0; uu < uSize_; ++uu)
-            for (Size vv = 0; vv < vSize_; ++vv)
+            for (Size vv = 0; vv < SuSize_; ++vv)
                 (*zTmp)[vv][uu] = detail::M_pre[i][uu][vv];
         M_datasets_.push_back(zTmp);
         boost::shared_ptr<BilinearInterpolation> tmp =
@@ -202,7 +200,7 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
         mIntegrand1 in(this, t0, x0, t);
         mIntegrand1Check inC(this, t0, x0, t);
         std::pair<Real, Real> d = detail::domain(
-            inC, x0, 1E-10, 1E-12, 1E-6, 1E-4, -QL_MAX_REAL, QL_MAX_REAL);
+            inC, x0, 1E-10, 1E-12, 1E-6, 1E-2, -QL_MAX_REAL, QL_MAX_REAL);
         Real a = std::max(d.first, -1.0 / beta_);
         Real b = d.second;
         try {
@@ -316,7 +314,7 @@ const Real BetaEtaCore::M(const Real u0, const Real Su) const {
         QL_REQUIRE(!close(eta_, 1.0), "M(u0,Su) is only defined for eta < 1");
         mIntegrand2 ig(this, Su / std::pow(u0, 2.0 - 0.5 * eta_), u0);
         std::pair<Real, Real> d = detail::domain(ig, u0, 1E-10, 1E-12, 1E-6,
-                                                 1E-4, 1E-10, QL_MAX_REAL);
+                                                 1E-2, 1E-10, QL_MAX_REAL);
         try {
             res = preIntegrator_->operator()(ig, d.first, d.second);
         } catch (...) {
@@ -468,18 +466,18 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
         out << "// c_e = " << c_e << " density_e = " << density_e << "\n\n";
         out << "namespace QuantLib {\n"
             << "namespace detail {\n\n";
-        out << "const Real eta_pre[] = {";
+        out << "extern \"C\" const double eta_pre[] = {";
         for (Size i = 0; i < em.size() - 1; ++i)
             out << em.location(i) << (i < em.size() - 2 ? "," : "};\n\n");
-        out << "const Real u_pre[] = {";
+        out << "extern \"C\" const double u_pre[] = {";
         for (Size i = 0; i < um.size(); ++i)
             out << um.location(i) << (i < um.size() - 1 ? "," : "};\n\n");
-        out << "const Real Su_pre[] = {";
+        out << "extern \"C\" const double Su_pre[] = {";
         for (int i = 0; i < static_cast<int>(sum.size()); ++i)
             out << (i == -1 ? 0.0 : sum.location(i))
                 << (i < static_cast<int>(sum.size()) - 1 ? "," : "};\n\n");
 
-        out << "const Real M_pre[][" << um.size() << "][" << (sum.size())
+        out << "extern \"C\" const double M_pre[][" << um.size() << "][" << (sum.size())
             << "] = {\n";
     }
 
