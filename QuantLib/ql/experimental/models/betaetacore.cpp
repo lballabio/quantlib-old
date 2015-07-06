@@ -190,7 +190,6 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
     }
 
     Real result;
-    Real singularProb = 0.0;
     if (useTabulation) {
         result = M_tabulated(t0, x0, t);
     } else {
@@ -198,18 +197,15 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
         if (close(s, 0.0))
             return 0.0;
         mIntegrand1 in(this, t0, x0, t);
-        mIntegrand1Check inC(this, t0, x0, t);
         std::pair<Real, Real> d = detail::domain(
-            inC, x0, 1E-10, 1E-12, 1E-6, 1E-2, -QL_MAX_REAL, QL_MAX_REAL);
-        Real a = std::max(d.first, -1.0 / beta_);
+            in, x0, 1E-10, 1E-12, 1E-6, 1E-2, -1.0 / beta_, QL_MAX_REAL);
+        Real a = d.first;
         Real b = d.second;
         try {
             result = std::log(integrator_->operator()(in, a, b));
-            singularProb = 1.0 - integrator_->operator()(inC, a, b);
         } catch (...) {
             try {
                 result = std::log(integrator2_->operator()(in, a, b));
-                singularProb = 1.0 - integrator2_->operator()(inC, a, b);
             } catch (...) {
                 QL_FAIL("could not compute M(" << t0 << "," << x0 << "," << t
                                                << "), tried integration over "
@@ -218,16 +214,14 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
         }
     }
 
-    Real singularTerm = singularProb * /*singularTerm_y_0(t0, x0, t) **/
-                        exp(-lambda * (-1.0 / beta_ - x0));
+    Real singularProb = prob_y_0(t0, x0, t);
+    Real singularTerm = singularProb * exp(-lambda * (-1.0 / beta_ - x0));
+
     // only take the singular term into account if numerically significant
     if (singularTerm > std::exp(result) * QL_EPSILON) {
         result = std::log(std::exp(result) + singularTerm);
     }
-    // debug
-    // std::clog << "M(" << t0 << "," << x0 << "," << t << ") " << singularProb
-    //           << " (" << singularTerm_y_0(t0, x0, t) << ") " << singularTerm
-    //           << std::endl;
+
     return result;
 };
 
@@ -386,13 +380,32 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
     }
 };
 
-// TODO, this can obviously be tabulated in eta, y0, tau-tau0
-// it seems that this should be done for performance reasons
-// (the cases eta < 0.5 work much faster than eta >= 0.5)
-const Real BetaEtaCore::singularTerm_y_0(const Time t0, const Real x0,
-                                         const Time t) const {
-    if (eta_ < 0.5 || close(eta_, 1.0))
+const Real BetaEtaCore::prob_y_0(const Time t0, const Real x0, const Time t,
+                                 bool useTabulation) const {
+    if (close(eta_, 1.0))
         return 0.0;
+    // if (useTabulation) {
+    //     /* ... */
+    // } else {
+    //     mIntegrand1Check inC(this, t0, x0, t);
+    //     std::pair<Real, Real> d = detail::domain(
+    //         inC, x0, 1E-10, 1E-12, 1E-6, 1E-2, -1.0 / beta_, QL_MAX_REAL);
+    //     Real a = d.first;
+    //     Real b = d.second;
+    //     Real result;
+    //     try {
+    //         result = 1.0 - integrator_->operator()(inC, a, b);
+    //     } catch (...) {
+    //         try {
+    //             result = 1.0 - integrator2_->operator()(inC, a, b);
+    //         } catch (...) {
+    //             QL_FAIL("could not compute prob_y_0("
+    //                     << t0 << "," << x0 << "," << t
+    //                     << "), tried integration over " << a << "..." << b);
+    //         }
+    //     }
+    //     return result;
+    // }
     Real nu = 1.0 / (2.0 - 2.0 * eta_);
     Real y0 = this->y(x0, eta_);
     Real tau0 = this->tau(t0);

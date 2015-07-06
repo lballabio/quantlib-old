@@ -59,10 +59,9 @@ class BetaEtaCore {
     const Real p(const Time t0, const Real x0, const Real t,
                  const Real x) const;
 
-    // singular term for y=0 (x=-1/beta) and 1 > eta >= 0.5,
-    // for eta = 1 or eta < 0.5, 0 is returned
-    const Real singularTerm_y_0(const Time t0, const Real x0,
-                                const Time t) const;
+    // probability for y being zero (or x = -1 / beta)
+    const Real prob_y_0(const Time t0, const Real x0, const Time t,
+                        const bool useTabulation = true) const;
 
     const Real lambda(const Time t) const;
 

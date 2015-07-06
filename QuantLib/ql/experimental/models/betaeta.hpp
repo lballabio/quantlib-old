@@ -339,6 +339,8 @@ inline const Real BetaEta::integrate(const Real stdDevs,
     } catch (QuantLib::Error) {
         result = (*integrator2_)(phi, a, b);
     }
+    // add singular term
+    result += core_->prob_y_0(t0, x0, t, useTabulation_) * f(-1.0 / beta_->value());
     return result;
 }
 
