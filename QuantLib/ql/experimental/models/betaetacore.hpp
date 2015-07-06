@@ -75,6 +75,9 @@ class BetaEtaCore {
     // M in transformed variables, mainly there for tabulation purposes
     const Real M(const Real u0, const Real Su) const;
 
+    // prob_y_0 in transformed variables
+    const Real prob_y_0(const Real v, const Real y0) const;
+
   private:
     const Real M_eta_1(const Real t0, const Real x0, const Real t) const;
     const Real M_eta_05(const Real t0, const Real x0, const Real t) const;
@@ -83,7 +86,9 @@ class BetaEtaCore {
 
     const Real p_y(const Real v, const Real y0, const Real y,
                    const Real eta) const;
-    const Real p_y_core(const Real v, const Real y0, const Real y,
+    const Real p_y_core0(const Real v, const Real y0, const Real y,
+                        const Real eta) const;
+    const Real p_y_core1(const Real v, const Real y0, const Real y,
                         const Real eta) const;
 
     const Real y(const Real x, const Real eta) const;
@@ -117,10 +122,12 @@ class BetaEtaCore {
     // avoid lambda expressions for compiler compatibility
     class mIntegrand1;
     friend class mIntegrand1;
-    class mIntegrand1Check;
-    friend class mIntegrand1Check;
+    class pIntegrand1;
+    friend class pIntegrand1;
     class mIntegrand2;
     friend class mIntegrand2;
+    class pIntegrand2;
+    friend class pIntegrand2;
     class mIntegrand3;
     friend class mIntegrand3;
 

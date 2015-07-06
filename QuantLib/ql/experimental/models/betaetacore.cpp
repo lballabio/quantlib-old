@@ -111,14 +111,14 @@ class BetaEtaCore::mIntegrand1 {
     }
 };
 
-// density
-class BetaEtaCore::mIntegrand1Check {
+// integrand to compute the probability for y being 0 (directly in terms of x)
+class BetaEtaCore::pIntegrand1 {
     const BetaEtaCore *model_;
     const Real t0_, x0_, t_;
 
   public:
-    mIntegrand1Check(const BetaEtaCore *model, const Real t0, const Real x0,
-                     const Real t)
+    pIntegrand1(const BetaEtaCore *model, const Real t0, const Real x0,
+                const Real t)
         : model_(model), t0_(t0), x0_(x0), t_(t) {}
     Real operator()(Real x) const { return model_->p(t0_, x0_, t_, x); }
 };
@@ -135,13 +135,26 @@ class BetaEtaCore::mIntegrand2 {
         if (close(u, 0))
             return 0.0;
         Real eta = model_->eta();
-        return model_->p_y_core(
+        return model_->p_y_core1(
                    S_ * std::pow(1.0 - eta, 2.0 * eta) *
                        std::pow(u0_, 2.0 - 2.0 * eta),
                    std::pow(u0_, 1.0 - eta) * std::pow(1.0 - eta, eta - 1.0),
                    std::pow(u, 1.0 - eta) * std::pow(1.0 - eta, eta - 1.0),
                    eta) *
                exp(-(u - u0_));
+    }
+};
+
+// integrand to precompute the probability for y being 0
+class BetaEtaCore::pIntegrand2 {
+    const BetaEtaCore *model_;
+    const Real v_, y0_;
+
+  public:
+    pIntegrand2(const BetaEtaCore *model, const Real v, const Real y0)
+        : model_(model), v_(v), y0_(y0) {}
+    Real operator()(Real y) const {
+        return model_->p_y_core0(v_, y0_, y, model_->eta());
     }
 };
 
@@ -324,9 +337,9 @@ const Real BetaEtaCore::M(const Real u0, const Real Su) const {
     return a;
 }
 
-const Real BetaEtaCore::p_y_core(const Real v, const Real y0, const Real y,
-                                 const Real eta) const {
-    QL_REQUIRE(!close(eta, 1.0), "eta must not be one in p_y_core");
+const Real BetaEtaCore::p_y_core0(const Real v, const Real y0, const Real y,
+                                  const Real eta) const {
+    QL_REQUIRE(!close(eta, 1.0), "eta must not be one in p_y_core0");
     if (close(y, 0.0) || close(y0, 0.0)) // i.e. x, x0 = -1/beta
         return 0.0;
     Real nu = 1.0 / (2.0 - 2.0 * eta);
@@ -334,14 +347,18 @@ const Real BetaEtaCore::p_y_core(const Real v, const Real y0, const Real y,
     if (eta < 0.5) {
         return std::pow(y0 / y, nu) * y / v *
                modifiedBesselFunction_i_exponentiallyWeighted(-nu, y0 * y / v) *
-               exp(-(y - y0) * (y - y0) / (2.0 * v)) *
-               std::pow(y, eta / (eta - 1.0));
+               exp(-(y - y0) * (y - y0) / (2.0 * v));
     }
     // 0.5 <= eta < 1.0
     return std::pow(y0 / y, nu) * y / v *
            modifiedBesselFunction_i_exponentiallyWeighted(nu, y0 * y / v) *
-           exp(-(y - y0) * (y - y0) / (2.0 * v)) *
-           std::pow(y, eta / (eta - 1.0));
+           exp(-(y - y0) * (y - y0) / (2.0 * v));
+}
+
+const Real BetaEtaCore::p_y_core1(const Real v, const Real y0, const Real y,
+                                  const Real eta) const {
+    QL_REQUIRE(!close(eta, 1.0), "eta must not be one in p_y_core1");
+    return p_y_core0(v, y0, y, eta) * std::pow(y, eta / (eta - 1.0));
 }
 
 const Real BetaEtaCore::p_y(const Real v, const Real y0, const Real y,
@@ -353,7 +370,7 @@ const Real BetaEtaCore::p_y(const Real v, const Real y0, const Real y,
                    (y - y0 + 0.5 * beta_ * v) / v);
     }
     // eta < 1.0
-    return p_y_core(v, y0, y, eta) * std::pow(1.0 - eta, eta / (eta - 1.0)) *
+    return p_y_core1(v, y0, y, eta) * std::pow(1.0 - eta, eta / (eta - 1.0)) *
            std::pow(beta_, eta / (eta - 1.0));
 }
 
@@ -380,6 +397,31 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
     }
 };
 
+const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
+    // see comment in p(t0,x0,t,x), for eta close to 1 we can assume
+    // the probability for y being 0 to be close to zero
+    if (eta_ > eta_pre_.back())
+        return 0.0;
+    pIntegrand2 inC(this, v, y0);
+    std::pair<Real, Real> d =
+        detail::domain(inC, y0, 1E-10, 1E-12, 1E-6, 1E-2, 0.0, QL_MAX_REAL);
+    Real a = d.first;
+    Real b = d.second;
+    Real result;
+    try {
+        result = 1.0 - integrator_->operator()(inC, a, b);
+    } catch (...) {
+        try {
+            result = 1.0 - integrator2_->operator()(inC, a, b);
+        } catch (...) {
+            QL_FAIL("could not compute prob_y_0("
+                    << v << "," << y0 << "), tried integration over " << a
+                    << "..." << b);
+        }
+    }
+    return result;
+}
+
 const Real BetaEtaCore::prob_y_0(const Time t0, const Real x0, const Time t,
                                  bool useTabulation) const {
     if (close(eta_, 1.0))
@@ -387,30 +429,35 @@ const Real BetaEtaCore::prob_y_0(const Time t0, const Real x0, const Time t,
     // if (useTabulation) {
     //     /* ... */
     // } else {
-    //     mIntegrand1Check inC(this, t0, x0, t);
-    //     std::pair<Real, Real> d = detail::domain(
-    //         inC, x0, 1E-10, 1E-12, 1E-6, 1E-2, -1.0 / beta_, QL_MAX_REAL);
-    //     Real a = d.first;
-    //     Real b = d.second;
-    //     Real result;
+    // pIntegrand1 inC(this, t0, x0, t);
+    // std::pair<Real, Real> d = detail::domain(inC, x0, 1E-10, 1E-12, 1E-6,
+    // 1E-2,
+    //                                          -1.0 / beta_, QL_MAX_REAL);
+    // Real a = d.first;
+    // Real b = d.second;
+    // Real result;
+    // try {
+    //     result = 1.0 - integrator_->operator()(inC, a, b);
+    // } catch (...) {
     //     try {
-    //         result = 1.0 - integrator_->operator()(inC, a, b);
+    //         result = 1.0 - integrator2_->operator()(inC, a, b);
     //     } catch (...) {
-    //         try {
-    //             result = 1.0 - integrator2_->operator()(inC, a, b);
-    //         } catch (...) {
-    //             QL_FAIL("could not compute prob_y_0("
-    //                     << t0 << "," << x0 << "," << t
-    //                     << "), tried integration over " << a << "..." << b);
-    //         }
+    //         QL_FAIL("could not compute prob_y_0("
+    //                 << t0 << "," << x0 << "," << t
+    //                 << "), tried integration over " << a << "..." << b);
     //     }
-    //     return result;
     // }
-    Real nu = 1.0 / (2.0 - 2.0 * eta_);
-    Real y0 = this->y(x0, eta_);
-    Real tau0 = this->tau(t0);
-    Real tau = this->tau(t);
-    return boost::math::gamma_q(nu, y0 * y0 / (2.0 * (tau - tau0)));
+    Real v = tau(t0, t);
+    Real y0 = y(x0, eta_);
+    Real result = prob_y_0(v, y0);
+    return result;
+    // }
+    // Real nu = 1.0 / (2.0 - 2.0 * eta_);
+    // Real y0 = this->y(x0, eta_);
+    // Real tau0 = this->tau(t0);
+    // Real tau = this->tau(t);
+    // Real res = boost::math::gamma_q(nu, y0 * y0 / (2.0 * (tau - tau0)));
+    // return res;
 };
 
 namespace detail {
