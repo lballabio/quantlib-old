@@ -131,7 +131,7 @@ class BetaEtaCore {
 
 namespace detail {
 
-const unsigned int eta_pre_size = 100, u_pre_size = 100, Su_pre_size = 100;
+const unsigned int eta_pre_size = 99, u_pre_size = 100, Su_pre_size = 100;
 extern "C" const double eta_pre[];
 extern "C" const double u_pre[];
 extern "C" const double Su_pre[];

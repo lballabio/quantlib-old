@@ -218,9 +218,8 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
         }
     }
 
-    Real singularTerm =
-        singularProb *
-        /*singularTerm_y_0(t0, x0, t)*/ exp(-lambda * (-1.0 / beta_ - x0));
+    Real singularTerm = singularProb * /*singularTerm_y_0(t0, x0, t) **/
+                        exp(-lambda * (-1.0 / beta_ - x0));
     // only take the singular term into account if numerically significant
     if (singularTerm > std::exp(result) * QL_EPSILON) {
         result = std::log(std::exp(result) + singularTerm);
@@ -477,8 +476,8 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
             out << (i == -1 ? 0.0 : sum.location(i))
                 << (i < static_cast<int>(sum.size()) - 1 ? "," : "};\n\n");
 
-        out << "extern \"C\" const double M_pre[][" << um.size() << "][" << (sum.size())
-            << "] = {\n";
+        out << "extern \"C\" const double M_pre[][" << um.size() << "]["
+            << (sum.size()) << "] = {\n";
     }
 
     Array times;
