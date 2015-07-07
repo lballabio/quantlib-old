@@ -21,6 +21,7 @@ libModels_la_SOURCES = \
     betaetacore.cpp \
     betaetaswaptionengine.cpp \
     betaetatabulation.cpp \
+    betaetatabulation2.cpp \
     longstaffschwartzproxypathpricer.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
     proxynonstandardswaptionengine.cpp \
