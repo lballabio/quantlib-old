@@ -78,8 +78,8 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
     etaSize_ = detail::eta_pre_size;
     uSize_ = detail::u_pre_size;
     SuSize_ = detail::Su_pre_size;
-    vSize = detail::v_pre_size;
-    y0Size = detail::y0_pre_size;
+    vSize_ = detail::v_pre_size;
+    y0Size_ = detail::y0_pre_size;
 
     eta_pre_ = std::vector<Real>(detail::eta_pre, detail::eta_pre + etaSize_);
     u_pre_ = std::vector<Real>(detail::u_pre, detail::u_pre + uSize_);
@@ -112,7 +112,7 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
         tmp->enableExtrapolation();
         tmp2->enableExtrapolation();
         M_surfaces_.push_back(tmp);
-        p2_surfaces_.push_back(tmp);
+        p_surfaces_.push_back(tmp);
     }
 };
 
@@ -442,7 +442,7 @@ const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
     return result;
 }
 
-const BetaEtaCore::Real prob_y_0_tabulated(const Real v, const Real y0) const {
+const Real BetaEtaCore::prob_y_0_tabulated(const Real v, const Real y0) const {
     // see above
     if (eta_ > eta_pre_.back())
         return 0.0;
@@ -461,7 +461,7 @@ const BetaEtaCore::Real prob_y_0_tabulated(const Real v, const Real y0) const {
                              : (1.0 - eta_pre_[etaIdx - 1]));
 
     Real result_eta_lower = p_surfaces_[etaIdx - 1]->operator()(v, y0);
-    Real result_eta_higer = p_surfaces_[etaIdx - 1]->operator()(v, y0);
+    Real result_eta_higher = p_surfaces_[etaIdx - 1]->operator()(v, y0);
     Real result =
         (result_eta_lower * eta_weight_1 + result_eta_higher * eta_weight_2);
 
@@ -477,7 +477,7 @@ const BetaEtaCore::Real prob_y_0_tabulated(const Real v, const Real y0) const {
 const Real BetaEtaCore::prob_y_0(const Time t0, const Real x0, const Time t,
                                  bool useTabulation) const {
     // see above
-    if (eta_ > eta_pre_back())
+    if (eta_ > eta_pre_.back())
         return 0.0;
     Real v = tau(t0, t);
     Real y0 = y(x0, eta_);
@@ -680,7 +680,7 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
         }
     }
 
-    if (type == GnuplotVEU) {
+    if (type == GnuplotP) {
         for (int j = -1; j < static_cast<int>(sum.size()); ++j) {
             Real v = j == -1 ? 0.0 : sum.location(j);
             for (Size e = 0; e < eta_size - 1; ++e) {
@@ -688,14 +688,13 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
                 BetaEtaCore core(times, alpha, kappa, 1.0, eta);
                 for (Size i = 0; i < um.size(); ++i) {
                     Real u0 = um.location(i);
-                    Real lres = core.p(v, u0);
+                    Real lres = core.prob_y_0(v, u0);
                     out << v << " " << eta << " " << u0 << " " << lres << "\n";
                 }
                 out << "\n";
             }
         }
     }
-
 }
 
 } // namespace detail

@@ -1,8 +1,10 @@
 namespace QuantLib {
-namesapce detail {
+namespace detail {
+
+
 
     extern "C" const double v_pre[] = {0.0, 1.0};
-    extern "C" const dobule y0_pre[] = {0.0, 1.0};
+    extern "C" const double y0_pre[] = {0.0, 1.0};
     extern "C" const double p_pre[][2][2] = {
         {{0.0, 0.0}, {0.0, 0.0}}, {{0.0, 0.0}, {0.0, 0.0}},
         {{0.0, 0.0}, {0.0, 0.0}}, {{0.0, 0.0}, {0.0, 0.0}},
