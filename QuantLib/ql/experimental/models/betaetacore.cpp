@@ -418,10 +418,14 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
 };
 
 const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
-    // see comment in p(t0,x0,t,x), for eta close to 1 we can assume
-    // the probability for y being 0 to be negligible
-    if (eta_ > eta_pre_.back())
+    if (close(v, 0.0))
         return 0.0;
+    if (eta_ >= 0.5) {
+        Real nu = 1.0 / (2.0 - 2.0 * eta_);
+        Real res = boost::math::gamma_q(nu, y0 * y0 / (2.0 * v));
+        return res;
+    }
+    // eta < 0.5
     pIntegrand2 inC(this, v, y0);
     std::pair<Real, Real> d =
         detail::domain(inC, y0, 1E-10, 1E-12, 1E-6, 1E-2, 0.0, QL_MAX_REAL);
@@ -443,8 +447,9 @@ const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
 }
 
 const Real BetaEtaCore::prob_y_0_tabulated(const Real v, const Real y0) const {
-    // see above
-    if (eta_ > eta_pre_.back())
+    // see comment above, for eta close to 1 we can
+    // assume a negligible probability of y being 0
+    if (eta_ > eta_pre_.back() || close(v, 0.0))
         return 0.0;
     int etaIdx = std::upper_bound(eta_pre_.begin(), eta_pre_.end(), eta_) -
                  eta_pre_.begin();
@@ -486,11 +491,6 @@ const Real BetaEtaCore::prob_y_0(const Time t0, const Real x0, const Time t,
     } else {
         return prob_y_0(v, y0);
     }
-    // analytical soluation for eta >= 0.5
-    // this is slow however, so we need a tabulation anyhow
-    // Real nu = 1.0 / (2.0 - 2.0 * eta_);
-    // Real res = boost::math::gamma_q(nu, y0 * y0 / (2.0 * v));
-    // return res;
 };
 
 namespace detail {
@@ -665,7 +665,7 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
     }
 
     if (type == GnuplotVEU) {
-        for (int j = -1; j < static_cast<int>(sum.size()); ++j) {
+        for (int j = 0; j < static_cast<int>(sum.size()); ++j) {
             Real v = j == -1 ? 0.0 : sum.location(j);
             for (Size e = 0; e < eta_size - 1; ++e) {
                 Real eta = em.location(e);
@@ -681,15 +681,15 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
     }
 
     if (type == GnuplotP) {
-        for (int j = -1; j < static_cast<int>(sum.size()); ++j) {
-            Real v = j == -1 ? 0.0 : sum.location(j);
-            for (Size e = 0; e < eta_size - 1; ++e) {
-                Real eta = em.location(e);
-                BetaEtaCore core(times, alpha, kappa, 1.0, eta);
-                for (Size i = 0; i < um.size(); ++i) {
-                    Real u0 = um.location(i);
+        for (Size e = 0; e < eta_size - 1; ++e) {
+            Real eta = em.location(e);
+            for (Size i = 0; i < um.size(); ++i) {
+                Real u0 = um.location(i);
+                for (int j = 0; j < static_cast<int>(sum.size()); ++j) {
+                    Real v = j == -1 ? 0.0 : sum.location(j);
+                    BetaEtaCore core(times, alpha, kappa, 1.0, eta);
                     Real lres = core.prob_y_0(v, u0);
-                    out << v << " " << eta << " " << u0 << " " << lres << "\n";
+                    out << eta << " " << v << " " << u0 << " " << lres << "\n";
                 }
                 out << "\n";
             }
