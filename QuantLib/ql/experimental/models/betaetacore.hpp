@@ -82,14 +82,18 @@ class BetaEtaCore {
     const Real M_eta_1(const Real t0, const Real x0, const Real t) const;
     const Real M_eta_05(const Real t0, const Real x0, const Real t) const;
     const Real M_tabulated(const Real t0, const Real x0, const Real t) const;
-    const Real M_tabulated(const Real u0, const Real v) const; // for debug
 
+    // density (without singular term)
     const Real p_y(const Real v, const Real y0, const Real y,
                    const Real eta) const;
+    // density (without singular term, without dy/dx)
     const Real p_y_core0(const Real v, const Real y0, const Real y,
-                        const Real eta) const;
+                         const Real eta) const;
+    // density (without singular term, without dy/dx, but including y^{-2\nu+1})
     const Real p_y_core1(const Real v, const Real y0, const Real y,
-                        const Real eta) const;
+                         const Real eta) const;
+
+    const Real prob_y_0_tabulated(const Real v, const Real y0) const;
 
     const Real y(const Real x, const Real eta) const;
     const Real dydx(const Real y) const;
@@ -114,10 +118,10 @@ class BetaEtaCore {
     boost::shared_ptr<Integrator> preIntegrator_, preIntegrator2_;
 
     // tabulation data
-    Size etaSize_, uSize_, SuSize_;
-    std::vector<Real> eta_pre_, u_pre_, Su_pre_;
-    std::vector<boost::shared_ptr<Matrix> > M_datasets_;
-    std::vector<boost::shared_ptr<Interpolation2D> > M_surfaces_;
+    Size etaSize_, uSize_, SuSize_, vSize_, y0Size_;
+    std::vector<Real> eta_pre_, u_pre_, Su_pre_, v_pre_, y0_pre_;
+    std::vector<boost::shared_ptr<Matrix> > M_datasets_, p_datasets_;
+    std::vector<boost::shared_ptr<Interpolation2D> > M_surfaces_, p_surfaces_;
 
     // avoid lambda expressions for compiler compatibility
     class mIntegrand1;
@@ -137,24 +141,40 @@ class BetaEtaCore {
 
 namespace detail {
 
+// declarations for tabulated data
+
 const unsigned int eta_pre_size = 99, u_pre_size = 100, Su_pre_size = 100;
+const unsigned int v_pre_size = 20, y0_pre_size = 20;
 extern "C" const double eta_pre[];
 extern "C" const double u_pre[];
 extern "C" const double Su_pre[];
+extern "C" const double v_pre[];
+extern "C" const double y0_pre[];
 extern "C" const double M_pre[eta_pre_size][u_pre_size][Su_pre_size];
+extern "C" const double p_pre[eta_pre_size][v_pre_size][y0_pre_size];
 
-// tabulate values M(eta, u, v) and generate a c++ source file
-// or a gnuplot file
+// tabulate values M(eta, u, Su) or prob_y_0(v,y0)
+// note that the parameters for v and y0 and taken
+// from Su and u; and the eta parameters
+// (min, max, size, concentrating point, density)
+// must be identical for M and p tabulation
 
-enum betaeta_tabulation_type { Cpp, GnuplotEUV, GnuplotUEV, GnuplotVEU };
+enum betaeta_tabulation_type {
+    Cpp_M,      // cpp tabulation of M
+    Cpp_p,      // cpp tabulation of prob_y_0
+    GnuplotEUV, // gnuplot file of M, order eta-u0-Su
+    GnuplotUEV, // gnuplot file of M, order u0-eta-Su
+    GnuplotVEU, // gnuplot file of M, order Su-eta-u0
+    GnuplotP    // gnuplot file of prob_y_0
+};
 
 const void
 betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
                  const Real eta_min, const Real eta_max, const Real u0_min,
-                 const Real u0_max, const Real v_min, const Real v_max,
-                 const Size usize, const Size vsize, const Size etasteps,
-                 const Real cu, const Real densityu, const Real cv,
-                 const Real densityv, const Real ce, const Real densitye);
+                 const Real u0_max, const Real Su_min, const Real Su_max,
+                 const Size u_size, const Size Su_size, const Size eta_size,
+                 const Real c_u, const Real density_u, const Real c_Su,
+                 const Real density_Su, const Real c_e, const Real density_e);
 
 // heuristic to determine reasonable integration domains;
 // given a function f with f(c) > t, f continuous and with

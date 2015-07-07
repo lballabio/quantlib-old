@@ -65,8 +65,10 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
     // integrator and fallback to compute M directly in terms of x
     integrator_ = boost::make_shared<GaussLobattoIntegral>(10000, 1E-8, 1E-8);
     integrator2_ = boost::make_shared<SegmentIntegral>(250);
+
     // integrator to compute M for case eta = 1
     ghIntegrator_ = boost::make_shared<GaussHermiteIntegration>(ghPoints_);
+
     // integrator and fallback to tabulate M
     preIntegrator_ =
         boost::make_shared<GaussLobattoIntegral>(10000, 1E-8, 1E-8);
@@ -76,23 +78,41 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
     etaSize_ = detail::eta_pre_size;
     uSize_ = detail::u_pre_size;
     SuSize_ = detail::Su_pre_size;
+    vSize = detail::v_pre_size;
+    y0Size = detail::y0_pre_size;
+
     eta_pre_ = std::vector<Real>(detail::eta_pre, detail::eta_pre + etaSize_);
     u_pre_ = std::vector<Real>(detail::u_pre, detail::u_pre + uSize_);
     Su_pre_ = std::vector<Real>(detail::Su_pre, detail::Su_pre + SuSize_);
-    // spline interpolation
+    v_pre_ = std::vector<Real>(detail::v_pre, detail::v_pre + vSize_);
+    y0_pre_ = std::vector<Real>(detail::y0_pre, detail::y0_pre + y0Size_);
+
+    // interpolation of tabulated data
     for (Size i = 0; i < etaSize_; ++i) {
         boost::shared_ptr<Matrix> zTmp =
             boost::make_shared<Matrix>(Su_pre_.size(), u_pre_.size());
+        boost::shared_ptr<Matrix> z2Tmp =
+            boost::make_shared<Matrix>(v_pre_.size(), y0_pre_.size());
         for (Size uu = 0; uu < uSize_; ++uu)
             for (Size vv = 0; vv < SuSize_; ++vv)
                 (*zTmp)[vv][uu] = detail::M_pre[i][uu][vv];
+        for (Size vv = 0; vv < vSize_; ++vv)
+            for (Size yy = 0; yy < y0Size_; ++yy)
+                (*z2Tmp)[vv][yy] = detail::p_pre[i][vv][yy];
         M_datasets_.push_back(zTmp);
+        p_datasets_.push_back(z2Tmp);
         boost::shared_ptr<BilinearInterpolation> tmp =
             boost::make_shared<BilinearInterpolation>(
                 u_pre_.begin(), u_pre_.end(), Su_pre_.begin(), Su_pre_.end(),
                 *(M_datasets_[i]));
+        boost::shared_ptr<BilinearInterpolation> tmp2 =
+            boost::make_shared<BilinearInterpolation>(
+                v_pre_.begin(), v_pre_.end(), y0_pre_.begin(), y0_pre_.end(),
+                *(p_datasets_[i]));
         tmp->enableExtrapolation();
+        tmp2->enableExtrapolation();
         M_surfaces_.push_back(tmp);
+        p2_surfaces_.push_back(tmp);
     }
 };
 
@@ -227,7 +247,7 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
         }
     }
 
-    Real singularProb = prob_y_0(t0, x0, t);
+    Real singularProb = prob_y_0(t0, x0, t, useTabulation);
     Real singularTerm = singularProb * exp(-lambda * (-1.0 / beta_ - x0));
 
     // only take the singular term into account if numerically significant
@@ -399,7 +419,7 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
 
 const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
     // see comment in p(t0,x0,t,x), for eta close to 1 we can assume
-    // the probability for y being 0 to be close to zero
+    // the probability for y being 0 to be negligible
     if (eta_ > eta_pre_.back())
         return 0.0;
     pIntegrand2 inC(this, v, y0);
@@ -422,41 +442,54 @@ const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
     return result;
 }
 
+const BetaEtaCore::Real prob_y_0_tabulated(const Real v, const Real y0) const {
+    // see above
+    if (eta_ > eta_pre_.back())
+        return 0.0;
+    int etaIdx = std::upper_bound(eta_pre_.begin(), eta_pre_.end(), eta_) -
+                 eta_pre_.begin();
+    Real eta_weight_1 =
+        (etaIdx < static_cast<int>(eta_pre_.size()) ? eta_pre_[etaIdx] - eta_
+                                                    : 1.0 - eta_) /
+        (etaIdx < static_cast<int>(eta_pre_.size())
+             ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
+             : (1.0 - eta_pre_[etaIdx - 1]));
+
+    Real eta_weight_2 = (eta_ - eta_pre_[etaIdx - 1]) /
+                        (etaIdx < static_cast<int>(eta_pre_.size())
+                             ? (eta_pre_[etaIdx] - eta_pre_[etaIdx - 1])
+                             : (1.0 - eta_pre_[etaIdx - 1]));
+
+    Real result_eta_lower = p_surfaces_[etaIdx - 1]->operator()(v, y0);
+    Real result_eta_higer = p_surfaces_[etaIdx - 1]->operator()(v, y0);
+    Real result =
+        (result_eta_lower * eta_weight_1 + result_eta_higher * eta_weight_2);
+
+    if (v > v_pre_.back() || y0 > y0_pre_.back())
+        QL_FAIL("tabulated value lookup ("
+                << v << "," << y0
+                << ") would require extrapolation, bounds are v_max="
+                << v_pre_.back() << " and y0_max=" << y0_pre_.back());
+
+    return result;
+}
+
 const Real BetaEtaCore::prob_y_0(const Time t0, const Real x0, const Time t,
                                  bool useTabulation) const {
-    if (close(eta_, 1.0))
+    // see above
+    if (eta_ > eta_pre_back())
         return 0.0;
-    // if (useTabulation) {
-    //     /* ... */
-    // } else {
-    // pIntegrand1 inC(this, t0, x0, t);
-    // std::pair<Real, Real> d = detail::domain(inC, x0, 1E-10, 1E-12, 1E-6,
-    // 1E-2,
-    //                                          -1.0 / beta_, QL_MAX_REAL);
-    // Real a = d.first;
-    // Real b = d.second;
-    // Real result;
-    // try {
-    //     result = 1.0 - integrator_->operator()(inC, a, b);
-    // } catch (...) {
-    //     try {
-    //         result = 1.0 - integrator2_->operator()(inC, a, b);
-    //     } catch (...) {
-    //         QL_FAIL("could not compute prob_y_0("
-    //                 << t0 << "," << x0 << "," << t
-    //                 << "), tried integration over " << a << "..." << b);
-    //     }
-    // }
     Real v = tau(t0, t);
     Real y0 = y(x0, eta_);
-    Real result = prob_y_0(v, y0);
-    return result;
-    // }
+    if (useTabulation) {
+        return prob_y_0_tabulated(v, y0);
+    } else {
+        return prob_y_0(v, y0);
+    }
+    // analytical soluation for eta >= 0.5
+    // this is slow however, so we need a tabulation anyhow
     // Real nu = 1.0 / (2.0 - 2.0 * eta_);
-    // Real y0 = this->y(x0, eta_);
-    // Real tau0 = this->tau(t0);
-    // Real tau = this->tau(t);
-    // Real res = boost::math::gamma_q(nu, y0 * y0 / (2.0 * (tau - tau0)));
+    // Real res = boost::math::gamma_q(nu, y0 * y0 / (2.0 * v));
     // return res;
 };
 
@@ -478,7 +511,7 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
                              std::make_pair(c_e, density_e), true);
 
     out.precision(8);
-    if (type == Cpp) {
+    if (type == Cpp_M || type == Cpp_p) {
 
         out << "/* -*- mode: c++; tab-width: 4; indent-tabs-mode:"
             << "nil; c-basic-offset: 4 -*- */\n"
@@ -516,35 +549,57 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
         out << "// this file was generated by "
                "QuantLib::detail::betaeta_tabulate\n"
                "// using the following parameters:\n";
-        out << "// u0_min = " << u0_min << " u0_max = " << u0_max << "\n";
-        out << "// Su_min = " << Su_min << " Su_max = " << Su_max << "\n";
-        out << "// u_size = " << u_size << " Su_size = " << Su_size
-            << " eta_size = " << eta_size << "\n";
-        out << "// c_u = " << c_u << " density_u = " << density_u << "\n";
-        out << "// c_Su = " << c_Su << " density_Su = " << density_Su << "\n";
-        out << "// c_e = " << c_e << " density_e = " << density_e << "\n\n";
-        out << "namespace QuantLib {\n"
-            << "namespace detail {\n\n";
-        out << "extern \"C\" const double eta_pre[] = {";
-        for (Size i = 0; i < em.size() - 1; ++i)
-            out << em.location(i) << (i < em.size() - 2 ? "," : "};\n\n");
-        out << "extern \"C\" const double u_pre[] = {";
-        for (Size i = 0; i < um.size(); ++i)
-            out << um.location(i) << (i < um.size() - 1 ? "," : "};\n\n");
-        out << "extern \"C\" const double Su_pre[] = {";
-        for (int i = 0; i < static_cast<int>(sum.size()); ++i)
-            out << (i == -1 ? 0.0 : sum.location(i))
-                << (i < static_cast<int>(sum.size()) - 1 ? "," : "};\n\n");
-
-        out << "extern \"C\" const double M_pre[][" << um.size() << "]["
-            << (sum.size()) << "] = {\n";
+        if (type == Cpp_M) {
+            out << "// u0_min = " << u0_min << " u0_max = " << u0_max << "\n";
+            out << "// Su_min = " << Su_min << " Su_max = " << Su_max << "\n";
+            out << "// u_size = " << u_size << " Su_size = " << Su_size
+                << " eta_size = " << eta_size << "\n";
+            out << "// c_u = " << c_u << " density_u = " << density_u << "\n";
+            out << "// c_Su = " << c_Su << " density_Su = " << density_Su
+                << "\n";
+            out << "// c_e = " << c_e << " density_e = " << density_e << "\n\n";
+            out << "namespace QuantLib {\n"
+                << "namespace detail {\n\n";
+            out << "extern \"C\" const double eta_pre[] = {";
+            for (Size i = 0; i < em.size() - 1; ++i)
+                out << em.location(i) << (i < em.size() - 2 ? "," : "};\n\n");
+            out << "extern \"C\" const double u_pre[] = {";
+            for (Size i = 0; i < um.size(); ++i)
+                out << um.location(i) << (i < um.size() - 1 ? "," : "};\n\n");
+            out << "extern \"C\" const double Su_pre[] = {";
+            for (int i = 0; i < static_cast<int>(sum.size()); ++i)
+                out << (i == -1 ? 0.0 : sum.location(i))
+                    << (i < static_cast<int>(sum.size()) - 1 ? "," : "};\n\n");
+            out << "extern \"C\" const double M_pre[][" << um.size() << "]["
+                << (sum.size()) << "] = {\n";
+        } else {
+            out << "// y0_min = " << u0_min << " y0_max = " << u0_max << "\n";
+            out << "// v_min = " << Su_min << " v_max = " << Su_max << "\n";
+            out << "// y0_size = " << u_size << " v_size = " << Su_size
+                << " eta_size = " << eta_size << "\n";
+            out << "// c_u = " << c_u << " density_u = " << density_u << "\n";
+            out << "// c_Su = " << c_Su << " density_Su = " << density_Su
+                << "\n";
+            out << "// c_e = " << c_e << " density_e = " << density_e << "\n\n";
+            out << "namespace QuantLib {\n"
+                << "namespace detail {\n\n";
+            out << "extern \"C\" const double y0_pre[] = {";
+            for (Size i = 0; i < um.size(); ++i)
+                out << um.location(i) << (i < um.size() - 1 ? "," : "};\n\n");
+            out << "extern \"C\" const double v_pre[] = {";
+            for (int i = 0; i < static_cast<int>(sum.size()); ++i)
+                out << (i == -1 ? 0.0 : sum.location(i))
+                    << (i < static_cast<int>(sum.size()) - 1 ? "," : "};\n\n");
+            out << "extern \"C\" const double p_pre[][" << um.size() << "]["
+                << (sum.size()) << "] = {\n";
+        }
     }
 
     Array times;
     Array alpha(1, 0.01);
     Array kappa(1, 0.01);
 
-    if (type == Cpp) {
+    if (type == Cpp_M || type == Cpp_p) {
         for (Size e = 0; e < eta_size - 1; ++e) {
             Real eta = em.location(e);
             BetaEtaCore core(times, alpha, kappa, 1.0, eta);
@@ -552,11 +607,20 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
             out << "{ ";
             for (Size i = 0; i < um.size(); ++i) {
                 Real u0 = um.location(i);
-                out << "// eta=" << eta << " u=" << u0 << "\n";
+                if (type == Cpp_M) {
+                    out << "// eta=" << eta << " u0=" << u0 << "\n";
+                } else {
+                    out << "// eta=" << eta << " y0=" << u0 << "\n";
+                }
                 out << "{";
                 for (int j = 0; j < static_cast<int>(sum.size()); ++j) {
                     Real v = j == -1 ? 0.0 : sum.location(j);
-                    Real lres = core.M(u0, v);
+                    Real lres;
+                    if (type == Cpp_M) {
+                        lres = core.M(u0, v);
+                    } else {
+                        lres = core.prob_y_0(v, u0);
+                    }
                     out << lres
                         << (j < static_cast<int>(sum.size()) - 1 ? "," : "}");
                 }
@@ -615,6 +679,23 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
             }
         }
     }
+
+    if (type == GnuplotVEU) {
+        for (int j = -1; j < static_cast<int>(sum.size()); ++j) {
+            Real v = j == -1 ? 0.0 : sum.location(j);
+            for (Size e = 0; e < eta_size - 1; ++e) {
+                Real eta = em.location(e);
+                BetaEtaCore core(times, alpha, kappa, 1.0, eta);
+                for (Size i = 0; i < um.size(); ++i) {
+                    Real u0 = um.location(i);
+                    Real lres = core.p(v, u0);
+                    out << v << " " << eta << " " << u0 << " " << lres << "\n";
+                }
+                out << "\n";
+            }
+        }
+    }
+
 }
 
 } // namespace detail
