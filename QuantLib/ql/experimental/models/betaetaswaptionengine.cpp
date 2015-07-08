@@ -135,14 +135,13 @@ void BetaEtaSwaptionEngine::calculate() const {
                         model_->zerobond(arguments_.fixedPayDates[l], expiry0,
                                          x[k], discountCurve_);
                 }
-                Real exerciseValue = /*
-                    model_->zerobond(10.0, expiry0Time, x[k], discountCurve_) /
-                    model_->numeraire(expiry0Time, x[k], discountCurve_);*/
-                 (type == Option::Call ? 1.0 : -1.0) *
+                Real exerciseValue = (type == Option::Call ? 1.0 : -1.0) *
                      (floatingLegNpv - fixedLegNpv) /
                      model_->numeraire(expiry0Time, x[k], discountCurve_);
                 npv0[k] = std::max(npv0[k], exerciseValue);
+
             } // if expiry0 > settlement
+
         }     // for k
 
         npv1.swap(npv0);
