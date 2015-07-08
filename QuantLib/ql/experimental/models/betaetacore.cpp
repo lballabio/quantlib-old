@@ -98,7 +98,7 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
                 (*zTmp)[vv][uu] = detail::M_pre[i][uu][vv];
         for (Size vv = 0; vv < vSize_; ++vv)
             for (Size yy = 0; yy < y0Size_; ++yy)
-                (*z2Tmp)[vv][yy] = detail::p_pre[i][vv][yy];
+                (*z2Tmp)[yy][vv] = detail::p_pre[i][yy][vv];
         M_datasets_.push_back(zTmp);
         p_datasets_.push_back(z2Tmp);
         boost::shared_ptr<BilinearInterpolation> tmp =
@@ -452,6 +452,9 @@ const Real BetaEtaCore::prob_y_0_tabulated(const Real v, const Real y0) const {
         return 0.0;
     int etaIdx = std::upper_bound(eta_pre_.begin(), eta_pre_.end(), eta_) -
                  eta_pre_.begin();
+
+    // weight formulas are more general than needed because
+    // etaIdx < eta_pre_.size() by the condition above
     Real eta_weight_1 =
         (etaIdx < static_cast<int>(eta_pre_.size()) ? eta_pre_[etaIdx] - eta_
                                                     : 1.0 - eta_) /
@@ -465,7 +468,7 @@ const Real BetaEtaCore::prob_y_0_tabulated(const Real v, const Real y0) const {
                              : (1.0 - eta_pre_[etaIdx - 1]));
 
     Real result_eta_lower = p_surfaces_[etaIdx - 1]->operator()(v, y0);
-    Real result_eta_higher = p_surfaces_[etaIdx - 1]->operator()(v, y0);
+    Real result_eta_higher = p_surfaces_[etaIdx]->operator()(v, y0);
     Real result =
         (result_eta_lower * eta_weight_1 + result_eta_higher * eta_weight_2);
 
@@ -577,6 +580,8 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
             out << "// c_Su = " << c_Su << " density_Su = " << density_Su
                 << "\n";
             out << "// c_e = " << c_e << " density_e = " << density_e << "\n\n";
+            out << "// note that the eta grid is taken from "
+                   "betaetatabulation.cpp\n\n";
             out << "namespace QuantLib {\n"
                 << "namespace detail {\n\n";
             out << "extern \"C\" const double y0_pre[] = {";
