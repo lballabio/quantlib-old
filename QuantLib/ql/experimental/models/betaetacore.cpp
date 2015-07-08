@@ -231,7 +231,7 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
             return 0.0;
         mIntegrand1 in(this, t0, x0, t);
         std::pair<Real, Real> d = detail::domain(
-            in, x0, 1E-10, 1E-12, 1E-6, 1E-2, -1.0 / beta_, QL_MAX_REAL);
+            in, x0, 1E-10, 1E-12, 1E-6, 1.1, -1.0 / beta_, QL_MAX_REAL);
         Real a = d.first;
         Real b = d.second;
         try {
@@ -340,7 +340,7 @@ const Real BetaEtaCore::M(const Real u0, const Real Su) const {
         QL_REQUIRE(!close(eta_, 1.0), "M(u0,Su) is only defined for eta < 1");
         mIntegrand2 ig(this, Su / std::pow(u0, 2.0 - 0.5 * eta_), u0);
         std::pair<Real, Real> d = detail::domain(ig, u0, 1E-10, 1E-12, 1E-6,
-                                                 1E-2, 1E-10, QL_MAX_REAL);
+                                                 1.1, 1E-10, QL_MAX_REAL);
         try {
             res = preIntegrator_->operator()(ig, d.first, d.second);
         } catch (...) {
@@ -429,7 +429,7 @@ const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
     // eta < 0.5
     pIntegrand2 inC(this, v, y0);
     std::pair<Real, Real> d =
-        detail::domain(inC, y0, 1E-10, 1E-12, 1E-6, 1E-2, 0.0, QL_MAX_REAL);
+        detail::domain(inC, y0, 1E-10, 1E-12, 1E-6, 1.1, 0.0, QL_MAX_REAL);
     Real a = d.first;
     Real b = d.second;
     Real result;
@@ -472,11 +472,11 @@ const Real BetaEtaCore::prob_y_0_tabulated(const Real v, const Real y0) const {
     Real result =
         (result_eta_lower * eta_weight_1 + result_eta_higher * eta_weight_2);
 
-    if (v > v_pre_.back() || y0 > y0_pre_.back())
-        QL_FAIL("tabulated value lookup ("
-                << v << "," << y0
-                << ") would require extrapolation, bounds are v_max="
-                << v_pre_.back() << " and y0_max=" << y0_pre_.back());
+    // if (v > v_pre_.back() || y0 > y0_pre_.back())
+    //     QL_FAIL("tabulated value lookup ("
+    //             << v << "," << y0
+    //             << ") would require extrapolation, bounds are v_max="
+    //             << v_pre_.back() << " and y0_max=" << y0_pre_.back());
 
     return result;
 }

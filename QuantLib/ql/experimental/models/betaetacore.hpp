@@ -184,17 +184,25 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
 template <class F>
 std::pair<Real, Real>
 domain(const F &f, const Real c, const Real t, const Real t2,
-       const Real accuracy = 1E-6, const Real step = 1E-3,
+       const Real accuracy = 1E-6, const Real step = 1.1,
        const Real a0 = -QL_MAX_REAL, const Real b0 = QL_MAX_REAL) {
 
     Real la, lb;
     la = c;
     lb = c;
     while (f(la) > t && la > a0) {
-        la = std::max(la - step, a0);
+        if (fabs(la) < 1.0)
+            la -= step - 1.0;
+        else
+            la = la > 0 ? la / step : la * step;
+        la = std::max(std::min(la, b0), a0);
     }
     while (f(lb) > t && lb < b0) {
-        lb = std::min(lb + step, b0);
+        if (fabs(lb) < 1.0)
+            lb += step - 1.0;
+        else
+            lb = lb > 0 ? lb * step : lb / step;
+        lb = std::max(std::min(lb, b0), a0);
     }
     Real tmpa = la;
     Real tmpb = c;
