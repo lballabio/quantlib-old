@@ -112,7 +112,7 @@ BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
         tmp->enableExtrapolation();
         tmp2->enableExtrapolation();
         M_surfaces_.push_back(tmp);
-        p_surfaces_.push_back(tmp);
+        p_surfaces_.push_back(tmp2);
     }
 };
 

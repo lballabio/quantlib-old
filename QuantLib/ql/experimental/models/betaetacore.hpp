@@ -144,7 +144,7 @@ namespace detail {
 // declarations for tabulated data
 
 const unsigned int eta_pre_size = 99, u_pre_size = 100, Su_pre_size = 100;
-const unsigned int v_pre_size = 20, y0_pre_size = 20;
+const unsigned int v_pre_size = 50, y0_pre_size = 50;
 extern "C" const double eta_pre[];
 extern "C" const double u_pre[];
 extern "C" const double Su_pre[];
