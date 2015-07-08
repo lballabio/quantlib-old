@@ -131,7 +131,7 @@ class BetaEtaCore::mIntegrand1 {
     }
 };
 
-// integrand to compute the probability for y being 0 (directly in terms of x)
+// integrand to compute prob_y_0 (directly in terms of x, eta < 0.5)
 class BetaEtaCore::pIntegrand1 {
     const BetaEtaCore *model_;
     const Real t0_, x0_, t_;
@@ -165,7 +165,7 @@ class BetaEtaCore::mIntegrand2 {
     }
 };
 
-// integrand to precompute the probability for y being 0
+// integrand to precompute prob_y_0 (eta < 0.5)
 class BetaEtaCore::pIntegrand2 {
     const BetaEtaCore *model_;
     const Real v_, y0_;
@@ -402,7 +402,8 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
     // but not equal to one we interpolate the density between the largest
     // stable value for eta and one. Since the tabulation should be
     // stable w.r.t. the spanned eta grid, we use the largest grid value
-    // from there as the cutoff value (which may be e.g. 0.99).
+    // from there as the cutoff value (which would typically be something
+    // close to 0.99).
     Real v = this->tau(t0, t);
     if (eta_ <= eta_pre_.back()) {
         Real y0 = this->y(x0, eta_);
@@ -418,7 +419,7 @@ const Real BetaEtaCore::p(const Time t0, const Real x0, const Real t,
 };
 
 const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
-    if (close(v, 0.0))
+    if (close(v, 0.0) || eta_ > eta_pre_.back())
         return 0.0;
     if (eta_ >= 0.5) {
         Real nu = 1.0 / (2.0 - 2.0 * eta_);
@@ -447,9 +448,7 @@ const Real BetaEtaCore::prob_y_0(const Real v, const Real y0) const {
 }
 
 const Real BetaEtaCore::prob_y_0_tabulated(const Real v, const Real y0) const {
-    // see comment above, for eta close to 1 we can
-    // assume a negligible probability of y being 0
-    if (eta_ > eta_pre_.back() || close(v, 0.0))
+    if (close(v, 0.0) || eta_ > eta_pre_.back())
         return 0.0;
     int etaIdx = std::upper_bound(eta_pre_.begin(), eta_pre_.end(), eta_) -
                  eta_pre_.begin();
@@ -481,9 +480,6 @@ const Real BetaEtaCore::prob_y_0_tabulated(const Real v, const Real y0) const {
 
 const Real BetaEtaCore::prob_y_0(const Time t0, const Real x0, const Time t,
                                  bool useTabulation) const {
-    // see above
-    if (eta_ > eta_pre_.back())
-        return 0.0;
     Real v = tau(t0, t);
     Real y0 = y(x0, eta_);
     if (useTabulation) {
