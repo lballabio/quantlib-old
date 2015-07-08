@@ -248,7 +248,10 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
     }
 
     Real singularProb = prob_y_0(t0, x0, t, useTabulation);
-    Real singularTerm = singularProb * exp(-lambda * (-1.0 / beta_ - x0));
+    Real singularTerm = 0.0;
+    // TODO ...
+    if(singularProb > 1E-6)
+        singularTerm = singularProb * exp(-lambda * (-1.0 / beta_ - x0));
 
     // only take the singular term into account if numerically significant
     if (singularTerm > std::exp(result) * QL_EPSILON) {
