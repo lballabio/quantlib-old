@@ -582,8 +582,8 @@ betaeta_tabulate(betaeta_tabulation_type type, std::ostream &out,
             out << "// v_min = " << Su_min << " v_max = " << Su_max << "\n";
             out << "// y0_size = " << u_size << " v_size = " << Su_size
                 << " eta_size = " << eta_size << "\n";
-            out << "// c_u = " << c_u << " density_u = " << density_u << "\n";
-            out << "// c_Su = " << c_Su << " density_Su = " << density_Su
+            out << "// c_y0 = " << c_u << " density_y0 = " << density_u << "\n";
+            out << "// c_v = " << c_Su << " density_v = " << density_Su
                 << "\n";
             out << "// c_e = " << c_e << " density_e = " << density_e << "\n\n";
             out << "// note that the eta grid is taken from "

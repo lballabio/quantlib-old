@@ -23,8 +23,8 @@
 // y0_min = 0.0001 y0_max = 10
 // v_min = 0.0001 v_max = 1
 // y0_size = 50 v_size = 50 eta_size = 100
-// c_u = 0.0001 density_u = 0.0001
-// c_Su = 0.0001 density_Su = 0.0001
+// c_y0 = 0.0001 density_y0 = 0.0001
+// c_v = 0.0001 density_v = 0.0001
 // c_e = 0.5 density_e = 1
 
 // note that the eta grid is taken from betaetatabulation.cpp
