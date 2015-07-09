@@ -46,6 +46,11 @@ namespace QuantLib {
     should not initialize an instance of this class with numerical constants
     or variables with a lifetime shorter than that of this instance. */
 
+/*! TODO very small probabilities for y=0 sometimes cause numerical
+    instabilities when multiplied by huge terms (e.g. to compute M),
+    therefore we set them to zero if smaller than 1E-6 for the time
+    being; to be revisited */
+
 class BetaEtaCore {
   public:
     BetaEtaCore(const Array &times, const Array &alpha, const Array &kappa,
@@ -75,7 +80,7 @@ class BetaEtaCore {
     // M in transformed variables, mainly there for tabulation purposes
     const Real M(const Real u0, const Real Su) const;
 
-    // prob_y_0 in transformed variables
+    // prob_y_0 in transformed variables (warning: no cutoff is applied)
     const Real prob_y_0(const Real v, const Real y0) const;
 
   private:
@@ -93,6 +98,7 @@ class BetaEtaCore {
     const Real p_y_core1(const Real v, const Real y0, const Real y,
                          const Real eta) const;
 
+    // warning: no cutoff is applied
     const Real prob_y_0_tabulated(const Real v, const Real y0) const;
 
     const Real y(const Real x, const Real eta) const;
@@ -137,6 +143,8 @@ class BetaEtaCore {
 
     // constants
     const Size ghPoints_;
+    const Real prob_y_0_cutoff;
+    const Real kappa_cutoff;
 };
 
 namespace detail {
@@ -312,8 +320,8 @@ inline const Real BetaEtaCore::lambda(const Time t) const {
     // so we just keep it away a bit - this is
     // not a numerical issue, but inherent in the
     // model construction
-    if (std::fabs(kappa) < 1E-6)
-        kappa = kappa > 0.0 ? 1E-6 : -1E-6;
+    if (std::fabs(kappa) < kappa_cutoff)
+        kappa = kappa > 0.0 ? kappa_cutoff : -kappa_cutoff;
     return (1.0 - exp(-kappa * t)) / kappa;
 }
 

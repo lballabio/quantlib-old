@@ -38,7 +38,7 @@ namespace QuantLib {
 BetaEtaCore::BetaEtaCore(const Array &times, const Array &alpha,
                          const Array &kappa, const Real &beta, const Real &eta)
     : times_(times), alpha_(alpha), kappa_(kappa), beta_(beta), eta_(eta),
-      ghPoints_(8) {
+      ghPoints_(8), prob_y_0_cutoff(1E-6), kappa_cutoff(1E-6) {
 
     QL_REQUIRE(beta > 0.0, "beta (" << beta << ") must be positive");
     QL_REQUIRE(eta >= 0.0 && eta <= 1.0, " eta (" << eta
@@ -249,9 +249,7 @@ const Real BetaEtaCore::M(const Time t0, const Real x0, const Real t,
 
     Real singularProb = prob_y_0(t0, x0, t, useTabulation);
     Real singularTerm = 0.0;
-    // TODO ...
-    if(singularProb > 1E-6)
-        singularTerm = singularProb * exp(-lambda * (-1.0 / beta_ - x0));
+    singularTerm = singularProb * exp(-lambda * (-1.0 / beta_ - x0));
 
     // only take the singular term into account if numerically significant
     if (singularTerm > std::exp(result) * QL_EPSILON) {
@@ -342,8 +340,8 @@ const Real BetaEtaCore::M(const Real u0, const Real Su) const {
     } else {
         QL_REQUIRE(!close(eta_, 1.0), "M(u0,Su) is only defined for eta < 1");
         mIntegrand2 ig(this, Su / std::pow(u0, 2.0 - 0.5 * eta_), u0);
-        std::pair<Real, Real> d = detail::domain(ig, u0, 1E-10, 1E-12, 1E-6,
-                                                 1.1, 1E-10, QL_MAX_REAL);
+        std::pair<Real, Real> d =
+            detail::domain(ig, u0, 1E-10, 1E-12, 1E-6, 1.1, 1E-10, QL_MAX_REAL);
         try {
             res = preIntegrator_->operator()(ig, d.first, d.second);
         } catch (...) {
@@ -488,11 +486,16 @@ const Real BetaEtaCore::prob_y_0(const Time t0, const Real x0, const Time t,
                                  bool useTabulation) const {
     Real v = tau(t0, t);
     Real y0 = y(x0, eta_);
+    Real result;
     if (useTabulation) {
-        return prob_y_0_tabulated(v, y0);
+        result = prob_y_0_tabulated(v, y0);
     } else {
-        return prob_y_0(v, y0);
+        result = prob_y_0(v, y0);
     }
+    // TODO ...
+    if(result < prob_y_0_cutoff)
+        result = 0.0;
+    return result;
 };
 
 namespace detail {

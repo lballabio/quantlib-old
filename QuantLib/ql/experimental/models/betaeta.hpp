@@ -343,10 +343,8 @@ inline const Real BetaEta::integrate(const Real stdDevs,
     // singular term
 
     Real p = core_->prob_y_0(t0, x0, t, useTabulation_);
-    // TODO ...
-    if (p > 1E-6)
-        result += core_->prob_y_0(t0, x0, t, useTabulation_) *
-                  f(-1.0 / beta_->value());
+    result +=
+        core_->prob_y_0(t0, x0, t, useTabulation_) * f(-1.0 / beta_->value());
     return result;
 }
 
