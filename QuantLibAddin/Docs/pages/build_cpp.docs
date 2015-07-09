@@ -125,7 +125,7 @@ C:\build_ql_1_6_0\QuantLibAddin
 Go to the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
-Download <tt>log4cxx-0.10.0g.zip</tt> and uncompress the package to
+Download <tt>log4cxx-0.10.0f4.zip</tt> and uncompress the package to
 <tt>C:\\build_ql_1_6_0\\log4cxx</tt>.
 
 Download <tt>gensrc-1.6.0.zip</tt> and uncompress the package to
@@ -211,8 +211,8 @@ where you will install it:
 Go to the 
 <a href="http://sourceforge.net/project/showfiles.php?group_id=12740">QuantLib downloads page</a>.
 
-Download <tt>log4cxx-0.10.0g.tar.gz</tt> and uncompress the package to
-<tt>/home/erik/build/log4cxx-0.10.0g</tt>.
+Download <tt>log4cxx-0.10.0f4.tar.gz</tt> and uncompress the package to
+<tt>/home/erik/build/log4cxx-0.10.0</tt>.
 
 Download <tt>gensrc-1.6.0.tgz</tt> and uncompress the package to
 <tt>/home/erik/build/gensrc-1.6.0</tt>.
