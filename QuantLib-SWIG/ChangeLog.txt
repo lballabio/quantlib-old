@@ -1,3 +1,51 @@
+commit 0f11fcba3e2c9d3a8f2b655be3f549c86db2eae9
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Wed, 15 Jul 2015 12:05:56 +0200
+
+    Update changelog and news.
+
+ QuantLib-SWIG/News.txt | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
+
+commit dde6aab53c24dd4053e0fe74a6609a0535bad2ff
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 7 Jul 2015 15:18:03 +0200
+
+    Add support for VC++ 2015 (VC14).
+    
+    We had tried to support the next version, but we had assumed that
+    the version number would be 13.  Microsoft decided it's 14 instead.
+
+ QuantLib-SWIG/CSharp/Makefile.am       |  1 +
+ QuantLib-SWIG/CSharp/QuantLib.props    |  5 +++
+ QuantLib-SWIG/CSharp/QuantLib_vc14.sln | 77 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 83 insertions(+)
+
+commit a36a54ff7b0e8ea41cada5cc3f43f81c05c83783
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 23 Jun 2015 11:37:53 +0200
+
+    Bump version number up to 1.6.1.
+
+ QuantLib-SWIG/Guile/setup.scm    | 2 +-
+ QuantLib-SWIG/MzScheme/setup.scm | 2 +-
+ QuantLib-SWIG/Perl/Makefile.PL   | 2 +-
+ QuantLib-SWIG/Python/setup.py    | 2 +-
+ QuantLib-SWIG/R/DESCRIPTION      | 2 +-
+ QuantLib-SWIG/Ruby/setup.rb      | 2 +-
+ QuantLib-SWIG/SWIG/ql.i          | 2 +-
+ QuantLib-SWIG/configure.ac       | 2 +-
+ 8 files changed, 8 insertions(+), 8 deletions(-)
+
+commit d8fb96f759a78f9930fb0d4288ec36068b5e3b76
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 8 Jun 2015 15:42:10 +0200
+
+    Update changelog.
+
+ QuantLib-SWIG/ChangeLog.txt | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
 commit fe43575a9858afcb9a154698c5ad5ecdb370e3f3
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
 Date:   Thu, 4 Jun 2015 13:29:40 +0200
