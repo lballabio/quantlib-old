@@ -11,11 +11,14 @@ this_include_HEADERS = \
     farliegumbelmorgensterncopularng.hpp \
     frankcopularng.hpp \
     gaussiancopulapolicy.hpp \
+    inversecumulativerng_multithreaded.hpp \
+    inversecumulativersg_multithreaded.hpp \
     latentmodel.hpp \
     multidimintegrator.hpp \
     multidimquadrature.hpp \
     numericaldifferentiation.hpp \
     polarstudenttrng.hpp \
+    rngtraits_multithreaded.hpp \
     tcopulapolicy.hpp \
     zigguratrng.hpp
 
