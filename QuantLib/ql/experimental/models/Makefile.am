@@ -8,9 +8,12 @@ this_include_HEADERS = \
     betaeta.hpp \
     betaetacore.hpp \
     betaetaswaptionengine.hpp \
+    inversecumulativerng_multithreaded.hpp \
+    inversecumulativersg_multithreaded.hpp \
     longstaffschwartzproxypathpricer.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
     proxynonstandardswaptionengine.hpp \
+    rngtraits_multithreaded.hpp \
     quadraticlfm.hpp \
     sbsmilesection.hpp \
     splinedensitysmilesection.hpp
