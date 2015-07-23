@@ -105,8 +105,8 @@ namespace QuantLib {
       coeff_     (new Array[times.size()-2]),
       dF_        (new DiscountFactor[times.size()-1]),
       v_         (pathPricer_->basisSystem()),
-      len_       (times.size()),
-      pathsMt_   (8,std::vector<PathType>()) {
+      pathsMt_   (8,std::vector<PathType>()),
+      len_       (times.size()) {
 
         for (Size i=0; i<times.size()-1; ++i) {
             dF_[i] =   termStructure->discount(times[i+1])
