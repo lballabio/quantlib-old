@@ -14,19 +14,22 @@ this_include_HEADERS = \
     inversecumulativerng_multithreaded.hpp \
     inversecumulativersg_multithreaded.hpp \
     latentmodel.hpp \
+    mersennetwister_multithreaded.hpp \
     multidimintegrator.hpp \
     multidimquadrature.hpp \
     numericaldifferentiation.hpp \
     polarstudenttrng.hpp \
+    randomsequencegenerator_multithreaded.hpp \
     rngtraits_multithreaded.hpp \
     tcopulapolicy.hpp \
     zigguratrng.hpp
 
 libMath_la_SOURCES = \
     convolvedstudentt.cpp \
-	dynamiccreator.cpp \
-	expm.cpp \
+    dynamiccreator.cpp \
+    expm.cpp \
     gaussiancopulapolicy.cpp \
+    mersennetwister_multithreaded.cpp \
     multidimintegrator.cpp \
     multidimquadrature.cpp \
     numericaldifferentiation.cpp \

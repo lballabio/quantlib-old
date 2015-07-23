@@ -44,6 +44,10 @@
 
 #include <boost/function.hpp>
 
+#if defined(_OPENMP)
+#include <omp.h>
+#endif
+
 namespace QuantLib {
 
     //! Longstaff-Schwarz path pricer for early exercise options
@@ -83,6 +87,7 @@ namespace QuantLib {
         boost::scoped_array<Array> coeff_;
         boost::scoped_array<DiscountFactor> dF_;
 
+        mutable std::vector<std::vector<PathType> > pathsMt_;
         mutable std::vector<PathType> paths_;
         const   std::vector<boost::function1<Real, StateType> > v_;
 
@@ -100,7 +105,8 @@ namespace QuantLib {
       coeff_     (new Array[times.size()-2]),
       dF_        (new DiscountFactor[times.size()-1]),
       v_         (pathPricer_->basisSystem()),
-      len_       (times.size()) {
+      len_       (times.size()),
+      pathsMt_   (8,std::vector<PathType>()) {
 
         for (Size i=0; i<times.size()-1; ++i) {
             dF_[i] =   termStructure->discount(times[i+1])
@@ -113,7 +119,14 @@ namespace QuantLib {
         (const PathType& path) const {
         if (calibrationPhase_) {
             // store paths for the calibration
+#ifdef _OPENMP
+            unsigned int threadId = omp_get_thread_num();
+            if(threadId > pathsMt_.size()-1)
+                pathsMt_.resize(2*threadId);
+            pathsMt_[threadId].push_back(path);
+#else
             paths_.push_back(path);
+#endif
             // result doesn't matter
             return 0.0;
         }
@@ -142,6 +155,11 @@ namespace QuantLib {
 
     template <class PathType> inline
     void LongstaffSchwartzPathPricer<PathType>::calibrate() {
+#ifdef _OPENMP
+        for (Size i = 0; i < pathsMt_.size(); ++i) {
+            paths_.insert(paths_.end(), pathsMt_[i].begin(), pathsMt_[i].end());
+        }
+#endif
         const Size n = paths_.size();
         Array prices(n), exercise(n);
         std::vector<StateType> p_state(n);

@@ -8,11 +8,16 @@
 #include <ql/experimental/math/farliegumbelmorgensterncopularng.hpp>
 #include <ql/experimental/math/frankcopularng.hpp>
 #include <ql/experimental/math/gaussiancopulapolicy.hpp>
+#include <ql/experimental/math/inversecumulativerng_multithreaded.hpp>
+#include <ql/experimental/math/inversecumulativersg_multithreaded.hpp>
 #include <ql/experimental/math/latentmodel.hpp>
+#include <ql/experimental/math/mersennetwister_multithreaded.hpp>
 #include <ql/experimental/math/multidimintegrator.hpp>
 #include <ql/experimental/math/multidimquadrature.hpp>
 #include <ql/experimental/math/numericaldifferentiation.hpp>
 #include <ql/experimental/math/polarstudenttrng.hpp>
+#include <ql/experimental/math/randomsequencegenerator_multithreaded.hpp>
+#include <ql/experimental/math/rngtraits_multithreaded.hpp>
 #include <ql/experimental/math/tcopulapolicy.hpp>
 #include <ql/experimental/math/zigguratrng.hpp>
 
