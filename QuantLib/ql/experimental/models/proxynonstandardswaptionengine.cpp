@@ -45,8 +45,6 @@ void ProxyNonstandardSwaptionEngine::calculate() const {
                          arguments_.exercise->dates().end(), today);
 
     Size exerciseIdx = nextExerciseDate - proxy_->expiryDates.begin();
-    Size exerciseIdxOrig =
-        nextExerciseDateOrig - arguments_.exercise->dates().begin();
 
     Real todaysTime = proxy_->model->termStructure()->timeFromReference(today);
 
