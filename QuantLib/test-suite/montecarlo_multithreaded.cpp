@@ -19,15 +19,20 @@
 
 #include "montecarlo_multithreaded.hpp"
 #include "utilities.hpp"
+#include <ql/indexes/ibor/euribor.hpp>
 #include <ql/instruments/vanillaoption.hpp>
 #include <ql/processes/hestonprocess.hpp>
 #include <ql/processes/stochasticprocessarray.hpp>
 #include <ql/methods/montecarlo/lsmbasissystem.hpp>
+#include <ql/instruments/nonstandardswaption.hpp>
 #include <ql/pricingengines/mclongstaffschwartzengine.hpp>
 #include <ql/pricingengines/vanilla/fdamericanengine.hpp>
 #include <ql/pricingengines/vanilla/mcamericanengine.hpp>
+#include <ql/pricingengines/swaption/gaussian1dnonstandardswaptionengine.hpp>
+#include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
 #include <ql/termstructures/volatility/equityfx/blackconstantvol.hpp>
 #include <ql/models/equity/hestonmodel.hpp>
+#include <ql/models/shortrate/onefactormodels/gsr.hpp>
 #include <ql/pricingengines/vanilla/mceuropeanhestonengine.hpp>
 #include <ql/experimental/exoticoptions/analyticpdfhestonengine.hpp>
 #include <ql/time/calendars/target.hpp>
@@ -35,6 +40,7 @@
 #include <ql/time/daycounters/actual365fixed.hpp>
 #include <ql/time/daycounters/actual360.hpp>
 #include <ql/time/daycounters/actualactual.hpp>
+#include <ql/time/daycounters/thirty360.hpp>
 #include <ql/termstructures/yield/zerocurve.hpp>
 #include <ql/termstructures/yield/flatforward.hpp>
 #include <ql/time/period.hpp>
@@ -226,6 +232,108 @@ void MonteCarloMultiThreadedTest::testAmericanOption() {
     }
 }
 
+void MonteCarloMultiThreadedTest::testBermudanSwaption() {
+
+#if !defined(_OPENMP)
+
+    BOOST_TEST_MESSAGE(
+        "Skipping multithreaded Monte Carlo Bermudan swaption engine test, "
+        "because OpenMP is not enabled");
+
+#else
+
+    // this is taken from the Longstaff Schwartz engine tests
+    BOOST_TEST_MESSAGE(
+        "Testing multithreaded Monte Carlo Bermudan swaption engine "
+        "against integral engine ...");
+
+#endif
+
+    SavedSettings backup;
+
+    Date evalDate(12, January, 2015);
+    Settings::instance().evaluationDate() = evalDate;
+
+    Handle<YieldTermStructure> yts(
+        boost::make_shared<FlatForward>(evalDate, 0.03, Actual365Fixed()));
+
+    boost::shared_ptr<IborIndex> euribor6m =
+        boost::make_shared<Euribor>(6 * Months, yts);
+
+    Real strike = 0.03;
+
+    Date effectiveDate = TARGET().advance(evalDate, 2 * Days);
+    Date startDate = TARGET().advance(effectiveDate, 1 * Years);
+    Date maturityDate = TARGET().advance(startDate, 10 * Years);
+
+    Schedule fixedSchedule(startDate, maturityDate, 1 * Years, TARGET(),
+                           ModifiedFollowing, ModifiedFollowing,
+                           DateGeneration::Forward, false);
+    Schedule floatingSchedule(startDate, maturityDate, 6 * Months, TARGET(),
+                              ModifiedFollowing, ModifiedFollowing,
+                              DateGeneration::Forward, false);
+
+    boost::shared_ptr<VanillaSwap> underlying = boost::make_shared<VanillaSwap>(
+        VanillaSwap(VanillaSwap::Payer, 1.0, fixedSchedule, strike, Thirty360(),
+                    floatingSchedule, euribor6m, 0.0, Actual360()));
+
+    std::vector<Date> exerciseDates;
+    for (Size i = 0; i < 10; ++i) {
+        exerciseDates.push_back(TARGET().advance(fixedSchedule[i], -2 * Days));
+    }
+
+    boost::shared_ptr<Exercise> exercise =
+        boost::make_shared<BermudanExercise>(exerciseDates, false);
+
+    boost::shared_ptr<Swaption> swaption =
+        boost::make_shared<Swaption>(underlying, exercise);
+
+    boost::shared_ptr<NonstandardSwaption> swaption2 =
+        boost::make_shared<NonstandardSwaption>(*swaption);
+
+    std::vector<Date> stepDates(exerciseDates.begin(), exerciseDates.end() - 1);
+
+    std::vector<Real> sigmas(stepDates.size() + 1, 0.0070);
+    Real reversion = 0.0030;
+
+    boost::shared_ptr<Gsr> gsr =
+        boost::make_shared<Gsr>(yts, stepDates, sigmas, reversion, 50.0);
+
+    // cached result from integral engine constructed as follows
+    // boost::shared_ptr<PricingEngine> swaptionEngine =
+    //     boost::make_shared<Gaussian1dNonstandardSwaptionEngine>(
+    //         gsr, 64, 7.0, true, false, Handle<Quote>(), yts);
+    Real expected = 0.0448073;
+
+    // mc engine
+    boost::shared_ptr<PricingEngine> mcEngine =
+        MakeMcGaussian1dNonstandardSwaptionEngine<PseudoRandomMultiThreaded>(
+            gsr)
+            .withSteps(1)
+            .withSamples(10000)
+            .withSeed(42)
+            .withCalibrationSamples(5000);
+
+    swaption2->setPricingEngine(mcEngine);
+
+    Real calculated = swaption2->NPV();
+    Real errorEstimate = swaption2->errorEstimate();
+    Real tolerance = 8E-4;
+
+    if (std::fabs(calculated - expected) > 2.34 * errorEstimate) {
+        BOOST_ERROR("Failed to reproduce cached price"
+                    << "\n    calculated: " << calculated
+                    << "\n    expected:   " << expected << " +/- "
+                    << errorEstimate);
+    }
+
+    if (errorEstimate > tolerance) {
+        BOOST_ERROR("failed to reproduce error estimate"
+                    << "\n    calculated: " << errorEstimate
+                    << "\n    expected:   " << tolerance);
+    }
+}
+
 void MonteCarloMultiThreadedTest::testDynamicCreatorWrapper() {
 
     BOOST_TEST_MESSAGE("Testing dynamic creator wrapper ...");
@@ -362,12 +470,14 @@ void MonteCarloMultiThreadedTest::testDynamicCreatorWrapper() {
 test_suite *MonteCarloMultiThreadedTest::suite() {
     test_suite *suite = BOOST_TEST_SUITE("Monte carlo multithreaded tests");
 
+    suite->add(QUANTLIB_TEST_CASE(
+        &MonteCarloMultiThreadedTest::testDynamicCreatorWrapper));
     suite->add(
         QUANTLIB_TEST_CASE(&MonteCarloMultiThreadedTest::testHestonEngine));
     suite->add(
         QUANTLIB_TEST_CASE(&MonteCarloMultiThreadedTest::testAmericanOption));
-    suite->add(QUANTLIB_TEST_CASE(
-        &MonteCarloMultiThreadedTest::testDynamicCreatorWrapper));
+    suite->add(
+        QUANTLIB_TEST_CASE(&MonteCarloMultiThreadedTest::testBermudanSwaption));
 
     return suite;
 }
