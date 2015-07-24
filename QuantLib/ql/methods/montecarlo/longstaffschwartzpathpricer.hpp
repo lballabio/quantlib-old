@@ -104,8 +104,8 @@ namespace QuantLib {
       pathPricer_(pathPricer),
       coeff_     (new Array[times.size()-2]),
       dF_        (new DiscountFactor[times.size()-1]),
-      v_         (pathPricer_->basisSystem()),
       pathsMt_   (8,std::vector<PathType>()),
+      v_         (pathPricer_->basisSystem()),
       len_       (times.size()) {
 
         for (Size i=0; i<times.size()-1; ++i) {
