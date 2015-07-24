@@ -192,6 +192,18 @@ McGaussian1dNonstandardSwaptionEngine<RNG, S>::
 
 template <class RNG, class S>
 void McGaussian1dNonstandardSwaptionEngine<RNG, S>::calculate() const {
+    // a lazy object is not thread safe, neither is the caching
+    // in gsrprocess. therefore we trigger computations here such
+    // that neither lazy object recalculation nor write access
+    // during caching occurs in the parallized loop in MonteCarloModel
+#ifdef _OPENMP
+    boost::shared_ptr<LongstaffSchwartzPathPricer<Path> > tmp =
+        this->lsmPathPricer();
+    tmp->calibrate();
+    model_->numeraire(1.0);
+    tmp->operator()(this->pathGenerator()->next().value);
+#endif
+    // continue with usual calculations
     base_class::calculate();
     // transform the deflated values into plain ones
     this->results_.value *= model_->numeraire(0.0, 0.0, discountCurve_);
@@ -216,8 +228,8 @@ void McGaussian1dNonstandardSwaptionEngine<RNG, S>::calculate() const {
         // oas (may be empty)
         this->proxy_->oas = oas_;
         // regression functions for values
-        for (int i = 0;
-             i < static_cast<int>(this->proxy_->expiryDates.size()); ++i) {
+        for (int i = 0; i < static_cast<int>(this->proxy_->expiryDates.size());
+             ++i) {
             boost::shared_ptr<LsFunction> lsTmp =
                 boost::make_shared<LsFunction>();
             boost::shared_ptr<LongstaffSchwartzProxyPathPricer> pathPricer =
