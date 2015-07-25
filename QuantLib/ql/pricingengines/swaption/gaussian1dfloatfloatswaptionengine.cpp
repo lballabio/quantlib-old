@@ -18,7 +18,9 @@
 */
 
 #include <ql/pricingengines/swaption/gaussian1dfloatfloatswaptionengine.hpp>
-#include <ql/experimental/coupons/swapspreadindex.hpp>
+#include <ql/experimental/coupons/swapspreadindex.hpp> // internal
+#include <ql/math/interpolations/cubicinterpolation.hpp>
+#include <ql/payoff.hpp>
 
 namespace QuantLib {
 
