@@ -20,6 +20,8 @@
 #include <ql/experimental/models/proxynonstandardswaptionengine.hpp>
 #include <ql/math/solvers1d/brent.hpp>
 #include <ql/rebatedexercise.hpp>
+#include <ql/math/interpolations/cubicinterpolation.hpp>
+#include <ql/payoff.hpp>
 
 namespace QuantLib {
 
