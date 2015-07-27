@@ -20,21 +20,18 @@
 /*! \file gsrprocess.hpp
     \brief GSR model process with piecewise volatilities and mean reversions,
            the dynamic is expressed in some T-forward measure.
-           You may provide a single value for the mean reversion, then
-           it is assumed to be constant. For many grid points (like 20 and above)
-           evaluation may get slow. A caching is therefore provided.
-           By that the results become inconsistent as soon as the parameters
-           change. In that case flushCache() must be called. To ensure correct
-           calibration this is done in the generateArguments() of the GSR model
+           If a single value for the mean reversion is provided, it is assumed
+           constant. Results are cached for performance reasons, so if parameters
+           change you need to call flushCache() to avoid inconsistent results.
+           For a derivation of the formulas, see http://ssrn.com/abstract=2246013
 */
 
 #ifndef quantlib_gsr_process_hpp
 #define quantlib_gsr_process_hpp
 
 #include <ql/processes/forwardmeasureprocess.hpp>
-#include <ql/math/comparison.hpp>
+#include <ql/processes/gsrprocesscore.hpp>
 #include <ql/time/daycounter.hpp>
-#include <map>
 
 namespace QuantLib {
 
@@ -55,43 +52,35 @@ namespace QuantLib {
         Real variance(Time t0, Real, Time dt) const;
         Real time(const Date& d) const;
         //@}
+        //! \name ForwardMeasureProcess1D interface
+        void setForwardMeasureTime(Time t);
+        //@}
+        //! additional inspectors
         Real sigma(Time t) const;
         Real reversion(Time t) const;
         Real y(Time t) const;
         Real G(Time t, Time T, Real x) const;
-        void setForwardMeasureTime(Time t) {
-            flushCache();
-            ForwardMeasureProcess1D::setForwardMeasureTime(t);
-        }
+        //! reset cache
         void flushCache() const;
 
-      protected:
-        const Array &times_;
-        const Array &vols_;
-        const Array &reversions_;
-        const Array &adjusters_;
-
       private:
-        Real expectationp1(Time t0, Real x0,
-                           Time dt) const; // expectation can be split into a x0
-                                           // dependent term (p1) and an
-                                           // independent term (p2)
-        Real expectationp2(Time t0, Time dt) const;
-        const int lowerIndex(Time t) const;
-        const int upperIndex(Time t) const;
-        const Real time2(Size index) const;
-        const Real cappedTime(Size index, Real cap = Null<Real>()) const;
-        const Real flooredTime(Size index, Real floor = Null<Real>()) const;
-        const Real vol(Size index) const;
-        const Real rev(Size index) const;
-        const bool revZero(Size index) const;
-        mutable std::map<std::pair<Real, Real>, Real> cache1_, cache2_, cache3_,
-            cache5_;
-        mutable std::map<Real, Real> cache4_;
+        void checkT(const Time t) const;
+        const detail::GsrProcessCore core_;
         Date referenceDate_;
         DayCounter dc_;
-        mutable std::vector<bool> revZero_;
     };
-}
+
+    // inline definitions
+
+    inline void GsrProcess::setForwardMeasureTime(Time t) {
+        flushCache();
+        ForwardMeasureProcess1D::setForwardMeasureTime(t);
+    }
+
+    inline void GsrProcess::flushCache() const {
+        core_.flushCache();
+    }
+
+} // namesapce QuantLib
 
 #endif
