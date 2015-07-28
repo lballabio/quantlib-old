@@ -5,6 +5,7 @@
 #include <ql/experimental/models/betaeta.hpp>
 #include <ql/experimental/models/betaetacore.hpp>
 #include <ql/experimental/models/betaetaswaptionengine.hpp>
+#include <ql/experimental/models/gsrprocess_riskneutral.hpp>
 #include <ql/experimental/models/longstaffschwartzproxypathpricer.hpp>
 #include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
 #include <ql/experimental/models/proxynonstandardswaptionengine.hpp>
