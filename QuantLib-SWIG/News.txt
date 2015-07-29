@@ -2,4 +2,5 @@
 Release 1.6.1 - July 2015
 Changes since release 1.6:
 - added support for Visual Studio 2015.
+- added support for x86 target in C# projects (thanks to Grant Bartel).
 
