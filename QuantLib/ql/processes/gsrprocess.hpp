@@ -56,6 +56,12 @@ namespace QuantLib {
         void setForwardMeasureTime(Time t);
         //@}
         //! additional inspectors
+        const Array& times() const { return core_.times(); }
+        const Array& volatility() const { return core_.vols(); }
+        const Array& reversion() const { return core_.reversions(); }
+        const Array& adjuster() const { return core_.adjusters(); }
+        Date referenceDate() const { return referenceDate_; }
+        DayCounter dayCounter() const { return dc_; }
         Real sigma(Time t) const;
         Real reversion(Time t) const;
         Real y(Time t) const;

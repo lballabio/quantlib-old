@@ -27,13 +27,14 @@
 #define quantlib_gsr_process_riskneutral_hpp
 
 #include <ql/processes/gsrprocesscore.hpp>
+#include <ql/stochasticprocess.hpp>
 #include <ql/time/daycounter.hpp>
 
 namespace QuantLib {
 
 //! GSR stochastic process (in risk neutral measure)
 /*! \ingroup processes */
-class GsrProcessRiskNeutral {
+class GsrProcessRiskNeutral : public StochasticProcess1D {
   public:
     GsrProcessRiskNeutral(const Array &times, const Array &vols,
                           const Array &reversions, const Array &adjusters,
@@ -53,6 +54,12 @@ class GsrProcessRiskNeutral {
     void setForwardMeasureTime(Time t);
     //@}
     //! additional inspectors
+    const Array& times() const { return core_.times(); }
+    const Array& volatility() const { return core_.vols(); }
+    const Array& reversion() const { return core_.reversions(); }
+    const Array& adjuster() const { return core_.adjusters(); }
+    Date referenceDate() const { return referenceDate_; }
+    DayCounter dayCounter() const { return dc_; }
     Real sigma(Time t) const;
     Real reversion(Time t) const;
     Real y(Time t) const;

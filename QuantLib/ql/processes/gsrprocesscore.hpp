@@ -72,6 +72,12 @@ class GsrProcessCore {
     // reset cache
     void flushCache() const;
 
+    // some more inspectors
+    const Array& times() const { return times_; }
+    const Array& vols() const { return vols_; }
+    const Array& reversions() const { return reversions_; }
+    const Array& adjusters() const { return adjusters_; }
+
   private:
     const int lowerIndex(Time t) const;
     const int upperIndex(Time t) const;
