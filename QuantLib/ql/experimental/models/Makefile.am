@@ -11,6 +11,7 @@ this_include_HEADERS = \
 	gsrprocess_riskneutral.hpp \
     longstaffschwartzproxypathpricer.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
+	multicurrencygsrprocess.hpp \
     proxynonstandardswaptionengine.hpp \
     quadraticlfm.hpp \
     sbsmilesection.hpp \
@@ -26,6 +27,7 @@ libModels_la_SOURCES = \
 	gsrprocess_riskneutral.cpp \
     longstaffschwartzproxypathpricer.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
+	multicurrencygsrprocess.cpp \
     proxynonstandardswaptionengine.cpp \
     quadraticlfm.cpp \
     sbsmilesection.cpp \
