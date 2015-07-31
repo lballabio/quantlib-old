@@ -9,6 +9,8 @@ this_include_HEADERS = \
     betaetacore.hpp \
     betaetaswaptionengine.hpp \
 	gsrprocess_riskneutral.hpp \
+	lgmzetafunction.hpp \
+	lgmzetafunctionpiecewisealpha.hpp \
     longstaffschwartzproxypathpricer.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
 	multicurrencygsr.hpp \
@@ -26,6 +28,7 @@ libModels_la_SOURCES = \
     betaetatabulation.cpp \
     betaetatabulation2.cpp \
 	gsrprocess_riskneutral.cpp \
+	lgmzetafunctionpiecewisealpha.cpp \
     longstaffschwartzproxypathpricer.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
 	multicurrencygsr.cpp \
