@@ -28,6 +28,8 @@
     \warning changes in the correlation matrix will not be recognized
     due to StochasticProcessArray where at construction time the pseudo
     square root of this matrix is computed and not updated afterwards.
+
+    !!! this class does not work !!!
 */
 
 #ifndef quantlib_multicurrency_gsr_process_hpp

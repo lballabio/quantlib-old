@@ -29,19 +29,19 @@
 namespace QuantLib {
 
 MultiCurrencyGsr::MultiCurrencyGsr(
-    const std::vector<boost::shared_ptr<Gsr> > currencyModels,
-    const std::vector<Real> fxSpots, const std::vector<Date> fxVolStepDates,
-    const std::vector<std::vector<Real> > fxVolatilities,
+    const std::vector<boost::shared_ptr<Gsr> > &currencyModels,
+    const std::vector<Real> &fxSpots, const std::vector<Date> &fxVolStepDates,
+    const std::vector<std::vector<Real> > &fxVolatilities,
     const Matrix &correlation,
-    const std::vector<Handle<YieldTermStructure> > fxDiscountCurves)
+    const std::vector<Handle<YieldTermStructure> > &fxDiscountCurves)
     : CalibratedModel(fxSpots.size()), fxVols_(arguments_),
       currencyModels_(currencyModels), fxSpots_(fxSpots),
       fxVolStepDates_(fxVolStepDates), fxVolatilities_(fxVolatilities),
       fxDiscountCurves_(fxDiscountCurves) {
 
-    // consistency checks
-
     n_ = fxSpots.size();
+
+    // consistency checks
 
     QL_REQUIRE(currencyModels_.size() == n_ + 1,
                "for n (" << n_
@@ -60,6 +60,14 @@ MultiCurrencyGsr::MultiCurrencyGsr(
                           << fxVolStepDates.size() + 1
                           << " volatilities, but for currency #" << i
                           << " there are " << fxVolatilities_[i].size());
+    }
+
+    // default curves are the model curves
+
+    if (fxDiscountCurves_.size() == 0) {
+        for (Size i = 0; i < n_ + 1; ++i) {
+            fxDiscountCurves_.push_back(currencyModels_[i]->termStructure());
+        }
     }
 
     QL_REQUIRE(fxDiscountCurves_.size() == n_ + 1,
@@ -90,6 +98,40 @@ MultiCurrencyGsr::MultiCurrencyGsr(
     fxVolStepTimesArray_ = Array(fxVolStepDates.size());
     updateTimes();
 
+    // fx processes (we have to convert back the given bs model volatilities to
+    // a full termstructure unfortunately to use the existing g-k-process.
+
+    for (Size i = 0; i < n_; ++i) {
+        Handle<YieldTermStructure> yts =
+            currencyModels_[i]->termStructure();
+        std::vector<Date> blackVolDates(fxVolStepDates);
+        if (fxVolStepDates.size() == 0)
+            blackVolDates.push_back(yts->referenceDate() + 365);
+        else
+            blackVolDates.push_back(fxVolStepDates.back() + 365);
+        std::vector<Real> blackVolCurve;
+        Real totalVariance = 0.0;
+        Real t, t0 = 0.0;
+        for (Size j = 0; j < blackVolDates.size(); ++j) {
+            t = currencyModels_[i]->termStructure()->timeFromReference(
+                blackVolDates[j]);
+            totalVariance +=
+                (t - t0) * fxVolatilities_[i][j] * fxVolatilities_[i][j];
+            blackVolCurve.push_back(std::sqrt(totalVariance / t));
+        }
+        Handle<BlackVolTermStructure> blackVolTs(
+            boost::make_shared<BlackVarianceCurve>(
+                currencyModels_[i]->termStructure()->referenceDate(),
+                blackVolDates, blackVolCurve,
+                currencyModels_[i]->termStructure()->dayCounter(), false));
+        blackVolTs->enableExtrapolation();
+        boost::shared_ptr<GarmanKohlagenProcess> tmp =
+            boost::make_shared<GarmanKohlagenProcess>(
+                Handle<Quote>(boost::make_shared<SimpleQuote>(fxSpots[i])),
+                fxDiscountCurves_[i + 1], fxDiscountCurves_[0], blackVolTs);
+        processes_.push_back(tmp);
+    }
+
     // currency models' processes are converted to risk neutral measure (still
     // foreign at this stage)
 
@@ -100,32 +142,6 @@ MultiCurrencyGsr::MultiCurrencyGsr(
         processes_.push_back(boost::make_shared<GsrProcessRiskNeutral>(
             p->times(), p->volatility(), p->reversion(), p->adjuster(),
             p->referenceDate(), p->dayCounter()));
-    }
-
-    // fx processes (we have to convert back the given bs model volatilities to
-    // a full termstructure unfortunately to use the existing g-k-process)
-
-    for (Size i = 0; i < n_; ++i) {
-        std::vector<Real> blackVolCurve;
-        Real totalVariance = 0.0;
-        Real t, t0 = 0.0;
-        for (Size j = 0; j < n_; ++i) {
-            t = currencyModels_[i]->termStructure()->timeFromReference(
-                fxVolStepDates[j]);
-            totalVariance +=
-                (t - t0) * fxVolatilities_[i][j] * fxVolatilities_[i][j];
-            blackVolCurve.push_back(std::sqrt(totalVariance / t));
-        }
-        Handle<BlackVolTermStructure> blackVolTs(
-            boost::make_shared<BlackVarianceCurve>(
-                currencyModels_[i]->termStructure()->referenceDate(),
-                fxVolStepDates_, blackVolCurve,
-                currencyModels_[i]->termStructure()->dayCounter(), false));
-        boost::shared_ptr<GarmanKohlagenProcess> tmp =
-            boost::make_shared<GarmanKohlagenProcess>(
-                Handle<Quote>(boost::make_shared<SimpleQuote>(fxSpots[i])),
-                fxDiscountCurves_[i + 1], fxDiscountCurves_[0], blackVolTs);
-        processes_.push_back(tmp);
     }
 
     process_ =

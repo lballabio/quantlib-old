@@ -19,6 +19,7 @@
 
 /*! \file multicurrencygsr.hpp
     \brief multicurrency gsr model with Garman Kohlhagen fx processes
+    !!! this class does not work !!!
 */
 
 #ifndef quantlib_multicurrency_gsr_hpp
@@ -36,11 +37,12 @@ class MultiCurrencyGsr : public CalibratedModel {
   public:
     // fixed fx spots (understood as fx spots as of today), fx volatilities
     MultiCurrencyGsr(
-        const std::vector<boost::shared_ptr<Gsr> > currencyModels,
-        const std::vector<Real> fxSpots, const std::vector<Date> fxVolStepDates,
-        const std::vector<std::vector<Real> > fxVolatilities,
-        const Matrix &correlations,
-        const std::vector<Handle<YieldTermStructure> > fxDiscountCurves =
+        const std::vector<boost::shared_ptr<Gsr> > &currencyModels,
+        const std::vector<Real> &fxSpots,
+        const std::vector<Date> &fxVolStepDates,
+        const std::vector<std::vector<Real> > &fxVolatilities,
+        const Matrix &correlation,
+        const std::vector<Handle<YieldTermStructure> > &fxDiscountCurves =
             std::vector<Handle<YieldTermStructure> >());
 
     const boost::shared_ptr<Gsr> currencyModel(Size i);
@@ -75,7 +77,7 @@ class MultiCurrencyGsr : public CalibratedModel {
     const std::vector<Real> fxSpots_;
     const std::vector<Date> fxVolStepDates_;
     const std::vector<std::vector<Real> > fxVolatilities_;
-    const std::vector<Handle<YieldTermStructure> > fxDiscountCurves_;
+    std::vector<Handle<YieldTermStructure> > fxDiscountCurves_;
 
     std::vector<boost::shared_ptr<StochasticProcess1D> > processes_;
     boost::shared_ptr<StochasticProcess> process_;
