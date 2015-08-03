@@ -29,8 +29,8 @@
 #include <ql/errors.hpp>
 
 namespace QuantLib {
-template <class T>
-class LgmParametrization : public CuriouslyRecurringTemplate<T> {
+template <class Impl>
+class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
     //! inspectors
     void update() const;
@@ -61,69 +61,69 @@ class LgmParametrization : public CuriouslyRecurringTemplate<T> {
 
 // inline
 
-template <class T> inline void LgmParametrization<T>::update() const {
+template <class Impl> inline void LgmParametrization<Impl>::update() const {
     return this->impl().updateImpl();
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::zeta(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::zeta(const Time t) const {
     return this->impl().zetaImpl(t);
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::alpha(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::alpha(const Time t) const {
     return this->impl().alphaImpl(t);
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::H(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::H(const Time t) const {
     return this->impl().HImpl(t);
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::Hprime(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::Hprime(const Time t) const {
     return this->impl().HprimeImpl(t);
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::Hprime2(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::Hprime2(const Time t) const {
     return this->impl().Hprime2Impl(t);
 }
 
-template <class T>
-const Real LgmParametrization<T>::HullWhiteSigma(Time t) const {
+template <class Impl>
+const Real LgmParametrization<Impl>::HullWhiteSigma(Time t) const {
     return Hprime(t) * alpha(t);
 }
 
-template <class T>
-const Real LgmParametrization<T>::HullWhiteKappa(Time t) const {
+template <class Impl>
+const Real LgmParametrization<Impl>::HullWhiteKappa(Time t) const {
     return -Hprime2(t) / Hprime(t);
 }
 
 // default implementations
 
-template <class T>
-inline const Real LgmParametrization<T>::zetaImpl(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::zetaImpl(const Time t) const {
     QL_FAIL("zeta implemnentation not provided");
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::alphaImpl(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::alphaImpl(const Time t) const {
     return (zeta(t + 0.5 * h_) - zeta(t - 0.5 * h_)) / h_;
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::HImpl(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::HImpl(const Time t) const {
     QL_FAIL("H implementation not provided");
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::HprimeImpl(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::HprimeImpl(const Time t) const {
     return (H(t + 0.5 * h_) - H(t - 0.5 * h_)) / h_;
 }
 
-template <class T>
-inline const Real LgmParametrization<T>::Hprime2Impl(const Time t) const {
+template <class Impl>
+inline const Real LgmParametrization<Impl>::Hprime2Impl(const Time t) const {
     return (H(t + 0.5 * h_) - 2.0 * H(t) + H(t - 0.5 * h_)) / (h_ * h_);
 }
 
