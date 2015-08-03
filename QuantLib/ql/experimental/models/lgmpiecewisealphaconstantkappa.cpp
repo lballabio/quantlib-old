@@ -17,33 +17,23 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file lgmzetafunctionpiecewisealpha.hpp
-    \brief zeta function with piecewise alpha
-*/
+#include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
 
-#ifndef quantlib_lgm_zetafunctionpiecewisealpha_hpp
-#define quantlib_lgm_zetafunctionpiecewisealpha_hpp
-
-#include <ql/experimental/models/lgmzetafunction.hpp>
-#include <vector>
+#include <iostream>
 
 namespace QuantLib {
 
-class LgmZetaFunctionPiecewiseAlpha
-    : public LgmZetaFunction<LgmZetaFunctionPiecewiseAlpha> {
-  public:
-    LgmZetaFunctionPiecewiseAlpha(const std::vector<Real> &times,
-                                  const std::vector<Real> &alphas);
+LgmPiecewiseAlphaConstantKappa::LgmPiecewiseAlphaConstantKappa(
+    const std::vector<Real> &times, const std::vector<Real> &alphas,
+    const Real &kappa)
+    : LgmParametrization<LgmPiecewiseAlphaConstantKappa>(), times_(times),
+      alphas_(alphas), kappa_(kappa), zetas_(std::vector<Real>(times.size())) {
 
-    const Real zetaImpl(const Time t) const;
-    const Real alphaImpl(const Time t) const;
-    const void updateImpl() const;
+    QL_REQUIRE(times.size() == alphas.size() - 1,
+               "times (" << times.size() << ") and alphas (" << alphas.size()
+                         << ") inconsistent");
+    update();
+}
 
-  private:
-    const std::vector<Real> &times_, &alphas_;
-    mutable std::vector<Real> zetas_;
-};
 
 } // namespace QuantLib
-
-#endif
