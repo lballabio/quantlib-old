@@ -40,6 +40,7 @@ class LgmPiecewiseAlphaConstantKappa
     const Real alphaImpl(const Time t) const;
     const Real HImpl(const Time t) const;
     const Real HprimeImpl(const Time t) const;
+    const Real Hprime2Impl(const Time t) const;
     const void updateImpl() const;
 
   private:
@@ -100,6 +101,11 @@ inline const Real LgmPiecewiseAlphaConstantKappa::HImpl(const Time t) const {
 inline const Real
 LgmPiecewiseAlphaConstantKappa::HprimeImpl(const Time t) const {
     return std::exp(-kappa_ * t);
+}
+
+inline const Real
+LgmPiecewiseAlphaConstantKappa::Hprime2Impl(const Time t) const {
+    return -kappa_ * std::exp(-kappa_ * t);
 }
 
 } // namespace QuantLib
