@@ -60,10 +60,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)'=='Debug'">bin\$(qlCompilerTag)\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)'=='Debug'">bin\$(qlCompilerTag)\$(Platform)\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)'=='Debug'">build\$(qlCompilerTag)\$(Platform)\Debug\</IntDir>
     <LinkIncremental Condition="'$(Configuration)'=='Debug'">true</LinkIncremental>
-    <OutDir Condition="'$(Configuration)'=='Release'">bin\$(qlCompilerTag)\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)'=='Release'">bin\$(qlCompilerTag)\$(Platform)\Release\</OutDir>
     <IntDir Condition="'$(Configuration)'=='Release'">build\$(qlCompilerTag)\$(Platform)\Release\</IntDir>
     <LinkIncremental Condition="'$(Configuration)'=='Release'">false</LinkIncremental>
     <CodeAnalysisRuleSet Condition="'$(Configuration)'=='Debug'">AllRules.ruleset</CodeAnalysisRuleSet>
