@@ -19,6 +19,10 @@
 
 /*! \file gaussian1dmodel.hpp
     \brief basic interface for one factor interest rate models
+
+    TODO as it turns out it is not optimal for all implementations to work
+    with the normalized state variable y instead of the original x (e.g.
+    in the monte carlo swaption engine or in the lgm model), revisit this
 */
 
 // uncomment to enable NTL support (see below for more details and references)
