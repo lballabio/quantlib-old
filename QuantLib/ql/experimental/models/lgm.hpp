@@ -28,10 +28,6 @@
 #include <ql/models/shortrate/onefactormodels/gaussian1dmodel.hpp>
 #include <ql/experimental/models/lgmparametrization.hpp>
 
-//debug
-#include <iostream>
-#include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
-
 namespace QuantLib {
 
 template <class Impl> class Lgm : public Gaussian1dModel {
@@ -56,8 +52,8 @@ Lgm<Impl>::numeraireImpl(const Time t, const Real y,
                          const Handle<YieldTermStructure> &yts) const {
     calculate();
     Handle<YieldTermStructure> tmp = yts.empty() ? this->termStructure() : yts;
-    Real x = (y + this->stateProcess()->expectation(0.0, 0.0, t)) *
-             this->stateProcess()->stdDeviation(0.0, 0.0, t);
+    Real x = y * stateProcess()->stdDeviation(0.0, 0.0, t) +
+             stateProcess()->expectation(0.0, 0.0, t);
     Real h = parametrization_.H(t);
     Real z = parametrization_.zeta(t);
     return 1.0 / tmp->discount(t) * std::exp(h * x + 0.5 * h * h * z);
@@ -71,8 +67,8 @@ inline const Real Lgm<Impl>::zerobondImpl(const Time T, const Time t,
     calculate();
     // for reduced zero bonds this could be optimized
     Handle<YieldTermStructure> tmp = yts.empty() ? termStructure() : yts;
-    Real x = (y + stateProcess()->expectation(0.0, 0.0, t)) *
-             stateProcess()->stdDeviation(0.0, 0.0, t);
+    Real x = y * stateProcess()->stdDeviation(0.0, 0.0, t) +
+             stateProcess()->expectation(0.0, 0.0, t);
     Real ht = parametrization_.H(t);
     Real hT = parametrization_.H(T);
     Real z = parametrization_.zeta(t);
@@ -85,12 +81,7 @@ inline const Real Lgm<Impl>::zerobondImpl(const Time T, const Time t,
 template <class Impl>
 Lgm<Impl>::Lgm(const Handle<YieldTermStructure> &yts,
                const LgmParametrization<Impl> &parametrization)
-    : Gaussian1dModel(yts), parametrization_(parametrization) {
-
-    std::clog << "stored reference to parameterization (" << (&parametrization) << ") as " << &parametrization_ << std::endl;
-    const detail::LgmPiecewiseAlphaConstantKappa &tmp = static_cast<const detail::LgmPiecewiseAlphaConstantKappa&>(parametrization);
-    std::clog << "object reference = " << (&tmp) << std::endl;
-}
+    : Gaussian1dModel(yts), parametrization_(parametrization) {}
 
 } // namespace QuantLib
 

@@ -19,21 +19,14 @@
 
 #include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
+namespace detail {
+
 LgmPiecewiseAlphaConstantKappa::LgmPiecewiseAlphaConstantKappa(
-    const std::vector<Real> &times, const std::vector<Real> &alphas,
-    const Real &kappa)
+    const Array &times, const Array &alphas, const Array &kappa)
     : LgmParametrization<LgmPiecewiseAlphaConstantKappa>(), times_(times),
       alphas_(alphas), kappa_(kappa), zetas_(std::vector<Real>(times.size())) {
-
-    QL_REQUIRE(times.size() == alphas.size() - 1,
-               "times (" << times.size() << ") and alphas (" << alphas.size()
-                         << ") inconsistent");
-    update();
 }
-
-
+} // namespace detail
 } // namespace QuantLib

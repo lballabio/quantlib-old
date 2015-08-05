@@ -87,7 +87,6 @@ void Lgm1::updateKappa() {
 }
 
 void Lgm1::initialize() {
-    std::clog << "init..." << std::endl;
     QL_REQUIRE(volstepdates_.size() + 1 == alphaQuotes_.size(),
                "alphas (" << alphaQuotes_.size() << ") and step dates ("
                           << volstepdates_.size() << ") inconsistent.");
@@ -105,9 +104,6 @@ void Lgm1::initialize() {
         alphaObserver_->registerWith(alphaQuotes_[i]);
     kappaObserver_->registerWith(kappaQuote_);
     parametrization_.update();
-    std::cout << "address parametrization = " << (&parametrization_)
-              << std::endl;
-    std::clog << "init end..." << std::endl;
 }
 
 } // namespace QuantLib

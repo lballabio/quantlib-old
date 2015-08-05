@@ -39,7 +39,7 @@ template <class Impl> class LgmStateProcess : public StochasticProcess1D {
     Real variance(Time t0, Real x0, Time dt) const;
     //@}
   private:
-    const LgmParametrization<Impl> parametrization_;
+    const LgmParametrization<Impl> &parametrization_;
 };
 
 // inline

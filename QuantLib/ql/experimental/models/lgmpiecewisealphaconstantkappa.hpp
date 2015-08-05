@@ -25,16 +25,18 @@
 #define quantlib_lgm_piecewisealphaconstantkappa_hpp
 
 #include <ql/experimental/models/lgmparametrization.hpp>
+#include <ql/math/array.hpp>
 #include <vector>
 
 namespace QuantLib {
 
+namespace detail {
+
 class LgmPiecewiseAlphaConstantKappa
     : public LgmParametrization<LgmPiecewiseAlphaConstantKappa> {
   public:
-    LgmPiecewiseAlphaConstantKappa(const std::vector<Real> &times,
-                                   const std::vector<Real> &alphas,
-                                   const Real &kappa);
+    LgmPiecewiseAlphaConstantKappa(const Array &times, const Array &alphas,
+                                   const Array &kappa);
 
     const Real zetaImpl(const Time t) const;
     const Real alphaImpl(const Time t) const;
@@ -44,8 +46,7 @@ class LgmPiecewiseAlphaConstantKappa
     const void updateImpl() const;
 
   private:
-    const std::vector<Real> &times_, &alphas_;
-    const Real &kappa_;
+    const Array &times_, &alphas_, &kappa_;
     mutable std::vector<Real> zetas_;
 };
 
@@ -53,6 +54,7 @@ class LgmPiecewiseAlphaConstantKappa
 
 inline const void LgmPiecewiseAlphaConstantKappa::updateImpl() const {
     Real sum = 0.0;
+    zetas_.resize(times_.size());
     for (Size i = 0; i < times_.size(); ++i) {
         sum += alphas_[i] * alphas_[i] *
                (times_[i] - (i == 0 ? 0.0 : times_[i - 1]));
@@ -64,49 +66,50 @@ inline const Real
 LgmPiecewiseAlphaConstantKappa::alphaImpl(const Time t) const {
     if (t < 0.0)
         return 0.0;
-    return alphas_[std::min<Size>(
+    return std::fabs(alphas_[std::min<Size>(
         std::upper_bound(times_.begin(), times_.end(), t) - times_.begin(),
-        alphas_.size() - 1)];
+        alphas_.size() - 1)]);
 }
 
 inline const Real LgmPiecewiseAlphaConstantKappa::zetaImpl(const Time t) const {
     if (t < 0.0)
         return 0.0;
-    Size i = std::min<Size>(std::upper_bound(times_.begin(), times_.end(), t) -
-                                times_.begin(),
-                            times_.size() - 1);
+    Size i = std::upper_bound(times_.begin(), times_.end(), t) - times_.begin();
     Real res = 0.0;
     if (i >= 1)
         res += zetas_[std::min(i - 1, zetas_.size() - 1)];
-    res += alphas_[i] * alphas_[i] * (t - (i == 0 ? 0.0 : times_[i - 1]));
+    Real a = alphas_[std::min(i, alphas_.size() - 1)];
+    res += a * a * (t - (i == 0 ? 0.0 : times_[i - 1]));
     return res;
 }
 
 inline const Real LgmPiecewiseAlphaConstantKappa::HImpl(const Time t) const {
     // we avoid a kappa near zero
     Real tmp;
-    if (std::fabs(kappa_) < 1E-4) {
-        if (kappa_ > 0.0) {
+    if (std::fabs(kappa_[0]) < 1E-4) {
+        if (kappa_[0] > 0.0) {
             tmp = 1E-4;
         } else {
             tmp = -1E-4;
         }
     } else {
-        tmp = kappa_;
+        tmp = kappa_[0];
     }
 
-    return (1.0 - std::exp(-tmp * t)) / kappa_;
+    return (1.0 - std::exp(-tmp * t)) / tmp;
 }
 
 inline const Real
 LgmPiecewiseAlphaConstantKappa::HprimeImpl(const Time t) const {
-    return std::exp(-kappa_ * t);
+    return std::exp(-kappa_[0] * t);
 }
 
 inline const Real
 LgmPiecewiseAlphaConstantKappa::Hprime2Impl(const Time t) const {
-    return -kappa_ * std::exp(-kappa_ * t);
+    return -kappa_[0] * std::exp(-kappa_[0] * t);
 }
+
+} // namespace detail
 
 } // namespace QuantLib
 

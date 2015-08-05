@@ -50,11 +50,8 @@ class Lgm1 : public Lgm<detail::LgmPiecewiseAlphaConstantKappa>,
     void generateArguments() { notifyObservers(); }
     void update() { LazyObject::update(); }
     void performCalculations() const {
-        std::clog << "Lgm1::performCalculations" << std::endl;
         Lgm::performCalculations();
         updateTimes();
-        std::clog << "adress parametrization: " << (&parametrization_) << std::endl;
-        std::clog << "p.times " << (&(parametrization_.times_)) << std::endl;
         parametrization_.update();
     }
 
