@@ -72,7 +72,7 @@ inline const Real Lgm<Impl>::zerobondImpl(const Time T, const Time t,
     Real ht = parametrization_.H(t);
     Real hT = parametrization_.H(T);
     Real z = parametrization_.zeta(t);
-    return 1.0 / tmp->discount(T) *
+    return tmp->discount(T) / tmp->discount(t) *
            std::exp((ht - hT) * x + 0.5 * (ht * ht - hT * hT) * z);
 }
 
