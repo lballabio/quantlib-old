@@ -84,19 +84,8 @@ inline const Real LgmPiecewiseAlphaConstantKappa::zetaImpl(const Time t) const {
 }
 
 inline const Real LgmPiecewiseAlphaConstantKappa::HImpl(const Time t) const {
-    // we avoid a kappa near zero
-    Real tmp;
-    if (std::fabs(kappa_[0]) < 1E-4) {
-        if (kappa_[0] > 0.0) {
-            tmp = 1E-4;
-        } else {
-            tmp = -1E-4;
-        }
-    } else {
-        tmp = kappa_[0];
-    }
-
-    return (1.0 - std::exp(-tmp * t)) / tmp;
+    return std::fabs(kappa_[0]) < 1E4 ? t : (1.0 - std::exp(-kappa_[0] * t)) /
+                                                kappa_[0];
 }
 
 inline const Real
