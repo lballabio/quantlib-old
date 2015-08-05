@@ -46,6 +46,39 @@ class Lgm1 : public Lgm<detail::LgmPiecewiseAlphaConstantKappa>,
     const Array &alpha() const { return alpha_.params(); };
     const Real kappa() const { return kappa_.params()[0]; };
 
+    // calibration constraints
+
+    // fixed reversion
+    Disposable<std::vector<bool> > FixedReversion() {
+        std::vector<bool> res(alpha_.size() + 1, false);
+        res.back() = true;
+        return res;
+    }
+
+    // move volatility #i
+    Disposable<std::vector<bool> > MoveAlpha(Size i) {
+        QL_REQUIRE(i < alpha_.size(), "alpha with index "
+                                          << i << " does not exist (0..."
+                                          << alpha_.size() - 1 << ")");
+        std::vector<bool> res(alpha_.size() + 1, true);
+        res[i] = false;
+        return res;
+    }
+
+    // similar to gsr model, see the documentation there
+    void calibrateAlphasIterative(
+        const std::vector<boost::shared_ptr<CalibrationHelper> > &helpers,
+        OptimizationMethod &method, const EndCriteria &endCriteria,
+        const Constraint &constraint = Constraint(),
+        const std::vector<Real> &weights = std::vector<Real>()) {
+
+        for (Size i = 0; i < helpers.size(); i++) {
+            std::vector<boost::shared_ptr<CalibrationHelper> > h(1, helpers[i]);
+            calibrate(h, method, endCriteria, constraint, weights,
+                      MoveAlpha(i));
+        }
+    }
+
   protected:
     void generateArguments() { notifyObservers(); }
     void update() { LazyObject::update(); }
