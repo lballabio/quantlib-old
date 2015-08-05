@@ -778,7 +778,9 @@
     <ClInclude Include="ql\instruments\bonds\fixedratebond.hpp" />
     <ClInclude Include="ql\instruments\bonds\floatingratebond.hpp" />
     <ClInclude Include="ql\instruments\bonds\zerocouponbond.hpp" />
+    <ClInclude Include="ql\math\abcdmathfunction.hpp" />
     <ClInclude Include="ql\math\all.hpp" />
+    <ClInclude Include="ql\math\abcdmathfunction.hpp" />	
     <ClInclude Include="ql\math\array.hpp" />
     <ClInclude Include="ql\math\autocovariance.hpp" />
     <ClInclude Include="ql\math\bernsteinpolynomial.hpp" />
@@ -798,11 +800,13 @@
     <ClInclude Include="ql\math\linearleastsquaresregression.hpp" />
     <ClInclude Include="ql\math\matrix.hpp" />
     <ClInclude Include="ql\math\modifiedbessel.hpp" />
+    <ClInclude Include="ql\math\polynomialmathfunction.hpp" />
     <ClInclude Include="ql\math\primenumbers.hpp" />
     <ClInclude Include="ql\math\quadratic.hpp" />
     <ClInclude Include="ql\math\rounding.hpp" />
     <ClInclude Include="ql\math\sampledcurve.hpp" />
     <ClInclude Include="ql\math\solver1d.hpp" />
+    <ClInclude Include="ql\math\tartaglia.hpp" />
     <ClInclude Include="ql\math\transformedgrid.hpp" />
     <ClInclude Include="ql\math\interpolations\abcdinterpolation.hpp" />
     <ClInclude Include="ql\math\interpolations\all.hpp" />
@@ -1172,6 +1176,7 @@
     <ClInclude Include="ql\termstructures\yield\all.hpp" />
     <ClInclude Include="ql\termstructures\yield\bondhelpers.hpp" />
     <ClInclude Include="ql\termstructures\yield\bootstraptraits.hpp" />
+    <ClInclude Include="ql\termstructures\yield\compositediscountcurve.hpp" />
     <ClInclude Include="ql\termstructures\yield\discountcurve.hpp" />
     <ClInclude Include="ql\termstructures\yield\drifttermstructure.hpp" />
     <ClInclude Include="ql\termstructures\yield\fittedbonddiscountcurve.hpp" />
@@ -1568,6 +1573,9 @@
     <ClInclude Include="ql\experimental\mcbasket\mcpathbasketengine.hpp" />
     <ClInclude Include="ql\experimental\mcbasket\pathmultiassetoption.hpp" />
     <ClInclude Include="ql\experimental\mcbasket\pathpayoff.hpp" />
+    <ClInclude Include="ql\experimental\tenorbasis\all.hpp" />
+    <ClInclude Include="ql\experimental\tenorbasis\tenorbasis.hpp" />
+    <ClInclude Include="ql\experimental\tenorbasis\tenorbasiscalibration.hpp" />
     <ClInclude Include="ql\math\ode\all.hpp" />
     <ClInclude Include="ql\termstructures\volatility\atmadjustedsmilesection.hpp" />
     <ClInclude Include="ql\termstructures\volatility\atmsmilesection.hpp" />
@@ -1926,6 +1934,7 @@
     <ClCompile Include="ql\instruments\bonds\fixedratebond.cpp" />
     <ClCompile Include="ql\instruments\bonds\floatingratebond.cpp" />
     <ClCompile Include="ql\instruments\bonds\zerocouponbond.cpp" />
+    <ClCompile Include="ql\math\abcdmathfunction.cpp" />
     <ClCompile Include="ql\math\bernsteinpolynomial.cpp" />
     <ClCompile Include="ql\math\beta.cpp" />
     <ClCompile Include="ql\math\bspline.cpp" />
@@ -1934,10 +1943,12 @@
     <ClCompile Include="ql\math\incompletegamma.cpp" />
     <ClCompile Include="ql\math\matrix.cpp" />
     <ClCompile Include="ql\math\modifiedbessel.cpp" />
+    <ClCompile Include="ql\math\polynomialmathfunction.cpp" />
     <ClCompile Include="ql\math\primenumbers.cpp" />
     <ClCompile Include="ql\math\quadratic.cpp" />
     <ClCompile Include="ql\math\rounding.cpp" />
     <ClCompile Include="ql\math\sampledcurve.cpp" />
+    <ClCompile Include="ql\math\tartaglia.cpp" />
     <ClCompile Include="ql\math\statistics\discrepancystatistics.cpp" />
     <ClCompile Include="ql\math\statistics\generalstatistics.cpp" />
     <ClCompile Include="ql\math\statistics\histogram.cpp" />
@@ -2181,6 +2192,7 @@
     <ClCompile Include="ql\termstructures\volatility\inflation\cpivolatilitystructure.cpp" />
     <ClCompile Include="ql\termstructures\volatility\inflation\yoyinflationoptionletvolatilitystructure.cpp" />
     <ClCompile Include="ql\termstructures\yield\bondhelpers.cpp" />
+    <ClCompile Include="ql\termstructures\yield\compositediscountcurve.cpp" />
     <ClCompile Include="ql\termstructures\yield\fittedbonddiscountcurve.cpp" />
     <ClCompile Include="ql\termstructures\yield\flatforward.cpp" />
     <ClCompile Include="ql\termstructures\yield\forwardstructure.cpp" />
@@ -2453,6 +2465,8 @@
     <ClCompile Include="ql\experimental\mcbasket\longstaffschwartzmultipathpricer.cpp" />
     <ClCompile Include="ql\experimental\mcbasket\mcpathbasketengine.cpp" />
     <ClCompile Include="ql\experimental\mcbasket\pathmultiassetoption.cpp" />
+    <ClCompile Include="ql\experimental\tenorbasis\tenorbasis.cpp" />
+    <ClCompile Include="ql\experimental\tenorbasis\tenorbasiscalibration.cpp" />
     <ClCompile Include="ql\termstructures\volatility\atmadjustedsmilesection.cpp" />
     <ClCompile Include="ql\termstructures\volatility\atmsmilesection.cpp" />
     <ClCompile Include="ql\pricingengines\swaption\basketgeneratingengine.cpp" />

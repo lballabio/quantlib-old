@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug (static runtime)|Win32">
@@ -428,6 +428,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="qlo\abcdmathfunction.cpp" />
     <ClCompile Include="qlo\enumerations\register\register_all.cpp" />
     <ClCompile Include="qlo\enumerations\register\register_classes.cpp" />
     <ClCompile Include="qlo\enumerations\register\register_pairs.cpp" />
@@ -435,6 +436,11 @@
     <ClCompile Include="qlo\enumerations\constructors\enumeratedclasses.cpp" />
     <ClCompile Include="qlo\enumerations\constructors\enumeratedpairs.cpp" />
     <ClCompile Include="qlo\enumerations\factories\calendarfactory.cpp" />
+    <ClCompile Include="qlo\model.cpp" />
+    <ClCompile Include="qlo\polynomialmathfunction.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_tenorbasis.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_tenorbasis.cpp" />
+    <ClCompile Include="qlo\tenorbasis.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_abcd.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_accountingengines.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_alphaform.cpp" />
@@ -485,6 +491,7 @@
     <ClCompile Include="qlo\valueobjects\vo_swap.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_swaption.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_swaptionvolstructure.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_tenorbasis.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_termstructures.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_timeseries.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_vanillaswap.cpp" />
@@ -690,6 +697,7 @@
     <ClCompile Include="qlo\utilities.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="qlo\abcdmathfunction.hpp" />
     <ClInclude Include="qlo\enumerations\register\register_all.hpp" />
     <ClInclude Include="qlo\enumerations\constructors\enumeratedclasses.hpp" />
     <ClInclude Include="qlo\enumerations\constructors\enumeratedpairs.hpp" />
@@ -701,6 +709,12 @@
     <ClInclude Include="qlo\enumerations\factories\payoffsfactory.hpp" />
     <ClInclude Include="qlo\enumerations\factories\pricingenginesfactory.hpp" />
     <ClInclude Include="qlo\enumerations\factories\termstructuresfactory.hpp" />
+    <ClInclude Include="qlo\loop\loop_tenorbasis.hpp" />
+    <ClInclude Include="qlo\model.hpp" />
+    <ClInclude Include="qlo\polynomialmathfunction.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_tenorbasis.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_tenorbasis.hpp" />
+    <ClInclude Include="qlo\tenorbasis.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_abcd.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_accountingengines.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_all.hpp" />
@@ -754,6 +768,7 @@
     <ClInclude Include="qlo\valueobjects\vo_swap.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_swaption.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_swaptionvolstructure.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_tenorbasis.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_termstructures.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_timeseries.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_vanillaswap.hpp" />

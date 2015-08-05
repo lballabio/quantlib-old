@@ -59,6 +59,7 @@ noinst_HEADERS = \
     serialization_swaption.hpp \
     serialization_swaptionvolstructure.hpp \
     serialization_termstructures.hpp \
+    serialization_tenorbasis.hpp \	
     serialization_timeseries.hpp \
     serialization_vanillaswap.hpp \
     serialization_volatilities.hpp \
@@ -117,6 +118,7 @@ libRegister_la_SOURCES = \
     serialization_swaption.cpp \
     serialization_swaptionvolstructure.cpp \
     serialization_termstructures.cpp \
+    serialization_tenorbasis.cpp \
     serialization_timeseries.cpp \
     serialization_vanillaswap.cpp \
     serialization_volatilities.cpp \

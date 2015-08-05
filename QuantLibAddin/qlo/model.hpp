@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2003 RiskMap srl
+ Copyright (C) 2015 Paolo Mazzocchi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -17,29 +17,27 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#ifndef quantlib_test_term_structures_hpp
-#define quantlib_test_term_structures_hpp
+#ifndef qla_models_hpp
+#define qla_models_hpp
 
-#include <boost/test/unit_test.hpp>
+#include <oh/libraryobject.hpp>
+#include <ql/types.hpp>
 
-/* remember to document new and/or updated tests in the Doxygen
-   comment block of the corresponding class */
+namespace QuantLib {
+    class CalibratedModel;
+}
 
-class TermStructureTest {
-  public:
-    static void testReferenceChange();
-    static void testImplied();
-    static void testImpliedObs();
-    static void testComposite();
-    static void testCompositeObs();
-    static void testFSpreaded();
-    static void testFSpreadedObs();
-    static void testZSpreaded();
-    static void testZSpreadedObs();
-    static void testCreateWithNullUnderlying();
-    static void testLinkToNullUnderlying();
-    static boost::unit_test_framework::test_suite* suite();
-};
+namespace QuantLibAddin {
 
+    class CalibratedModel :
+        public ObjectHandler::LibraryObject<QuantLib::CalibratedModel> {
+      protected:
+        CalibratedModel(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& p,
+            bool permanent);
+    };
+
+}
 
 #endif
+

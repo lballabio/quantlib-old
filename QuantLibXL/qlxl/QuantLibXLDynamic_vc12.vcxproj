@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -367,6 +367,7 @@
     <ClCompile Include="functions\randomsequencegenerator.cpp" />
     <ClCompile Include="functions\rangeaccrual.cpp" />
     <ClCompile Include="functions\ratehelpers.cpp" />
+    <ClCompile Include="functions\tenorbasis.cpp" />
     <ClCompile Include="register\register_overnightindexedswap.cpp" />
     <ClCompile Include="functions\schedule.cpp" />
     <ClCompile Include="functions\sequencestatistics.cpp" />
@@ -441,6 +442,7 @@
     <ClCompile Include="register\register_swap.cpp" />
     <ClCompile Include="register\register_swaption.cpp" />
     <ClCompile Include="register\register_swaptionvolstructure.cpp" />
+    <ClCompile Include="register\register_tenorbasis.cpp" />
     <ClCompile Include="register\register_termstructures.cpp" />
     <ClCompile Include="register\register_timeseries.cpp" />
     <ClCompile Include="register\register_utilities.cpp" />

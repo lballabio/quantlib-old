@@ -10,6 +10,7 @@ EXTRA_DIST = \
 
 include_HEADERS = \
     abcd.hpp \
+    abcdmathfunction.hpp \
     accountingengines.hpp \
     alphaform.hpp \
     asianoption.hpp \
@@ -57,11 +58,13 @@ include_HEADERS = \
     marketmodelevolvers.hpp \
     marketmodels.hpp \
     mathf.hpp \
+    model.hpp \	
     optimization.hpp \
     options.hpp \
     overnightindexedswap.hpp \
     payoffs.hpp \
     piecewiseyieldcurve.hpp \
+    polynomialmathfunction.hpp \
     pricingengines.hpp \
     processes.hpp \
     products.hpp \
@@ -86,6 +89,7 @@ include_HEADERS = \
     swaptionvolstructure.hpp \
     symmetricschurdecomposition.hpp \
     termstructures.hpp \
+    tenorbasis.hpp \
     timeseries.hpp \
     utilities.hpp \
     vanillaoption.hpp \
@@ -97,6 +101,7 @@ include_HEADERS = \
 
 libQuantLibAddin_la_SOURCES = \
     abcd.cpp \
+    abcdmathfunction.cpp \	
     accountingengines.cpp \
     alphaform.cpp \
     asianoption.cpp \
@@ -140,10 +145,12 @@ libQuantLibAddin_la_SOURCES = \
     leg.cpp \
     marketmodelevolvers.cpp \
     marketmodels.cpp \
+    model.cpp \	
     optimization.cpp \
     overnightindexedswap.cpp \
     payoffs.cpp \
     piecewiseyieldcurve.cpp \
+    polynomialmathfunction.cpp \	
     pricingengines.cpp \
     processes.cpp \
     products.cpp \
@@ -164,7 +171,8 @@ libQuantLibAddin_la_SOURCES = \
     swaption.cpp \
     swaptionvolstructure.cpp \
     symmetricschurdecomposition.cpp \
-    timeseries.cpp \
+    tenorbasis.cpp \
+    timeseries.cpp \	
     utilities.cpp \
     vanillaoption.cpp \
     vanillaswap.cpp \

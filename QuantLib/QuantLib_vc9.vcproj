@@ -2515,6 +2515,14 @@
 			Name="math"
 			>
 			<File
+				RelativePath=".\ql\math\abcdmathfunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\math\abcdmathfunction.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ql\math\all.hpp"
 				>
 			</File>
@@ -2627,6 +2635,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ql\math\polynomialmathfunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\math\polynomialmathfunction.hpp"
+				>
+			</File>
+			<File
 				RelativePath="ql\math\primenumbers.cpp"
 				>
 			</File>
@@ -2668,6 +2684,14 @@
 			</File>
 			<File
 				RelativePath=".\ql\math\solver1d.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\math\tartaglia.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\math\tartaglia.hpp"
 				>
 			</File>
 			<File
@@ -5259,6 +5283,14 @@
 				</File>
 				<File
 					RelativePath=".\ql\termstructures\yield\bootstraptraits.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\termstructures\yield\compositediscountcurve.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\termstructures\yield\compositediscountcurve.hpp"
 					>
 				</File>
 				<File
@@ -9174,6 +9206,30 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="tenorbasis"
+				>
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\all.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\tenorbasis.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\tenorbasis.cpp"
+					>
+				</File>	
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\tenorbasiscalibration.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\experimental\tenorbasis\tenorbasiscalibration.cpp"
+					>
+				</File>
+			</Filter>				
 		</Filter>
 		<File
 			RelativePath=".\ql\auto_link.hpp"

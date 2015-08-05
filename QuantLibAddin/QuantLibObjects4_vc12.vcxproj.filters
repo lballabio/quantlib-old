@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="enumerations">
@@ -837,6 +837,25 @@
     <ClCompile Include="qlo\settings.cpp" />
     <ClCompile Include="qlo\timeseries.cpp" />
     <ClCompile Include="qlo\utilities.cpp" />
+    <ClCompile Include="qlo\tenorbasis.cpp">
+      <Filter>TermStructures</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\model.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_tenorbasis.cpp">
+      <Filter>valueobjects</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\serialization\create\create_tenorbasis.cpp">
+      <Filter>serialization\create</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\serialization\register\serialization_tenorbasis.cpp">
+      <Filter>serialization\register</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\abcdmathfunction.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="qlo\polynomialmathfunction.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="qlo\enumerations\register\register_all.hpp">
@@ -1723,5 +1742,27 @@
     <ClInclude Include="qlo\timeseries.hpp" />
     <ClInclude Include="qlo\utilities.hpp" />
     <ClInclude Include="qlo\vcconfig.hpp" />
+    <ClInclude Include="qlo\tenorbasis.hpp">
+      <Filter>TermStructures</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\model.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_tenorbasis.hpp">
+      <Filter>valueobjects</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\loop\loop_tenorbasis.hpp">
+      <Filter>loop</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\serialization\create\create_tenorbasis.hpp">
+      <Filter>serialization\create</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\serialization\register\serialization_tenorbasis.hpp">
+      <Filter>serialization\register</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\abcdmathfunction.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="qlo\polynomialmathfunction.hpp">
+      <Filter>Math</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
