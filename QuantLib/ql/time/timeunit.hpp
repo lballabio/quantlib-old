@@ -1,6 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
+ Copyright (C) 2015 Bitquant Research Laboratories (Asia) Ltd.
  Copyright (C) 2004, 2005, 2006, 2007 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
@@ -37,7 +38,11 @@ namespace QuantLib {
     enum TimeUnit { Days,
                     Weeks,
                     Months,
-                    Years
+                    Years,
+                    Hours,
+                    Minutes,
+                    Seconds,
+                    Milliseconds
     };
 
     /*! \relates TimeUnit */

@@ -6,6 +6,7 @@
  Copyright (C) 2004, 2005, 2006 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2006 Toyin Akin
+ Copyright (C) 2015 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -22,7 +23,7 @@
 */
 
 /*! \file date.hpp
-    \brief date- and time-related classes, typedefs and enumerations
+    \brief Date- and time-related classes, typedefs and enumerations
 */
 
 #ifndef quantlib_date_hpp
@@ -34,14 +35,16 @@
 #include <utility>
 #include <functional>
 
+#include <boost/date_time/posix_time/ptime.hpp>
+
 namespace QuantLib {
 
     //! Day number
-    /*! \ingroup datetime */
+    /*! \ingroup Date */
     typedef Integer Day;
 
     //! Month names
-    /*! \ingroup datetime */
+    /*! \ingroup Date */
     enum Month { January   = 1,
                  February  = 2,
                  March     = 3,
@@ -71,32 +74,55 @@ namespace QuantLib {
     std::ostream& operator<<(std::ostream&, Month);
 
     //! Year number
-    /*! \ingroup datetime */
+    /*! \ingroup Date */
     typedef Integer Year;
 
+    //! Hour number
+    /*! \ingroup Date */
+    typedef Integer Hour;
 
-    //! Concrete date class
-    /*! This class provides methods to inspect dates as well as methods and
-        operators which implement a limited date algebra (increasing and
-        decreasing dates, and calculating their difference).
+    //! Minute number
+    /*! \ingroup Date */
+    typedef Integer Minute;
 
-        \ingroup datetime
+    //! Second number
+    /*! \ingroup Date */
+    typedef Integer Second;
 
-        \test self-consistency of dates, serial numbers, days of
+    //! Millisecond number
+    /*! \ingroup Date */
+    typedef Integer Millisecond;
+
+    //! Concrete Date class
+    /*! This class provides methods to inspect Dates as well as methods and
+        operators which implement a limited Date algebra (increasing and
+        decreasing Dates, and calculating their difference).
+
+        \ingroup Date
+
+        \test self-consistency of Dates, serial numbers, days of
               month, months, and weekdays is checked over the whole
-              date range.
+              Date range.
     */
+
     class Date {
       public:
         //! \name constructors
         //@{
-        //! Default constructor returning a null date.
+        //! Default constructor returning a null Date.
         Date();
-        //! Constructor taking a serial number as given by Applix or Excel.
-        explicit Date(BigInteger serialNumber);
+
+        //! Constructor taking boost posix Date time object
+        explicit Date(const boost::posix_time::ptime& localTime);
         //! More traditional constructor.
         Date(Day d, Month m, Year y);
+        Date(Day d, Month m, Year y,
+                 Size hours, Size minutes, Size seconds,
+                 Size millisec = 0, Size microsec = 0);
+        //! Constructor taking a serial number as given by Applix or Excel.
+        explicit Date(BigInteger serialNumber);
         //@}
+
         //! \name inspectors
         //@{
         Weekday weekday() const;
@@ -105,6 +131,11 @@ namespace QuantLib {
         Day dayOfYear() const;
         Month month() const;
         Year year() const;
+        Hour hours() const;
+        Minute minutes() const;
+        Second seconds() const;
+        Time fractionOfDay() const;
+        Time fractionOfSecond() const;
         BigInteger serialNumber() const;
         //@}
 
@@ -140,6 +171,10 @@ namespace QuantLib {
         //@{
         //! today's date.
         static Date todaysDate();
+        //! local date time, based on the time zone settings of the computer
+        static Date localDateTime();
+        //! UTC date time
+        static Date universalDateTime();
         //! earliest allowed date
         static Date minDate();
         //! latest allowed date
@@ -154,7 +189,7 @@ namespace QuantLib {
         /*! E.g., the Friday following Tuesday, January 15th, 2002
             was January 18th, 2002.
 
-            see http://www.cpearson.com/excel/DateTimeWS.htm
+            see http://www.cpearson.com/excel/DateWS.htm
         */
         static Date nextWeekday(const Date& d,
                                 Weekday w);
@@ -162,28 +197,28 @@ namespace QuantLib {
         /*! E.g., the 4th Thursday of March, 1998 was March 26th,
             1998.
 
-            see http://www.cpearson.com/excel/DateTimeWS.htm
+            see http://www.cpearson.com/excel/DateWS.htm
         */
         static Date nthWeekday(Size n,
-                               Weekday w,
-                               Month m,
-                               Year y);
+                                      Weekday w,
+                                      Month m,
+                                      Year y);
         //@}
+
+        const boost::posix_time::ptime& dateTime() const;
+
       private:
-        BigInteger serialNumber_;
-        static Date advance(const Date& d, Integer units, TimeUnit);
-        static Integer monthLength(Month m, bool leapYear);
-        static Integer monthOffset(Month m, bool leapYear);
-        static BigInteger yearOffset(Year y);
-        static BigInteger minimumSerialNumber();
-        static BigInteger maximumSerialNumber();
-        static void checkSerialNumber(BigInteger serialNumber);
+        boost::posix_time::ptime dateTime_;
     };
 
     /*! \relates Date
         \brief Difference in days between dates
     */
     BigInteger operator-(const Date&, const Date&);
+    /*! \relates Date
+        \brief Difference in days (including fraction of days) between dates
+    */
+    Time daysBetween(const Date&, const Date&);
 
     /*! \relates Date */
     bool operator==(const Date&, const Date&);
@@ -197,6 +232,7 @@ namespace QuantLib {
     bool operator>(const Date&, const Date&);
     /*! \relates Date */
     bool operator>=(const Date&, const Date&);
+
     /*! \relates Date */
     std::ostream& operator<<(std::ostream&, const Date&);
 
@@ -226,31 +262,31 @@ namespace QuantLib {
             Date d;
             std::string f;
         };
-        std::ostream& operator<<(std::ostream&, const formatted_date_holder&);
+        std::ostream& operator<<(std::ostream&,
+                                 const formatted_date_holder&);
 
     }
 
     namespace io {
 
-        //! output dates in short format (mm/dd/yyyy)
+        //! output Dates in short format (mm/dd/yyyy)
         /*! \ingroup manips */
         detail::short_date_holder short_date(const Date&);
 
-        //! output dates in long format (Month ddth, yyyy)
+        //! output Dates in long format (Month ddth, yyyy)
         /*! \ingroup manips */
         detail::long_date_holder long_date(const Date&);
 
-        //! output dates in ISO format (yyyy-mm-dd)
+        //! output Dates in ISO format (yyyy-mm-dd)
         /*! \ingroup manips */
         detail::iso_date_holder iso_date(const Date&);
 
-        //! output dates in user defined format using boost date functionality
+        //! output Dates in user defined format using boost Date functionality
         /*! \ingroup manips */
-        detail::formatted_date_holder formatted_date(const Date&,
+        detail::formatted_date_holder formatted_Date(const Date&,
                                                      const std::string& fmt);
 
     }
-
 
     //! specialization of Null template for the Date class
     template <>
@@ -259,81 +295,6 @@ namespace QuantLib {
         Null() {}
         operator Date() const { return Date(); }
     };
-
-
-    // inline definitions
-
-    inline Weekday Date::weekday() const {
-        Integer w = serialNumber_ % 7;
-        return Weekday(w == 0 ? 7 : w);
-    }
-
-    inline Day Date::dayOfMonth() const {
-        return dayOfYear() - monthOffset(month(),isLeap(year()));
-    }
-
-    inline Day Date::dayOfYear() const {
-        return serialNumber_ - yearOffset(year());
-    }
-
-    inline BigInteger Date::serialNumber() const {
-        return serialNumber_;
-    }
-
-    inline Date Date::operator+(BigInteger days) const {
-        return Date(serialNumber_+days);
-    }
-
-    inline Date Date::operator-(BigInteger days) const {
-        return Date(serialNumber_-days);
-    }
-
-    inline Date Date::operator+(const Period& p) const {
-        return advance(*this,p.length(),p.units());
-    }
-
-    inline Date Date::operator-(const Period& p) const {
-        return advance(*this,-p.length(),p.units());
-    }
-
-    inline Date Date::endOfMonth(const Date& d) {
-        Month m = d.month();
-        Year y = d.year();
-        return Date(monthLength(m, isLeap(y)), m, y);
-    }
-
-    inline bool Date::isEndOfMonth(const Date& d) {
-       return (d.dayOfMonth() == monthLength(d.month(), isLeap(d.year())));
-    }
-
-    inline BigInteger operator-(const Date& d1, const Date& d2) {
-        return d1.serialNumber()-d2.serialNumber();
-    }
-
-    inline bool operator==(const Date& d1, const Date& d2) {
-        return (d1.serialNumber() == d2.serialNumber());
-    }
-
-    inline bool operator!=(const Date& d1, const Date& d2) {
-        return (d1.serialNumber() != d2.serialNumber());
-    }
-
-    inline bool operator<(const Date& d1, const Date& d2) {
-        return (d1.serialNumber() < d2.serialNumber());
-    }
-
-    inline bool operator<=(const Date& d1, const Date& d2) {
-        return (d1.serialNumber() <= d2.serialNumber());
-    }
-
-    inline bool operator>(const Date& d1, const Date& d2) {
-        return (d1.serialNumber() > d2.serialNumber());
-    }
-
-    inline bool operator>=(const Date& d1, const Date& d2) {
-        return (d1.serialNumber() >= d2.serialNumber());
-    }
-
 }
 
 

@@ -4,6 +4,7 @@
  Copyright (C) 2003, 2004, 2005, 2006, 2007, 2008 StatPro Italia srl
  Copyright (C) 2005 Johan Witters
  Copyright (C) 2013 Simon Shakeshaft
+ Copyright (C) 2014 Bitquant Research Laboratories (Asia) Ltd.
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -29,10 +30,19 @@
 %{
 using QuantLib::Day;
 using QuantLib::Year;
+using QuantLib::Hour;
+using QuantLib::Minute;
+using QuantLib::Second;
+using QuantLib::Millisecond;
 %}
 
 typedef Integer Day;
 typedef Integer Year;
+typedef Integer Hour;
+typedef Integer Minute;
+typedef Integer Second;
+typedef Integer Millisecond;
+
 
 #if defined(SWIGJAVA)
 %javaconst(1);
@@ -98,9 +108,14 @@ using QuantLib::Days;
 using QuantLib::Weeks;
 using QuantLib::Months;
 using QuantLib::Years;
+using QuantLib::Hours;
+using QuantLib::Minutes;
+using QuantLib::Seconds;
+using QuantLib::Milliseconds;
 %}
 
-enum TimeUnit { Days, Weeks, Months, Years };
+enum TimeUnit { Days, Weeks, Months, Years, Hours, Minutes, Seconds, 
+Milliseconds};
 
 
 %{
@@ -337,12 +352,20 @@ class Date {
     Day dayOfYear() const;        // one-based
     Month month() const;
     Year year() const;
+    Hour hours() const;
+    Minute minutes() const;
+    Second seconds() const;
+    Time fractionOfDay() const;
+    Time fractionOfSecond() const;
+
     BigInteger serialNumber() const;
     // static methods
     static bool isLeap(Year y);
     static Date minDate();
     static Date maxDate();
     static Date todaysDate();
+    static Date localDateTime();
+    static Date universalDateTime();
     static Date endOfMonth(const Date&);
     static bool isEndOfMonth(const Date&);
     static Date nextWeekday(const Date&, Weekday);
@@ -496,6 +519,7 @@ a
 
 %}
 
+Time daysBetween(const Date&, const Date&);
 bool operator==(const Date&, const Date&);
 bool operator!=(const Date&, const Date&);
 bool operator<(const Date&, const Date&);
