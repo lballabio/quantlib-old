@@ -19,7 +19,8 @@
 
 /*! \file lgm.hpp
     \brief LGM model base class
-           Reference: Evaluating and hedging exotic swap instruments via LGM
+           Reference: Patrick S. Hagan, Evaluating and hedging exotic swap
+                      instruments via LGM
 */
 
 #ifndef quantlib_lgm_hpp
