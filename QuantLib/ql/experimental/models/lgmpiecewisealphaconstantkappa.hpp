@@ -35,6 +35,8 @@ namespace detail {
 class LgmPiecewiseAlphaConstantKappa
     : public LgmParametrization<LgmPiecewiseAlphaConstantKappa> {
   public:
+    // kappa is given as an one dimensional array to ease the linking
+    // in calibrated model
     LgmPiecewiseAlphaConstantKappa(const Array &times, const Array &alphas,
                                    const Array &kappa);
 
