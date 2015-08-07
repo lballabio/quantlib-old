@@ -585,9 +585,10 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 for (Size i = 0; i < xTmp2.size(); ++i)
                     avg += yTmp2[i];
                 avg /= static_cast<double>(xTmp1.size() + xTmp2.size());
-                fct = boost::make_shared<QuadraticProxyFunction>(
-                    arguments_.longPositionType, cutoff, 0.0, 0.0, avg, 0.0,
-                    0.0, avg, -QL_MAX_REAL, spotMin, spotMax);
+                fct = boost::shared_ptr<QuadraticProxyFunction>(
+                    new QuadraticProxyFunction(
+                        arguments_.longPositionType, cutoff, 0.0, 0.0, avg, 0.0,
+                        0.0, avg, -QL_MAX_REAL, spotMin, spotMax));
                 // std::cerr
                 //     << "regression produced a constant function with
                 //     value "
