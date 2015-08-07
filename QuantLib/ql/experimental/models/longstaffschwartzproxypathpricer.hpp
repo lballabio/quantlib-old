@@ -31,7 +31,7 @@
 namespace QuantLib {
 
 class LongstaffSchwartzProxyPathPricer
-    : public LongstaffSchwartzPathPricer<typename SingleVariate<>::path_type> {
+    : public LongstaffSchwartzPathPricer<SingleVariate<>::path_type> {
   public:
     typedef EarlyExerciseTraits<SingleVariate<>::path_type>::StateType StateType;
     typedef SingleVariate<>::path_type PathType;
