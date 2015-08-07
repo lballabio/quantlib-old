@@ -192,7 +192,8 @@ operator()(const Real spot) const {
         // ensure global monotonicity
         // if (type_ == Option::Put) {
         //     Real ct = flatExtrapolationType2_ *
-        //               std::min(flatExtrapolationType2_ * extrapolationPoint2_,
+        //               std::min(flatExtrapolationType2_ *
+        //               extrapolationPoint2_,
         //                        flatExtrapolationType2_ * cutoff_);
         //     tmp = std::max(a2_ * ct * ct + b2_ * ct + c2_, tmp);
         // }
@@ -212,7 +213,8 @@ operator()(const Real spot) const {
         // ensure global monotonicity
         // if (type_ == Option::Call) {
         //     Real ct = flatExtrapolationType1_ *
-        //               std::min(flatExtrapolationType1_ * extrapolationPoint1_,
+        //               std::min(flatExtrapolationType1_ *
+        //               extrapolationPoint1_,
         //                        flatExtrapolationType1_ * cutoff_);
         //     tmp = std::max(a1_ * ct * ct + b1_ * ct + c1_, tmp);
         // }
@@ -646,13 +648,11 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 } else {
                     Real tmp1 =
                         (-(b1 - b2) + std::sqrt((b1 - b2) * (b1 - b2) -
-                                                4.0 * (a1 - a2) * (c1 - c2)))
-                                                /
+                                                4.0 * (a1 - a2) * (c1 - c2))) /
                         (2.0 * (a1 - a2));
                     Real tmp2 =
                         (-(b1 - b2) - std::sqrt((b1 - b2) * (b1 - b2) -
-                                                4.0 * (a1 - a2) * (c1 - c2)))
-                                                /
+                                                4.0 * (a1 - a2) * (c1 - c2))) /
                         (2.0 * (a1 - a2));
                     if (fabs((tmp1 - cutoff) / cutoff) < smoothInt)
                         cutoff = tmp1;
@@ -721,11 +721,11 @@ McFxTarfEngine<RNG, S>::pathGenerator() const {
 template <class RNG, class S>
 boost::shared_ptr<typename McFxTarfEngine<RNG, S>::path_pricer_type>
 McFxTarfEngine<RNG, S>::pathPricer() const {
-    return boost::make_shared<FxTarfPathPricer>(
+    return boost::shared_ptr<FxTarfPathPricer>(new FxTarfPathPricer(
         fixingTimes_, discounts_, arguments_.accumulatedAmount,
         arguments_.sourceNominal, arguments_.target, arguments_.instrument,
         this->data_, this->accBucketLimits_, arguments_.schedule.dates().back(),
-        this->discount_, this->generateProxy_);
+        this->discount_, this->generateProxy_));
 }
 
 template <class RNG, class S>
