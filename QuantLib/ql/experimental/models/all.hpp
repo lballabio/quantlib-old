@@ -8,6 +8,8 @@
 #include <ql/experimental/models/gsrprocess_riskneutral.hpp>
 #include <ql/experimental/models/lgm.hpp>
 #include <ql/experimental/models/lgm1.hpp>
+#include <ql/experimental/models/lgmfxparametrization.hpp>
+#include <ql/experimental/models/lgmfxpiecewisesigma.hpp>
 #include <ql/experimental/models/lgmparametrization.hpp>
 #include <ql/experimental/models/lgmstateprocess.hpp>
 #include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>

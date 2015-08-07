@@ -25,6 +25,10 @@
 #ifndef quantlib_lgm_fx_parametrization_hpp
 #define quantlib_lgm_fx_parametrization_hpp
 
+#include <ql/patterns/curiouslyrecurring.hpp>
+#include <ql/types.hpp>
+#include <ql/errors.hpp>
+
 namespace QuantLib {
 
 template <class Impl>
@@ -41,9 +45,9 @@ class LgmFxParametrization : public CuriouslyRecurringTemplate<Impl> {
 
     //! interface
     const void updateImpl() const {}     // optional to implement (.)
-    const Real varianceImpl() const;     // must be implemented (*)
-    const Real sigmaImpl() const;        // (.)
-    const Real stdDeviationImpl() const; // (.)
+    const Real varianceImpl(const Time t) const;     // must be implemented (*)
+    const Real sigmaImpl(const Time t) const;        // (.)
+    const Real stdDeviationImpl(const Time t) const; // (.)
 
   private:
     const Real h_;
@@ -67,7 +71,7 @@ inline const Real LgmFxParametrization<Impl>::variance(const Time t) const {
 
 template <class Impl>
 inline const Real
-LgmFxParametrization<Impl>::stdDeviationImpl(const Time t) const {
+LgmFxParametrization<Impl>::stdDeviation(const Time t) const {
     return this->impl().stdDeviationImpl();
 }
 
@@ -75,7 +79,7 @@ LgmFxParametrization<Impl>::stdDeviationImpl(const Time t) const {
 
 template <class Impl>
 inline const Real LgmFxParametrization<Impl>::sigmaImpl(const Time t) const {
-    return std::sqrt(variance(t + 0.5 * h_) - variance(t - 0.5 * h_)) / h_);
+    return std::sqrt((variance(t + 0.5 * h_) - variance(t - 0.5 * h_)) / h_);
 }
 
 template <class Impl>

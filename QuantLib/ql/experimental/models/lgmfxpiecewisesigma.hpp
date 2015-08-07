@@ -24,12 +24,16 @@
 #ifndef lgm_fx_piecewisesigma_hpp
 #define lgm_fx_piecewisesigma_hpp
 
+#include <ql/experimental/models/lgmfxparametrization.hpp>
+#include <ql/math/array.hpp>
+
 namespace QuantLib {
 
-class LgmFxPiecewiseSigma : public LgmFxparametrization<LgmFxPiecewiseSigma> {
+class LgmFxPiecewiseSigma : public LgmFxParametrization<LgmFxPiecewiseSigma> {
   public:
     LgmFxPiecewiseSigma(const Array &times, const Array &sigmas);
 
+    const void updateImpl() const;
     const Real sigmaImpl(const Time t) const;
     const Real varianceImpl(const Time t) const;
     const Real stdDeviationImpl(const Time t) const;
@@ -65,8 +69,8 @@ inline const Real LgmFxPiecewiseSigma::varianceImpl(const Time t) const {
     Size i = std::upper_bound(times_.begin(), times_.end(), t) - times_.begin();
     Real res = 0.0;
     if (i >= 1)
-        res += variances_[std::min(i - 1, zetas_.size() - 1)];
-    Real s = sigma_[std::min(i, alphas_.size() - 1)];
+        res += variances_[std::min(i - 1, variances_.size() - 1)];
+    Real s = sigmas_[std::min(i, sigmas_.size() - 1)];
     res += s * s * (t - (i == 0 ? 0.0 : times_[i - 1]));
     return res;
 }
