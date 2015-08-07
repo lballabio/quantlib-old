@@ -152,16 +152,20 @@ McFxTarfEngine<RNG, S>::QuadraticProxyFunction::QuadraticProxyFunction(
                                << type_);
     // for calls we want ascending, for puts descending functions
     if (close(a1_, 0.0)) {
-        QL_REQUIRE(b1_ > 0.0, "for a call and a1=0 b ("
-                                  << b1_ << ") must be positive");
+        // for minspot = maxspot a constant function with a=b=0
+        // is constructed, so this requirement must be dropped
+        // QL_REQUIRE(b1_ > 0.0, "for a call and a1=0 b ("
+        //                           << b1_ << ") must be positive");
     } else {
         extrapolationPoint1_ = -b1_ / (2.0 * a1_);
         flatExtrapolationType1_ =
             (type_ == Option::Call ? 1.0 : -1.0) * (a1_ > 0.0 ? -1 : 1);
     }
     if (close(a2_, 0.0)) {
-        QL_REQUIRE(b2_ > 0.0, "for a call and a2=0 b ("
-                                  << b2_ << ") must be positive");
+        // for minspot = maxspot a constant function with a=b=0
+        // is constructed, so this requirement must be dropped
+        // QL_REQUIRE(b2_ > 0.0, "for a call and a2=0 b ("
+        //                           << b2_ << ") must be positive");
     } else {
         extrapolationPoint2_ = -b2_ / (2.0 * a2_);
         flatExtrapolationType2_ =
