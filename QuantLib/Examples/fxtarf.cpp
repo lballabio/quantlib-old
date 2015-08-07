@@ -1,19 +1,25 @@
 #include <ql/quantlib.hpp>
 
+#include <boost/assign/std/vector.hpp>
+
+using namespace boost::assign;
+
 using namespace QuantLib;
 
 int main() {
 
     // set the evaluation date
 
-    Settings::instance().evaluationDate() = Date(28, Apr, 2015);
+    Date refDate(13, Oct, 2014);
+    Settings::instance().evaluationDate() = refDate;
 
-    std::cout << "Evaluation Date " << Settings::instance().evaluationDate()
+    std::cerr << "Evaluation Date " << Settings::instance().evaluationDate()
               << "\n";
 
     // set the EUR USD exchange rate
 
-    ExchangeRate eurusd(EURCurrency(), USDCurrency(), 1.10);
+    Real exRate = atof(getenv("SPOT"));
+    ExchangeRate eurusd(EURCurrency(), USDCurrency(), exRate);
     ExchangeRateManager::instance().add(eurusd);
 
     // build an EUR and USD curve
@@ -32,100 +38,156 @@ int main() {
 
     // add historic fixings
 
-    ecbIndex->addFixing(Date(13, Nov, 2014), 1.04);
-    ecbIndex->addFixing(Date(11, Dec, 2014), 1.07);
-    ecbIndex->addFixing(Date(13, Jan, 2015), 1.05);
-    ecbIndex->addFixing(Date(12, Feb, 2015), 1.06);
-    ecbIndex->addFixing(Date(12, Mar, 2015), 1.02);
-    ecbIndex->addFixing(Date(13, Apr, 2015), 1.08);
-
-    // retrieve historic, today's (not set, so estimated) and future fixings
-    // (always estimated)
-
-    std::cout << "past fixing 13-04-2015 = "
-              << ecbIndex->fixing(Date(13, Apr, 2015)) << "\n";
-    std::cout << "fut  fixing 28-04-2015 = "
-              << ecbIndex->fixing(Date(28, Apr, 2015)) << "\n";
-    std::cout << "fut  fixing 28-04-2016 = "
-              << ecbIndex->fixing(Date(28, Apr, 2016)) << "\n";
+    // ecbIndex->addFixing(Date(13, Nov, 2014), 1.04);
+    // ecbIndex->addFixing(Date(11, Dec, 2014), 1.07);
+    // ecbIndex->addFixing(Date(13, Jan, 2015), 1.05);
+    // ecbIndex->addFixing(Date(12, Feb, 2015), 1.06);
+    // ecbIndex->addFixing(Date(12, Mar, 2015), 1.02);
+    // ecbIndex->addFixing(Date(13, Apr, 2015), 1.08);
 
     // set up a tarf deal
 
     Schedule sched(Date(15, Oct, 2014), Date(15, Oct, 2015), 1 * Months, TgtNy,
                    Following, Following, DateGeneration::Forward, false);
 
-    // check fixing dates
-    // for (Size i = 1; i < sched.size(); ++i) {
-    //     std::cout << "value date " << sched.date(i) << " has fixing date "
-    //               << TgtNy.advance(sched.date(i), -2 * Days) << std::endl;
-    // }
+    std::cerr << "tarf schedule:" << std::endl;
+    for (Size i = 1; i < sched.size(); ++i) {
+        Date fixing = ecbIndex->fixingDate(sched[i]);
+        std::cerr << fixing << ";" << sched[i] << ";"
+                  << fixing.serialNumber() - refDate.serialNumber()
+                  << std::endl;
+    }
 
-    boost::shared_ptr<SimpleQuote> acc000 =
-        boost::make_shared<SimpleQuote>(0.0);
-    boost::shared_ptr<SimpleQuote> acc010 =
-        boost::make_shared<SimpleQuote>(0.10);
-    boost::shared_ptr<SimpleQuote> acc020 =
-        boost::make_shared<SimpleQuote>(0.20);
-    boost::shared_ptr<SimpleQuote> acc025 =
-        boost::make_shared<SimpleQuote>(0.25);
-    boost::shared_ptr<SimpleQuote> acc030 =
-        boost::make_shared<SimpleQuote>(0.25);
+    double target = atof(getenv("TARGET"));
+    int samples = atoi(getenv("SAMPLES"));
+    int samples2 = atoi(getenv("SAMPLES2"));
+    int steps = atoi(getenv("STEPS"));
+    int seed = atoi(getenv("SEED"));
+    char *type = getenv("TYPE");
+    double shortLeverage = atof(getenv("LEV"));
+    FxTarf::CouponType cpType;
+    switch (type[0]) {
+    case 'f':
+        cpType = FxTarf::full;
+        break;
+    case 'c':
+        cpType = FxTarf::capped;
+        break;
+    case 'n':
+        cpType = FxTarf::none;
+        break;
+    default:
+        QL_FAIL("unknown cl option " << type[0]);
+        break;
+    }
 
-    RelinkableHandle<Quote> precalculatedAcc; // no pre-calculated accumulator
-    // precalculatedAcc.linkTo(acc010); // set pre-calculated accumulator
+    double initialAm = atof(getenv("ACC"));
+    boost::shared_ptr<SimpleQuote> initialAmQ =
+        boost::make_shared<SimpleQuote>(initialAm);
+    Handle<Quote> initialAcc(initialAmQ);
 
-    FxTarf tarf(sched, ecbIndex, 100000000.0, 1.05, Option::Call, 2.0, 0.25,
-                precalculatedAcc);
-
-    std::cout << "accumulated amount = " << tarf.accumulatedAmount()
-              << " (settled: " << tarf.accumulatedAmountSettled() << ")\n";
-
-    // Settings::instance().evaluationDate() = Date(12,Dec,2014);
-    // std::cout << "accumulated amount = " << tarf.accumulatedAmount()
-    //           << " (settled: " << tarf.accumulatedAmountSettled() << ")\n";
+    FxTarf tarf(sched, ecbIndex, 100000000.0,
+                boost::make_shared<PlainVanillaPayoff>(Option::Put, 1.21),
+                boost::make_shared<PlainVanillaPayoff>(Option::Call, 1.21),
+                target, cpType, shortLeverage, 1.0, initialAcc);
 
     boost::shared_ptr<SimpleQuote> fx1 =
         boost::make_shared<SimpleQuote>(eurusd.rate());
-    boost::shared_ptr<SimpleQuote> fx2 =
-        boost::make_shared<SimpleQuote>(1.50);
     RelinkableHandle<Quote> fxQuote(fx1);
 
-    Handle<BlackVolTermStructure> volTs(
-        boost::make_shared<BlackConstantVol>(0, TARGET(), 0.20,
-                                             Actual365Fixed()));
+    Handle<BlackVolTermStructure> volTs(boost::make_shared<BlackConstantVol>(
+        0, TARGET(), 0.20, Actual365Fixed()));
     boost::shared_ptr<GarmanKohlagenProcess> gkProcess =
-        boost::make_shared<GarmanKohlagenProcess>(fxQuote, eurYts, usdYts, volTs);
+        boost::make_shared<GarmanKohlagenProcess>(fxQuote, eurYts, usdYts,
+                                                  volTs);
+    // boost::shared_ptr<ExtendedBlackScholesMertonProcess> gkProcess =
+    //     boost::make_shared<ExtendedBlackScholesMertonProcess>(fxQuote,
+    //     eurYts, usdYts,
+    //                                               volTs);
+
+    // test path generation
+    // std::vector<Real> required;
+    // required += 0.0, 0.05, 0.1, 0.15, 0.25, 0.47, 0.68, 0.91;
+    // TimeGrid gridTmp(required.begin(),required.end(),1);
+    // Real result = 0.0;
+    // size_t N = 1000000;
+    // PseudoRandom::rsg_type rsg =
+    // PseudoRandom::make_sequence_generator(gridTmp.size(),42);
+    // for(Size i=0;i<N;++i) {
+    //     Real x = fxQuote->value();
+    //     PseudoRandom::rsg_type::sample_type seq=rsg.nextSequence();
+    //     for(Size j=1;j<gridTmp.size();++j) {
+    //         x=gkProcess->evolve(gridTmp[j-1],x,gridTmp.dt(j-1),seq.value[j-1]);
+    //     }
+    //     result += x;
+    // }
+    // std::cout << "test mean = " << std::setprecision(12) << (result/N) <<
+    // std::endl;
+    // return 0;
+    // end test path generation
 
     // full pricing engine and creation of proxy
 
-    boost::shared_ptr<PricingEngine> mcEngine = boost::make_shared<McFxTarfEngine>(gkProcess);
+    boost::shared_ptr<PricingEngine> mcEngine = MakeMcFxTarfEngine<>(gkProcess)
+                                                    .withStepsPerYear(steps)
+                                                    .withSamples(samples)
+                                                    .withSeed(seed)
+                                                    .withProxy();
+    // same, but without proxy pricing
+    boost::shared_ptr<PricingEngine> mcEngine2 = MakeMcFxTarfEngine<>(gkProcess)
+                                                     .withStepsPerYear(steps)
+                                                     .withSamples(samples2)
+                                                     .withSeed(seed);
     tarf.setPricingEngine(mcEngine);
-    std::cout << "MCEngine NPV = " << tarf.NPV() << std::endl;
+    std::cerr << "spot=" << exRate << " steps=" << steps
+              << " samples=" << samples << " samples2=" << samples2
+              << " type=" << type[0] << " target=" << target
+              << " shortLev=" << shortLeverage << " initialAm=" << initialAm
+              << std::endl;
+    std::cerr << "MCEngine NPV = " << tarf.NPV() << " error est "
+              << tarf.errorEstimate() << std::endl;
 
-    boost::shared_ptr<ProxyInstrument::ProxyDescription> proxy = tarf.proxy();
+    // return 0; //test
 
-    // pfe proxy engine
-    boost::shared_ptr<PricingEngine> pfePricingEngine = boost::make_shared<ProxyFxTarfEngine>(proxy, fxQuote);
-    tarf.setPricingEngine(pfePricingEngine);
-    std::cout << "Proxy Engine NPV = " << tarf.NPV() << std::endl;
+    // transport the proxy to the proxy engine
 
-    // shift spot
-    fxQuote.linkTo(fx2);
-    std::cout << "Proxy Engine NPV = " << tarf.NPV() << std::endl;
+    int interpolate = atoi(getenv("INT"));
 
-    // shift eval date and set acc level
-    Settings::instance().evaluationDate() = Date(28,June,2015);
-    precalculatedAcc.linkTo(acc010);
-    fxQuote.linkTo(fx1);
-    std::cout << "Proxy Engine NPV = " << tarf.NPV() << std::endl;
+    boost::shared_ptr<PricingEngine> proxyEngine =
+        boost::make_shared<ProxyFxTarfEngine>(
+            tarf.proxy(), fxQuote, gkProcess->riskFreeRate(), interpolate);
 
-    // shift eval date and fx quote
-    Settings::instance().evaluationDate() = Date(28,July,2015);
-    //precalculatedAcc.linkTo(acc030); // expired !
-    precalculatedAcc.linkTo(acc020);
-    fxQuote.linkTo(fx2);
-    std::cout << "Proxy Engine NPV = " << tarf.NPV() << std::endl;
-    
+    tarf.setPricingEngine(proxyEngine);
+
+    std::cerr << "ProxyEngine NPV (orig eval date and spot)= " << tarf.NPV()
+              << std::endl;
+
+    // estimate NPVs and compare to full MC pricing
+
+    int shiftDays = atoi(getenv("DAYSHIFT"));
+    Settings::instance().evaluationDate() = refDate + shiftDays;
+
+    std::cerr << "output simulated npvs with refDate "
+              << Settings::instance().evaluationDate()
+              << " (DayShift=" << shiftDays << ")" << std::endl;
+
+    double newAccAmount = atof(getenv("ACCPROXY"));
+    initialAmQ->setValue(newAccAmount); // accumulated amount
+    int stepOver = 0;
+    for (Real x = 0.50; x <= 2.00; x += 0.01) {
+        fx1->setValue(x);
+        std::cout << x << " " << tarf.NPV() << " "
+                  << tarf.result<Real>("coreRegionMin") << " "
+                  << tarf.result<Real>("coreRegionMax") << " ";
+        if (!stepOver--) {
+            stepOver = 9;
+            tarf.setPricingEngine(mcEngine2);
+            std::cout << tarf.NPV() << " " << tarf.errorEstimate();
+            tarf.setPricingEngine(proxyEngine);
+        } else
+            std::cout << "0.0 0.0";
+        std::cout << std::endl;
+    }
 
     return 0;
 }
