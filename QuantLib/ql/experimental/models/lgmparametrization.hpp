@@ -33,8 +33,8 @@ namespace QuantLib {
 template <class Impl>
 class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
-    //! inspectors
     void update() const;
+    //! inspectors
     const Real zeta(const Time t) const;
     const Real alpha(const Time t) const;
     const Real H(const Time t) const;
@@ -110,7 +110,7 @@ inline const Real LgmParametrization<Impl>::zetaImpl(const Time t) const {
 
 template <class Impl>
 inline const Real LgmParametrization<Impl>::alphaImpl(const Time t) const {
-    return (zeta(t + 0.5 * h_) - zeta(t - 0.5 * h_)) / h_;
+    return std::sqrt((zeta(t + 0.5 * h_) - zeta(t - 0.5 * h_)) / h_);
 }
 
 template <class Impl>
