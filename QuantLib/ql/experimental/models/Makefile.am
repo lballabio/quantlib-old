@@ -11,6 +11,8 @@ this_include_HEADERS = \
 	gsrprocess_riskneutral.hpp \
 	lgm.hpp \
 	lgm1.hpp \
+	lgmfxparametrization.hpp \
+	lgmfxpiecewisesigma.hpp \
 	lgmparametrization.hpp \
 	lgmstateprocess.hpp \
 	lgmpiecewisealphaconstantkappa.hpp \
@@ -31,8 +33,9 @@ libModels_la_SOURCES = \
     betaetatabulation.cpp \
     betaetatabulation2.cpp \
 	gsrprocess_riskneutral.cpp \
-	lgmpiecewisealphaconstantkappa.cpp \
 	lgm1.cpp \
+	lgmfxpiecewisesigma.cpp \
+	lgmpiecewisealphaconstantkappa.cpp \
     longstaffschwartzproxypathpricer.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
 	multicurrencygsr.cpp \
