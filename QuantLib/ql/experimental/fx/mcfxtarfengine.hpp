@@ -665,9 +665,10 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 // make sure that lower cutoff is still left from cutoff
                 lowerCutoff = std::min(lowerCutoff, cutoff);
 
-                fct = boost::make_shared<QuadraticProxyFunction>(
-                    arguments_.longPositionType, cutoff, a1, b1, c1, a2, b2, c2,
-                    lowerCutoff, coreRegionMin, coreRegionMax);
+                fct = boost::shared_ptr<QuadraticProxyFunction>(
+                    new QuadraticProxyFunction(
+                        arguments_.longPositionType, cutoff, a1, b1, c1, a2, b2,
+                        c2, lowerCutoff, coreRegionMin, coreRegionMax));
             }
 
             // store the proxy function, please note that
