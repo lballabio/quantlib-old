@@ -29,6 +29,7 @@
 #include <ql/errors.hpp>
 
 namespace QuantLib {
+
 template <class Impl>
 class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
