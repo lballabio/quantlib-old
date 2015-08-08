@@ -1,13 +1,14 @@
 <root>
 
   <enumeratedTypeCopyright>
-    Copyright (C) 2006, 2007, 2008, 2014 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2014, 2015 Ferdinando Ametrano
     Copyright (C) 2007 Marco Bianchetti
     Copyright (C) 2005, 2006, 2007 Eric Ehlers
     Copyright (C) 2006 Giorgio Facchinetti
     Copyright (C) 2006 Chiara Fornarola
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2005 Plamen Neykov
+    Copyright (C) 2015 Maddalena Zanzi
   </enumeratedTypeCopyright>
 
   <EnumeratedTypeGroups>
@@ -58,6 +59,10 @@
         <EnumeratedType>
           <string>OldCDS</string>
           <value>QuantLib::DateGeneration::OldCDS</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>CDS</string>
+          <value>QuantLib::DateGeneration::CDS</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
@@ -154,7 +159,7 @@
       <includeFile>qlo/enumerations/factories/calendarfactory.hpp</includeFile>
       <constructor>false</constructor>
       <EnumeratedTypes>
-        
+
         <EnumeratedType>
           <string>Calendar</string>
           <value>QuantLib::Calendar()</value>
@@ -543,6 +548,10 @@
           <string>US settlement</string>
           <value>QuantLib::UnitedStates(QuantLib::UnitedStates::Settlement)</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>WeekendsOnly</string>
+          <value>QuantLib::WeekendsOnly()</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
@@ -799,6 +808,14 @@
           <string>Indifferent</string>
           <value>QuantLib::Unadjusted</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>Nearest</string>
+          <value>QuantLib::Nearest</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>N</string>
+          <value>QuantLib::Nearest</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
@@ -1031,10 +1048,6 @@
         </EnumeratedType>
 
         <EnumeratedType>
-          <string>EUR</string>
-          <value>QuantLib::EURCurrency()</value>
-        </EnumeratedType>
-        <EnumeratedType>
           <string>ARS</string>
           <value>QuantLib::ARSCurrency()</value>
         </EnumeratedType>
@@ -1111,6 +1124,10 @@
           <value>QuantLib::ESPCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>EUR</string>
+          <value>QuantLib::EURCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>FIM</string>
           <value>QuantLib::FIMCurrency()</value>
         </EnumeratedType>
@@ -1133,6 +1150,10 @@
         <EnumeratedType>
           <string>HUF</string>
           <value>QuantLib::HUFCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>IDR</string>
+          <value>QuantLib::IDRCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>IEP</string>
@@ -1195,6 +1216,10 @@
           <value>QuantLib::MXNCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>MYR</string>
+          <value>QuantLib::MYRCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>NLG</string>
           <value>QuantLib::NLGCurrency()</value>
         </EnumeratedType>
@@ -1211,6 +1236,18 @@
           <value>QuantLib::NZDCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>PEH</string>
+          <value>QuantLib::PEHCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>PEI</string>
+          <value>QuantLib::PEICurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>PEN</string>
+          <value>QuantLib::PENCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>PKR</string>
           <value>QuantLib::PKRCurrency()</value>
         </EnumeratedType>
@@ -1225,6 +1262,14 @@
         <EnumeratedType>
           <string>ROL</string>
           <value>QuantLib::ROLCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>RON</string>
+          <value>QuantLib::RONCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>RUB</string>
+          <value>QuantLib::RUBCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>SAR</string>
@@ -1273,6 +1318,10 @@
         <EnumeratedType>
           <string>VEB</string>
           <value>QuantLib::VEBCurrency()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>VND</string>
+          <value>QuantLib::VNDCurrency()</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>ZAR</string>
@@ -1441,6 +1490,21 @@
         <EnumeratedType>
           <string>Receiver</string>
           <value>QuantLib::VanillaSwap::Receiver</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::Futures::Type'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>IMM</string>
+          <value>QuantLib::Futures::IMM</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>ASX</string>
+          <value>QuantLib::Futures::ASX</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
@@ -1827,6 +1891,37 @@
         <EnumeratedType>
           <string>Kruger</string>
           <value>QuantLib::CubicInterpolation::DerivativeApprox(QuantLib::CubicInterpolation::Kruger)</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::Seniority'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>SeniorSec</string>
+          <value>QuantLib::SeniorSec</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>SeniorUnSec</string>
+          <value>QuantLib::SeniorUnSec</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>SubTier1</string>
+          <value>QuantLib::SubTier1</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>SubUpperTier2</string>
+          <value>QuantLib::SubUpperTier2</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>SubLoweTier2</string>
+          <value>QuantLib::SubLoweTier2</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>NoSeniority</string>
+          <value>QuantLib::NoSeniority</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>

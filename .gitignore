@@ -31,6 +31,10 @@ QuantLib/test-suite/build/
 QuantLib/test-suite/*.trs
 QuantLib-SWIG/config/
 QuantLib-SWIG/CSharp/cpp/quantlib_wrap.cpp
+QuantLib-SWIG/CSharp/cpp/build
+QuantLib-SWIG/CSharp/csharp/obj
+QuantLib-SWIG/CSharp/examples/bin
+QuantLib-SWIG/CSharp/examples/obj
 QuantLib-SWIG/Guile/quantlib_wrap.cpp
 QuantLib-SWIG/Java/bin/
 QuantLib-SWIG/Java/quantlib_wrap.cpp
@@ -101,10 +105,19 @@ XL-Launcher/bin/Debug/
 XL-Launcher/bin/Release/
 XL-Launcher/obj/
 
+# Build outputs
+**/x64/Debug
+**/x64/Release
+**/Debug
+**/Release
+**/bin/*.xml
+**/bin/*.manifest
+
 # Artifacts created in multiple directories
 Makefile
 !QuantLibAddin/swig/Makefile
 Makefile.in
+testCaseCollection.xml
 .deps
 .libs
 *.la
@@ -127,6 +140,7 @@ Makefile.in
 *.vcxproj.user
 *.log
 *.sdf
+*.opensdf
 
 # Outputs
 QuantLib/Examples/BasketLosses/BasketLosses

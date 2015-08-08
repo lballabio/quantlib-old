@@ -9,7 +9,9 @@ import argparse
 import re
 
 QLXL = "QuantLibXL"
-VERSION = "1.5.0"
+VERSION = "1.6.0"
+VERSION_ = "1_6_0"
+VC_VERSION = "vc120"
 QLXL_VERSION = QLXL + "-" + VERSION
 ROOT_DIR = QLXL_VERSION + "\\"
 
@@ -117,13 +119,13 @@ def visit(params, dirname, names):
         targetPath = rootDir + "/" + name
         zfile.write(sourcePath, ROOT_DIR + targetPath)
 
-def makeZipNando():
-    zipFilePath = "zip/%s-%s.zip" % (QLXL_VERSION, datetime.datetime.now().strftime("%Y%m%d%H%M"))
+def makeZipStatic():
+    zipFilePath = "zip/%s-%s.zip" % (QLXL_VERSION, "RateCurveFramework")
     zfile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
 
     # Zip up some specific files from the QuantLibXL directory.
-    zfile.write("Docs/QuantLibXL-docs-1.5.0.chm", ROOT_DIR + "Docs/QuantLibXL-docs-1.5.0.chm")
-    zfile.write("xll/QuantLibXLDynamic-vc90-mt-1_5_0.xll", ROOT_DIR + "xll/QuantLibXLDynamic-vc90-mt-1_5_0.xll")
+    zfile.write("Docs/QuantLibXL-docs-" + VERSION + ".chm", ROOT_DIR + "Docs/QuantLibXL-docs-" + VERSION + ".chm")
+    zfile.write("xll/QuantLibXL-" + VC_VERSION + "-mt-s-" + VERSION_ + ".xll", ROOT_DIR + "xll/QuantLibXL-" + VC_VERSION + "-mt-s-" + VERSION_ + ".xll")
     zfile.write("zip/README.txt", ROOT_DIR + "README.txt")
     # Recursively zip some subdirectories of the QuantLibXL directory.
     #os.path.walk("Data", visit, (zfile, ".gitignore", None))
@@ -131,15 +133,41 @@ def makeZipNando():
     os.path.walk("framework", visit, (zfile, "ReadMe.txt", None))
     #os.path.walk("Workbooks", visit, (zfile, None, None))
     # Zip up some files from other projects in the repo.
-    zfile.write("../ObjectHandler/xll/ObjectHandler-xll-vc90-mt-1_5_0.xll", ROOT_DIR + "xll/ObjectHandler-xll-vc90-mt-1_5_0.xll")
     os.path.walk("../QuantLibAddin/gensrc/metadata", visit, (zfile, None, "../QuantLibAddin/gensrc/"))
     zfile.write("../XL-Launcher/bin/Addin/Launcher.xla", ROOT_DIR + "Launcher.xla")
-    zfile.write("../XL-Launcher/bin/Addin/session_file.HKD.xml", ROOT_DIR + "session_file.xml")
-    for fileName in glob.glob("../XL-Launcher/bin/Addin/session_file.*.xml"):
+    for fileName in glob.glob("../XL-Launcher/bin/Addin/session_file.*-s-*.xml"):
+        baseName = os.path.basename(fileName)
+        if -1 != baseName.find("-dev") or -1 != baseName.find("-x64"): continue
+        zfile.write("../XL-Launcher/bin/Addin/" + baseName, ROOT_DIR + baseName)
+    for fileName in glob.glob("../XL-Launcher/bin/Addin/session_file.*-s-*.bat"):
+        baseName = os.path.basename(fileName)
+        if -1 != baseName.find("-dev") or -1 != baseName.find("-x64"): continue
+        zfile.write("../XL-Launcher/bin/Addin/" + baseName, ROOT_DIR + baseName)
+
+    zfile.close()
+	
+def makeZipStaticX64():
+    zipFilePath = "zip/%s-%s-%s.zip" % (QLXL_VERSION, "x64", "RateCurveFramework")
+    zfile = zipfile.ZipFile(zipFilePath, "w", zipfile.ZIP_DEFLATED)
+	
+    # Zip up some specific files from the QuantLibXL directory.
+    zfile.write("Docs/QuantLibXL-docs-" + VERSION + ".chm", ROOT_DIR + "Docs/QuantLibXL-docs-" + VERSION + ".chm")
+    zfile.write("xll/QuantLibXL-" + VC_VERSION + "-x64-mt-s-" + VERSION_ + ".xll", ROOT_DIR + "xll/QuantLibXL-" + VC_VERSION + "-x64-mt-s-" + VERSION_ + ".xll")
+    zfile.write("zip/README.txt", ROOT_DIR + "README.txt")
+    # Recursively zip some subdirectories of the QuantLibXL directory.
+    #os.path.walk("Data", visit, (zfile, ".gitignore", None))
+    os.path.walk("Data2/XLS", visit, (zfile, ".gitignore", None))
+    os.path.walk("framework", visit, (zfile, "ReadMe.txt", None))
+    #os.path.walk("Workbooks", visit, (zfile, None, None))
+    # Zip up some files from other projects in the repo.
+    os.path.walk("../QuantLibAddin/gensrc/metadata", visit, (zfile, None, "../QuantLibAddin/gensrc/"))
+    zfile.write("../XL-Launcher/bin/Addin/Launcher.xla", ROOT_DIR + "Launcher.xla")
+    zfile.write("../XL-Launcher/bin/Addin/README.txt", ROOT_DIR + "README-session_files.txt")
+    for fileName in glob.glob("../XL-Launcher/bin/Addin/session_file.*x64-s-*.xml"):
         baseName = os.path.basename(fileName)
         if -1 != baseName.find("-dev"): continue
         zfile.write("../XL-Launcher/bin/Addin/" + baseName, ROOT_DIR + baseName)
-    for fileName in glob.glob("../XL-Launcher/bin/Addin/session_file.*.bat"):
+    for fileName in glob.glob("../XL-Launcher/bin/Addin/session_file.*x64-s-*.bat"):
         baseName = os.path.basename(fileName)
         if -1 != baseName.find("-dev"): continue
         zfile.write("../XL-Launcher/bin/Addin/" + baseName, ROOT_DIR + baseName)
@@ -148,13 +176,14 @@ def makeZipNando():
 
 def zipBinaryFiles(zipFile):
     zipFile.zip("zip\\README.txt", zipFile.root + "README.txt")
-    zipFile.zip("xll\\QuantLibXL-vc110-mt-s-1_5_0.xll")
-    zipFile.zip("xll\\QuantLibXL-vc110-x64-mt-s-1_5_0.xll")
-    zipFile.zip("Docs\\QuantLibXL-docs-1.5.0.chm")
+    zipFile.zip("xll\\QuantLibXL-" + VC_VERSION + "-mt-s-" + VERSION_ + ".xll")
+    zipFile.zip("xll\\QuantLibXL-" + VC_VERSION + "-x64-mt-s-" + VERSION_ + ".xll")
+    zipFile.zip("Docs\\QuantLibXL-docs-" + VERSION + ".chm")
     Selector(
         inputPath = 'StandaloneExamples',
         zipFile = zipFile,
         incFiles = (
+            re.compile('^.*\.xls$'),
             re.compile('^.*\.xlsx$'),),
     )
 
@@ -224,8 +253,9 @@ elif 'framework' == args['target']:
     makeZipFramework()
 elif 'source' == args['target']:
     makeZipSource()
-elif 'nando' == args['target']:
-    makeZipNando()
+elif 'static' == args['target']:
+    makeZipStatic()
+elif 'staticX64' == args['target']:
+    makeZipStaticX64()
 else:
     print "Error - unsupported target : " + args['target']
-

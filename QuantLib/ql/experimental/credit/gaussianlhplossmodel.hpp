@@ -21,18 +21,15 @@
 #ifndef quantlib_gaussian_lhp_lossmodel_hpp
 #define quantlib_gaussian_lhp_lossmodel_hpp
 
-#include <numeric>
-
-#include <boost/bind.hpp>
-#include <boost/function.hpp>
-
 #include <ql/math/distributions/bivariatenormaldistribution.hpp>
 #include <ql/experimental/credit/recoveryratequote.hpp>
 #include <ql/quotes/simplequote.hpp>
-
 #include <ql/experimental/credit/defaultlossmodel.hpp>
 #include <ql/experimental/credit/basket.hpp>
 #include <ql/experimental/math/latentmodel.hpp>
+#include <boost/bind.hpp>
+#include <boost/function.hpp>
+#include <numeric>
 
 /* Intended to replace GaussianLHPCDOEngine in 
     ql/experimental/credit/syntheticcdoengines.hpp
@@ -76,8 +73,8 @@ namespace QuantLib {
             const std::vector<Real>& recoveries);
 
         void update() {
-            sqrt1minuscorrel_ = sqrt(1.-correl_->value());
-            beta_ = sqrt(correl_->value());
+            sqrt1minuscorrel_ = std::sqrt(1.-correl_->value());
+            beta_ = std::sqrt(correl_->value());
             biphi_ = BivariateCumulativeNormalDistribution(
                 -beta_);
             // tell basket to notify instruments, etc, we are invalid
@@ -114,9 +111,9 @@ namespace QuantLib {
                 attach, detach);
         }
 
-        /*!  @param remaining fraction in live tranche units, not portfolio as 
-        a fraction of the remaining(live) tranche (i.e. a_remaining=0% and 
-        det_remaining=100%) 
+        /*!  @param remainingLossFraction fraction in live tranche
+             units, not portfolio as a fraction of the remaining(live)
+             tranche (i.e. a_remaining=0% and det_remaining=100%)
         */
         Real probOverLoss(const Date& d, Real remainingLossFraction) const;
 

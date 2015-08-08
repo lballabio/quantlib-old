@@ -250,7 +250,7 @@ namespace QuantLib {
         /*! Conditional (on the mkt factor) prob of a loss fraction of the the 
                 tranched portfolio.
 
-            @param lossFraction Fraction over the tranche notional. In [0,1]
+            @param trancheLossFract Fraction over the tranche notional. In [0,1]
         */
         Probability probOverLossCond( 
             const std::vector<Real>& invUncondProbs,
@@ -316,7 +316,7 @@ namespace QuantLib {
             notional, which aggregated add up to the requested loss value.
             Notice then that it refers to the total portfolio, not the tranched
             basket.
-            \to do  Fix this.
+            \todo  Fix this.
             \par
             see equation 8 in <b>VAR: who contributes and how much?</b> by 
             R.Martin, K.Thompson, and C. Browne in Risk Magazine, August 2001
@@ -1199,12 +1199,11 @@ namespace QuantLib {
         std::vector<Real> mktFactor) const 
     {
         const Size nNames = remainingNotionals_.size();
-        if (loss <= QL_EPSILON) return std::vector<Real>(nNames, 0.);
+        std::vector<Real> condContrib(nNames, 0.);
+        if (loss <= QL_EPSILON) return condContrib;
 
         Real saddlePt = findSaddle(invUncondProbs, loss / remainingNotional_, 
             mktFactor);
-
-        std::vector<Real> condContrib(nNames, 0.);
 
         for(Size iName=0; iName<nNames; iName++) {
             Probability pBuffer = 

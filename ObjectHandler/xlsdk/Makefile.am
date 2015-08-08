@@ -10,5 +10,6 @@ EXTRA_DIST = \
     xlsdk_vc8.vcproj \
     xlsdk_vc9.vcproj \
     xlsdk_vc10.vcxproj \
-    xlsdk_vc11.vcxproj
+    xlsdk_vc11.vcxproj \
+    xlsdk_vc12.vcxproj
 

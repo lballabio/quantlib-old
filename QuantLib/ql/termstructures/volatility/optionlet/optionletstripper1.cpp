@@ -23,6 +23,7 @@
 #include <ql/termstructures/volatility/optionlet/optionletstripper1.hpp>
 #include <ql/instruments/makecapfloor.hpp>
 #include <ql/pricingengines/capfloor/blackcapfloorengine.hpp>
+#include <ql/pricingengines/capfloor/bacheliercapfloorengine.hpp>
 #include <ql/pricingengines/blackformula.hpp>
 #include <ql/indexes/iborindex.hpp>
 #include <ql/quotes/simplequote.hpp>
@@ -38,19 +39,22 @@ namespace QuantLib {
             Rate switchStrike,
             Real accuracy,
             Natural maxIter,
-            const Handle<YieldTermStructure>& discount)
-    : OptionletStripper(termVolSurface, index, discount),
+            const Handle<YieldTermStructure>& discount,
+            VolatilityType type,
+            Real displacement,
+            bool dontThrow)
+    : OptionletStripper(termVolSurface, index, discount, type, displacement),
       volQuotes_(nOptionletTenors_,
                  std::vector<shared_ptr<SimpleQuote> >(nStrikes_)),
       floatingSwitchStrike_(switchStrike==Null<Rate>() ? true : false),
       capFlooMatrixNotInitialized_(true),
       switchStrike_(switchStrike),
-      accuracy_(accuracy), maxIter_(maxIter) {
+      accuracy_(accuracy), maxIter_(maxIter), dontThrow_(dontThrow) {
 
         capFloorPrices_ = Matrix(nOptionletTenors_, nStrikes_);
         optionletPrices_ = Matrix(nOptionletTenors_, nStrikes_);
         capFloorVols_ = Matrix(nOptionletTenors_, nStrikes_);
-        Real firstGuess = 0.14;
+        Real firstGuess = 0.14; // guess is only used for shifted lognormal vols
         optionletStDevs_ = Matrix(nOptionletTenors_, nStrikes_, firstGuess);
 
         capFloors_ = CapFloorMatrix(nOptionletTenors_);
@@ -108,15 +112,27 @@ namespace QuantLib {
                 for (Size i=0; i<nOptionletTenors_; ++i) {
                     volQuotes_[i][j] = shared_ptr<SimpleQuote>(new
                                                                 SimpleQuote());
-                    shared_ptr<BlackCapFloorEngine> engine(new
-                        BlackCapFloorEngine(
-                                        discountCurve,
-                                        Handle<Quote>(volQuotes_[i][j]),
-                                        dc));
-                    capFloors_[i][j] = MakeCapFloor(capFloorType,
-                                                    capFloorLengths_[i], iborIndex_,
-                                                    strikes[j], 0*Days)
-                        .withPricingEngine(engine);
+                    if (volatilityType_ == ShiftedLognormal) {
+                      shared_ptr<BlackCapFloorEngine> engine(
+                          new BlackCapFloorEngine(
+                              discountCurve, Handle<Quote>(volQuotes_[i][j]),
+                              dc, displacement_));
+                      capFloors_[i][j] =
+                          MakeCapFloor(capFloorType, capFloorLengths_[i],
+                                       iborIndex_, strikes[j],
+                                       0 * Days).withPricingEngine(engine);
+                    } else if (volatilityType_ == Normal) {
+                      shared_ptr<BachelierCapFloorEngine> engine(
+                          new BachelierCapFloorEngine(
+                              discountCurve, Handle<Quote>(volQuotes_[i][j]),
+                              dc));
+                      capFloors_[i][j] =
+                          MakeCapFloor(capFloorType, capFloorLengths_[i],
+                                       iborIndex_, strikes[j],
+                                       0 * Days).withPricingEngine(engine);
+                    } else {
+                      QL_FAIL("unknown volatility type: " << volatilityType_);
+                    }
                 }
             }
             capFlooMatrixNotInitialized_ = false;
@@ -142,16 +158,27 @@ namespace QuantLib {
                     discountCurve->discount(optionletPaymentDates_[i]);
                 DiscountFactor optionletAnnuity=optionletAccrualPeriods_[i]*d;
                 try {
+                  if (volatilityType_ == ShiftedLognormal) {
+                    optionletStDevs_[i][j] = blackFormulaImpliedStdDev(
+                        optionletType, strikes[j], atmOptionletRate_[i],
+                        optionletPrices_[i][j], optionletAnnuity, displacement_,
+                        optionletStDevs_[i][j], accuracy_, maxIter_);
+                  } else if (volatilityType_ == Normal) {
                     optionletStDevs_[i][j] =
-                        blackFormulaImpliedStdDev(optionletType,
-                                                  strikes[j],
-                                                  atmOptionletRate_[i],
-                                                  optionletPrices_[i][j],
-                                                  optionletAnnuity, 0.0,
-                                                  optionletStDevs_[i][j],
-                                                  accuracy_, maxIter_);
-                } catch (std::exception& e) {
-                    QL_FAIL("could not bootstrap optionlet:"
+                        std::sqrt(optionletTimes_[i]) *
+                        bachelierBlackFormulaImpliedVol(
+                            optionletType, strikes[j], atmOptionletRate_[i],
+                            optionletTimes_[i], optionletPrices_[i][j],
+                            optionletAnnuity);
+                  } else {
+                    QL_FAIL("Unknown volatility type: " << volatilityType_);
+                  }
+                }
+                catch (std::exception &e) {
+                    if(dontThrow_)
+                        optionletStDevs_[i][j]=0.0;
+                    else
+                        QL_FAIL("could not bootstrap optionlet:"
                             "\n type:    " << optionletType <<
                             "\n strike:  " << io::rate(strikes[j]) <<
                             "\n atm:     " << io::rate(atmOptionletRate_[i]) <<

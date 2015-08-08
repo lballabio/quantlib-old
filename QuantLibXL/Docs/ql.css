@@ -156,13 +156,26 @@ body {
     padding: 10px 0px 10px 10px;
 }
 
-#imghover img{
-    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
-    -moz-opacity: 1;
+#imghover:hover img{
+    opacity: 0.8;
+    filter: alpha(opacity=80);
 }
 
-#imghover:hover img{
-    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=75);
-    -moz-opacity: 0.75;
+#reposit_logo {
+    outline : none;
+    display: block;
+    margin: 0 auto;
+    width: 88px;
+    height: 46px;
+    background-image: url(images/logo_reposit.png);
+}
+
+#reposit_logo:hover {
+    outline : none;
+    display: block;
+    margin: 0 auto;
+    width: 88px;
+    height: 46px;
+    background-image: url(images/logo_reposit2.png);
 }
 

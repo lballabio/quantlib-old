@@ -59,14 +59,15 @@ namespace QuantLib {
         //! access to integration:
         const boost::shared_ptr<LMIntegration>& 
             integration() const { return integration_; }
+    private:
+        typedef typename copulaPolicy::initTraits initTraits;
     public:
         SpotRecoveryLatentModel(
             const std::vector<std::vector<Real> >& factorWeights,
             const std::vector<Real>& recoveries,
             Real modelA,
             LatentModelIntegrationType::LatentModelIntegrationType integralType,
-            const typename copulaPolicy::initTraits& ini = 
-                copulaPolicy::initTraits()
+            const initTraits& ini = initTraits()
             ); 
 
         void resetBasket(const boost::shared_ptr<Basket> basket) const;
@@ -106,7 +107,7 @@ namespace QuantLib {
         the base class for the default sample and the LM owned here for the RR 
         model sample. This sample only makes sense if it led to a default.
         @param allFactors All sampled factors, default and RR valiables.
-        @param iVar The index of the name for which we want the RR sample
+        @param iName The index of the name for which we want the RR sample
 
         \todo Write vector version for all names' RRs 
         */
@@ -203,7 +204,7 @@ namespace QuantLib {
         const std::vector<Real>& mktFactors) const 
     {
     #if defined(QL_EXTRA_SAFETY_CHECKS)
-        QL_REQUIRE(mktFactors.size() == numFactors(), 
+        QL_REQUIRE(mktFactors.size() == this->numFactors(), 
         "Realization of market factors and latent model size do not match");
     #endif
         const boost::shared_ptr<Pool>& pool = basket_->pool();

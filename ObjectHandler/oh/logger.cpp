@@ -22,7 +22,7 @@
 #endif
 #include <oh/ohdefines.hpp>
 
-#ifdef HAVE_LOG4CXX
+#ifdef OH_INCLUDE_LOG4CXX
 
 #include <oh/logger.hpp>
 #include <oh/exception.hpp>

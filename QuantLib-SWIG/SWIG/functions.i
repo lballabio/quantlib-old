@@ -373,5 +373,61 @@ class UnaryFunctionDelegate {
     virtual ~UnaryFunctionDelegate();
     virtual Real value(Real x) const;
 };
+
+%{
+class CostFunctionDelegate {
+  public:
+    virtual ~CostFunctionDelegate() {}
+  virtual Real value(const Array& x) const {
+    QL_FAIL("implementation of CostFunctionDelegate.value is missing");
+  }
+  
+  virtual Array values(const Array& x) const {
+    QL_FAIL("implementation of CostFunctionDelegate.values is missing");
+  }  
+};
+
+class JavaCostFunction : public CostFunction {
+  public:
+    JavaCostFunction(CostFunctionDelegate* delegate)
+  : delegate_(delegate) { }
+
+  virtual ~JavaCostFunction(){ }
+  
+  virtual Real value(const Array& x ) const{
+    return delegate_->value(x);
+  }
+  
+  virtual Disposable<Array> values(const Array& x) const {
+    Array retVal = delegate_->values(x);
+    return retVal;
+  }
+  
+  private:
+    CostFunctionDelegate* delegate_;
+};
+%}
+
+class JavaCostFunction {
+    JavaCostFunction(CostFunctionDelegate* delegate);
+  
+  virtual ~JavaCostFunction();  
+  virtual Real value(const Array& x ) const;  
+  virtual Disposable<Array> values(const Array& x) const;
+  
+  private:
+    CostFunctionDelegate* delegate_;
+};
+
+%feature("director") CostFunctionDelegate;
+
+class CostFunctionDelegate {
+  public:
+    virtual ~CostFunctionDelegate();
+  
+  virtual Real value(const Array& x) const;
+  virtual Array values(const Array& x) const;
+};
+
 #endif
 #endif

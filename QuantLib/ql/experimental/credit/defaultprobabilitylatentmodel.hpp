@@ -20,11 +20,10 @@
 #ifndef quantlib_default_latent_model_hpp
 #define quantlib_default_latent_model_hpp
 
-#include <boost/dynamic_bitset.hpp>
-
 #include <ql/experimental/credit/basket.hpp>
 #include <ql/experimental/math/latentmodel.hpp>
 #include <ql/experimental/math/gaussiancopulapolicy.hpp>
+#include <boost/dynamic_bitset.hpp>
 
 namespace QuantLib {
 
@@ -57,12 +56,12 @@ namespace QuantLib {
         //  for notifications, still...
         mutable boost::shared_ptr<Basket> basket_;
         boost::shared_ptr<LMIntegration> integration_;
+    private:
+        typedef typename copulaPolicy::initTraits initTraits;
     public:
         /*!
         @param factorWeights Latent model independent factors weights for each 
             variable.
-        @param quadOrder The order of the quadrature to integrate the 
-            model (sole integrator by now).
         @param ini Copula initialization if any.
 
         \warning Baskets with realized defaults not tested/WIP.
@@ -70,8 +69,7 @@ namespace QuantLib {
         DefaultLatentModel(
             const std::vector<std::vector<Real> >& factorWeights,
             LatentModelIntegrationType::LatentModelIntegrationType integralType,
-            const typename copulaPolicy::initTraits& ini = 
-                copulaPolicy::initTraits()
+            const initTraits& ini = initTraits()
             ) 
         : LatentModel<copulaPolicy>(factorWeights, ini),
           integration_(LatentModel<copulaPolicy>::IntegrationFactory::
@@ -81,9 +79,8 @@ namespace QuantLib {
             const Handle<Quote>& mktCorrel,
             Size nVariables,
             LatentModelIntegrationType::LatentModelIntegrationType integralType,
-            const typename copulaPolicy::initTraits& ini = 
-                copulaPolicy::initTraits()
-                )
+            const initTraits& ini = initTraits()
+            )
         : LatentModel<copulaPolicy>(mktCorrel, nVariables, ini),
           integration_(LatentModel<copulaPolicy>::IntegrationFactory::
             createLMIntegration(1, integralType))
@@ -146,7 +143,7 @@ namespace QuantLib {
         @param invCumYProb Inverse cumul of the unconditional probability of 
           default, has to follow the same copula law for results to be coherent
         @param iName desired name.
-        @param mktFactors Value of LM independent factors.
+        @param m Value of LM independent factors.
         */
         Probability conditionalDefaultProbabilityInvP(Real invCumYProb, 
             Size iName, 

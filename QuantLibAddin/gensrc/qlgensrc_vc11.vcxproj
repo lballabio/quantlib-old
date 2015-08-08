@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="All|Win32">
@@ -75,6 +75,7 @@
     <None Include="metadata\enumerations\enumeratedpairs.xml" />
     <None Include="metadata\enumerations\enumeratedtypes.xml" />
     <None Include="metadata\functions\assetswap.xml" />
+    <None Include="metadata\functions\basketlossmodels.xml" />
     <None Include="metadata\functions\bonds.xml" />
     <None Include="metadata\functions\btp.xml" />
     <None Include="metadata\functions\calendar.xml" />
@@ -85,12 +86,15 @@
     <None Include="metadata\functions\couponvectors.xml" />
     <None Include="metadata\functions\date.xml" />
     <None Include="metadata\functions\daycounter.xml" />
+    <None Include="metadata\functions\defaultbasket.xml" />
+    <None Include="metadata\functions\defaulttermstructures.xml" />
     <None Include="metadata\functions\exercise.xml" />
     <None Include="metadata\functions\forwardrateagreement.xml" />
     <None Include="metadata\functions\handles.xml" />
     <None Include="metadata\functions\index.xml" />
     <None Include="metadata\functions\instruments.xml" />
     <None Include="metadata\functions\interpolation.xml" />
+    <None Include="metadata\functions\latentmodels.xml" />
     <None Include="metadata\functions\leg.xml" />
     <None Include="metadata\functions\mathf.xml" />
     <None Include="metadata\functions\optimization.xml" />

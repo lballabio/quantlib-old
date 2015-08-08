@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug (static runtime)|Win32">
@@ -78,10 +78,10 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\vc100\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc100-mt-1_5_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc100-mt-gd-1_5_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc100-mt-sgd-1_5_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc100-mt-s-1_5_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc100-mt-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc100-mt-gd-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc100-mt-sgd-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc100-mt-s-1_6_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -229,6 +229,7 @@
     <ClCompile Include="qlo\valueobjects\vo_accountingengines.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_alphaform.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_assetswap.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_basketlossmodels.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_bonds.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_browniangenerators.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_btp.cpp" />
@@ -241,6 +242,7 @@
     <ClCompile Include="qlo\valueobjects\vo_credit.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_ctsmmcapletcalibration.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_curvestate.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_defaultbasket.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_defaulttermstructures.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_driftcalculators.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_evolutiondescription.cpp" />
@@ -248,6 +250,7 @@
     <ClCompile Include="qlo\valueobjects\vo_forwardrateagreement.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_index.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_interpolation.cpp" />
+    <ClCompile Include="qlo\valueobjects\vo_latentmodels.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_leg.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_marketmodelevolvers.cpp" />
     <ClCompile Include="qlo\valueobjects\vo_marketmodels.cpp" />
@@ -344,6 +347,7 @@
     <ClCompile Include="qlo\serialization\create\create_accountingengines.cpp" />
     <ClCompile Include="qlo\serialization\create\create_alphaform.cpp" />
     <ClCompile Include="qlo\serialization\create\create_assetswap.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_basketlossmodels.cpp" />
     <ClCompile Include="qlo\serialization\create\create_bonds.cpp" />
     <ClCompile Include="qlo\serialization\create\create_browniangenerators.cpp" />
     <ClCompile Include="qlo\serialization\create\create_btp.cpp" />
@@ -356,6 +360,7 @@
     <ClCompile Include="qlo\serialization\create\create_credit.cpp" />
     <ClCompile Include="qlo\serialization\create\create_ctsmmcapletcalibration.cpp" />
     <ClCompile Include="qlo\serialization\create\create_curvestate.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_defaultbasket.cpp" />
     <ClCompile Include="qlo\serialization\create\create_defaulttermstructures.cpp" />
     <ClCompile Include="qlo\serialization\create\create_driftcalculators.cpp" />
     <ClCompile Include="qlo\serialization\create\create_evolutiondescription.cpp" />
@@ -363,6 +368,7 @@
     <ClCompile Include="qlo\serialization\create\create_forwardrateagreement.cpp" />
     <ClCompile Include="qlo\serialization\create\create_index.cpp" />
     <ClCompile Include="qlo\serialization\create\create_interpolation.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_latentmodels.cpp" />
     <ClCompile Include="qlo\serialization\create\create_leg.cpp" />
     <ClCompile Include="qlo\serialization\create\create_marketmodelevolvers.cpp" />
     <ClCompile Include="qlo\serialization\create\create_marketmodels.cpp" />
@@ -396,6 +402,7 @@
     <ClCompile Include="qlo\serialization\register\serialization_accountingengines.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_alphaform.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_assetswap.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_basketlossmodels.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_bonds.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_browniangenerators.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_btp.cpp" />
@@ -408,6 +415,7 @@
     <ClCompile Include="qlo\serialization\register\serialization_credit.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_ctsmmcapletcalibration.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_curvestate.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_defaultbasket.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_defaulttermstructures.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_driftcalculators.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_evolutiondescription.cpp" />
@@ -415,6 +423,7 @@
     <ClCompile Include="qlo\serialization\register\serialization_forwardrateagreement.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_index.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_interpolation.cpp" />
+    <ClCompile Include="qlo\serialization\register\serialization_latentmodels.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_leg.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_marketmodelevolvers.cpp" />
     <ClCompile Include="qlo\serialization\register\serialization_marketmodels.cpp" />
@@ -453,8 +462,13 @@
     <ClCompile Include="qlo\indexes\swap\euriborswap.cpp" />
     <ClCompile Include="qlo\indexes\swap\isdafixaswap.cpp" />
     <ClCompile Include="qlo\indexes\swap\liborswap.cpp" />
+    <ClCompile Include="qlo\basketlossmodels.cpp" />
+    <ClCompile Include="qlo\cdsoption.cpp" />
     <ClCompile Include="qlo\credit.cpp" />
+    <ClCompile Include="qlo\creditdefaultswap.cpp" />
+    <ClCompile Include="qlo\defaultbasket.cpp" />
     <ClCompile Include="qlo\defaulttermstructures.cpp" />
+    <ClCompile Include="qlo\latentmodels.cpp" />
     <ClCompile Include="qlo\date.cpp" />
     <ClCompile Include="qlo\exercise.cpp" />
     <ClCompile Include="qlo\index.cpp" />
@@ -482,6 +496,7 @@
     <ClInclude Include="qlo\valueobjects\vo_all.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_alphaform.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_assetswap.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_basketlossmodels.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_bonds.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_browniangenerators.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_btp.hpp" />
@@ -494,6 +509,7 @@
     <ClInclude Include="qlo\valueobjects\vo_credit.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_ctsmmcapletcalibration.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_curvestate.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_defaultbasket.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_defaulttermstructures.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_driftcalculators.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_evolutiondescription.hpp" />
@@ -502,6 +518,7 @@
     <ClInclude Include="qlo\valueobjects\vo_group.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_index.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_interpolation.hpp" />
+    <ClInclude Include="qlo\valueobjects\vo_latentmodels.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_leg.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_marketmodelevolvers.hpp" />
     <ClInclude Include="qlo\valueobjects\vo_marketmodels.hpp" />
@@ -627,6 +644,7 @@
     <ClInclude Include="qlo\serialization\create\create_all.hpp" />
     <ClInclude Include="qlo\serialization\create\create_alphaform.hpp" />
     <ClInclude Include="qlo\serialization\create\create_assetswap.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_basketlossmodels.hpp" />
     <ClInclude Include="qlo\serialization\create\create_bonds.hpp" />
     <ClInclude Include="qlo\serialization\create\create_browniangenerators.hpp" />
     <ClInclude Include="qlo\serialization\create\create_btp.hpp" />
@@ -639,6 +657,7 @@
     <ClInclude Include="qlo\serialization\create\create_credit.hpp" />
     <ClInclude Include="qlo\serialization\create\create_ctsmmcapletcalibration.hpp" />
     <ClInclude Include="qlo\serialization\create\create_curvestate.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_defaultbasket.hpp" />
     <ClInclude Include="qlo\serialization\create\create_defaulttermstructures.hpp" />
     <ClInclude Include="qlo\serialization\create\create_driftcalculators.hpp" />
     <ClInclude Include="qlo\serialization\create\create_evolutiondescription.hpp" />
@@ -646,6 +665,7 @@
     <ClInclude Include="qlo\serialization\create\create_forwardrateagreement.hpp" />
     <ClInclude Include="qlo\serialization\create\create_index.hpp" />
     <ClInclude Include="qlo\serialization\create\create_interpolation.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_latentmodels.hpp" />
     <ClInclude Include="qlo\serialization\create\create_leg.hpp" />
     <ClInclude Include="qlo\serialization\create\create_marketmodelevolvers.hpp" />
     <ClInclude Include="qlo\serialization\create\create_marketmodels.hpp" />
@@ -680,6 +700,7 @@
     <ClInclude Include="qlo\serialization\register\serialization_all.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_alphaform.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_assetswap.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_basketlossmodels.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_bonds.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_browniangenerators.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_btp.hpp" />
@@ -692,6 +713,7 @@
     <ClInclude Include="qlo\serialization\register\serialization_credit.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_ctsmmcapletcalibration.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_curvestate.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_defaultbasket.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_defaulttermstructures.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_driftcalculators.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_evolutiondescription.hpp" />
@@ -699,6 +721,7 @@
     <ClInclude Include="qlo\serialization\register\serialization_forwardrateagreement.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_index.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_interpolation.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_latentmodels.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_leg.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_marketmodelevolvers.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_marketmodels.hpp" />
@@ -739,8 +762,13 @@
     <ClInclude Include="qlo\indexes\swap\euriborswap.hpp" />
     <ClInclude Include="qlo\indexes\swap\isdafixaswap.hpp" />
     <ClInclude Include="qlo\indexes\swap\liborswap.hpp" />
+    <ClInclude Include="qlo\basketlossmodels.hpp" />
+    <ClInclude Include="qlo\cdsoption.hpp" />
     <ClInclude Include="qlo\credit.hpp" />
+    <ClInclude Include="qlo\creditdefaultswap.hpp" />
+    <ClInclude Include="qlo\defaultbasket.hpp" />
     <ClInclude Include="qlo\defaulttermstructures.hpp" />
+    <ClInclude Include="qlo\latentmodels.hpp" />
     <ClInclude Include="qlo\auto_link.hpp" />
     <ClInclude Include="qlo\date.hpp" />
     <ClInclude Include="qlo\exercise.hpp" />
@@ -763,7 +791,7 @@
     <ProjectReference Include="..\ObjectHandler\ohxl\ohxll\ohxll_vc10.vcxproj">
       <Project>{04D7369F-47BC-46B0-A374-41635A9656D8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\QuantLib\QuantLib_vc10.vcxproj">
+    <ProjectReference Include="..\QuantLib\QuantLib.vcxproj">
       <Project>{ad0a27da-91da-46a2-acbd-296c419ed3aa}</Project>
     </ProjectReference>
     <ProjectReference Include="gensrc\qlgensrc_vc10.vcxproj">

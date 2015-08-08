@@ -37,12 +37,7 @@ namespace QuantLib {
     enum TimeUnit { Days,
                     Weeks,
                     Months,
-                    Years,
-                    Hours,
-                    Minutes,
-                    Seconds,
-                    Milliseconds,
-					Microseconds
+                    Years
     };
 
     /*! \relates TimeUnit */
