@@ -212,7 +212,6 @@ using QuantLib::Simplex;
 using QuantLib::SteepestDescent;
 using QuantLib::BFGS;
 using QuantLib::LevenbergMarquardt;
-using QuantLib::DifferentialEvolution;
 %}
 
 class OptimizationMethod {
@@ -243,15 +242,11 @@ class BFGS : public OptimizationMethod {
 
 class LevenbergMarquardt : public OptimizationMethod {
   public:
-  LevenbergMarquardt(Real epsfcn = 1.0e-8,
-                     Real xtol = 1.0e-8,
-                     Real gtol = 1.0e-8);
+	LevenbergMarquardt(Real epsfcn = 1.0e-8,
+	                   Real xtol = 1.0e-8,
+    	               Real gtol = 1.0e-8);
 };
 
-class DifferentialEvolution : public OptimizationMethod {
-  public:
-    DifferentialEvolution();
-};
 
 %{
 using QuantLib::Problem;
@@ -260,7 +255,6 @@ using QuantLib::Problem;
 %inline %{
     class Optimizer {};
 %}
-
 #if defined(SWIGPYTHON)
 %extend Optimizer {
     Array solve(PyObject* function, Constraint& c,
@@ -305,15 +299,7 @@ using QuantLib::Problem;
         return p.currentValue();
     }
 }
-#elif defined(SWIGJAVA)
-%extend Optimizer {
-    Array solve(CostFunctionDelegate* function, Constraint& c, OptimizationMethod& m,
-                EndCriteria &e, Array &iv) {
-        JavaCostFunction f(function);
-        Problem p(f,c,iv);
-        m.minimize(p, e);
-        return p.currentValue();
-    }
-}
 #endif
+
+
 #endif
