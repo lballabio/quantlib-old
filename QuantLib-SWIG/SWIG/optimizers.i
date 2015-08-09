@@ -2,6 +2,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
+ Copyright (C) 2015 Klaus Spanderen
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -212,6 +213,7 @@ using QuantLib::Simplex;
 using QuantLib::SteepestDescent;
 using QuantLib::BFGS;
 using QuantLib::LevenbergMarquardt;
+using QuantLib::DifferentialEvolution;
 %}
 
 class OptimizationMethod {
@@ -247,6 +249,10 @@ class LevenbergMarquardt : public OptimizationMethod {
     	               Real gtol = 1.0e-8);
 };
 
+class DifferentialEvolution : public OptimizationMethod {
+  public:
+    DifferentialEvolution();
+};
 
 %{
 using QuantLib::Problem;
@@ -255,6 +261,7 @@ using QuantLib::Problem;
 %inline %{
     class Optimizer {};
 %}
+
 #if defined(SWIGPYTHON)
 %extend Optimizer {
     Array solve(PyObject* function, Constraint& c,
@@ -299,7 +306,15 @@ using QuantLib::Problem;
         return p.currentValue();
     }
 }
+#elif defined(SWIGJAVA)
+%extend Optimizer {
+    Array solve(CostFunctionDelegate* function, Constraint& c, OptimizationMethod& m,
+                EndCriteria &e, Array &iv) {
+        JavaCostFunction f(function);
+        Problem p(f,c,iv);
+        m.minimize(p, e);
+        return p.currentValue();
+    }
+}
 #endif
-
-
 #endif
