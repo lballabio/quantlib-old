@@ -31,17 +31,19 @@
 
 namespace QuantLib {
 
-class CcLgmPiecewise
-    : CcLgmParametrization<CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
-                           detail::LgmPiecewiseAlphaConstantKappa> {
+namespace detail {
+
+class CcLgmPiecewise : CcLgmParametrization<CcLgmPiecewise, LgmFxPiecewiseSigma,
+                                            LgmPiecewiseAlphaConstantKappa> {
   public:
     CcLgmPiecewise(
-        const std::vector<boost::shared_ptr<LgmFxParametrization<
-            detail::LgmFxPiecewiseSigma> > > &fxParametrizations,
+        const std::vector<boost::shared_ptr<
+            LgmFxParametrization<LgmFxPiecewiseSigma> > > &fxParametrizations,
         const std::vector<boost::shared_ptr<LgmParametrization<
-            detail::LgmPiecewiseAlphaConstantKappa> > > &lgmParametrizations);
+            LgmPiecewiseAlphaConstantKappa> > > &lgmParametrizations);
 };
 
+} // namespace detail
 } // namespace QuantLib
 
 #endif

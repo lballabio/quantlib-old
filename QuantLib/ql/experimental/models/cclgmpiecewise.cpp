@@ -21,19 +21,22 @@
 
 namespace QuantLib {
 
+namespace detail {
+
 CcLgmPiecewise::CcLgmPiecewise(
-    const std::vector<
-        boost::shared_ptr<LgmFxParametrization<detail::LgmFxPiecewiseSigma> > >
-        &fxParametrizations,
+    const std::vector<boost::shared_ptr<
+        LgmFxParametrization<LgmFxPiecewiseSigma> > > &fxParametrizations,
     const std::vector<boost::shared_ptr<LgmParametrization<
         detail::LgmPiecewiseAlphaConstantKappa> > > &lgmParametrizations)
-    : CcLgmParametrization<CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
-                           detail::LgmPiecewiseAlphaConstantKappa>(
+    : CcLgmParametrization<CcLgmPiecewise, LgmFxPiecewiseSigma,
+                           LgmPiecewiseAlphaConstantKappa>(
           fxParametrizations, lgmParametrizations) {}
 
 /*! TODO implement closed form solutions for the interface methods
   replacing the standard implementation which uses numerical integration */
 
 /* ... */
+
+} // namespace detail
 
 } // namespace QuantLib
