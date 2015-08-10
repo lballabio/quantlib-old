@@ -8,6 +8,8 @@ this_include_HEADERS = \
     betaeta.hpp \
     betaetacore.hpp \
     betaetaswaptionengine.hpp \
+	cclgmparametrization.hpp \
+	cclgmpiecewise.hpp \
 	gsrprocess_riskneutral.hpp \
 	lgm.hpp \
 	lgm1.hpp \
@@ -32,6 +34,7 @@ libModels_la_SOURCES = \
     betaetaswaptionengine.cpp \
     betaetatabulation.cpp \
     betaetatabulation2.cpp \
+	cclgmpiecewise.cpp \
 	gsrprocess_riskneutral.cpp \
 	lgm1.cpp \
 	lgmfxpiecewisesigma.cpp \

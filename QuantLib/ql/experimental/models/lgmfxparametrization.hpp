@@ -44,9 +44,9 @@ class LgmFxParametrization : public CuriouslyRecurringTemplate<Impl> {
     LgmFxParametrization() : h_(1E-6) {}
 
     //! interface
-    const void updateImpl() const {}     // optional to implement (.)
-    const Real varianceImpl(const Time t) const;     // must be implemented (*)
-    const Real sigmaImpl(const Time t) const;        // (.)
+    const void updateImpl() const {}             // optional to implement (.)
+    const Real varianceImpl(const Time t) const; // must be implemented (*)
+    const Real sigmaImpl(const Time t) const;    // (.)
     const Real stdDeviationImpl(const Time t) const; // (.)
 
   private:
@@ -70,8 +70,7 @@ inline const Real LgmFxParametrization<Impl>::variance(const Time t) const {
 }
 
 template <class Impl>
-inline const Real
-LgmFxParametrization<Impl>::stdDeviation(const Time t) const {
+inline const Real LgmFxParametrization<Impl>::stdDeviation(const Time t) const {
     return this->impl().stdDeviationImpl();
 }
 

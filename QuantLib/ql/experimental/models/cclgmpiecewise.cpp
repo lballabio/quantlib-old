@@ -17,12 +17,23 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-
 #include <ql/experimental/models/cclgmpiecewise.hpp>
 
 namespace QuantLib {
 
-    CcLgmPiecewise::CcLgmPiecewise
-    
+CcLgmPiecewise::CcLgmPiecewise(
+    const std::vector<
+        boost::shared_ptr<LgmFxParametrization<detail::LgmFxPiecewiseSigma> > >
+        &fxParametrizations,
+    const std::vector<boost::shared_ptr<LgmParametrization<
+        detail::LgmPiecewiseAlphaConstantKappa> > > &lgmParametrizations)
+    : CcLgmParametrization<CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+                           detail::LgmPiecewiseAlphaConstantKappa>(
+          fxParametrizations, lgmParametrizations) {}
 
-}
+/*! TODO implement closed form solutions for the interface methods
+  replacing the standard implementation which uses numerical integration */
+
+/* ... */
+
+} // namespace QuantLib

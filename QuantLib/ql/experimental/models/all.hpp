@@ -5,6 +5,8 @@
 #include <ql/experimental/models/betaeta.hpp>
 #include <ql/experimental/models/betaetacore.hpp>
 #include <ql/experimental/models/betaetaswaptionengine.hpp>
+#include <ql/experimental/models/cclgmparametrization.hpp>
+#include <ql/experimental/models/cclgmpiecewise.hpp>
 #include <ql/experimental/models/gsrprocess_riskneutral.hpp>
 #include <ql/experimental/models/lgm.hpp>
 #include <ql/experimental/models/lgm1.hpp>

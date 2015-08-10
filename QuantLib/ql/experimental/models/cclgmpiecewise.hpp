@@ -25,18 +25,22 @@
 #ifndef quantlib_cclgm_piecewise_hpp
 #define quantlib_cclgm_piecewise_hpp
 
+#include <ql/experimental/models/cclgmparametrization.hpp>
+#include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
+#include <ql/experimental/models/lgmfxpiecewisesigma.hpp>
+
 namespace QuantLib {
 
-class CcLgmPiecewise : CcLgmParametrization<CcLgmPiecewise> {
-public:
-    typedef LgmFxPiecewiseSigma fx_parametrization;
-    typedef LgmPiecewiseAlphaConstantKappa lgm_parametrization;
-
-    
-
-private:
-
-}
+class CcLgmPiecewise
+    : CcLgmParametrization<CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+                           detail::LgmPiecewiseAlphaConstantKappa> {
+  public:
+    CcLgmPiecewise(
+        const std::vector<boost::shared_ptr<LgmFxParametrization<
+            detail::LgmFxPiecewiseSigma> > > &fxParametrizations,
+        const std::vector<boost::shared_ptr<LgmParametrization<
+            detail::LgmPiecewiseAlphaConstantKappa> > > &lgmParametrizations);
+};
 
 } // namespace QuantLib
 

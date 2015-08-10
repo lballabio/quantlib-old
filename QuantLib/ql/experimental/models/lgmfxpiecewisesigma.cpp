@@ -21,9 +21,12 @@
 
 namespace QuantLib {
 
+namespace detail {
+
 LgmFxPiecewiseSigma::LgmFxPiecewiseSigma(const Array &times,
                                          const Array &sigmas)
     : LgmFxParametrization<LgmFxPiecewiseSigma>(), times_(times),
       sigmas_(sigmas), variances_(std::vector<Real>(times.size())) {}
 
+} // namespace detail
 } // namespace QuantLib
