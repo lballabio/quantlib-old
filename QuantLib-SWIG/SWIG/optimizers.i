@@ -141,6 +141,7 @@ using QuantLib::Constraint;
 using QuantLib::BoundaryConstraint;
 using QuantLib::NoConstraint;
 using QuantLib::PositiveConstraint;
+using QuantLib::CompositeConstraint;
 %}
 
 class Constraint {
@@ -164,6 +165,10 @@ class PositiveConstraint : public Constraint {
     PositiveConstraint();
 };
 
+class CompositeConstraint : public Constraint {
+  public:
+    CompositeConstraint(const Constraint& c1, const Constraint& c2);
+};
 
 %{
 using QuantLib::EndCriteria;
