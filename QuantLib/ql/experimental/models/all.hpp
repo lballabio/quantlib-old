@@ -7,6 +7,7 @@
 #include <ql/experimental/models/betaetaswaptionengine.hpp>
 #include <ql/experimental/models/cclgmparametrization.hpp>
 #include <ql/experimental/models/cclgmpiecewise.hpp>
+#include <ql/experimental/models/cclgmprocess.hpp>
 #include <ql/experimental/models/gsrprocess_riskneutral.hpp>
 #include <ql/experimental/models/lgm.hpp>
 #include <ql/experimental/models/lgm1.hpp>
@@ -17,8 +18,6 @@
 #include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
 #include <ql/experimental/models/longstaffschwartzproxypathpricer.hpp>
 #include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
-#include <ql/experimental/models/multicurrencygsr.hpp>
-#include <ql/experimental/models/multicurrencygsrprocess.hpp>
 #include <ql/experimental/models/proxynonstandardswaptionengine.hpp>
 #include <ql/experimental/models/quadraticlfm.hpp>
 #include <ql/experimental/models/sbsmilesection.hpp>
