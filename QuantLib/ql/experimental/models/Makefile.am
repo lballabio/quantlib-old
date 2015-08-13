@@ -10,6 +10,7 @@ this_include_HEADERS = \
     betaetaswaptionengine.hpp \
 	cclgmparametrization.hpp \
 	cclgmpiecewise.hpp \
+	cclgmprocess.hpp \
 	gsrprocess_riskneutral.hpp \
 	lgm.hpp \
 	lgm1.hpp \
@@ -20,8 +21,6 @@ this_include_HEADERS = \
 	lgmpiecewisealphaconstantkappa.hpp \
     longstaffschwartzproxypathpricer.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
-	multicurrencygsr.hpp \
-	multicurrencygsrprocess.hpp \
     proxynonstandardswaptionengine.hpp \
     quadraticlfm.hpp \
     sbsmilesection.hpp \
@@ -41,8 +40,6 @@ libModels_la_SOURCES = \
 	lgmpiecewisealphaconstantkappa.cpp \
     longstaffschwartzproxypathpricer.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
-	multicurrencygsr.cpp \
-	multicurrencygsrprocess.cpp \
     proxynonstandardswaptionengine.cpp \
     quadraticlfm.cpp \
     sbsmilesection.cpp \
