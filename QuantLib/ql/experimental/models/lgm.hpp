@@ -32,6 +32,11 @@
 namespace QuantLib {
 
 template <class Impl> class Lgm : public Gaussian1dModel {
+  public:
+    const LgmParametrization<Impl> &parametrization() {
+        return parametrization_;
+    }
+
   protected:
     Lgm(const Handle<YieldTermStructure> &yts,
         const LgmParametrization<Impl> &parametrization);
