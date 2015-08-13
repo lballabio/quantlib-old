@@ -29,6 +29,8 @@
 #include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
 #include <ql/experimental/models/lgmfxpiecewisesigma.hpp>
 
+#include <ql/math/matrix.hpp>
+
 namespace QuantLib {
 
 namespace detail {
@@ -40,10 +42,42 @@ class CcLgmPiecewise : CcLgmParametrization<CcLgmPiecewise, LgmFxPiecewiseSigma,
         const std::vector<boost::shared_ptr<
             LgmFxParametrization<LgmFxPiecewiseSigma> > > &fxParametrizations,
         const std::vector<boost::shared_ptr<LgmParametrization<
-            LgmPiecewiseAlphaConstantKappa> > > &lgmParametrizations);
+            LgmPiecewiseAlphaConstantKappa> > > &lgmParametrizations,
+        const Matrix &correlation);
+
+    //! interface (required)
+    const Real rho_alpha_alpha_impl(const Size i, const Size j) const;
+    const Real rho_alpha_sigma_impl(const Size i, const Size j) const;
+    const Real rho_sigma_sigma_impl(const Size i, const Size j) const;
+
+  private:
+    const Matrix &correlation_;
+    Size n_;
 };
 
+//! interface (required)
+const Real CcLgmPiecewise::rho_alpha_alpha_impl(const Size i,
+                                                const Size j) const {
+    return correlation_[n_ + i][n_ + j];
+}
+
+const Real CcLgmPiecewise::rho_alpha_sigma_impl(const Size i,
+                                                const Size j) const {
+    return correlation_[n_ + i][j];
+}
+
+const Real CcLgmPiecewise::rho_sigma_sigma_impl(const Size i,
+                                                const Size j) const {
+    return correlation_[i][j];
+}
+
+/*! TODO implement closed form solutions for the interface methods
+  replacing the standard implementation which uses numerical integration */
+
+/* ... */
+
 } // namespace detail
+
 } // namespace QuantLib
 
 #endif

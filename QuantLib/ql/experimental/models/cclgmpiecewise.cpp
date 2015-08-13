@@ -26,16 +26,22 @@ namespace detail {
 CcLgmPiecewise::CcLgmPiecewise(
     const std::vector<boost::shared_ptr<
         LgmFxParametrization<LgmFxPiecewiseSigma> > > &fxParametrizations,
-    const std::vector<boost::shared_ptr<LgmParametrization<
-        detail::LgmPiecewiseAlphaConstantKappa> > > &lgmParametrizations)
+    const std::vector<
+        boost::shared_ptr<LgmParametrization<LgmPiecewiseAlphaConstantKappa> > >
+        &lgmParametrizations,
+    const Matrix &correlation)
     : CcLgmParametrization<CcLgmPiecewise, LgmFxPiecewiseSigma,
-                           LgmPiecewiseAlphaConstantKappa>(
-          fxParametrizations, lgmParametrizations) {}
+                           LgmPiecewiseAlphaConstantKappa>(fxParametrizations,
+                                                           lgmParametrizations),
+      correlation_(correlation) {
 
-/*! TODO implement closed form solutions for the interface methods
-  replacing the standard implementation which uses numerical integration */
-
-/* ... */
+    n_ = fxParametrizations.size();
+    QL_REQUIRE(correlation_.rows() == 2 * n_ + 1 &&
+                   correlation_.columns() == 2 * n_ + 1,
+               "correlation matrix is "
+                   << correlation_.rows() << " x " << correlation_.columns()
+                   << ", expected " << (2 * n_ + 1) << " x " << (2 * n_ + 1));
+}
 
 } // namespace detail
 
