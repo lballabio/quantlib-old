@@ -25,7 +25,7 @@
 #define quantlib_cclgm_parametrization_hpp
 
 #include <ql/math/integrals/integral.hpp>
-#include <ql/math/integrals/gausslobattointegral.hpp>
+#include <ql/math/integrals/simpsonintegral.hpp>
 #include <ql/patterns/curiouslyrecurring.hpp>
 #include <ql/experimental/models/lgmparametrization.hpp>
 #include <ql/experimental/models/lgmfxparametrization.hpp>
@@ -49,22 +49,28 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
             &fxParametrizations,
         const std::vector<boost::shared_ptr<LgmParametrization<ImplLgm> > >
             &lgmParametrizations)
-        : h_(1E-6), fxParametrizations_(fxParametrizations),
+        : n_(fxParametrizations.size()), h_(1E-6),
+          fxParametrizations_(fxParametrizations),
           lgmParametrizations_(lgmParametrizations) {
 
-        QL_REQUIRE(fxParametrizations.size() == lgmParametrizations.size(),
-                   "number of fx parametrizations ("
-                       << fxParametrizations.size()
-                       << ") and lgm parametrizations ("
-                       << lgmParametrizations.size() << ") are different");
+        QL_REQUIRE(
+            fxParametrizations.size() + 1 == lgmParametrizations.size(),
+            "number of fx parametrizations ("
+                << fxParametrizations.size()
+                << ") must be equal to the number of lgm parametrizations ("
+                << lgmParametrizations.size() << ") minus one");
 
-        integrator_ =
-            boost::make_shared<GaussLobattoIntegral>(1000, 1E-8, 1E-8, true);
+        integrator_ = boost::make_shared<SimpsonIntegral>(1E-6, 1000);
     }
 
     //! inspectors
 
+    const Size n() const { return n_; }
+
+    const Real H_i(const Size i, const Real t) const;
+    const Real zeta_i(const Size i, const Real t) const;
     const Real alpha_i_alpha_j(const Size i, const Size j, const Real t) const;
+    const Real sigma_i_sigma_j(const Size i, const Size j, const Real t) const;
     const Real H_i_alpha_i_alpha_j(const Size i, const Size j,
                                    const Real t) const;
     const Real H_i_H_j_alpha_i_alpha_j(const Size i, const Size j,
@@ -74,15 +80,29 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
 
     const Real int_alpha_i_alpha_j(const Size i, const Size j, const Real a,
                                    const Real b) const;
+    const Real int_sigma_i_sigma_j(const Size i, const Size j, const Real a,
+                                   const Real b) const;
     const Real int_H_i_alpha_i_alpha_j(const Size i, const Size j, const Real a,
                                        const Real b) const;
     const Real int_H_i_H_j_alpha_i_alpha_j(const Size i, const Size j,
                                            const Real a, const Real b) const;
     const Real int_H_i_alpha_i_sigma_j(const Size i, const Size j, const Real a,
                                        const Real b) const;
+    const Real rho_alpha_alpha(const Size i, const Size j) const;
+    const Real rho_alpha_sigma(const Size i, const Size j) const;
+    const Real rho_sigma_sigma(const Size i, const Size j) const;
+
+    //! interface (required)
+
+    const Real rho_alpha_alpha_impl(const Size i, const Size j) const;
+    const Real rho_alpha_sigma_impl(const Size i, const Size j) const;
+    const Real rho_sigma_sigma_impl(const Size i, const Size j) const;
 
     //! interface (optional, default implementation uses numerical integration)
+
     const Real int_alpha_i_alpha_j_impl(const Size i, const Size j,
+                                        const Real a, const Real b) const;
+    const Real int_sigma_i_sigma_j_impl(const Size i, const Size j,
                                         const Real a, const Real b) const;
     const Real int_H_i_alpha_i_alpha_j_impl(const Size i, const Size j,
                                             const Real a, const Real b) const;
@@ -93,6 +113,7 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
                                             const Real a, const Real b) const;
 
   private:
+    const Size n_;
     const Real h_;
     std::vector<boost::shared_ptr<LgmFxParametrization<ImplFx> > >
         fxParametrizations_;
@@ -104,10 +125,31 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
 // inline
 
 template <class Impl, class ImplFx, class ImplLgm>
+inline const Real
+CcLgmParametrization<Impl, ImplFx, ImplLgm>::H_i(const Size i,
+                                                 const Real t) const {
+    return lgmParametrizations_[i]->H(t);
+}
+
+template <class Impl, class ImplFx, class ImplLgm>
+inline const Real
+CcLgmParametrization<Impl, ImplFx, ImplLgm>::zeta_i(const Size i,
+                                                    const Real t) const {
+    return lgmParametrizations_[i]->zeta(t);
+}
+
+template <class Impl, class ImplFx, class ImplLgm>
 inline const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::alpha_i_alpha_j(
     const Size i, const Size j, const Real t) const {
     return lgmParametrizations_[i]->alpha(t) *
-           lgmParametrizations_[j]->alpha(t);
+           lgmParametrizations_[j]->alpha(t) * rho_alpha_alpha(i, j);
+}
+
+template <class Impl, class ImplFx, class ImplLgm>
+inline const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::sigma_i_sigma_j(
+    const Size i, const Size j, const Real t) const {
+    return fxParametrizations_[i]->sigma(t) * fxParametrizations_[j]->sigma(t) *
+           rho_sigma_sigma(i, j);
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
@@ -115,7 +157,7 @@ inline const Real
 CcLgmParametrization<Impl, ImplFx, ImplLgm>::H_i_alpha_i_alpha_j(
     const Size i, const Size j, const Real t) const {
     return lgmParametrizations_[i]->H(t) * lgmParametrizations_[i]->alpha(t) *
-           lgmParametrizations_[j]->alpha(t);
+           lgmParametrizations_[j]->alpha(t) * rho_alpha_alpha(i, j);
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
@@ -124,7 +166,7 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::H_i_H_j_alpha_i_alpha_j(
     const Size i, const Size j, const Real t) const {
     return lgmParametrizations_[i]->H(t) * lgmParametrizations_[j]->H(t) *
            lgmParametrizations_[i]->alpha(t) *
-           lgmParametrizations_[j]->alpha(t);
+           lgmParametrizations_[j]->alpha(t) * rho_alpha_alpha(i, j);
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
@@ -132,7 +174,8 @@ inline const Real
 CcLgmParametrization<Impl, ImplFx, ImplLgm>::H_i_alpha_i_sigma_j(
     const Size i, const Size j, const Real t) const {
     return lgmParametrizations_[i]->H(t) * lgmParametrizations_[j]->H(t) *
-           lgmParametrizations_[i]->alpha(t) * fxParametrizations_[j]->sigma(t);
+           lgmParametrizations_[i]->alpha(t) *
+           fxParametrizations_[j]->sigma(t) * rho_alpha_sigma(i, j);
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
@@ -163,7 +206,39 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_H_i_alpha_i_sigma_j(
     return this->impl().int_H_i_alpha_i_alpha_j_impl(i, j, a, b);
 }
 
+template <class Impl, class ImplFx, class ImplLgm>
+const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_alpha_alpha(
+    const Size i, const Size j) const {
+    return this->impl().rho_alpha_alpha(i, j);
+}
+template <class Impl, class ImplFx, class ImplLgm>
+const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_alpha_sigma(
+    const Size i, const Size j) const {
+    return this->impl().rho_alpha_sigma(i, j);
+}
+template <class Impl, class ImplFx, class ImplLgm>
+const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_sigma_sigma(
+    const Size i, const Size j) const {
+    return this->impl().rho_sigma_sigma(i, j);
+}
+
 // default implementation
+
+template <class Impl, class ImplFx, class ImplLgm>
+const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_alpha_alpha_impl(
+    const Size i, const Size j) const {
+    QL_FAIL("correlation alpha-alpha not implemented");
+}
+template <class Impl, class ImplFx, class ImplLgm>
+const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_alpha_sigma_impl(
+    const Size i, const Size j) const {
+    QL_FAIL("correlation alpha-sigma not implemented");
+}
+template <class Impl, class ImplFx, class ImplLgm>
+const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_sigma_sigma_impl(
+    const Size i, const Size j) const {
+    QL_FAIL("correlation sigma-sigma not implemented");
+}
 
 template <class Impl, class ImplFx, class ImplLgm>
 inline const Real
@@ -173,6 +248,18 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_alpha_i_alpha_j_impl(
     return integrator_(
         boost::bind(
             &CcLgmParametrization<Impl, ImplFx, ImplLgm>::alpha_i_alpha_j, i, j,
+            _1),
+        a, b);
+}
+
+template <class Impl, class ImplFx, class ImplLgm>
+inline const Real
+CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_sigma_i_sigma_j_impl(
+    const Size i, const Size j, const Real a, const Real b) const {
+
+    return integrator_(
+        boost::bind(
+            &CcLgmParametrization<Impl, ImplFx, ImplLgm>::sigma_i_sigma_j, i, j,
             _1),
         a, b);
 }
