@@ -53,7 +53,7 @@ class CcLgmPiecewise
 
   private:
     const Matrix &correlation_;
-    Size n_;
+    const Size n_;
 };
 
 //! interface (required)
