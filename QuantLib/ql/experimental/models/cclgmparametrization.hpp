@@ -25,7 +25,7 @@
 #define quantlib_cclgm_parametrization_hpp
 
 #include <ql/math/integrals/integral.hpp>
-#include <ql/math/integrals/simpsonintegral.hpp>
+#include <ql/math/integrals/segmentintegral.hpp>
 #include <ql/patterns/curiouslyrecurring.hpp>
 #include <ql/experimental/models/lgmparametrization.hpp>
 #include <ql/experimental/models/lgmfxparametrization.hpp>
@@ -62,7 +62,8 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
                 << ") must be equal to the number of lgm parametrizations ("
                 << lgmParametrizations.size() << ") minus one");
 
-        integrator_ = boost::make_shared<SimpsonIntegral>(1E-6, 1000);
+        // debug, use a better integrator later
+        integrator_ = boost::make_shared<SegmentIntegral>(10);
     }
 
     //! inspectors
@@ -241,17 +242,17 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_H_i_alpha_i_sigma_j(
 template <class Impl, class ImplFx, class ImplLgm>
 inline const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_alpha_alpha(
     const Size i, const Size j) const {
-    return this->impl().rho_alpha_alpha(i, j);
+    return this->impl().rho_alpha_alpha_impl(i, j);
 }
 template <class Impl, class ImplFx, class ImplLgm>
 inline const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_alpha_sigma(
     const Size i, const Size j) const {
-    return this->impl().rho_alpha_sigma(i, j);
+    return this->impl().rho_alpha_sigma_impl(i, j);
 }
 template <class Impl, class ImplFx, class ImplLgm>
 inline const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_sigma_sigma(
     const Size i, const Size j) const {
-    return this->impl().rho_sigma_sigma(i, j);
+    return this->impl().rho_sigma_sigma_impl(i, j);
 }
 
 // default implementation
@@ -276,11 +277,10 @@ template <class Impl, class ImplFx, class ImplLgm>
 inline const Real
 CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_alpha_i_alpha_j_impl(
     const Size i, const Size j, const Real a, const Real b) const {
-
     return integrator_->operator()(
         boost::bind(
             &CcLgmParametrization<Impl, ImplFx, ImplLgm>::alpha_i_alpha_j,
-            *this, i, j, _1),
+            this, i, j, _1),
         a, b);
 }
 
@@ -292,7 +292,7 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_alpha_i_sigma_j_impl(
     return integrator_->operator()(
         boost::bind(
             &CcLgmParametrization<Impl, ImplFx, ImplLgm>::alpha_i_sigma_j,
-            *this, i, j, _1),
+            this, i, j, _1),
         a, b);
 }
 
@@ -304,7 +304,7 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_sigma_i_sigma_j_impl(
     return integrator_->operator()(
         boost::bind(
             &CcLgmParametrization<Impl, ImplFx, ImplLgm>::sigma_i_sigma_j,
-            *this, i, j, _1),
+            this, i, j, _1),
         a, b);
 }
 
@@ -315,7 +315,7 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_H_i_alpha_i_alpha_j_impl(
     return integrator_->operator()(
         boost::bind(
             &CcLgmParametrization<Impl, ImplFx, ImplLgm>::H_i_alpha_i_alpha_j,
-            *this, i, j, _1),
+            this, i, j, _1),
         a, b);
 }
 
@@ -326,7 +326,7 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_H_i_H_j_alpha_i_alpha_j_impl(
     return integrator_->operator()(
         boost::bind(&CcLgmParametrization<Impl, ImplFx,
                                           ImplLgm>::H_i_H_j_alpha_i_alpha_j,
-                    *this, i, j, _1),
+                    this, i, j, _1),
         a, b);
 }
 
@@ -337,7 +337,7 @@ CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_H_i_alpha_i_sigma_j_impl(
     return integrator_->operator()(
         boost::bind(
             &CcLgmParametrization<Impl, ImplFx, ImplLgm>::H_i_alpha_i_sigma_j,
-            *this, i, j, _1),
+            this, i, j, _1),
         a, b);
 }
 

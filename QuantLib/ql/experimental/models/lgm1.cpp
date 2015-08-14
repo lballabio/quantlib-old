@@ -28,11 +28,10 @@ namespace QuantLib {
 Lgm1::Lgm1(const Handle<YieldTermStructure> &yts,
            const std::vector<Date> &volstepdates,
            const std::vector<Real> &alpha, const Real &kappa)
-    : Lgm(yts, parametrization_), CalibratedModel(2),
-      volstepdates_(volstepdates), volsteptimes_(volstepdates_.size()),
+    : Lgm(yts), CalibratedModel(2), volstepdates_(volstepdates),
+      volsteptimes_(volstepdates_.size()),
       volsteptimesArray_(volstepdates_.size()), alpha_(arguments_[0]),
-      kappa_(arguments_[1]),
-      parametrization_(volsteptimesArray_, alpha_.params(), kappa_.params()) {
+      kappa_(arguments_[1]) {
     alphaQuotes_.resize(alpha.size());
     for (Size i = 0; i < alpha.size(); ++i) {
         alphaQuotes_[i] =
@@ -47,11 +46,10 @@ Lgm1::Lgm1(const Handle<YieldTermStructure> &yts,
 Lgm1::Lgm1(const Handle<YieldTermStructure> &yts,
            const std::vector<Date> &volstepdates,
            const std::vector<Handle<Quote> > &alpha, const Handle<Quote> &kappa)
-    : Lgm(yts, parametrization_), CalibratedModel(2),
-      volstepdates_(volstepdates), volsteptimes_(volstepdates_.size()),
+    : Lgm(yts), CalibratedModel(2), volstepdates_(volstepdates),
+      volsteptimes_(volstepdates_.size()),
       volsteptimesArray_(volstepdates_.size()), alphaQuotes_(alpha),
-      kappaQuote_(kappa), alpha_(arguments_[0]), kappa_(arguments_[1]),
-      parametrization_(volsteptimesArray_, alpha_.params(), kappa_.params()) {
+      kappaQuote_(kappa), alpha_(arguments_[0]), kappa_(arguments_[1]) {
 
     initialize();
 }
@@ -96,14 +94,17 @@ void Lgm1::initialize() {
     updateAlpha();
     stateProcess_ = boost::make_shared<
         LgmStateProcess<detail::LgmPiecewiseAlphaConstantKappa> >(
-        parametrization_);
+        parametrization());
     registerWith(stateProcess_);
     alphaObserver_ = boost::make_shared<AlphaObserver>(this);
     kappaObserver_ = boost::make_shared<KappaObserver>(this);
     for (Size i = 0; i < alpha_.size(); ++i)
         alphaObserver_->registerWith(alphaQuotes_[i]);
     kappaObserver_->registerWith(kappaQuote_);
-    parametrization_.update();
+    setParametrization(
+        boost::make_shared<detail::LgmPiecewiseAlphaConstantKappa>(
+            volsteptimesArray_, alpha_.params(), kappa_.params()));
+    parametrization()->update();
 }
 
 } // namespace QuantLib

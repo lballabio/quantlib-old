@@ -33,13 +33,16 @@ namespace QuantLib {
 
 template <class Impl> class Lgm : public Gaussian1dModel {
   public:
-    const detail::LgmParametrization<Impl> &parametrization() {
+    boost::shared_ptr<detail::LgmParametrization<Impl> >
+    parametrization() const {
         return parametrization_;
     }
 
   protected:
-    Lgm(const Handle<YieldTermStructure> &yts,
-        const detail::LgmParametrization<Impl> &parametrization);
+    Lgm(const Handle<YieldTermStructure> &yts);
+    void setParametrization(
+        const boost::shared_ptr<detail::LgmParametrization<Impl> >
+            &parametrization);
     const Real numeraireImpl(const Time t, const Real y,
                              const Handle<YieldTermStructure> &yts) const;
     const Real zerobondImpl(const Time T, const Time t, const Real y,
@@ -47,7 +50,7 @@ template <class Impl> class Lgm : public Gaussian1dModel {
                             const bool adjusted) const;
 
   private:
-    const detail::LgmParametrization<Impl> &parametrization_;
+    boost::shared_ptr<detail::LgmParametrization<Impl> > parametrization_;
 };
 
 // inline
@@ -60,8 +63,8 @@ Lgm<Impl>::numeraireImpl(const Time t, const Real y,
     Handle<YieldTermStructure> tmp = yts.empty() ? this->termStructure() : yts;
     Real x = y * stateProcess()->stdDeviation(0.0, 0.0, t) +
              stateProcess()->expectation(0.0, 0.0, t);
-    Real h = parametrization_.H(t);
-    Real z = parametrization_.zeta(t);
+    Real h = parametrization_->H(t);
+    Real z = parametrization_->zeta(t);
     return 1.0 / tmp->discount(t) * std::exp(h * x + 0.5 * h * h * z);
 }
 
@@ -75,19 +78,25 @@ inline const Real Lgm<Impl>::zerobondImpl(const Time T, const Time t,
     Handle<YieldTermStructure> tmp = yts.empty() ? termStructure() : yts;
     Real x = y * stateProcess()->stdDeviation(0.0, 0.0, t) +
              stateProcess()->expectation(0.0, 0.0, t);
-    Real ht = parametrization_.H(t);
-    Real hT = parametrization_.H(T);
-    Real z = parametrization_.zeta(t);
+    Real ht = parametrization_->H(t);
+    Real hT = parametrization_->H(T);
+    Real z = parametrization_->zeta(t);
     return tmp->discount(T) / tmp->discount(t) *
            std::exp((ht - hT) * x + 0.5 * (ht * ht - hT * hT) * z);
+}
+
+template <class Impl>
+inline void Lgm<Impl>::setParametrization(
+    const boost::shared_ptr<detail::LgmParametrization<Impl> >
+        &parametrization) {
+    parametrization_ = parametrization;
 }
 
 // implementation
 
 template <class Impl>
-Lgm<Impl>::Lgm(const Handle<YieldTermStructure> &yts,
-               const detail::LgmParametrization<Impl> &parametrization)
-    : Gaussian1dModel(yts), parametrization_(parametrization) {}
+Lgm<Impl>::Lgm(const Handle<YieldTermStructure> &yts)
+    : Gaussian1dModel(yts) {}
 
 } // namespace QuantLib
 

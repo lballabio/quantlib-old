@@ -28,7 +28,8 @@ namespace QuantLib {
 
 template <class Impl> class LgmStateProcess : public StochasticProcess1D {
   public:
-    LgmStateProcess(const detail::LgmParametrization<Impl> &parametrization);
+    LgmStateProcess(const boost::shared_ptr<detail::LgmParametrization<Impl> >
+                        &parametrization);
     //! \name StochasticProcess interface
     //@{
     Real x0() const;
@@ -39,7 +40,7 @@ template <class Impl> class LgmStateProcess : public StochasticProcess1D {
     Real variance(Time t0, Real x0, Time dt) const;
     //@}
   private:
-    const detail::LgmParametrization<Impl> &parametrization_;
+    const boost::shared_ptr<detail::LgmParametrization<Impl> > parametrization_;
 };
 
 // inline
@@ -52,7 +53,7 @@ template <class Impl> Real LgmStateProcess<Impl>::drift(Time, Real) const {
 
 template <class Impl>
 Real LgmStateProcess<Impl>::diffusion(Time t, Real) const {
-    return parametrization_.alpha(t);
+    return parametrization_->alpha(t);
 }
 
 template <class Impl>
@@ -62,19 +63,19 @@ Real LgmStateProcess<Impl>::expectation(Time, Real x0, Time) const {
 
 template <class Impl>
 Real LgmStateProcess<Impl>::variance(Time t0, Real, Time dt) const {
-    return parametrization_.zeta(t0 + dt) - parametrization_.zeta(t0);
+    return parametrization_->zeta(t0 + dt) - parametrization_->zeta(t0);
 }
 
 template <class Impl>
 Real LgmStateProcess<Impl>::stdDeviation(Time t0, Real x0, Time dt) const {
-    return std::sqrt(variance(t0,x0,dt));
+    return std::sqrt(variance(t0, x0, dt));
 }
 
 // implementation
 
 template <class Impl>
 LgmStateProcess<Impl>::LgmStateProcess(
-    const detail::LgmParametrization<Impl> &parametrization)
+    const boost::shared_ptr<detail::LgmParametrization<Impl> > &parametrization)
     : parametrization_(parametrization) {}
 
 } // namespace QuantLib

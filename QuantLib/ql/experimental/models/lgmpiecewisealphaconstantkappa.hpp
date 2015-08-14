@@ -45,16 +45,16 @@ class LgmPiecewiseAlphaConstantKappa
     const Real HImpl(const Time t) const;
     const Real HprimeImpl(const Time t) const;
     const Real Hprime2Impl(const Time t) const;
-    const void updateImpl() const;
+    const void updateImpl();
 
   private:
     const Array &times_, &alphas_, &kappa_;
-    mutable std::vector<Real> zetas_;
+    std::vector<Real> zetas_;
 };
 
 // inline definitions
 
-inline const void LgmPiecewiseAlphaConstantKappa::updateImpl() const {
+inline const void LgmPiecewiseAlphaConstantKappa::updateImpl() {
     Real sum = 0.0;
     zetas_.resize(times_.size());
     for (Size i = 0; i < times_.size(); ++i) {

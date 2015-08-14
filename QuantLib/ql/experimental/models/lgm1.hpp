@@ -85,7 +85,7 @@ class Lgm1 : public Lgm<detail::LgmPiecewiseAlphaConstantKappa>,
     void performCalculations() const {
         Lgm::performCalculations();
         updateTimes();
-        parametrization_.update();
+        parametrization()->update();
     }
 
   private:
@@ -103,8 +103,6 @@ class Lgm1 : public Lgm<detail::LgmPiecewiseAlphaConstantKappa>,
     Handle<Quote> kappaQuote_;
 
     Parameter &alpha_, &kappa_; // calibrated model parameters
-
-    const detail::LgmPiecewiseAlphaConstantKappa parametrization_;
 
     struct AlphaObserver : public Observer {
         AlphaObserver(Lgm1 *p) : p_(p) {}

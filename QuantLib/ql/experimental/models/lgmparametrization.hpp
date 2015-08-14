@@ -35,7 +35,7 @@ namespace detail {
 template <class Impl>
 class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
-    void update() const;
+    void update();
     //! inspectors
     const Real zeta(const Time t) const;
     const Real alpha(const Time t) const;
@@ -51,7 +51,7 @@ class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
     LgmParametrization() : h_(1E-6) {}
 
     //! interface
-    const void updateImpl() const {}          // optional to implement (.)
+    const void updateImpl() {}          // optional to implement (.)
     const Real zetaImpl(const Time) const;    // must be implemented   (*)
     const Real alphaImpl(const Time) const;   // (.)
     const Real HImpl(const Time) const;       // (*)
@@ -64,7 +64,7 @@ class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
 
 // inline
 
-template <class Impl> inline void LgmParametrization<Impl>::update() const {
+template <class Impl> inline void LgmParametrization<Impl>::update() {
     return this->impl().updateImpl();
 }
 
