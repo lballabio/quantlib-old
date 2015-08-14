@@ -33,9 +33,7 @@ CcLgmPiecewise::CcLgmPiecewise(
     : CcLgmParametrization<CcLgmPiecewise, LgmFxPiecewiseSigma,
                            LgmPiecewiseAlphaConstantKappa>(fxParametrizations,
                                                            lgmParametrizations),
-      correlation_(correlation) {
-
-    n_ = fxParametrizations.size();
+      correlation_(correlation), n_(fxParametrizations.size()) {
     QL_REQUIRE(correlation_.rows() == 2 * n_ + 1 &&
                    correlation_.columns() == 2 * n_ + 1,
                "correlation matrix is "
