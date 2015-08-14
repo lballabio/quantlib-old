@@ -28,7 +28,7 @@ namespace QuantLib {
 
 template <class Impl> class LgmStateProcess : public StochasticProcess1D {
   public:
-    LgmStateProcess(const LgmParametrization<Impl> &parametrization);
+    LgmStateProcess(const detail::LgmParametrization<Impl> &parametrization);
     //! \name StochasticProcess interface
     //@{
     Real x0() const;
@@ -39,7 +39,7 @@ template <class Impl> class LgmStateProcess : public StochasticProcess1D {
     Real variance(Time t0, Real x0, Time dt) const;
     //@}
   private:
-    const LgmParametrization<Impl> &parametrization_;
+    const detail::LgmParametrization<Impl> &parametrization_;
 };
 
 // inline
@@ -74,7 +74,7 @@ Real LgmStateProcess<Impl>::stdDeviation(Time t0, Real x0, Time dt) const {
 
 template <class Impl>
 LgmStateProcess<Impl>::LgmStateProcess(
-    const LgmParametrization<Impl> &parametrization)
+    const detail::LgmParametrization<Impl> &parametrization)
     : parametrization_(parametrization) {}
 
 } // namespace QuantLib
