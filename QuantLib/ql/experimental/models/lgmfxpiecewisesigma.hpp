@@ -29,7 +29,7 @@
 
 namespace QuantLib {
 
-    namespace detail {
+namespace detail {
 
 class LgmFxPiecewiseSigma : public LgmFxParametrization<LgmFxPiecewiseSigma> {
   public:
@@ -76,7 +76,7 @@ inline const Real LgmFxPiecewiseSigma::varianceImpl(const Time t) const {
     res += s * s * (t - (i == 0 ? 0.0 : times_[i - 1]));
     return res;
 }
-    } // namespace detail
+} // namespace detail
 } // namespace QuantLib
 
 #endif

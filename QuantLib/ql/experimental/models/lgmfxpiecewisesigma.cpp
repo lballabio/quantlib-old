@@ -29,4 +29,5 @@ LgmFxPiecewiseSigma::LgmFxPiecewiseSigma(const Array &times,
       sigmas_(sigmas), variances_(std::vector<Real>(times.size())) {}
 
 } // namespace detail
+
 } // namespace QuantLib
