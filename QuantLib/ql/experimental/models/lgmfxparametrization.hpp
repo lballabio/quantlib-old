@@ -31,6 +31,8 @@
 
 namespace QuantLib {
 
+namespace detail {
+
 template <class Impl>
 class LgmFxParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
@@ -61,17 +63,17 @@ template <class Impl> inline void LgmFxParametrization<Impl>::update() const {
 
 template <class Impl>
 inline const Real LgmFxParametrization<Impl>::sigma(const Time t) const {
-    return this->impl().sigmaImpl();
+    return this->impl().sigmaImpl(t);
 }
 
 template <class Impl>
 inline const Real LgmFxParametrization<Impl>::variance(const Time t) const {
-    return this->impl().varianceImpl();
+    return this->impl().varianceImpl(t);
 }
 
 template <class Impl>
 inline const Real LgmFxParametrization<Impl>::stdDeviation(const Time t) const {
-    return this->impl().stdDeviationImpl();
+    return this->impl().stdDeviationImpl(t);
 }
 
 // default implementations
@@ -91,6 +93,8 @@ inline const Real
 LgmFxParametrization<Impl>::stdDeviationImpl(const Time t) const {
     return std::sqrt(variance(t));
 }
+
+} // namespace detail
 
 } // namespace QuantLib
 
