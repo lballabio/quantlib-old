@@ -33,13 +33,13 @@ namespace QuantLib {
 
 template <class Impl> class Lgm : public Gaussian1dModel {
   public:
-    const LgmParametrization<Impl> &parametrization() {
+    const detail::LgmParametrization<Impl> &parametrization() {
         return parametrization_;
     }
 
   protected:
     Lgm(const Handle<YieldTermStructure> &yts,
-        const LgmParametrization<Impl> &parametrization);
+        const detail::LgmParametrization<Impl> &parametrization);
     const Real numeraireImpl(const Time t, const Real y,
                              const Handle<YieldTermStructure> &yts) const;
     const Real zerobondImpl(const Time T, const Time t, const Real y,
@@ -47,7 +47,7 @@ template <class Impl> class Lgm : public Gaussian1dModel {
                             const bool adjusted) const;
 
   private:
-    const LgmParametrization<Impl> &parametrization_;
+    const detail::LgmParametrization<Impl> &parametrization_;
 };
 
 // inline
@@ -86,7 +86,7 @@ inline const Real Lgm<Impl>::zerobondImpl(const Time T, const Time t,
 
 template <class Impl>
 Lgm<Impl>::Lgm(const Handle<YieldTermStructure> &yts,
-               const LgmParametrization<Impl> &parametrization)
+               const detail::LgmParametrization<Impl> &parametrization)
     : Gaussian1dModel(yts), parametrization_(parametrization) {}
 
 } // namespace QuantLib
