@@ -24,8 +24,8 @@
            log spot / spot depending on the method)
 */
 
-#ifndef quantlib_multicurrency_gsr_process_hpp
-#define quantlib_multicurrency_gsr_process_hpp
+#ifndef quantlib_cclgm_process_hpp
+#define quantlib_cclgm_process_hpp
 
 #include <ql/math/matrixutilities/pseudosqrt.hpp>
 #include <ql/experimental/models/cclgmparametrization.hpp>
@@ -35,10 +35,10 @@ namespace QuantLib {
 template <class Impl, class ImplFx, class ImplLgm>
 class CcLgmProcess : public StochasticProcess {
   public:
-    CcLgmProcess(
-        const CcLgmParametrization<Impl, ImplFx, ImplLgm> &parametrization,
-        const std::vector<Handle<Quote> > &fxSpots,
-        const std::vector<Handle<YieldTermStructure> > &curves);
+    CcLgmProcess(const boost::shared_ptr<detail::CcLgmParametrization<
+                     Impl, ImplFx, ImplLgm> > &parametrization,
+                 const std::vector<Handle<Quote> > &fxSpots,
+                 const std::vector<Handle<YieldTermStructure> > &curves);
 
     //! Stochastic process interface
     Size size() const;
@@ -51,7 +51,8 @@ class CcLgmProcess : public StochasticProcess {
     Disposable<Matrix> covariance(Time t0, const Array &x0, Time dt) const;
 
   private:
-    const CcLgmParametrization<Impl, ImplFx, ImplLgm> &p_;
+    const boost::shared_ptr<
+        detail::CcLgmParametrization<Impl, ImplFx, ImplLgm> > p_;
     const std::vector<Handle<Quote> > fxSpots_;
     const std::vector<Handle<YieldTermStructure> > curves_;
     const Size n_;
@@ -61,12 +62,12 @@ class CcLgmProcess : public StochasticProcess {
 
 template <class Impl, class ImplFx, class ImplLgm>
 inline Size CcLgmProcess<Impl, ImplFx, ImplLgm>::size() const {
-    return 2 * p_.n() + 1;
+    return 2 * p_->n() + 1;
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
 inline Size CcLgmProcess<Impl, ImplFx, ImplLgm>::factors() const {
-    return 2 * p_.n() + 1;
+    return 2 * p_->n() + 1;
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
@@ -104,28 +105,31 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::expectation(Time t0, const Array &x0,
         res[i] =
             std::log(curves_[i]->discount(t0 + dt) / curves_[i]->discount(t0) *
                      curves_[0]->discount(t0) / curves_[0]->discount(t0 + dt)) -
-            -0.5 * p_.int_sigma_sigma(i, i, t0, t0 + dt) +
-            0.5 * (p_.H(0, t0 + dt) * p_.H(0, t0 + dt) * p_.zeta(0, t0 + dt) -
-                   p_.H(0, t0) * p_.H(0, t0) * p_.zeta(0, t0) -
-                   p_.int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt)) -
-            0.5 * (p_.H(i, t0 + dt) * p_.H(i, t0 + dt) * p_.zeta(i, t0 + dt) -
-                   p_.H(i, t0) * p_.H(i, t0) * p_.zeta(i, t0) -
-                   p_.int_H_i_H_j_alpha_i_alpha_j(i, i, t0, t0 + dt)) +
-            p_.int_H_i_alpha_i_sigma_j(0, i) -
-            p_.H(i, t0 + dt) * (-p_.int_H_i_alpha_i_alpha_j(i, i, t0, t0 + dt) +
-                                p_.int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
-                                p_.int_alpha_i_sigma_j(i, i, t0, t0 + dt)) +
-            p_.int_H_i_H_j_alpha_i_alpha_j(i, i, t0, t0 + dt) -
-            p_.int_H_i_H_j_alpha_i_alpha_j(0, i, t0, t0 + dt) +
-            p_.int_H_i_alpha_i_sigma_j(i, i, t0, t0 + dt) +
-            (p_.H_i(0, t0 + dt) - p_.H_i(0, t0)) * x0[n_] -
-            (p_.H_i(i, t0 + dt) - p_.H_i(i, t0)) * x0[n_ + i];
+            -0.5 * p_->int_sigma_i_sigma_j(i, i, t0, t0 + dt) +
+            0.5 * (p_->H_i(0, t0 + dt) * p_->H_i(0, t0 + dt) *
+                       p_->zeta_i(0, t0 + dt) -
+                   p_->H_i(0, t0) * p_->H_i(0, t0) * p_->zeta_i(0, t0) -
+                   p_->int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt)) -
+            0.5 * (p_->H_i(i, t0 + dt) * p_->H_i(i, t0 + dt) *
+                       p_->zeta_i(i, t0 + dt) -
+                   p_->H_i(i, t0) * p_->H_i(i, t0) * p_->zeta_i(i, t0) -
+                   p_->int_H_i_H_j_alpha_i_alpha_j(i, i, t0, t0 + dt)) +
+            p_->int_H_i_alpha_i_sigma_j(0, i, t0, t0 + dt) -
+            p_->H_i(i, t0 + dt) *
+                (-p_->int_H_i_alpha_i_alpha_j(i, i, t0, t0 + dt) +
+                 p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
+                 p_->int_alpha_i_sigma_j(i, i, t0, t0 + dt)) +
+            p_->int_H_i_H_j_alpha_i_alpha_j(i, i, t0, t0 + dt) -
+            p_->int_H_i_H_j_alpha_i_alpha_j(0, i, t0, t0 + dt) +
+            p_->int_H_i_alpha_i_sigma_j(i, i, t0, t0 + dt) +
+            (p_->H_i(0, t0 + dt) - p_->H_i(0, t0)) * x0[n_] -
+            (p_->H_i(i, t0 + dt) - p_->H_i(i, t0)) * x0[n_ + i];
     }
     // lgm
     for (Size i = 1; i < n_ + 1; ++i) {
-        res[n_ + i] = -p_.int_H_i_alpha_i_alpha_j(i, i, t0, t0 + dt) -
-                      p_.int_alpha_i_sigma_j(i, i, t0, t0 + dt) +
-                      p_.int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt);
+        res[n_ + i] = -p_->int_H_i_alpha_i_alpha_j(i, i, t0, t0 + dt) -
+                      p_->int_alpha_i_sigma_j(i, i, t0, t0 + dt) +
+                      p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt);
     }
     return res;
 }
@@ -140,67 +144,73 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::covariance(Time t0, const Array &x0,
         for (Size j = 0; j <= i; ++j) {
             res[i][j] = res[j][i] =
                 // row 1
-                p_.H_i(0, t0 + dt) * p_.H_i(0, t0 + dt) *
-                    p_.int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt) -
-                2.0 * p_.H_i(0, t0 + dt) *
-                    p_.int_H_i_alpha_i_alpha_j(0, 0, t0, t0 + dt) +
-                p_.int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt) -
+                p_->H_i(0, t0 + dt) * p_->H_i(0, t0 + dt) *
+                    p_->int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt) -
+                2.0 * p_->H_i(0, t0 + dt) *
+                    p_->int_H_i_alpha_i_alpha_j(0, 0, t0, t0 + dt) +
+                p_->int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt) -
                 // row 2
-                p_.H_i(0, t0 + dt) * p_.H_i(j, t0 + dt) *
-                    p_.int_alpha_i_alpha_j(0, j, t0, t0 + dt) -
-                p_.H_i(j, t0 + dt) *
-                    p_.int_H_i_alpha_i_alpha_j(0, j, t0, t0 + dt) -
-                p_.H_i(0, t0 + dt) *
-                    p_.int_H_i_alpha_i_alpha_j(j, 0, t0, t0 + dt) -
-                p_.int_H_i_H_j_alpha_i_alpha_j(0, j, t0, t0 + dt) -
+                p_->H_i(0, t0 + dt) * p_->H_i(j, t0 + dt) *
+                    p_->int_alpha_i_alpha_j(0, j, t0, t0 + dt) -
+                p_->H_i(j, t0 + dt) *
+                    p_->int_H_i_alpha_i_alpha_j(0, j, t0, t0 + dt) -
+                p_->H_i(0, t0 + dt) *
+                    p_->int_H_i_alpha_i_alpha_j(j, 0, t0, t0 + dt) -
+                p_->int_H_i_H_j_alpha_i_alpha_j(0, j, t0, t0 + dt) -
                 // row 3
-                p_.H_i(0, t0 + dt) * p_.H_i(i, t0 + dt) *
-                    p_.int_alpha_i_alpha_j(0, i, t0, t0 + dt) -
-                p_.H_i(i, t0 + dt) *
-                    p_.int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
-                p_.H_i(0, t0 + dt) *
-                    p_.int_H_i_alpha_i_alpha_j(i, 0, t0, t0 + dt) -
-                p_.int_H_i_H_j_alpha_i_alpha_j(0, i, t0, t0 + dt) +
+                p_->H_i(0, t0 + dt) * p_->H_i(i, t0 + dt) *
+                    p_->int_alpha_i_alpha_j(0, i, t0, t0 + dt) -
+                p_->H_i(i, t0 + dt) *
+                    p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
+                p_->H_i(0, t0 + dt) *
+                    p_->int_H_i_alpha_i_alpha_j(i, 0, t0, t0 + dt) -
+                p_->int_H_i_H_j_alpha_i_alpha_j(0, i, t0, t0 + dt) +
                 // row 4
-                p_.H_i(0, t0 + dt) * p_.int_alpha_i_sigma_j(0, j, t0, t0 + dt) -
-                p_.int_H_i_alpha_i_sigma_j(0, j, t0, t0 + dt) +
+                p_->H_i(0, t0 + dt) *
+                    p_->int_alpha_i_sigma_j(0, j, t0, t0 + dt) -
+                p_->int_H_i_alpha_i_sigma_j(0, j, t0, t0 + dt) +
                 // row 5
-                p_.H_i(0, t0 + dt) * p_.int_alpha_i_sigma_j(0, j, t0, t0 + dt) -
-                p_.int_H_i_alpha_i_sigma_j(0, i, t0, t0 + dt) +
+                p_->H_i(0, t0 + dt) *
+                    p_->int_alpha_i_sigma_j(0, j, t0, t0 + dt) -
+                p_->int_H_i_alpha_i_sigma_j(0, i, t0, t0 + dt) +
                 // row 6
-                p_.H_i(i, t0 + dt) * p_.int_alpha_i_sigma_j(i, j, t0, t0 + dt) -
-                p_.int_H_i_alpha_i_sigma_j(i, j, t0, t0 + dt) +
+                p_->H_i(i, t0 + dt) *
+                    p_->int_alpha_i_sigma_j(i, j, t0, t0 + dt) -
+                p_->int_H_i_alpha_i_sigma_j(i, j, t0, t0 + dt) +
                 // row 7
-                p_.H_i(j, t0 + dt) * p_.int_alpha_i_sigma_j(j, i, t0, t0 + dt) -
-                p_.int_H_i_alpha_i_sigma_j(j, i, t0, t0 + dt) +
+                p_->H_i(j, t0 + dt) *
+                    p_->int_alpha_i_sigma_j(j, i, t0, t0 + dt) -
+                p_->int_H_i_alpha_i_sigma_j(j, i, t0, t0 + dt) +
                 // row 8
-                p_.H_i(i, t0 + dt) * p_.H_i(j, t0 + dt) *
-                    p_.int_alpha_i_alpha_j(i, j, t0, t0 + dt) -
-                p_.H_i(j, t0 + dt) *
-                    p_.int_H_i_alpha_i_alpha_j(i, j, t0, t0 + dt) -
-                p_.H_i(i, t0 + dt) *
-                    p_.int_H_i_alpha_i_alpha_j(j, i, t0, t0 + dt) -
-                p_.int_H_i_H_j_alpha_i_alpha_j(i, j, t0, t0 + dt) +
+                p_->H_i(i, t0 + dt) * p_->H_i(j, t0 + dt) *
+                    p_->int_alpha_i_alpha_j(i, j, t0, t0 + dt) -
+                p_->H_i(j, t0 + dt) *
+                    p_->int_H_i_alpha_i_alpha_j(i, j, t0, t0 + dt) -
+                p_->H_i(i, t0 + dt) *
+                    p_->int_H_i_alpha_i_alpha_j(j, i, t0, t0 + dt) -
+                p_->int_H_i_H_j_alpha_i_alpha_j(i, j, t0, t0 + dt) +
                 // row 9
-                p_.int_sigma_i_sigma_j(i, j, t0, t0 + dt);
+                p_->int_sigma_i_sigma_j(i, j, t0, t0 + dt);
         }
     }
     // fx-lgm
     for (Size i = 0; i <= n_ + 1; ++i) {
         for (Size j = 0; j < n_; ++j) {
             res[j][i + n_] = res[i + n_][j] =
-                p_.H(0, t0 + dt) * p_.int_alpha_i_j(0, i, t0, t0 + dt) -
-                p_.int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
-                p_.H(j, t0 + dt) * p_.int_alpha_i_j(j, i, t0, t0 + dt) +
-                p_.int_H_i_alpha_i_alpha_j(j, i, t0, t0 + dt) +
-                p_.int_alpha_i_sigma_j(i, j, t0, t0 + dt);
+                p_->H_i(0, t0 + dt) *
+                    p_->int_alpha_i_alpha_j(0, i, t0, t0 + dt) -
+                p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
+                p_->H_i(j, t0 + dt) *
+                    p_->int_alpha_i_alpha_j(j, i, t0, t0 + dt) +
+                p_->int_H_i_alpha_i_alpha_j(j, i, t0, t0 + dt) +
+                p_->int_alpha_i_sigma_j(i, j, t0, t0 + dt);
         }
     }
     // lgm-lgm
     for (Size i = 0; i < n_ + 1; ++i) {
         for (Size j = 0; j <= i; ++j) {
             res[i + n_][j + n_] = res[j + n_][i + n_] =
-                p_.int_alpha_i_alpha_j(i, j, t0, t0 + dt);
+                p_->int_alpha_i_alpha_j(i, j, t0, t0 + dt);
         }
     }
     return res;
@@ -210,7 +220,8 @@ template <class Impl, class ImplFx, class ImplLgm>
 inline Disposable<Matrix>
 CcLgmProcess<Impl, ImplFx, ImplLgm>::stdDeviation(Time t0, const Array &x0,
                                                   Time dt) const {
-    Matrix tmp = psuedoSqrt(covariance, SalvagingAlgorithm::Spectral);
+    Matrix tmp =
+        pseudoSqrt(covariance(t0, x0, dt), SalvagingAlgorithm::Spectral);
     return tmp;
 }
 
@@ -218,12 +229,11 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::stdDeviation(Time t0, const Array &x0,
 
 template <class Impl, class ImplFx, class ImplLgm>
 CcLgmProcess<Impl, ImplFx, ImplLgm>::CcLgmProcess(
-    const CcLgmParametrization<Impl, ImplFx, ImplLgm> &parametrization,
+    const boost::shared_ptr<
+        detail::CcLgmParametrization<Impl, ImplFx, ImplLgm> > &parametrization,
     const std::vector<Handle<Quote> > &fxSpots,
     const std::vector<Handle<YieldTermStructure> > &curves)
-    : p_(parametrization), fxSpots_(fxSpots), curves_(curves) {
-
-    n_ = p_.n();
+    : p_(parametrization), fxSpots_(fxSpots), curves_(curves), n_(p_->n()) {
 
     QL_REQUIRE(fxSpots_.size() == n_,
                fxSpots_.size()
