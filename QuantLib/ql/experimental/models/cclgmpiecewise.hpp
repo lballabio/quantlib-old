@@ -35,8 +35,9 @@ namespace QuantLib {
 
 namespace detail {
 
-class CcLgmPiecewise : CcLgmParametrization<CcLgmPiecewise, LgmFxPiecewiseSigma,
-                                            LgmPiecewiseAlphaConstantKappa> {
+class CcLgmPiecewise
+    : public CcLgmParametrization<CcLgmPiecewise, LgmFxPiecewiseSigma,
+                                  LgmPiecewiseAlphaConstantKappa> {
   public:
     CcLgmPiecewise(
         const std::vector<boost::shared_ptr<
@@ -56,18 +57,18 @@ class CcLgmPiecewise : CcLgmParametrization<CcLgmPiecewise, LgmFxPiecewiseSigma,
 };
 
 //! interface (required)
-const Real CcLgmPiecewise::rho_alpha_alpha_impl(const Size i,
-                                                const Size j) const {
+inline const Real CcLgmPiecewise::rho_alpha_alpha_impl(const Size i,
+                                                       const Size j) const {
     return correlation_[n_ + i][n_ + j];
 }
 
-const Real CcLgmPiecewise::rho_alpha_sigma_impl(const Size i,
-                                                const Size j) const {
+inline const Real CcLgmPiecewise::rho_alpha_sigma_impl(const Size i,
+                                                       const Size j) const {
     return correlation_[n_ + i][j];
 }
 
-const Real CcLgmPiecewise::rho_sigma_sigma_impl(const Size i,
-                                                const Size j) const {
+inline const Real CcLgmPiecewise::rho_sigma_sigma_impl(const Size i,
+                                                       const Size j) const {
     return correlation_[i][j];
 }
 
