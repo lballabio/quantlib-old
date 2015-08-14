@@ -30,6 +30,8 @@
 
 namespace QuantLib {
 
+namespace detail {
+
 template <class Impl>
 class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
@@ -127,6 +129,8 @@ template <class Impl>
 inline const Real LgmParametrization<Impl>::Hprime2Impl(const Time t) const {
     return (H(t + 0.5 * h_) - 2.0 * H(t) + H(t - 0.5 * h_)) / (h_ * h_);
 }
+
+} // namespace detail
 
 } // namespace QuantLib
 
