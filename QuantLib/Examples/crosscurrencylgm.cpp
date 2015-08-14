@@ -55,15 +55,10 @@ int main() {
 
         boost::shared_ptr<
             detail::LgmParametrization<detail::LgmPiecewiseAlphaConstantKappa> >
-            eurParam = boost::make_shared<detail::LgmParametrization<
-                detail::LgmPiecewiseAlphaConstantKappa> >(
-                eurLgm->parametrization());
-
+            eurParam = eurLgm->parametrization();
         boost::shared_ptr<
             detail::LgmParametrization<detail::LgmPiecewiseAlphaConstantKappa> >
-            usdParam = boost::make_shared<detail::LgmParametrization<
-                detail::LgmPiecewiseAlphaConstantKappa> >(
-                usdLgm->parametrization());
+            usdParam = usdLgm->parametrization();
 
         lgmParametrizations.push_back(eurParam);
         lgmParametrizations.push_back(usdParam);
@@ -111,12 +106,10 @@ int main() {
                 detail::LgmPiecewiseAlphaConstantKappa> >(ccParam, fxSpots,
                                                           curves);
 
-        std::cout << "dimension of process = " << process->size() << std::endl;
-
         // generate paths
 
         Size n = 1;
-        Size steps = 100;
+        Size steps = 10;
         TimeGrid grid(5.0, steps);
 
         // boost::shared_ptr<StochasticProcess> process =
