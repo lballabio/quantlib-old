@@ -1,3 +1,213 @@
+commit 9ce350205de37908259b15250f15a5e7bc901f64
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 14 Jul 2015 17:22:41 +0200
+
+    Avoid use of deprecated Boost macro.
+    
+    BOOST_MESSAGE will disappear in Boost 1.59.
+
+ QuantLib/test-suite/barrieroption.cpp              |  2 +-
+ QuantLib/test-suite/binaryoption.cpp               |  4 +--
+ QuantLib/test-suite/catbonds.cpp                   | 10 +++---
+ QuantLib/test-suite/doublebarrieroption.cpp        |  4 +--
+ QuantLib/test-suite/doublebinaryoption.cpp         |  2 +-
+ QuantLib/test-suite/gsr.cpp                        |  4 +--
+ QuantLib/test-suite/inflation.cpp                  |  2 +-
+ QuantLib/test-suite/interpolations.cpp             |  2 +-
+ QuantLib/test-suite/markovfunctional.cpp           | 36 +++++++++++-----------
+ .../piecewisezerospreadedtermstructure.cpp         | 20 ++++++------
+ QuantLib/test-suite/quantooption.cpp               |  2 +-
+ 11 files changed, 44 insertions(+), 44 deletions(-)
+
+commit dde6aab53c24dd4053e0fe74a6609a0535bad2ff
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 7 Jul 2015 15:18:03 +0200
+
+    Add support for VC++ 2015 (VC14).
+    
+    We had tried to support the next version, but we had assumed that
+    the version number would be 13.  Microsoft decided it's 14 instead.
+
+ QuantLib/Makefile.am       |   1 +
+ QuantLib/QuantLib.props    |   2 +
+ QuantLib/QuantLib_vc14.sln | 363 +++++++++++++++++++++++++++++++++++++++++++++
+ QuantLib/ql/auto_link.hpp  |   2 +-
+ 4 files changed, 367 insertions(+), 1 deletion(-)
+
+commit a36a54ff7b0e8ea41cada5cc3f43f81c05c83783
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 23 Jun 2015 11:37:53 +0200
+
+    Bump version number up to 1.6.1.
+
+ QuantLib/Announce.txt   | 4 ++--
+ QuantLib/configure.ac   | 2 +-
+ QuantLib/ql/version.hpp | 8 ++++----
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+commit 73e19576ed65927efe88e5e6e20052f6b1c7e5b8
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 19 Jun 2015 16:05:45 +0200
+
+    Update changelog.
+
+ QuantLib/ChangeLog.txt | 43 +++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+
+commit e0cd1680e0121dc429f537e2040b987c215e2e16
+Author: Paolo Mazzocchi <mazzocchip@live.it>
+Date:   Thu, 18 Jun 2015 15:27:22 +0200
+
+    reordered lines
+
+ QuantLib/QuantLib.vcxproj | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+
+commit be99751b36767f695454bced1ee9a51e57839b74
+Author: Paolo Mazzocchi <mazzocchip@live.it>
+Date:   Thu, 18 Jun 2015 14:55:09 +0200
+
+    bug fix: correct vcxproj file
+
+ QuantLib/QuantLib.vcxproj | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+commit cc43df511211554d66b5654df0c6575cb42e55eb
+Merge: b2df9f9 6cb25f2
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 16 Jun 2015 15:47:18 +0200
+
+    Merge pull request #271.
+
+commit 6cb25f2da26101bb13a060309ed5ddc032180554
+Author: Peter Caspers <pcaspers1973@gmail.com>
+Date:   Tue, 16 Jun 2015 14:58:00 +0200
+
+    fix piecewise yield curve test (fails e.g. on 16-Jun-2015)
+
+ QuantLib/test-suite/piecewiseyieldcurve.cpp | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+commit b2df9f9a2d815a681eca6875d48150679d56e6f2
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 12 Jun 2015 18:44:34 +0200
+
+    Update changelog.
+
+ QuantLib/ChangeLog.txt | 134 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 134 insertions(+)
+
+commit 13d07bca5ef50f9304d3a82cb6f68691d3c1ca69
+Merge: bd3f20d eb96428
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 12 Jun 2015 17:50:15 +0200
+
+    Merge pull request #267.
+
+commit bd3f20d70bc3b07b5eba7132e1bdc6c4c1e025c7
+Merge: b69750f 7e752ba
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 12 Jun 2015 17:20:05 +0200
+
+    Merge pull request #266.
+
+commit b69750fac236a62bc7523b10c66e0a0ba67dd190
+Merge: 0b992c3 d9b96cc
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 12 Jun 2015 16:46:54 +0200
+
+    Merge pull request #265.
+
+commit eb964280e763944617ce968d13d78721eb8c3cd5
+Author: Peter Caspers <pcaspers1973@gmail.com>
+Date:   Fri, 12 Jun 2015 16:38:52 +0200
+
+    fix output of exit date (exit refers to the function and throws a warning "the address of 'void exit(int)' will always evaluate as 'true'")
+
+ QuantLib/ql/time/schedule.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 7e752bac01ba2940c546634d8827bef4a58fe113
+Author: Johannes Göttker-Schnetmann <jschnetm@gmail.com>
+Date:   Fri, 12 Jun 2015 16:23:08 +0200
+
+    exponentially weighted Bessel function test did not work under 32 bit Linux
+
+ QuantLib/test-suite/functions.cpp | 62 ++++++++++++++++++++++++---------------
+ 1 file changed, 38 insertions(+), 24 deletions(-)
+
+commit d9b96cc97b37ce4700335945bc42fecc7edf5647
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 12 Jun 2015 15:19:14 +0200
+
+    Add ad.hpp to distribution.
+
+ QuantLib/ql/Makefile.am | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 0e019cbf1c2bd3696c8bce7e7328fb588a6d3479
+Merge: a323bfe 639c619
+Author: CompatibL <team@compatibl.com>
+Date:   Fri, 12 Jun 2015 01:12:25 -0400
+
+    Merge remote-tracking branch 'lballabio/master' into master-adjoint-ready
+
+commit a323bfec356c5ade2f9dc31a275b5bab6a3339d7
+Author: CompatibL <team@compatibl.com>
+Date:   Fri, 12 Jun 2015 01:08:59 -0400
+
+    Optionally define Real as TapeDouble to use TapeScript AAD.
+
+ QuantLib/ql/ad.hpp        | 54 +++++++++++++++++++++++++++++++++++++++++++++++
+ QuantLib/ql/qldefines.hpp | 26 ++++++++++++++++++++++-
+ 2 files changed, 79 insertions(+), 1 deletion(-)
+
+commit 7944ba34356f8d4b2e475119d087e9f27e385b87
+Author: Paolo Mazzocchi <mazzocchip@live.it>
+Date:   Tue, 9 Jun 2015 17:32:50 +0200
+
+    disabled /SAFESEH in order to avoid warnings with VC12
+
+ QuantLib/Examples/BasketLosses/BasketLosses.vcxproj         | 6 ++++--
+ QuantLib/Examples/BermudanSwaption/BermudanSwaption.vcxproj | 6 ++++--
+ QuantLib/Examples/Bonds/Bonds.vcxproj                       | 6 ++++--
+ QuantLib/Examples/CDS/CDS.vcxproj                           | 6 ++++--
+ QuantLib/Examples/CallableBonds/CallableBonds.vcxproj       | 6 ++++--
+ QuantLib/Examples/ConvertibleBonds/ConvertibleBonds.vcxproj | 6 ++++--
+ QuantLib/Examples/DiscreteHedging/DiscreteHedging.vcxproj   | 6 ++++--
+ QuantLib/Examples/EquityOption/EquityOption.vcxproj         | 6 ++++--
+ QuantLib/Examples/FRA/FRA.vcxproj                           | 6 ++++--
+ QuantLib/Examples/FittedBondCurve/FittedBondCurve.vcxproj   | 6 ++++--
+ QuantLib/Examples/Gaussian1dModels/Gaussian1dModels.vcxproj | 6 ++++--
+ QuantLib/Examples/LatentModel/LatentModel.vcxproj           | 6 ++++--
+ QuantLib/Examples/MarketModels/MarketModels.vcxproj         | 6 ++++--
+ QuantLib/Examples/MultidimIntegral/MultidimIntegral.vcxproj | 6 ++++--
+ QuantLib/Examples/Replication/Replication.vcxproj           | 6 ++++--
+ QuantLib/Examples/Repo/Repo.vcxproj                         | 6 ++++--
+ QuantLib/Examples/Swap/Swap.vcxproj                         | 6 ++++--
+ QuantLib/test-suite/testsuite.vcxproj                       | 6 ++++--
+ 18 files changed, 72 insertions(+), 36 deletions(-)
+
+commit 1fdf43436e1aedd708f8430eb23308e9e397bcbd
+Author: Ferdinando Ametrano <nando@ametrano.net>
+Date:   Tue, 9 Jun 2015 17:29:27 +0200
+
+    fixed wrong trailing comma
+
+ QuantLib/ql/time/calendars/russia.hpp | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+commit 639c6199baa8c3d90ee8a3f76333df9e55418b44
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 9 Jun 2015 09:49:23 +0200
+
+    Update changelog.
+
+ QuantLib/ChangeLog.txt           | 25 +++++++++++++++++++++++++
+ QuantLib/Docs/pages/history.docs |  1 +
+ QuantLib/News.txt                |  2 ++
+ 3 files changed, 28 insertions(+)
+
 commit c05d5c942aff8b518ac0ba3756dc6daf8d3731e9
 Merge: d8fb96f 8e5ba43
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
@@ -503,6 +713,29 @@ Date:   Mon, 18 May 2015 12:47:50 +0200
  QuantLib/ql/time/calendars/russia.cpp | 237 +++++++++++++++-------------------
  QuantLib/ql/time/calendars/russia.hpp |  29 ++---
  2 files changed, 114 insertions(+), 152 deletions(-)
+
+commit 35a70d1d1d6a2a3ba6484328bbd48ff4095bf64c
+Author: CompatibL <team@compatibl.com>
+Date:   Sun, 17 May 2015 20:46:31 -0400
+
+    Added 'using std::functioname' for several math functions.
+
+ .../experimental/barrieroption/analyticdoublebarrierbinaryengine.cpp  | 4 +++-
+ QuantLib/ql/experimental/coupons/lognormalcmsspreadpricer.cpp         | 2 ++
+ QuantLib/ql/experimental/volatility/zabr.cpp                          | 2 ++
+ QuantLib/ql/experimental/volatility/zabrsmilesection.hpp              | 2 ++
+ QuantLib/ql/termstructures/volatility/gaussian1dsmilesection.cpp      | 3 +++
+ 5 files changed, 12 insertions(+), 1 deletion(-)
+
+commit 2edc2ea8f80bc8dd8fb30a3b142ec9e0eb6657ed
+Author: CompatibL <team@compatibl.com>
+Date:   Sun, 17 May 2015 20:39:55 -0400
+
+    Replaced double by Real.
+
+ .../barrieroption/discretizeddoublebarrieroption.cpp         | 12 ++++++------
+ QuantLib/ql/pricingengines/americanpayoffatexpiry.cpp        |  2 +-
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
 commit 2b15b95533ceca4c880b16151515348bcb5ca029
 Author: Peter Caspers <pcaspers1973@gmail.com>
