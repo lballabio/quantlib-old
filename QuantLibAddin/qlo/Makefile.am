@@ -14,7 +14,6 @@ include_HEADERS = \
     alphaform.hpp \
     asianoption.hpp \
     assetswap.hpp \
-    basketlossmodels.hpp \
     barrieroption.hpp \
     baseinstruments.hpp \
     basketlossmodels.hpp \
