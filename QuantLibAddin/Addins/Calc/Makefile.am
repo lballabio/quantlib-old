@@ -35,6 +35,8 @@ EXTRA_DIST = \
 	pricingengines.hpp \
 	processes.cpp \
 	processes.hpp \
+	qladdin.cpp \
+	qladdin.hpp \
 	qldefs.hpp \
 	qlo_all.hpp \
 	quotes.cpp \
