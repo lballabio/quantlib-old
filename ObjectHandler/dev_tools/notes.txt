@@ -18,5 +18,6 @@ Eric's notes to himself for next time.
 |QuantLibXL - source    | make_zip_source.bat   |    - -    |
 |============================================================
 
-(1) git archive --output=log4cxx-0.10.0e.zip R01040x-branch log4cxx
-(2) git archive --output=log4cxx-0.10.0e.tar R01040x-branch log4cxx
+(1) git archive --output=log4cxx-0.10.0f4.zip v1.6.x log4cxx
+(2) git archive --output=log4cxx-0.10.0f4.tar v1.6.x log4cxx
+
