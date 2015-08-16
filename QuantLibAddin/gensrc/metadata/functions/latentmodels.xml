@@ -139,7 +139,7 @@
       <libraryFunction>TDefProbLM</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Calc'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

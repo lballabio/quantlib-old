@@ -34,6 +34,7 @@
 #define THROWDEF_RTE        throw(CSS::uno::RuntimeException)
 #define THROWDEF_RTE_IAE    throw(CSS::uno::RuntimeException,CSS::lang::IllegalArgumentException)
 #define THROW_RTE           throw CSS::uno::RuntimeException()
+#define THROW_MSG(m,r)      throw(CSS::uno::RuntimeException( m , r))
 #define REF(c)              CSS::uno::Reference< c >
 #define ANY                 CSS::uno::Any
 

@@ -51,6 +51,8 @@ class BehaviorLoop(object):
             'functionCodeName' : self.functionCodeName_,
             'functionName' : self.functionName_,
             'functionSignature' : functionSignature,
+            # FIXME CALC This change for the Calc addin would change behavior for other addins.
+            #'objectName': self.func_.objectId(), 
             'inputType' : addin.loopReturnType().apply(self.loopParamRef_),
             'returnType' : addin.loopReturnType().apply(self.func_.returnValue()) })
         return addin.bufferLoop().text()

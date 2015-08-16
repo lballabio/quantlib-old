@@ -32,6 +32,7 @@
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -61,6 +62,7 @@
       <libraryFunction>multiplePathValues</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

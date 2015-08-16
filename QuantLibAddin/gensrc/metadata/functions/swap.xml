@@ -70,6 +70,7 @@
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -115,6 +116,7 @@
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <!--SupportedPlatform name='Cpp'/-->
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -137,6 +139,7 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -159,6 +162,7 @@
       <libraryFunction>startDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -175,6 +179,7 @@
       <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

@@ -19,17 +19,19 @@
 //#include <Addins/Calc/init.hpp>
 #include <init.hpp>
 #include <oh/repository.hpp>
+#include <oh/processor.hpp>
 #include <oh/enumerations/enumregistry.hpp>
 #include <qlo/enumerations/register/register_all.hpp>
-//#include <Addins/Cpp/Serialization/serializationfactory.hpp>
+#include <qlo/serialization/serializationfactory.hpp>
 
 void QuantLibAddin::initializeAddin() {
 
         // Instantiate the ObjectHandler Repository
         static ObjectHandler::Repository repository;
 
+    	static ObjectHandler::ProcessorFactory processorFactory;
         // Instantiate the Serialization Factory
-        //static QuantLibAddinCpp::SerializationFactory factory;
+        static QuantLibAddin::SerializationFactory factory;
 
         // Instantiate the Enumerated Type Registry
         static ObjectHandler::EnumTypeRegistry enumTypeRegistry;
@@ -40,7 +42,7 @@ void QuantLibAddin::initializeAddin() {
         // Instantiate the Enumerated Pair Registry
         static ObjectHandler::EnumPairRegistry enumPairRegistry;
 
-        // Initialize the Enumeration Registry
+	 // Initialize the Enumeration Registry
         QuantLibAddin::registerEnumerations();
 
 }

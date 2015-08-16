@@ -136,7 +136,7 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <!--SupportedPlatform name='Calc'/-->
+        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -263,7 +263,7 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-	<!--SupportedPlatform name='Calc'/-->
+	<SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -512,7 +512,7 @@
       <libraryFunction>InterpolatedYieldCurve</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-	<!--SupportedPlatform name='Calc'/-->
+	<SupportedPlatform name='Calc'/>
         <SupportedPlatform name='Cpp'/>
       </SupportedPlatforms>
       <ParameterList>

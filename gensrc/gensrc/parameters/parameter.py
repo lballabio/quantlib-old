@@ -281,6 +281,8 @@ class OverwriteFlag(Parameter):
     tensorRank_ = common.SCALAR
     ignore_ = True
     description_ = 'overwrite flag'
+    # FIXME CALC This change for the Calc addin would change behavior for other addins.
+    #default_ = 'true'
 
     def __init__(self):
         """Initialize the OverwriteFlag object."""

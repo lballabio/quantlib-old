@@ -405,6 +405,10 @@ code218 = '''\
 # code for Calc
 ##########################################################################
 
+codeCalc37b = '''\
+        std::vector<boost::shared_ptr<QuantLib::BootstrapHelper<QuantLib::ZeroInflationTermStructure> > > %(nameConverted)s =
+            ObjectHandler::getLibraryObjectVector<%(namespaceObjects)s::%(classname)s, QuantLib::BootstrapHelper<QuantLib::ZeroInflationTermStructure> >(%(name)sCpp);\n'''
+
 code71a = '''\
         std::string %(name)sCpp = ouStringToStlString(%(name)s);\n'''
 
@@ -412,13 +416,34 @@ code71b = '''\
         std::string %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
+code71bdef = '''\
+        std::string %(name)sCpp;
+        if(%(name)s.hasValue()) 
+            calcToScalar(%(name)sCpp, %(name)s);
+        else
+            %(name)sCpp = %(defaultValue)s;\n'''
+
 code71c = '''\
         ObjectHandler::property_t %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
 
+code71cdef = '''\
+        ObjectHandler::property_t %(name)sCpp;
+        if(%(name)s.hasValue()) 
+            calcToScalar(%(name)sCpp, %(name)s);
+        else
+            %(name)sCpp = %(defaultValue)s;\n'''
+
 code72 = '''\
         %(nativeType)s %(name)sCpp;
         calcToScalar(%(name)sCpp, %(name)s);\n'''
+
+code72def = '''\
+        %(nativeType)s %(name)sCpp;
+        if(%(name)s.hasValue()) 
+            calcToScalar(%(name)sCpp, %(name)s);
+        else
+            %(name)sCpp = %(defaultValue)s;\n'''
 
 code73 = '''\
         std::vector<std::string> %(name)sCpp;
@@ -460,6 +485,14 @@ code81 = '''\
         OH_GET_REFERENCE(%(nameConverted)s, %(name)sCpp,
             %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
 
+code81Calc = '''\
+        OH_GET_REFERENCE(%(nameConverted)s, %(name)sCpp,
+            %(namespaceObjects)s::%(classname)sSRM, %(namespaceLibrary)s::%(classname)s)\n'''
+
+code81Seri = '''\
+        OH_GET_REFERENCE(%(nameConverted)s, %(name)s,
+            %(namespaceObjects)s::%(classname)sSRM, %(namespaceLibrary)s::%(classname)s)\n'''
+
 code82 = '''\
         %(type)s %(nameConverted)s =
             ObjectHandler::Create<%(type)s>()(%(name)sCpp);\n'''
@@ -479,10 +512,50 @@ code85 = '''\
         scalarToCalc(returnValueCalc, returnValue);
         return returnValueCalc;\n'''
 
+code85a = '''\
+        SEQSEQ(sal_Int32) returnValueCalc;
+        vectorToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code85any = '''\
+        SEQSEQ(ANY) returnValueCalc;
+        vectorToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code85b = '''\
+        SEQSEQ(ANY) returnValueCalc;
+        vectorToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
 code86 = '''\
         %(nativeType)s returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
         return returnValueCalc;\n'''
+
+code86a = '''\
+        STRING returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+        return returnValueCalc;\n'''
+
+code86any = '''\
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;\n'''
+
+code86anyvoid = '''\
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        STRING s = STRFROMASCII( std::string("VOID").c_str() );    
+        retAnyVector[0] = CSS::uno::makeAny( s );
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;\n'''
 
 code87 = '''\
         %(nativeType)s returnValueCalc;
@@ -551,6 +624,24 @@ code96 = '''\
         %(type)s %(nameConverted)s;
         calcToScalar(%(nameConverted)s, %(name)s);\n'''
 
+code96defdate = '''\
+        %(type)s %(nameConverted)s;
+        if(!%(name)s.hasValue() and typeid(%(defaultValue)s)==typeid(QuantLib::Date())) 
+            %(nameConverted)s = %(defaultValue)s;
+        else
+            calcToScalar(%(nameConverted)s, %(name)s);\n'''
+
+code96defperiod = '''\
+        %(type)s %(nameConverted)s;
+        if(!%(name)s.hasValue() and typeid(%(defaultValue)s)==typeid("string")) 
+            calcToScalar(%(nameConverted)s, %(defaultValue)s);
+        else
+            calcToScalar(%(nameConverted)s, %(name)s);\n'''
+
+code96 = '''\
+        %(type)s %(nameConverted)s;
+        calcToScalar(%(nameConverted)s, %(name)s);\n'''
+
 code100 = '''\
         OH_GET_OBJECT(%(nameConverted)s, %(name)s, %(type)s)\n'''
 
@@ -585,6 +676,17 @@ codeCalc46 = '''\
                 %(namespaceObjects)s::%(classname)s,
                 %(namespaceLibrary)s::%(classname)s>()(
                     %(name)sTemp);\n'''
+
+codeCalc48 = '''\
+        OH_GET_UNDERLYING(%(nameConverted)s, %(name)sCpp,
+            %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
+
+codeCalc49 = '''\
+        OH_GET_UNDERLYING_NONCONST(%(nameConverted)s, %(name)sCpp,
+            %(namespaceObjects)s::%(classname)s, %(namespaceLibrary)s::%(classname)s)\n'''
+
+codeCalc53 = '''\
+std::vector<std::vector<ObjectHandler::property_t> > returnValue = '''
 
 codeCalc218 = '''\
         std::vector<QuantLib::Handle<QuantLib::Quote> > %(nameConverted)s =

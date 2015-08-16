@@ -30,6 +30,7 @@
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -59,6 +60,7 @@
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -88,6 +90,7 @@
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -117,6 +120,7 @@
       <libraryFunction>startNewPath</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -133,6 +137,7 @@
       <libraryFunction>advanceStep</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -149,6 +154,7 @@
       <libraryFunction>currentStep</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>
@@ -165,6 +171,7 @@
       <libraryFunction>numeraires</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

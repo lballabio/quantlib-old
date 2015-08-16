@@ -20,6 +20,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
         <SupportedPlatform name='Cpp' />
+        <SupportedPlatform name='Calc' />
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
@@ -58,6 +59,7 @@
       <SupportedPlatforms>
         <SupportedPlatform name='Excel' calcInWizard='false'/>
         <SupportedPlatform name='Cpp'/>
+        <SupportedPlatform name='Calc'/>
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>
