@@ -15,6 +15,7 @@
 #include <ql/experimental/math/multidimintegrator.hpp>
 #include <ql/experimental/math/multidimquadrature.hpp>
 #include <ql/experimental/math/numericaldifferentiation.hpp>
+#include <ql/experimental/math/piecewiseintegral.hpp>
 #include <ql/experimental/math/polarstudenttrng.hpp>
 #include <ql/experimental/math/randomsequencegenerator_multithreaded.hpp>
 #include <ql/experimental/math/rngtraits_multithreaded.hpp>
