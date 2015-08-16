@@ -17,6 +17,7 @@ include_HEADERS = \
     basketlossmodels.hpp \
     barrieroption.hpp \
     baseinstruments.hpp \
+    basketlossmodels.hpp \
     bonds.hpp \
     browniangenerators.hpp \
     btp.hpp \
@@ -101,9 +102,9 @@ libQuantLibAddin_la_SOURCES = \
     alphaform.cpp \
     asianoption.cpp \
     assetswap.cpp \
-    basketlossmodels.cpp \
     barrieroption.cpp \
     baseinstruments.cpp \
+    basketlossmodels.cpp \
     bonds.cpp \
     browniangenerators.cpp \
     btp.cpp \
