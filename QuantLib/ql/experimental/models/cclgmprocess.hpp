@@ -30,6 +30,8 @@
 #include <ql/math/matrixutilities/pseudosqrt.hpp>
 #include <ql/experimental/models/cclgmparametrization.hpp>
 
+#include <boost/unordered_map.hpp>
+
 namespace QuantLib {
 
 template <class Impl, class ImplFx, class ImplLgm>
@@ -50,15 +52,46 @@ class CcLgmProcess : public StochasticProcess {
     Disposable<Matrix> stdDeviation(Time t0, const Array &x0, Time dt) const;
     Disposable<Matrix> covariance(Time t0, const Array &x0, Time dt) const;
 
+    //! clear cache
+    void flushCache() const;
+
   private:
     const boost::shared_ptr<
         detail::CcLgmParametrization<Impl, ImplFx, ImplLgm> > p_;
     const std::vector<Handle<Quote> > fxSpots_;
     const std::vector<Handle<YieldTermStructure> > curves_;
     const Size n_;
+
+    struct cache_key {
+        double t0;
+        double dt;
+        const bool operator==(const cache_key &o) const {
+            return (t0 == o.t0) && (dt == o.dt);
+        }
+    };
+
+    struct cache_hasher : std::unary_function<cache_key, std::size_t> {
+        std::size_t operator()(cache_key const &x) const {
+            std::size_t seed = 0;
+            boost::hash_combine(seed, x.t0);
+            boost::hash_combine(seed, x.dt);
+            return seed;
+        }
+    };
+
+    mutable boost::unordered_map<cache_key, Array, cache_hasher> cache_e_;
+    mutable boost::unordered_map<cache_key, Matrix, cache_hasher> cache_v_,
+        cache_s_;
 };
 
 // inline
+
+template <class Impl, class ImplFx, class ImplLgm>
+void CcLgmProcess<Impl, ImplFx, ImplLgm>::flushCache() const {
+    cache_v_.clear();
+    cache_s_.clear();
+    cache_e_.clear();
+}
 
 template <class Impl, class ImplFx, class ImplLgm>
 inline Size CcLgmProcess<Impl, ImplFx, ImplLgm>::size() const {
@@ -99,47 +132,55 @@ template <class Impl, class ImplFx, class ImplLgm>
 inline Disposable<Array>
 CcLgmProcess<Impl, ImplFx, ImplLgm>::expectation(Time t0, const Array &x0,
                                                  Time dt) const {
+    cache_key k = {t0, dt};
+    typename boost::unordered_map<cache_key, Array>::iterator i =
+        cache_e_.find(k);
     Array res(2 * n_ + 1, 0.0);
-    // fx
+    if (i == cache_e_.end()) {
+        // fx
+        for (Size i = 0; i < n_; ++i) {
+            res[i] =
+                std::log(curves_[i + 1]->discount(t0 + dt) /
+                         curves_[i + 1]->discount(t0) *
+                         curves_[0]->discount(t0) /
+                         curves_[0]->discount(t0 + dt)) -
+                0.5 * p_->int_sigma_i_sigma_j(i, i, t0, t0 + dt) +
+                0.5 * (p_->H_i(0, t0 + dt) * p_->H_i(0, t0 + dt) *
+                           p_->zeta_i(0, t0 + dt) -
+                       p_->H_i(0, t0) * p_->H_i(0, t0) * p_->zeta_i(0, t0) -
+                       p_->int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt)) -
+                0.5 * (p_->H_i(i + 1, t0 + dt) * p_->H_i(i + 1, t0 + dt) *
+                           p_->zeta_i(i + 1, t0 + dt) -
+                       p_->H_i(i + 1, t0) * p_->H_i(i + 1, t0) *
+                           p_->zeta_i(i + 1, t0) -
+                       p_->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, t0,
+                                                       t0 + dt)) +
+                p_->int_H_i_alpha_i_sigma_j(0, i, t0, t0 + dt) -
+                p_->H_i(i + 1, t0 + dt) *
+                    (-p_->int_H_i_alpha_i_alpha_j(i + 1, i + 1, t0, t0 + dt) +
+                     p_->int_H_i_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) -
+                     p_->int_alpha_i_sigma_j(i + 1, i, t0, t0 + dt)) -
+                p_->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, t0, t0 + dt) -
+                p_->int_H_i_H_j_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
+                p_->int_H_i_alpha_i_sigma_j(i, i, t0, t0 + dt);
+        }
+        // lgm
+        for (Size i = 1; i < n_ + 1; ++i) {
+            res[n_ + i] = -p_->int_H_i_alpha_i_alpha_j(i, i, t0, t0 + dt) -
+                          p_->int_alpha_i_sigma_j(i, i - 1, t0, t0 + dt) +
+                          p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt);
+        }
+        cache_e_.insert(std::make_pair(k, res));
+    } else {
+        res = i->second;
+    }
     for (Size i = 0; i < n_; ++i) {
-        res[i] =
-            x0[i] +
-            std::log(curves_[i + 1]->discount(t0 + dt) /
-                     curves_[i + 1]->discount(t0) * curves_[0]->discount(t0) /
-                     curves_[0]->discount(t0 + dt)) -
-            -0.5 * p_->int_sigma_i_sigma_j(i, i, t0, t0 + dt) +
-            0.5 * (p_->H_i(0, t0 + dt) * p_->H_i(0, t0 + dt) *
-                       p_->zeta_i(0, t0 + dt) -
-                   p_->H_i(0, t0) * p_->H_i(0, t0) * p_->zeta_i(0, t0) -
-                   p_->int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt)) -
-            0.5 * (p_->H_i(i + 1, t0 + dt) * p_->H_i(i + 1, t0 + dt) *
-                       p_->zeta_i(i + 1, t0 + dt) -
-                   p_->H_i(i + 1, t0) * p_->H_i(i + 1, t0) *
-                       p_->zeta_i(i + 1, t0) -
-                   p_->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, t0, t0 + dt)) +
-            p_->int_H_i_alpha_i_sigma_j(0, i, t0, t0 + dt) -
-            p_->H_i(i + 1, t0 + dt) *
-                (-p_->int_H_i_alpha_i_alpha_j(i + 1, i + 1, t0, t0 + dt)+
-                 p_->int_H_i_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) -
-                 p_->int_alpha_i_sigma_j(i + 1, i, t0, t0 + dt)) -
-            p_->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, t0, t0 + dt) -
-            p_->int_H_i_H_j_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
-            p_->int_H_i_alpha_i_sigma_j(i, i, t0, t0 + dt) +
-            (p_->H_i(0, t0 + dt) - p_->H_i(0, t0)) * x0[n_] -
-            (p_->H_i(i + 1, t0 + dt) - p_->H_i(i + 1, t0)) * x0[n_ + i];
+        res[i] += x0[i] + (p_->H_i(0, t0 + dt) - p_->H_i(0, t0)) * x0[n_] -
+                  (p_->H_i(i + 1, t0 + dt) - p_->H_i(i + 1, t0)) * x0[n_ + i];
     }
-    // lgm
-    res[n_] = x0[n_];
-    for (Size i = 1; i < n_ + 1; ++i) {
-        res[n_ + i] = x0[n_ + i] -
-                      p_->int_H_i_alpha_i_alpha_j(i, i, t0, t0 + dt) -
-                      p_->int_alpha_i_sigma_j(i, i - 1, t0, t0 + dt) +
-                      p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt);
+    for (Size i = 0; i < n_ + 1; ++i) {
+        res[n_ + i] += x0[n_ + i];
     }
-    // for (Size i = 0; i < 2 * n_ + 1; ++i) {
-    //     std::clog << "E(x_" << i << "(" << t0 + dt << ")|x(" << t0
-    //               << ")=" << x0[i] << ") = " << res[i] << std::endl;
-    // }
     return res;
 }
 
@@ -147,91 +188,109 @@ template <class Impl, class ImplFx, class ImplLgm>
 inline Disposable<Matrix>
 CcLgmProcess<Impl, ImplFx, ImplLgm>::covariance(Time t0, const Array &x0,
                                                 Time dt) const {
-    Matrix res(2 * n_ + 1, 2 * n_ + 1);
-    // fx-fx
-    for (Size i = 0; i < n_; ++i) {
-        for (Size j = 0; j <= i; ++j) {
-            res[i][j] = res[j][i] =
-                // row 1
-                p_->H_i(0, t0 + dt) * p_->H_i(0, t0 + dt) *
-                    p_->int_alpha_i_alpha_j(0, 0, t0, t0 + dt) -
-                2.0 * p_->H_i(0, t0 + dt) *
-                    p_->int_H_i_alpha_i_alpha_j(0, 0, t0, t0 + dt) +
-                p_->int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt) -
-                // row 2
-                p_->H_i(0, t0 + dt) * p_->H_i(j + 1, t0 + dt) *
-                    p_->int_alpha_i_alpha_j(0, j + 1, t0, t0 + dt) +
-                p_->H_i(j + 1, t0 + dt) *
-                    p_->int_H_i_alpha_i_alpha_j(0, j + 1, t0, t0 + dt) +
-                p_->H_i(0, t0 + dt) *
-                    p_->int_H_i_alpha_i_alpha_j(j + 1, 0, t0, t0 + dt) -
-                p_->int_H_i_H_j_alpha_i_alpha_j(0, j + 1, t0, t0 + dt) -
-                // row 3
-                p_->H_i(0, t0 + dt) * p_->H_i(i + 1, t0 + dt) *
-                    p_->int_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
-                p_->H_i(i + 1, t0 + dt) *
-                    p_->int_H_i_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
-                p_->H_i(0, t0 + dt) *
-                    p_->int_H_i_alpha_i_alpha_j(i + 1, 0, t0, t0 + dt) -
-                p_->int_H_i_H_j_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
-                // row 4
-                p_->H_i(0, t0 + dt) *
-                    p_->int_alpha_i_sigma_j(0, j, t0, t0 + dt) -
-                p_->int_H_i_alpha_i_sigma_j(0, j, t0, t0 + dt) +
-                // row 5
-                p_->H_i(0, t0 + dt) *
-                    p_->int_alpha_i_sigma_j(0, i, t0, t0 + dt) -
-                p_->int_H_i_alpha_i_sigma_j(0, i, t0, t0 + dt) -
-                // row 6
-                p_->H_i(i + 1, t0 + dt) *
-                    p_->int_alpha_i_sigma_j(i + 1, j, t0, t0 + dt) +
-                p_->int_H_i_alpha_i_sigma_j(i + 1, j, t0, t0 + dt) +
-                // row 7
-                p_->H_i(j + 1, t0 + dt) *
-                    p_->int_alpha_i_sigma_j(j + 1, i, t0, t0 + dt) +
-                p_->int_H_i_alpha_i_sigma_j(j + 1, i, t0, t0 + dt) +
-                // row 8
-                p_->H_i(i + 1, t0 + dt) * p_->H_i(j + 1, t0 + dt) *
-                    p_->int_alpha_i_alpha_j(i + 1, j + 1, t0, t0 + dt) -
-                p_->H_i(j + 1, t0 + dt) *
-                    p_->int_H_i_alpha_i_alpha_j(i + 1, j + 1, t0, t0 + dt) -
-                p_->H_i(i + 1, t0 + dt) *
-                    p_->int_H_i_alpha_i_alpha_j(j + 1, i + 1, t0, t0 + dt) +
-                p_->int_H_i_H_j_alpha_i_alpha_j(i + 1, j + 1, t0, t0 + dt) +
-                // row 9
-                p_->int_sigma_i_sigma_j(i, j, t0, t0 + dt);
+    cache_key k = {t0, dt};
+    typename boost::unordered_map<cache_key, Matrix>::iterator i =
+        cache_v_.find(k);
+    if (i == cache_v_.end()) {
+        Matrix res(2 * n_ + 1, 2 * n_ + 1);
+        // fx-fx
+        for (Size i = 0; i < n_; ++i) {
+            for (Size j = 0; j <= i; ++j) {
+                res[i][j] = res[j][i] =
+                    // row 1
+                    p_->H_i(0, t0 + dt) * p_->H_i(0, t0 + dt) *
+                        p_->int_alpha_i_alpha_j(0, 0, t0, t0 + dt) -
+                    2.0 * p_->H_i(0, t0 + dt) *
+                        p_->int_H_i_alpha_i_alpha_j(0, 0, t0, t0 + dt) +
+                    p_->int_H_i_H_j_alpha_i_alpha_j(0, 0, t0, t0 + dt) -
+                    // row 2
+                    p_->H_i(0, t0 + dt) * p_->H_i(j + 1, t0 + dt) *
+                        p_->int_alpha_i_alpha_j(0, j + 1, t0, t0 + dt) +
+                    p_->H_i(j + 1, t0 + dt) *
+                        p_->int_H_i_alpha_i_alpha_j(0, j + 1, t0, t0 + dt) +
+                    p_->H_i(0, t0 + dt) *
+                        p_->int_H_i_alpha_i_alpha_j(j + 1, 0, t0, t0 + dt) -
+                    p_->int_H_i_H_j_alpha_i_alpha_j(0, j + 1, t0, t0 + dt) -
+                    // row 3
+                    p_->H_i(0, t0 + dt) * p_->H_i(i + 1, t0 + dt) *
+                        p_->int_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
+                    p_->H_i(i + 1, t0 + dt) *
+                        p_->int_H_i_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
+                    p_->H_i(0, t0 + dt) *
+                        p_->int_H_i_alpha_i_alpha_j(i + 1, 0, t0, t0 + dt) -
+                    p_->int_H_i_H_j_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
+                    // row 4
+                    p_->H_i(0, t0 + dt) *
+                        p_->int_alpha_i_sigma_j(0, j, t0, t0 + dt) -
+                    p_->int_H_i_alpha_i_sigma_j(0, j, t0, t0 + dt) +
+                    // row 5
+                    p_->H_i(0, t0 + dt) *
+                        p_->int_alpha_i_sigma_j(0, i, t0, t0 + dt) -
+                    p_->int_H_i_alpha_i_sigma_j(0, i, t0, t0 + dt) -
+                    // row 6
+                    p_->H_i(i + 1, t0 + dt) *
+                        p_->int_alpha_i_sigma_j(i + 1, j, t0, t0 + dt) +
+                    p_->int_H_i_alpha_i_sigma_j(i + 1, j, t0, t0 + dt) +
+                    // row 7
+                    p_->H_i(j + 1, t0 + dt) *
+                        p_->int_alpha_i_sigma_j(j + 1, i, t0, t0 + dt) +
+                    p_->int_H_i_alpha_i_sigma_j(j + 1, i, t0, t0 + dt) +
+                    // row 8
+                    p_->H_i(i + 1, t0 + dt) * p_->H_i(j + 1, t0 + dt) *
+                        p_->int_alpha_i_alpha_j(i + 1, j + 1, t0, t0 + dt) -
+                    p_->H_i(j + 1, t0 + dt) *
+                        p_->int_H_i_alpha_i_alpha_j(i + 1, j + 1, t0, t0 + dt) -
+                    p_->H_i(i + 1, t0 + dt) *
+                        p_->int_H_i_alpha_i_alpha_j(j + 1, i + 1, t0, t0 + dt) +
+                    p_->int_H_i_H_j_alpha_i_alpha_j(i + 1, j + 1, t0, t0 + dt) +
+                    // row 9
+                    p_->int_sigma_i_sigma_j(i, j, t0, t0 + dt);
+            }
         }
-    }
-    // fx-lgm
-    for (Size i = 0; i < n_ + 1; ++i) {
-        for (Size j = 0; j < n_; ++j) {
-            res[j][i + n_] = res[i + n_][j] =
-                p_->H_i(0, t0 + dt) *
-                    p_->int_alpha_i_alpha_j(0, i, t0, t0 + dt) -
-                p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
-                p_->H_i(j, t0 + dt) *
-                    p_->int_alpha_i_alpha_j(j, i, t0, t0 + dt) +
-                p_->int_H_i_alpha_i_alpha_j(j, i, t0, t0 + dt) +
-                p_->int_alpha_i_sigma_j(i, j, t0, t0 + dt);
+        // fx-lgm
+        for (Size i = 0; i < n_ + 1; ++i) {
+            for (Size j = 0; j < n_; ++j) {
+                res[j][i + n_] = res[i + n_][j] =
+                    p_->H_i(0, t0 + dt) *
+                        p_->int_alpha_i_alpha_j(0, i, t0, t0 + dt) -
+                    p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
+                    p_->H_i(j, t0 + dt) *
+                        p_->int_alpha_i_alpha_j(j, i, t0, t0 + dt) +
+                    p_->int_H_i_alpha_i_alpha_j(j, i, t0, t0 + dt) +
+                    p_->int_alpha_i_sigma_j(i, j, t0, t0 + dt);
+            }
         }
-    }
-    // lgm-lgm
-    for (Size i = 0; i < n_ + 1; ++i) {
-        for (Size j = 0; j <= i; ++j) {
-            res[i + n_][j + n_] = res[j + n_][i + n_] =
-                p_->int_alpha_i_alpha_j(i, j, t0, t0 + dt);
+        // lgm-lgm
+        for (Size i = 0; i < n_ + 1; ++i) {
+            for (Size j = 0; j <= i; ++j) {
+                res[i + n_][j + n_] = res[j + n_][i + n_] =
+                    p_->int_alpha_i_alpha_j(i, j, t0, t0 + dt);
+            }
         }
+        cache_v_.insert(std::make_pair(k, res));
+        return res;
+    } else {
+        Matrix tmp = i->second;
+        return tmp;
     }
-    return res;
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
 inline Disposable<Matrix>
 CcLgmProcess<Impl, ImplFx, ImplLgm>::stdDeviation(Time t0, const Array &x0,
                                                   Time dt) const {
-    Matrix tmp =
-        pseudoSqrt(covariance(t0, x0, dt), SalvagingAlgorithm::Spectral);
-    return tmp;
+    cache_key k = {t0, dt};
+    typename boost::unordered_map<cache_key, Matrix>::iterator i =
+        cache_s_.find(k);
+    if (i == cache_s_.end()) {
+        Matrix tmp =
+            pseudoSqrt(covariance(t0, x0, dt), SalvagingAlgorithm::Spectral);
+        cache_s_.insert(std::make_pair(k, tmp));
+        return tmp;
+    } else {
+        Matrix tmp = i->second;
+        return tmp;
+    }
 }
 
 // implementation
