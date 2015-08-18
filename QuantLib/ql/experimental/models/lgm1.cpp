@@ -92,10 +92,6 @@ void Lgm1::initialize() {
     alpha_ = PiecewiseConstantParameter(volsteptimes_, NoConstraint());
     kappa_ = ConstantParameter(kappaQuote_->value(), NoConstraint());
     updateAlpha();
-    stateProcess_ = boost::make_shared<
-        LgmStateProcess<detail::LgmPiecewiseAlphaConstantKappa> >(
-        parametrization());
-    registerWith(stateProcess_);
     alphaObserver_ = boost::make_shared<AlphaObserver>(this);
     kappaObserver_ = boost::make_shared<KappaObserver>(this);
     for (Size i = 0; i < alpha_.size(); ++i)
@@ -104,6 +100,10 @@ void Lgm1::initialize() {
     setParametrization(
         boost::make_shared<detail::LgmPiecewiseAlphaConstantKappa>(
             volsteptimesArray_, alpha_.params(), kappa_.params()));
+    stateProcess_ = boost::make_shared<
+        LgmStateProcess<detail::LgmPiecewiseAlphaConstantKappa> >(
+        parametrization());
+    registerWith(stateProcess_);
     parametrization()->update();
 }
 
