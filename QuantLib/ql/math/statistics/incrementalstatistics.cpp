@@ -53,9 +53,9 @@ namespace QuantLib {
         v *= sampleNumber_/(sampleNumber_-1.0);
 
 
-        QL_ENSURE(v >= 0.0,
-                  "negative variance (" << std::scientific << v << ")");
-
+        // QL_ENSURE(v >= 0.0,
+        //           "negative variance (" << std::scientific << v << ")");
+        v = std::max(v,0.0);
         return v;
     }
 
