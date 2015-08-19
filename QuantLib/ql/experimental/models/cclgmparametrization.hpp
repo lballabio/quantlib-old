@@ -60,7 +60,7 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
                 << lgmParametrizations.size() << ") minus one");
 
         // debug, use a better integrator later
-        integrator_ = boost::make_shared<SimpsonIntegral>(1E-8, 100);
+        integrator_ = boost::make_shared<SimpsonIntegral>(1E-10, 100);
     }
 
     void update() const;
