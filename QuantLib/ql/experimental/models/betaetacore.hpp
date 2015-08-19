@@ -316,12 +316,8 @@ inline const Real BetaEtaCore::kappa(const Size index) const {
 
 inline const Real BetaEtaCore::lambda(const Time t) const {
     Real kappa = this->kappa(lowerIndex(t));
-    // the model collapses with kappa near zero,
-    // so we just keep it away a bit - this is
-    // not a numerical issue, but inherent in the
-    // model construction
     if (std::fabs(kappa) < kappa_cutoff)
-        kappa = kappa > 0.0 ? kappa_cutoff : -kappa_cutoff;
+        return t;
     return (1.0 - exp(-kappa * t)) / kappa;
 }
 
