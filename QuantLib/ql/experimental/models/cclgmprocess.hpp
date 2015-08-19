@@ -133,10 +133,10 @@ inline Disposable<Array>
 CcLgmProcess<Impl, ImplFx, ImplLgm>::expectation(Time t0, const Array &x0,
                                                  Time dt) const {
     cache_key k = {t0, dt};
-    typename boost::unordered_map<cache_key, Array>::iterator i =
+    typename boost::unordered_map<cache_key, Array>::iterator it =
         cache_e_.find(k);
     Array res(2 * n_ + 1, 0.0);
-    if (i == cache_e_.end()) {
+    if (it == cache_e_.end()) {
         // fx
         for (Size i = 0; i < n_; ++i) {
             res[i] =
@@ -160,9 +160,9 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::expectation(Time t0, const Array &x0,
                     (-p_->int_H_i_alpha_i_alpha_j(i + 1, i + 1, t0, t0 + dt) +
                      p_->int_H_i_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) -
                      p_->int_alpha_i_sigma_j(i + 1, i, t0, t0 + dt)) -
-                p_->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, t0, t0 + dt) -
-                p_->int_H_i_H_j_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) +
-                p_->int_H_i_alpha_i_sigma_j(i, i, t0, t0 + dt);
+                p_->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, t0, t0 + dt) +
+                p_->int_H_i_H_j_alpha_i_alpha_j(0, i + 1, t0, t0 + dt) -
+                p_->int_H_i_alpha_i_sigma_j(i + 1, i, t0, t0 + dt);
         }
         // lgm
         for (Size i = 1; i < n_ + 1; ++i) {
@@ -172,7 +172,7 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::expectation(Time t0, const Array &x0,
         }
         cache_e_.insert(std::make_pair(k, res));
     } else {
-        res = i->second;
+        res = it->second;
     }
     for (Size i = 0; i < n_; ++i) {
         res[i] += x0[i] + (p_->H_i(0, t0 + dt) - p_->H_i(0, t0)) * x0[n_] -
@@ -192,7 +192,7 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::covariance(Time t0, const Array &x0,
     typename boost::unordered_map<cache_key, Matrix>::iterator i =
         cache_v_.find(k);
     if (i == cache_v_.end()) {
-        Matrix res(2 * n_ + 1, 2 * n_ + 1);
+        Matrix res(2 * n_ + 1, 2 * n_ + 1, 0.0);
         // fx-fx
         for (Size i = 0; i < n_; ++i) {
             for (Size j = 0; j <= i; ++j) {
@@ -230,7 +230,7 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::covariance(Time t0, const Array &x0,
                     // row 6
                     p_->H_i(i + 1, t0 + dt) *
                         p_->int_alpha_i_sigma_j(i + 1, j, t0, t0 + dt) +
-                    p_->int_H_i_alpha_i_sigma_j(i + 1, j, t0, t0 + dt) +
+                    p_->int_H_i_alpha_i_sigma_j(i + 1, j, t0, t0 + dt) -
                     // row 7
                     p_->H_i(j + 1, t0 + dt) *
                         p_->int_alpha_i_sigma_j(j + 1, i, t0, t0 + dt) +
