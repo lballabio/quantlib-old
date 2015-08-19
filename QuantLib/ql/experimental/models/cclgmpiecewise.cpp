@@ -18,6 +18,7 @@
 */
 
 #include <ql/experimental/models/cclgmpiecewise.hpp>
+#include <ql/math/comparison.hpp>
 
 namespace QuantLib {
 
@@ -39,6 +40,18 @@ CcLgmPiecewise::CcLgmPiecewise(
                "correlation matrix is "
                    << correlation_.rows() << " x " << correlation_.columns()
                    << ", expected " << (2 * n_ + 1) << " x " << (2 * n_ + 1));
+
+    for (Size i = 0; i < correlation_.rows(); ++i) {
+        for (Size j = 0; j < i; ++j) {
+            QL_REQUIRE(correlation_[i][j] == correlation_[j][i],
+                       "correlation matrix is not symmetric");
+            QL_REQUIRE(correlation_[i][j] >= -1 && correlation_[i][j] <= 1,
+                       "correlation matrix contains elements outside [-1,1]");
+        }
+        QL_REQUIRE(
+            close_enough(correlation_[i][i], 1.0),
+            "correlation matrix contains diagonal elements not equal to 1");
+    }
 }
 
 } // namespace detail
