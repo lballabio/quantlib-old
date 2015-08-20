@@ -28,6 +28,7 @@
 #include <ql/experimental/models/cclgmparametrization.hpp>
 #include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
 #include <ql/experimental/models/lgmfxpiecewisesigma.hpp>
+#include <ql/experimental/math/piecewiseintegral.hpp>
 
 #include <ql/math/matrix.hpp>
 

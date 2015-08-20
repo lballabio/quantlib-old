@@ -52,6 +52,22 @@ CcLgmPiecewise::CcLgmPiecewise(
             close_enough(correlation_[i][i], 1.0),
             "correlation matrix contains diagonal elements not equal to 1");
     }
+
+    std::vector<Time> allTimes;
+    for (Size i = 0; i < fxParametrizations.size(); ++i) {
+        allTimes.insert(allTimes.end(), fxParametrizations[i]->times().begin(),
+                        fxParametrizations[i]->times().end());
+    }
+    for (Size i = 0; i < lgmParametrizations.size(); ++i) {
+        allTimes.insert(allTimes.end(), lgmParametrizations[i]->times().begin(),
+                        lgmParametrizations[i]->times().end());
+    }
+
+    boost::shared_ptr<Integrator> simpson =
+        boost::make_shared<SimpsonIntegral>(1E-10, 100);
+
+    setIntegrator(
+        boost::make_shared<PiecewiseIntegral>(simpson, allTimes, true));
 }
 
 } // namespace detail
