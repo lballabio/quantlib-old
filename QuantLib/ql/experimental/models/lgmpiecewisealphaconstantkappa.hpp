@@ -47,6 +47,8 @@ class LgmPiecewiseAlphaConstantKappa
     const Real Hprime2Impl(const Time t) const;
     const void updateImpl();
 
+    const Array &times() { return times_; }
+
   private:
     const Array &times_, &alphas_, &kappa_;
     std::vector<Real> zetas_;

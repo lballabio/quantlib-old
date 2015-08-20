@@ -40,6 +40,8 @@ class LgmFxPiecewiseSigma : public LgmFxParametrization<LgmFxPiecewiseSigma> {
     const Real varianceImpl(const Time t) const;
     const Real stdDeviationImpl(const Time t) const;
 
+    const Array &times() { return times_; }
+
   private:
     const Array &times_, &sigmas_;
     std::vector<Real> variances_;
