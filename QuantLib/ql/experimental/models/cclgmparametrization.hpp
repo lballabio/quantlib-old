@@ -59,7 +59,7 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
                 << ") must be equal to the number of lgm parametrizations ("
                 << lgmParametrizations.size() << ") minus one");
 
-        // debug, use a better integrator later
+        // if no integrator is given, we provide a simple one as default
         integrator_ = boost::make_shared<SimpsonIntegral>(1E-10, 100);
     }
 
@@ -96,6 +96,7 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
     const Real rho_alpha_sigma(const Size i, const Size j) const;
     const Real rho_sigma_sigma(const Size i, const Size j) const;
 
+  protected:
     //! interface (required)
 
     const Real rho_alpha_alpha_impl(const Size i, const Size j) const;
@@ -118,6 +119,10 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
                                                 const Real b) const;
     const Real int_H_i_alpha_i_sigma_j_impl(const Size i, const Size j,
                                             const Real a, const Real b) const;
+
+    void setIntegrator(boost::shared_ptr<Integrator> &integrator) {
+        integrator_ = integrator;
+    }
 
   private:
     const Size n_;
