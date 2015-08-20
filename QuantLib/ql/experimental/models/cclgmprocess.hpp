@@ -270,6 +270,7 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::covariance(Time t0, const Array &x0,
         cache_v_.insert(std::make_pair(k, res));
         return res;
     } else {
+        // we need to make a copy here since a disposable is returned
         Matrix tmp = i->second;
         return tmp;
     }
@@ -288,6 +289,7 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::stdDeviation(Time t0, const Array &x0,
         cache_s_.insert(std::make_pair(k, tmp));
         return tmp;
     } else {
+        // we need to make a copy here since a disposable is returned
         Matrix tmp = i->second;
         return tmp;
     }
