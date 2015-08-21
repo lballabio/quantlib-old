@@ -1,11 +1,6 @@
 
-Release 1.6 - June 2015
-Notable changes since release 1.5:
-- in sync with QuantLib 1.6;
-- upgraded to SWIG 3.0.5;
-- exported Gaussian1DModel, GSR, GsrProcess and
-  Gaussian1dSwaptionEngine (thanks to Matthias Groncki);
-- extended StochasticProcess1D interface (thanks to Matthias Groncki);
-- exported inspectors for swap legs (thanks to Matthias Groncki);
-- exported new IDR, MYR, RUB and VND currencies;
-- exported new Moscow Exchange calendar.
+Release 1.6.1 - July 2015
+Changes since release 1.6:
+- added support for Visual Studio 2015.
+- added support for x86 target in C# projects (thanks to Grant Bartel).
+
