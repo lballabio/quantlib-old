@@ -14,6 +14,7 @@ this_include_HEADERS = \
 	cclgmparametrization.hpp \
 	cclgmpiecewise.hpp \
 	cclgmprocess.hpp \
+	fxoptionhelper.hpp \
 	gsrprocess_riskneutral.hpp \
 	lgm.hpp \
 	lgm1.hpp \
@@ -38,6 +39,7 @@ libModels_la_SOURCES = \
     betaetatabulation2.cpp \
 	cclgm1.cpp \
 	cclgmpiecewise.cpp \
+	fxoptionhelper.cpp \
 	gsrprocess_riskneutral.cpp \
 	lgm1.cpp \
 	lgmfxpiecewisesigma.cpp \

@@ -11,6 +11,7 @@
 #include <ql/experimental/models/cclgmparametrization.hpp>
 #include <ql/experimental/models/cclgmpiecewise.hpp>
 #include <ql/experimental/models/cclgmprocess.hpp>
+#include <ql/experimental/models/fxoptionhelper.hpp>
 #include <ql/experimental/models/gsrprocess_riskneutral.hpp>
 #include <ql/experimental/models/lgm.hpp>
 #include <ql/experimental/models/lgm1.hpp>
