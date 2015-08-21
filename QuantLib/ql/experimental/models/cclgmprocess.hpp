@@ -55,6 +55,9 @@ class CcLgmProcess : public StochasticProcess {
     //! clear cache
     void flushCache() const;
 
+    //! curves inspector
+    Handle<YieldTermStructure> curve(const Size i) const { return curves_[i]; }
+
   private:
     const boost::shared_ptr<
         detail::CcLgmParametrization<Impl, ImplFx, ImplLgm> > p_;
@@ -312,6 +315,9 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::CcLgmProcess(
                curves_.size()
                    << " curves given, while parametrization suggests "
                    << (n_ + 1));
+
+    for (Size i = 0; i < n_; ++i)
+        registerWith(fxSpots_[i]);
 }
 
 } // namesapce QuantLib

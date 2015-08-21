@@ -33,7 +33,7 @@ namespace QuantLib {
 
 template <class Impl> class Lgm : public Gaussian1dModel {
   public:
-    boost::shared_ptr<detail::LgmParametrization<Impl> >
+    const boost::shared_ptr<detail::LgmParametrization<Impl> >
     parametrization() const {
         return parametrization_;
     }

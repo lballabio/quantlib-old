@@ -25,34 +25,73 @@
 #define quantlib_multicurrency_lgm1_hpp
 
 #include <ql/experimental/models/cclgm.hpp>
-#include <ql/experimental/models/cclgmparametrization.hpp>
+#include <ql/experimental/models/cclgmpiecewise.hpp>
 #include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
 #include <ql/experimental/models/lgmfxpiecewisesigma.hpp>
 
 namespace QuantLib {
 
-class CcLgm1 : public CcLgm<CcLgmPiecewise, LgmFxPiecewiseSigma,
-                            LgmPiecewiseAlphaConstantKappa>,
+class CcLgm1 : public CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+                            detail::LgmPiecewiseAlphaConstantKappa>,
                public CalibratedModel {
   public:
-    CcLgm1(const std::vector<boost::shared_ptr<Lgm<ImplLgm> > > &models,
-           const std::vector<Real> &fxSpots,
+    CcLgm1(const std::vector<boost::shared_ptr<
+               Lgm<detail::LgmPiecewiseAlphaConstantKappa> > > &models,
+           const std::vector<Handle<Quote> > &fxSpots,
            const std::vector<Date> &fxVolStepDates,
            const std::vector<std::vector<Real> > &fxVolatilities,
-           const std::vector<Handle<YieldTermStructure> > &fxCurves =
-               std::vector<Handle<YieldTermStructure> >());
+           const Matrix &correlation,
+           const std::vector<Handle<YieldTermStructure> > &curves);
+
+    const Array &fxVolatility(Size i) {
+        QL_REQUIRE(i < n(), "index (" << i << ") out of bounds (0..." << n() - 1
+                                      << ")");
+        return arguments_[i].params();
+    }
+
+    // calibration constraints
+    Disposable<std::vector<bool> > MoveFxVolatility(Size i, Size step) {
+        QL_REQUIRE(i < n(), "fx index (" << i << ") out of range (0..."
+                                         << n() - 1 << ")");
+        QL_REQUIRE(step <= fxVolStepTimes_.size(),
+                   "fx volatility step (" << step << ") out of range (0..."
+                                          << fxVolStepTimes_.size() << ")");
+        std::vector<bool> res(n() * (fxVolStepTimes_.size() + 1), true);
+        res[n() * i + step] = false;
+        return res;
+    }
+
+    // calibrate the stepwise fx volatilities dom - currency(i)
+    void calibrateFxVolatilitiesIterative(
+        Size i,
+        const std::vector<boost::shared_ptr<CalibrationHelper> > &helpers,
+        OptimizationMethod &method, const EndCriteria &endCriteria,
+        const Constraint &constraint = Constraint(),
+        const std::vector<Real> &weights = std::vector<Real>()) {
+        for (Size j = 0; j < helpers.size(); ++i) {
+            std::vector<boost::shared_ptr<CalibrationHelper> > h(1, helpers[i]);
+            calibrate(h, method, endCriteria, constraint, weights,
+                      MoveFxVolatility(i, j));
+        }
+    }
+
+  protected:
+    void generateArguments() {
+        CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+              detail::LgmPiecewiseAlphaConstantKappa>::update();
+    }
 
   private:
     void updateTimes() const;
     void initialize();
 
     void update() {
-        CcLgm<CcLgmPiecewise, LgmFxPiecewiseSignma,
-              LgmPiecewiseAlphaConstantKappa>::update();
         updateTimes();
+        CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+              detail::LgmPiecewiseAlphaConstantKappa>::update();
     }
 
-    const std::vector<Real> fxSpots_;
+    const std::vector<Handle<Quote> > fxSpots_;
     const std::vector<Date> fxVolStepDates_;
     const std::vector<std::vector<Real> > fxVolatilities_;
     const Matrix correlation_;

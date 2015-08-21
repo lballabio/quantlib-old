@@ -27,6 +27,7 @@
 #include <ql/patterns/curiouslyrecurring.hpp>
 #include <ql/types.hpp>
 #include <ql/errors.hpp>
+#include <ql/math/array.hpp>
 
 namespace QuantLib {
 
@@ -35,13 +36,14 @@ namespace detail {
 template <class Impl>
 class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
-    void update();
+    void update() const;
     //! inspectors
     const Real zeta(const Time t) const;
     const Real alpha(const Time t) const;
     const Real H(const Time t) const;
     const Real Hprime(const Time t) const;
     const Real Hprime2(const Time t) const;
+    const Array &times() const;
 
     //! corresponding Hull White parameters
     const Real HullWhiteSigma(Time t) const;
@@ -51,12 +53,13 @@ class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
     LgmParametrization() : h_(1E-6) {}
 
     //! interface
-    const void updateImpl() {}          // optional to implement (.)
+    const void updateImpl() const {}          // optional to implement (.)
     const Real zetaImpl(const Time) const;    // must be implemented   (*)
     const Real alphaImpl(const Time) const;   // (.)
     const Real HImpl(const Time) const;       // (*)
     const Real HprimeImpl(const Time) const;  // (.)
     const Real Hprime2Impl(const Time) const; // (.)
+    const Array &timesImpl() const;           // (.)
 
   private:
     const Real h_;
@@ -64,7 +67,7 @@ class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
 
 // inline
 
-template <class Impl> inline void LgmParametrization<Impl>::update() {
+template <class Impl> inline void LgmParametrization<Impl>::update() const {
     return this->impl().updateImpl();
 }
 
@@ -91,6 +94,11 @@ inline const Real LgmParametrization<Impl>::Hprime(const Time t) const {
 template <class Impl>
 inline const Real LgmParametrization<Impl>::Hprime2(const Time t) const {
     return this->impl().Hprime2Impl(t);
+}
+
+template <class Impl>
+inline const Array &LgmParametrization<Impl>::times() const {
+    return this->impl().timesImpl();
 }
 
 template <class Impl>
@@ -128,6 +136,11 @@ inline const Real LgmParametrization<Impl>::HprimeImpl(const Time t) const {
 template <class Impl>
 inline const Real LgmParametrization<Impl>::Hprime2Impl(const Time t) const {
     return (H(t + 0.5 * h_) - 2.0 * H(t) + H(t - 0.5 * h_)) / (h_ * h_);
+}
+
+template <class Impl>
+inline const Array &LgmParametrization<Impl>::timesImpl() const {
+    QL_FAIL("times not provided");
 }
 
 } // namespace detail

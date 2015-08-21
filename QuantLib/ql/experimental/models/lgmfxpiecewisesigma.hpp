@@ -35,21 +35,21 @@ class LgmFxPiecewiseSigma : public LgmFxParametrization<LgmFxPiecewiseSigma> {
   public:
     LgmFxPiecewiseSigma(const Array &times, const Array &sigmas);
 
-    const void updateImpl();
+    const void updateImpl() const;
     const Real sigmaImpl(const Time t) const;
     const Real varianceImpl(const Time t) const;
     const Real stdDeviationImpl(const Time t) const;
 
-    const Array &times() { return times_; }
+    const Array &timesImpl() const { return times_; }
 
   private:
     const Array &times_, &sigmas_;
-    std::vector<Real> variances_;
+    mutable std::vector<Real> variances_;
 };
 
 // inline definitions
 
-inline const void LgmFxPiecewiseSigma::updateImpl() {
+inline const void LgmFxPiecewiseSigma::updateImpl() const {
     Real sum = 0.0;
     variances_.resize(times_.size());
     for (Size i = 0; i < times_.size(); ++i) {

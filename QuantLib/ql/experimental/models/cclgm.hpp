@@ -25,47 +25,31 @@
 #define quantlib_multicurrency_lgm_hpp
 
 #include <ql/experimental/models/lgm.hpp>
+#include <ql/experimental/models/cclgmparametrization.hpp>
+#include <ql/experimental/models/cclgmprocess.hpp>
 
 namespace QuantLib {
 
 template <class Impl, class ImplFx, class ImplLgm>
-class CcLgm : public CalibratedModel {
+class CcLgm : public virtual Observer, public virtual Observable {
   public:
-    boost::shared_ptr<detail::CcLgmParametrization<Impl, ImplFx, ImplLgm> >
-    parametrization() {
+    const boost::shared_ptr<
+        detail::CcLgmParametrization<Impl, ImplFx, ImplLgm> >
+    parametrization() const {
         return parametrization_;
     }
 
-    const boost::shared_ptr<Lgm<ImplLgm> > model(Size i) const {
+    const boost::shared_ptr<Lgm<ImplLgm> > model(const Size i) const {
         return models_[i];
     }
+
+    const Handle<YieldTermStructure> termStructure(const Size i) const {
+        return boost::static_pointer_cast<CcLgmProcess<Impl, ImplFx, ImplLgm> >(
+                   stateProcess())
+            ->curve(i);
+    }
+
     const Size n() const { return n_; }
-
-    // calibration constraints
-    Disposable<std::vector<bool> > MoveFXVolatility(Size i, Size step) {
-        QL_REQUIRE(i < n_, "fx index (" << i << ") out of range (0..." << n_ - 1
-                                        << ")");
-        QL_REQUIRE(step <= fxVolStepTimes_.size(),
-                   "fx volatility step (" << step << ") out of range (0..."
-                                          << fxVolStepTimes_.size() << ")");
-        std::vector<bool> res(n_ * (fxVolStepTimes_.size() + 1), true);
-        res[n_ * i + step] = false;
-        return res;
-    }
-
-    // calibrate the stepwise fx volatilities dom - currency(i)
-    void calibrateFxVolatilitiesIterative(
-        Size i,
-        const std::vector<boost::shared_ptr<CalibrationHelper> > &helpers,
-        OptimizationMethod &method, const EndCriteria &endCriteria,
-        const Constraint &constraint = Constraint(),
-        const std::vector<Real> &weights = std::vector<Real>()) {
-        for (Size j = 0; j < helpers.size(); ++i) {
-            std::vector<boost::shared_ptr<CalibrationHelper> > h(1, helpers[i]);
-            calibrate(h, method, endCriteria, constraint, weights,
-                      MoveCurrencyFXVolatility(i, j));
-        }
-    }
 
     boost::shared_ptr<StochasticProcess> stateProcess() const {
         return process_;
@@ -74,37 +58,55 @@ class CcLgm : public CalibratedModel {
   protected:
     CcLgm(const std::vector<boost::shared_ptr<Lgm<ImplLgm> > > &models);
 
-    void generateArguments() {
-        boost::static_pointer_cast<CcLgmProcess<Impl, ImplFx, ImplLgm> >(
-            stateProcess()->flushCache());
-        notifyObservers();
-    }
-
   protected:
-    setParametrization(const bost::shared_ptr<detail::CcLgmParametrization<
+    void
+    setParametrization(const boost::shared_ptr<detail::CcLgmParametrization<
                            Impl, ImplFx, ImplLgm> > parametrization) {
         parametrization_ = parametrization;
-        QL_REQUIRE(parametrization.n() == n_,
+        QL_REQUIRE(parametrization->n() == n(),
                    "parametrization's dimension (n="
-                       << parametrization.n()
+                       << parametrization->n()
                        << ") is inconsistent to the number of models ("
-                       << models_.size() << "=n+1)");
+                       << n() + 1 << "=n+1)");
+        parametrization_->update();
     }
+
+    void update() {
+        parametrization_->update();
+        boost::static_pointer_cast<CcLgmProcess<Impl, ImplFx, ImplLgm> >(
+            stateProcess())
+            ->flushCache();
+        this->notifyObservers();
+    }
+
+    boost::shared_ptr<StochasticProcess> process_;
 
   private:
     Size n_;
-    const std::vector<boost::shared_ptr<Gsr> > models_;
-    boost::shared_ptr<StochasticProcess> process_;
+    boost::shared_ptr<detail::CcLgmParametrization<Impl, ImplFx, ImplLgm> >
+        parametrization_;
+    const std::vector<boost::shared_ptr<Lgm<ImplLgm> > > models_;
 };
 
 // implementation
 
-template <class Impl, ImplFx, ImplLgm>
+template <class Impl, class ImplFx, class ImplLgm>
 CcLgm<Impl, ImplFx, ImplLgm>::CcLgm(
     const std::vector<boost::shared_ptr<Lgm<ImplLgm> > > &models)
-    : n_(models_.size() - 1) {
+    : n_(models_.size() - 1), models_(models) {
     QL_REQUIRE(models.size() >= 2, "at least two models ("
                                        << models.size() << ") must be given");
+    for (Size i = 1; i < models.size(); ++i) {
+        QL_REQUIRE(models_[i]->termStructure()->referenceDate() ==
+                       models_[0]->termStructure()->referenceDate(),
+                   "model #" << i << " has a different reference date ("
+                             << models_[i]->termStructure()->referenceDate()
+                             << ") than model #0 ("
+                             << models_[0]->termStructure()->referenceDate());
+    }
+    for (Size i = 0; i < models.size(); ++i) {
+        registerWith(models_[i]);
+    }
 }
 
 } // namespace QuantLib

@@ -17,43 +17,44 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-#include <ql/experimental/models/cclgm1.hpp
+#include <ql/experimental/models/cclgm1.hpp>
+#include <ql/experimental/models/lgm1.hpp>
 
 namespace QuantLib {
 
-CcLgm1::CcLgm1(const std::vector<boost::shared_ptr<Lgm<ImplLgm> > > &models,
-               const std::vector<Real> &fxSpots,
+CcLgm1::CcLgm1(const std::vector<boost::shared_ptr<
+                   Lgm<detail::LgmPiecewiseAlphaConstantKappa> > > &models,
+               const std::vector<Handle<Quote> > &fxSpots,
                const std::vector<Date> &fxVolStepDates,
                const std::vector<std::vector<Real> > &fxVolatilities,
                const Matrix &correlation,
                const std::vector<Handle<YieldTermStructure> > &curves)
-    : CalibratedModel(fxSpots.size()),
-      CcLgm<CcLgmPiecewise, LgmFxPiecewiseSigma,
-            LgmPiecewiseAlphaConstantKappa>(models),
-      fxSpots_(fxSpots), fxVolStepDates_(fxVolStepDates),
-      fxVolatilities_(fxVolatilities), correlation_(correlation),
-      curves_(curves) {
+    : CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+            detail::LgmPiecewiseAlphaConstantKappa>(models),
+      CalibratedModel(fxSpots.size()), fxSpots_(fxSpots),
+      fxVolStepDates_(fxVolStepDates), fxVolatilities_(fxVolatilities),
+      correlation_(correlation), curves_(curves) {
     initialize();
 }
 
 void CcLgm1::initialize() {
-    QL_REQUIRE(curves.size() == n() + 1,
-               "there must be n+1 = " << n() + 1 << " curves, " << curves.size()
-                                      << " given.");
-    QL_REQUIRE(fxSpots.size() == n(),
-               "there must be n = " << n() << " fx spots, " << fxSpots.size()
+    QL_REQUIRE(curves_.size() == n() + 1,
+               "there must be n+1 = " << n() + 1 << " curves, "
+                                      << curves_.size() << " given.");
+    QL_REQUIRE(fxSpots_.size() == n(),
+               "there must be n = " << n() << " fx spots, " << fxSpots_.size()
                                     << " given.");
 
-    QL_REQUIRE(fxVolatilities.size() == n(),
+    QL_REQUIRE(fxVolatilities_.size() == n(),
                "there must be n = " << n() << " fx volatility vectors, "
-                                    << fxVolatilities.size() << " given.");
+                                    << fxVolatilities_.size() << " given.");
 
     for (Size i = 0; i < n(); ++i)
-        QL_REQUIRE(fxVolatilities[i].size() == fxVolStepDates_.size() + 1,
+        QL_REQUIRE(fxVolatilities_[i].size() == fxVolStepDates_.size() + 1,
                    "the must be k+1 = "
                        << fxVolStepDates_.size() + 1
                        << " fx volatilities given, but for fx pair " << i
-                       << " there are " << fxVolatilities[i].size() << ".");
+                       << " there are " << fxVolatilities_[i].size() << ".");
 
     fxVolStepTimesArray_ = Array(fxVolStepDates_.size());
     updateTimes();
@@ -61,47 +62,50 @@ void CcLgm1::initialize() {
     for (Size i = 0; i < n(); ++i) {
         arguments_[i] =
             PiecewiseConstantParameter(fxVolStepTimes_, NoConstraint());
-        for (Size j = 0; j < fxVolatilities[i].size(); ++j) {
-            arguments_[i].setParam(j, fxVolatilities[j]);
+        for (Size j = 0; j < fxVolatilities_[i].size(); ++j) {
+            arguments_[i].setParam(j, fxVolatilities_[i][j]);
         }
     }
 
     for (Size i = 0; i < n() + 1; ++i) {
         if (curves_[i].empty()) {
-            curves_[i] = models(i)->termstructure();
+            curves_[i] = model(i)->termStructure();
+        } else {
+            registerWith(curves_[i]);
         }
     }
 
-    std::vector<boost::shared_ptr<LgmFxParametrization<LgmFxPiecewiseSigma> > >
-        fxParametrizations;
-    std::vector<
-        boost::shared_ptr<LgmParametrization<LgmPiecewiseAlphaConstantKappa> > >
-        lgmParametrizations;
+    std::vector<boost::shared_ptr<detail::LgmFxParametrization<
+        detail::LgmFxPiecewiseSigma> > > fxParametrizations;
+    std::vector<boost::shared_ptr<detail::LgmParametrization<
+        detail::LgmPiecewiseAlphaConstantKappa> > > lgmParametrizations;
     for (Size i = 0; i < n(); ++i) {
-        fxParametrizations.push_back(boost::make_shared<LgmFxPiecewiseSigma>(
-            fxVolStepTimes_, arguments_[i].params()));
+        fxParametrizations.push_back(
+            boost::make_shared<detail::LgmFxPiecewiseSigma>(
+                fxVolStepTimesArray_, arguments_[i].params()));
     }
     for (Size i = 0; i < n() + 1; ++i) {
         lgmParametrizations.push_back(model(i)->parametrization());
     }
 
-    setParametrization(boost::make_shared<CcLgmPiecewise>(
+    setParametrization(boost::make_shared<detail::CcLgmPiecewise>(
         fxParametrizations, lgmParametrizations, correlation_));
 
-    stateProcess_ =
-        boost::make_shared<CcLgmProcess<CcLgmPiecewise, LgmFxPiecewiseSigma,
-                                        LgmPiecewiseAlphaConstantKappa> >(
-            parametrization(), fxSpots_, cuves_);
+    process_ = boost::make_shared<
+        CcLgmProcess<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+                     detail::LgmPiecewiseAlphaConstantKappa> >(
+        parametrization(), fxSpots_, curves_);
+    registerWith(process_);
 }
 
 void CcLgm1::updateTimes() const {
     fxVolStepTimes_.clear();
     int j = 0;
-    for (std::vector<Date>::const_iterator i = fxVolStepDates_.begin(),
-                                           i != fxVolStepDates_.end();
-         ++i, ++j) {
-        fxVolStepTimes_.push_back(termStructure()->timeFromReference(*i));
-        fxVolStepTimesArray_[j] = volststeptimes_[j];
+    for (std::vector<Date>::const_iterator i = fxVolStepDates_.begin();
+         i != fxVolStepDates_.end(); ++i, ++j) {
+        fxVolStepTimes_.push_back(
+            model(0)->termStructure()->timeFromReference(*i));
+        fxVolStepTimesArray_[j] = fxVolStepTimes_[j];
         if (j == 0)
             QL_REQUIRE(fxVolStepTimes_[0] > 0.0,
                        "fx volsteptimes must be positive ("
@@ -109,13 +113,15 @@ void CcLgm1::updateTimes() const {
         else
             QL_REQUIRE(fxVolStepTimes_[j] > fxVolStepTimes_[j - 1],
                        "fx volsteptimes must be increasing ("
-                               << fxVolStepTimes_[j - 1] <
-                           "@" << (j - 1) << ", " << fxVolStepTimes_[j] << "@"
-                               << j << ")");
+                           << fxVolStepTimes_[j - 1] << "@" << (j - 1) << ", "
+                           << fxVolStepTimes_[j] << "@" << j << ")");
     }
     if (stateProcess() != NULL)
-        boost::static_pointer_cast<CcLgmProcess<Impl, ImplFx, ImplLgm> >(
-            stateProcess()->flushCache());
+        boost::static_pointer_cast<
+            CcLgmProcess<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+                         detail::LgmPiecewiseAlphaConstantKappa> >(
+            stateProcess())
+            ->flushCache();
     if (parametrization() != NULL)
         parametrization()->update();
 }

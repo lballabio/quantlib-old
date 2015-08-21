@@ -28,6 +28,7 @@
 #include <ql/patterns/curiouslyrecurring.hpp>
 #include <ql/types.hpp>
 #include <ql/errors.hpp>
+#include <ql/math/array.hpp>
 
 namespace QuantLib {
 
@@ -36,20 +37,22 @@ namespace detail {
 template <class Impl>
 class LgmFxParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
-    void update();
+    void update() const;
     //! inspectors
     const Real sigma(const Time t) const;
     const Real variance(const Time t) const;
     const Real stdDeviation(const Time t) const;
+    const Array &times() const;
 
     //! constructor with step size for numerical differentiation
     LgmFxParametrization() : h_(1E-6) {}
 
     //! interface
-    const void updateImpl() {}             // optional to implement (.)
+    const void updateImpl() {}                   // optional to implement (.)
     const Real varianceImpl(const Time t) const; // must be implemented (*)
     const Real sigmaImpl(const Time t) const;    // (.)
     const Real stdDeviationImpl(const Time t) const; // (.)
+    const Array &timesImpl() const;                  // (.)
 
   private:
     const Real h_;
@@ -57,7 +60,7 @@ class LgmFxParametrization : public CuriouslyRecurringTemplate<Impl> {
 
 // inline
 
-template <class Impl> inline void LgmFxParametrization<Impl>::update() {
+template <class Impl> inline void LgmFxParametrization<Impl>::update() const {
     return this->impl().updateImpl();
 }
 
@@ -76,6 +79,11 @@ inline const Real LgmFxParametrization<Impl>::stdDeviation(const Time t) const {
     return this->impl().stdDeviationImpl(t);
 }
 
+template <class Impl>
+inline const Array &LgmFxParametrization<Impl>::times() const {
+    return this->impl().times();
+}
+
 // default implementations
 
 template <class Impl>
@@ -92,6 +100,11 @@ template <class Impl>
 inline const Real
 LgmFxParametrization<Impl>::stdDeviationImpl(const Time t) const {
     return std::sqrt(variance(t));
+}
+
+template <class Impl>
+inline const Array &LgmFxParametrization<Impl>::timesImpl() const {
+    QL_FAIL("times not provided");
 }
 
 } // namespace detail
