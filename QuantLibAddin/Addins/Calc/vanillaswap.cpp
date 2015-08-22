@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2011, 2015 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
@@ -23,7 +23,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -36,55 +36,216 @@
 #include <qlo/indexes/swapindex.hpp>
 #include <qlo/ratehelpers.hpp>
 #include <qlo/schedule.hpp>
+#include <qlo/pricingengines.hpp>
 #include <qlo/termstructures.hpp>
 #include <ql/indexes/iborindex.hpp>
 #include <ql/indexes/swapindex.hpp>
 #include <ql/termstructures/yield/ratehelpers.hpp>
 #include <qlo/valueobjects/vo_vanillaswap.hpp>
 
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlMakeVanillaSwap(
-        const STRING &ObjectId,
-        const STRING &SwapTenor,
-        const STRING &IborIndex,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlMakeIMMSwap(
+        const ANY &ObjectId,
+        const ANY &SwapTenor,
+        const ANY &IborIndex,
         const ANY &FixedRate,
-        const STRING &ForwardStart,
+        const ANY &FirstImmDate,
         const ANY &FixDayCounter,
         const ANY &Spread,
-        const ANY &Permanent,
+        const ANY &PricingEngineID,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string SwapTenorCpp = ouStringToStlString(SwapTenor);
+        std::string SwapTenorCpp;
+        calcToScalar(SwapTenorCpp, SwapTenor);
 
-        std::string IborIndexCpp = ouStringToStlString(IborIndex);
+        std::string IborIndexCpp;
+        calcToScalar(IborIndexCpp, IborIndex);
 
         double FixedRateCpp;
-        calcToScalar(FixedRateCpp, FixedRate);
+        if(FixedRate.hasValue()) 
+            calcToScalar(FixedRateCpp, FixedRate);
+        else
+            FixedRateCpp = QuantLib::Null<QuantLib::Rate>();
 
-        std::string ForwardStartCpp = ouStringToStlString(ForwardStart);
+        ObjectHandler::property_t FirstImmDateCpp;
+        calcToScalar(FirstImmDateCpp, FirstImmDate);
 
         std::string FixDayCounterCpp;
-        calcToScalar(FixDayCounterCpp, FixDayCounter);
+        if(FixDayCounter.hasValue()) 
+            calcToScalar(FixDayCounterCpp, FixDayCounter);
+        else
+            FixDayCounterCpp = "30/360 (Bond Basis)";
 
         double SpreadCpp;
-        calcToScalar(SpreadCpp, Spread);
+        if(Spread.hasValue()) 
+            calcToScalar(SpreadCpp, Spread);
+        else
+            SpreadCpp = 0.0;
+
+        std::string PricingEngineIDCpp;
+        calcToScalar(PricingEngineIDCpp, PricingEngineID);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
         // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Period SwapTenorLib;
+        calcToScalar(SwapTenorLib, SwapTenor);
+
+        QuantLib::Date FirstImmDateLib;
+        if(!FirstImmDate.hasValue() and typeid(QuantLib::Date())==typeid(QuantLib::Date())) 
+            FirstImmDateLib = QuantLib::Date();
+        else
+            calcToScalar(FirstImmDateLib, FirstImmDate);
+
+        // convert object IDs into library objects
+
+        OH_GET_REFERENCE(IborIndexLibObjPtr, IborIndexCpp,
+            QuantLibAddin::IborIndex, QuantLib::IborIndex)
+
+        OH_GET_REFERENCE(PricingEngineIDLibObjPtr, PricingEngineIDCpp,
+            QuantLibAddin::PricingEngine, QuantLib::PricingEngine)
+
+        // convert input datatypes to QuantLib enumerated datatypes
+
+        QuantLib::DayCounter FixDayCounterEnum =
+            ObjectHandler::Create<QuantLib::DayCounter>()(FixDayCounterCpp);
+
+        // Construct the Value Object
+
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new QuantLibAddin::ValueObjects::qlMakeIMMSwap(
+                ObjectIdCpp,
+                SwapTenorCpp,
+                IborIndexCpp,
+                FixedRateCpp,
+                FirstImmDateCpp,
+                FixDayCounterCpp,
+                SpreadCpp,
+                PricingEngineIDCpp,
+                PermanentCpp));
+
+        // Construct the Object
+        
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new QuantLibAddin::VanillaSwap(
+                valueObject,
+                SwapTenorLib,
+                IborIndexLibObjPtr,
+                FixedRateCpp,
+                FirstImmDateLib,
+                FixDayCounterEnum,
+                SpreadCpp,
+                PricingEngineIDLibObjPtr,
+                PermanentCpp));
+
+        // Store the Object in the Repository
+
+        std::string returnValue =
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
+
+        // Convert and return the return value
+
+
+
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
+
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlMakeIMMSwap: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlMakeVanillaSwap(
+        const ANY &ObjectId,
+        const ANY &SettlDays,
+        const ANY &SwapTenor,
+        const ANY &IborIndex,
+        const ANY &FixedRate,
+        const ANY &ForwardStart,
+        const ANY &FixDayCounter,
+        const ANY &Spread,
+        const ANY &PricingEngineID,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        long SettlDaysCpp;
+        calcToScalar(SettlDaysCpp, SettlDays);
+
+        std::string SwapTenorCpp;
+        calcToScalar(SwapTenorCpp, SwapTenor);
+
+        std::string IborIndexCpp;
+        calcToScalar(IborIndexCpp, IborIndex);
+
+        double FixedRateCpp;
+        if(FixedRate.hasValue()) 
+            calcToScalar(FixedRateCpp, FixedRate);
+        else
+            FixedRateCpp = QuantLib::Null<QuantLib::Rate>();
+
+        std::string ForwardStartCpp;
+        calcToScalar(ForwardStartCpp, ForwardStart);
+
+        std::string FixDayCounterCpp;
+        if(FixDayCounter.hasValue()) 
+            calcToScalar(FixDayCounterCpp, FixDayCounter);
+        else
+            FixDayCounterCpp = "DayCounter";
+
+        double SpreadCpp;
+        if(Spread.hasValue()) 
+            calcToScalar(SpreadCpp, Spread);
+        else
+            SpreadCpp = 0.0;
+
+        std::string PricingEngineIDCpp;
+        calcToScalar(PricingEngineIDCpp, PricingEngineID);
+
+        bool PermanentCpp;
+        calcToScalar(PermanentCpp, Permanent);
+
+        // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Natural SettlDaysLib;
+        calcToScalar(SettlDaysLib, SettlDays);
 
         QuantLib::Period SwapTenorLib;
         calcToScalar(SwapTenorLib, SwapTenor);
@@ -97,6 +258,9 @@ STRING SAL_CALL CalcAddins_impl::qlMakeVanillaSwap(
         OH_GET_REFERENCE(IborIndexLibObjPtr, IborIndexCpp,
             QuantLibAddin::IborIndex, QuantLib::IborIndex)
 
+        OH_GET_REFERENCE(PricingEngineIDLibObjPtr, PricingEngineIDCpp,
+            QuantLibAddin::PricingEngine, QuantLib::PricingEngine)
+
         // convert input datatypes to QuantLib enumerated datatypes
 
         QuantLib::DayCounter FixDayCounterEnum =
@@ -107,12 +271,14 @@ STRING SAL_CALL CalcAddins_impl::qlMakeVanillaSwap(
         boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
             new QuantLibAddin::ValueObjects::qlMakeVanillaSwap(
                 ObjectIdCpp,
+                SettlDaysCpp,
                 SwapTenorCpp,
                 IborIndexCpp,
                 FixedRateCpp,
                 ForwardStartCpp,
                 FixDayCounterCpp,
                 SpreadCpp,
+                PricingEngineIDCpp,
                 PermanentCpp));
 
         // Construct the Object
@@ -120,78 +286,118 @@ STRING SAL_CALL CalcAddins_impl::qlMakeVanillaSwap(
         boost::shared_ptr<ObjectHandler::Object> object(
             new QuantLibAddin::VanillaSwap(
                 valueObject,
+                SettlDaysLib,
                 SwapTenorLib,
                 IborIndexLibObjPtr,
                 FixedRateCpp,
                 ForwardStartLib,
                 FixDayCounterEnum,
                 SpreadCpp,
+                PricingEngineIDLibObjPtr,
                 PermanentCpp));
 
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlMakeVanillaSwap: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlMakeVanillaSwap: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlVanillaSwap(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwap(
+        const ANY &ObjectId,
         const ANY &PayerReceiver,
         const ANY &Nominal,
-        const STRING &FixSchedule,
+        const ANY &FixSchedule,
         const ANY &FixedRate,
-        const STRING &FixDayCounter,
-        const STRING &FloatingLegSchedule,
-        const STRING &IborIndex,
+        const ANY &FixDayCounter,
+        const ANY &FloatingLegSchedule,
+        const ANY &IborIndex,
         const ANY &Spread,
-        const STRING &FloatingLegDayCounter,
+        const ANY &FloatingLegDayCounter,
         const ANY &PaymentConvention,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         std::string PayerReceiverCpp;
-        calcToScalar(PayerReceiverCpp, PayerReceiver);
+        if(PayerReceiver.hasValue()) 
+            calcToScalar(PayerReceiverCpp, PayerReceiver);
+        else
+            PayerReceiverCpp = "Payer";
 
         double NominalCpp;
-        calcToScalar(NominalCpp, Nominal);
+        if(Nominal.hasValue()) 
+            calcToScalar(NominalCpp, Nominal);
+        else
+            NominalCpp = 100;
 
-        std::string FixScheduleCpp = ouStringToStlString(FixSchedule);
+        std::string FixScheduleCpp;
+        calcToScalar(FixScheduleCpp, FixSchedule);
 
         double FixedRateCpp;
-        calcToScalar(FixedRateCpp, FixedRate);
+        if(FixedRate.hasValue()) 
+            calcToScalar(FixedRateCpp, FixedRate);
+        else
+            FixedRateCpp = 0.0;
 
-        std::string FixDayCounterCpp = ouStringToStlString(FixDayCounter);
+        std::string FixDayCounterCpp;
+        calcToScalar(FixDayCounterCpp, FixDayCounter);
 
-        std::string FloatingLegScheduleCpp = ouStringToStlString(FloatingLegSchedule);
+        std::string FloatingLegScheduleCpp;
+        calcToScalar(FloatingLegScheduleCpp, FloatingLegSchedule);
 
-        std::string IborIndexCpp = ouStringToStlString(IborIndex);
+        std::string IborIndexCpp;
+        calcToScalar(IborIndexCpp, IborIndex);
 
         double SpreadCpp;
-        calcToScalar(SpreadCpp, Spread);
+        if(Spread.hasValue()) 
+            calcToScalar(SpreadCpp, Spread);
+        else
+            SpreadCpp = 0.0;
 
-        std::string FloatingLegDayCounterCpp = ouStringToStlString(FloatingLegDayCounter);
+        std::string FloatingLegDayCounterCpp;
+        calcToScalar(FloatingLegDayCounterCpp, FloatingLegDayCounter);
 
         std::string PaymentConventionCpp;
-        calcToScalar(PaymentConventionCpp, PaymentConvention);
+        if(PaymentConvention.hasValue()) 
+            calcToScalar(PaymentConventionCpp, PaymentConvention);
+        else
+            PaymentConventionCpp = "Following";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -258,30 +464,48 @@ STRING SAL_CALL CalcAddins_impl::qlVanillaSwap(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlVanillaSwap: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwap: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlVanillaSwapFairRate(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwapFairRate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -290,28 +514,49 @@ double SAL_CALL CalcAddins_impl::qlVanillaSwapFairRate(
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->fairRate();
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->fairRate();
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlVanillaSwapFairRate: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwapFairRate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlVanillaSwapFairSpread(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwapFairSpread(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -320,28 +565,49 @@ double SAL_CALL CalcAddins_impl::qlVanillaSwapFairSpread(
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->fairSpread();
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->fairSpread();
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlVanillaSwapFairSpread: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwapFairSpread: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlVanillaSwapFixedLegBPS(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwapFixedLegNPV(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -350,28 +616,49 @@ double SAL_CALL CalcAddins_impl::qlVanillaSwapFixedLegBPS(
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->fixedLegBPS();
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->fixedLegNPV();
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlVanillaSwapFixedLegBPS: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwapFixedLegNPV: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlVanillaSwapFixedLegNPV(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwapFixedRate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -380,28 +667,49 @@ double SAL_CALL CalcAddins_impl::qlVanillaSwapFixedLegNPV(
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->fixedLegNPV();
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->fixedRate();
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlVanillaSwapFixedLegNPV: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwapFixedRate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlVanillaSwapFloatingLegBPS(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwapFloatingLegBPS(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -410,28 +718,49 @@ double SAL_CALL CalcAddins_impl::qlVanillaSwapFloatingLegBPS(
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->floatingLegBPS();
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->floatingLegBPS();
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlVanillaSwapFloatingLegBPS: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwapFloatingLegBPS: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlVanillaSwapFloatingLegNPV(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwapFloatingLegNPV(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -440,17 +769,139 @@ double SAL_CALL CalcAddins_impl::qlVanillaSwapFloatingLegNPV(
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->floatingLegNPV();
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->floatingLegNPV();
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlVanillaSwapFloatingLegNPV: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwapFloatingLegNPV: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwapNominal(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        // convert object IDs into library objects
+
+        OH_GET_REFERENCE(ObjectIdLibObjPtr, ObjectIdCpp,
+            QuantLibAddin::VanillaSwap, QuantLib::VanillaSwap)
+
+        // invoke the member function
+
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->nominal();
+
+        // convert and return the return value
+
+
+
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
+
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwapNominal: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlVanillaSwapSpread(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        // convert object IDs into library objects
+
+        OH_GET_REFERENCE(ObjectIdLibObjPtr, ObjectIdCpp,
+            QuantLibAddin::VanillaSwap, QuantLib::VanillaSwap)
+
+        // invoke the member function
+
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->spread();
+
+        // convert and return the return value
+
+
+
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
+
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlVanillaSwapSpread: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

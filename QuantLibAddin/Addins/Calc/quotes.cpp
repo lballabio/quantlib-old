@@ -23,7 +23,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -49,31 +49,82 @@
 #include <qlo/baseinstruments.hpp>
 #include <qlo/valueobjects/vo_quotes.hpp>
 
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-double SAL_CALL CalcAddins_impl::qlQuoteValue(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlQuoteIsValid(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
+        // convert object IDs into library objects
 
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::SimpleQuote> ObjectIdLibObjPtr =
-            QuantLibAddin::CoerceHandle<
-                QuantLibAddin::SimpleQuote,
-                QuantLib::SimpleQuote>()(
-                    ObjectIdCoerce);
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::Quote> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceQuote<
+                QuantLibAddin::Quote,
+                QuantLib::Quote>()(
+                    ObjectIdTemp);
+
+        // invoke the member function
+
+        static short int returnValue;
+        returnValue = ObjectIdLibObjPtr->isValid();
+
+        // convert and return the return value
+
+
+
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
+
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlQuoteIsValid: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlQuoteValue(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        // convert object IDs into library objects
+
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::Quote> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceQuote<
+                QuantLibAddin::Quote,
+                QuantLib::Quote>()(
+                    ObjectIdTemp);
 
         // invoke the member function
 
@@ -83,30 +134,51 @@ double SAL_CALL CalcAddins_impl::qlQuoteValue(
 
 
 
-        double returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlQuoteValue: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlQuoteValue: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlRelinkableHandleQuote(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlRelinkableHandleQuote(
+        const ANY &ObjectId,
         const ANY &CurrentLink,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         std::string CurrentLinkCpp;
-        calcToScalar(CurrentLinkCpp, CurrentLink);
+        if(CurrentLink.hasValue()) 
+            calcToScalar(CurrentLinkCpp, CurrentLink);
+        else
+            CurrentLinkCpp = "";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -130,37 +202,61 @@ STRING SAL_CALL CalcAddins_impl::qlRelinkableHandleQuote(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlRelinkableHandleQuote: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlRelinkableHandleQuote: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlSimpleQuote(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlSimpleQuote(
+        const ANY &ObjectId,
         const ANY &Value,
-        double TickValue,
-        const ANY &Permanent,
+        const ANY &TickValue,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         double ValueCpp;
-        calcToScalar(ValueCpp, Value);
+        if(Value.hasValue()) 
+            calcToScalar(ValueCpp, Value);
+        else
+            ValueCpp = QuantLib::Null<QuantLib::Real>();
+
+        double TickValueCpp;
+        calcToScalar(TickValueCpp, TickValue);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -179,7 +275,7 @@ STRING SAL_CALL CalcAddins_impl::qlSimpleQuote(
             new QuantLibAddin::ValueObjects::qlSimpleQuote(
                 ObjectIdCpp,
                 ValueCpp,
-                TickValue,
+                TickValueCpp,
                 PermanentCpp));
 
         // Construct the Object
@@ -194,84 +290,122 @@ STRING SAL_CALL CalcAddins_impl::qlSimpleQuote(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlSimpleQuote: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlSimpleQuote: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-sal_Int32 SAL_CALL CalcAddins_impl::qlSimpleQuoteReset(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlSimpleQuoteReset(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
+        // convert object IDs into library objects
 
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::SimpleQuote> ObjectIdLibObjPtr =
-            QuantLibAddin::CoerceHandle<
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::SimpleQuote> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceQuote<
                 QuantLibAddin::SimpleQuote,
                 QuantLib::SimpleQuote>()(
-                    ObjectIdCoerce);
+                    ObjectIdTemp);
 
         // invoke the member function
 
+        static bool returnValue = true;
         ObjectIdLibObjPtr->reset();
 
         // convert and return the return value
 
 
 
-        return 1;
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        STRING s = STRFROMASCII( std::string("VOID").c_str() );    
+        retAnyVector[0] = CSS::uno::makeAny( s );
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlSimpleQuoteReset: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlSimpleQuoteReset: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlSimpleQuoteSetValue(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlSimpleQuoteSetValue(
+        const ANY &ObjectId,
         const ANY &Value,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         double ValueCpp;
-        calcToScalar(ValueCpp, Value);
+        if(Value.hasValue()) 
+            calcToScalar(ValueCpp, Value);
+        else
+            ValueCpp = QuantLib::Null<QuantLib::Real>();
 
         // convert input datatypes to QuantLib datatypes
 
         QuantLib::Real ValueLib;
         calcToScalar(ValueLib, Value);
 
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
+        // convert object IDs into library objects
 
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::SimpleQuote> ObjectIdObjPtr =
-            QuantLibAddin::CoerceHandle<
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::SimpleQuote> ObjectIdObjPtr =
+            QuantLibAddin::CoerceQuote<
                 QuantLibAddin::SimpleQuote,
                 QuantLib::SimpleQuote>()(
-                    ObjectIdCoerce);
+                    ObjectIdTemp);
 
         // invoke the member function
 
@@ -282,13 +416,30 @@ double SAL_CALL CalcAddins_impl::qlSimpleQuoteSetValue(
 
 
 
-        double returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlSimpleQuoteSetValue: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlSimpleQuoteSetValue: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

@@ -21,18 +21,28 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_options_hpp
 #define ql_calc_options_hpp
 
-    STRING SAL_CALL qlVanillaOption(
-        const STRING &ObjectId,
-        const STRING &Payoff,
-        const STRING &Exercise,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlDividendVanillaOption(
+        const ANY &ObjectId,
+        const ANY &Payoff,
+        const ANY &Exercise,
+        const SEQSEQ(ANY) &DividendDates,
+        const SEQSEQ(ANY) &Dividends,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlVanillaOption(
+        const ANY &ObjectId,
+        const ANY &Payoff,
+        const ANY &Exercise,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
 
 

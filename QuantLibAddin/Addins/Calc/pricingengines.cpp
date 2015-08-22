@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2012 Ferdinando Ametrano
  Copyright (C) 2007 Eric Ehlers
  
  This file is part of QuantLib, a free-software/open-source library
@@ -21,7 +21,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -41,26 +41,24 @@
 #include <ql/termstructures/volatility/swaption/swaptionvolstructure.hpp>
 #include <qlo/valueobjects/vo_pricingengines.hpp>
 
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlAnalyticCapFloorEngine(
-        const STRING &ObjectId,
-        const STRING &HandleModel,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlAnalyticCapFloorEngine(
+        const ANY &ObjectId,
+        const ANY &HandleModel,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string HandleModelCpp = ouStringToStlString(HandleModel);
+        std::string HandleModelCpp;
+        calcToScalar(HandleModelCpp, HandleModel);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -89,39 +87,62 @@ STRING SAL_CALL CalcAddins_impl::qlAnalyticCapFloorEngine(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlAnalyticCapFloorEngine: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlAnalyticCapFloorEngine: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlBinomialPricingEngine(
-        const STRING &ObjectId,
-        const STRING &EngineID,
-        const STRING &ProcessID,
-        sal_Int32 TimeSteps,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlBinomialPricingEngine(
+        const ANY &ObjectId,
+        const ANY &EngineID,
+        const ANY &ProcessID,
+        const ANY &TimeSteps,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string EngineIDCpp = ouStringToStlString(EngineID);
+        std::string EngineIDCpp;
+        calcToScalar(EngineIDCpp, EngineID);
 
-        std::string ProcessIDCpp = ouStringToStlString(ProcessID);
+        std::string ProcessIDCpp;
+        calcToScalar(ProcessIDCpp, ProcessID);
+
+        long TimeStepsCpp;
+        calcToScalar(TimeStepsCpp, TimeSteps);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -138,7 +159,7 @@ STRING SAL_CALL CalcAddins_impl::qlBinomialPricingEngine(
                 ObjectIdCpp,
                 EngineIDCpp,
                 ProcessIDCpp,
-                TimeSteps,
+                TimeStepsCpp,
                 PermanentCpp));
 
         // Construct the Object
@@ -148,63 +169,95 @@ STRING SAL_CALL CalcAddins_impl::qlBinomialPricingEngine(
                 valueObject,
                 EngineIDCpp,
                 ProcessIDLibObjPtr,
-                TimeSteps,
+                TimeStepsCpp,
                 PermanentCpp));
 
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBinomialPricingEngine: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlBinomialPricingEngine: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlBlackCapFloorEngine(
-        const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const STRING &VolTS,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlBlackCapFloorEngine(
+        const ANY &ObjectId,
+        const ANY &YieldCurve,
+        const ANY &VolTS,
+        const ANY &Displacement,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
-        std::string VolTSCpp = ouStringToStlString(VolTS);
+        std::string VolTSCpp;
+        calcToScalar(VolTSCpp, VolTS);
+
+        double DisplacementCpp;
+        if(Displacement.hasValue()) 
+            calcToScalar(DisplacementCpp, Displacement);
+        else
+            DisplacementCpp = 0.0;
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
+        // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Real DisplacementLib;
+        calcToScalar(DisplacementLib, Displacement);
+
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::YieldTermStructure> YieldCurveLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
-                    YieldCurveCoerce);
+                    YieldCurveCoerce, QuantLib::Handle<QuantLib::YieldTermStructure>());
 
-        OH_GET_OBJECT(VolTSCoerce, VolTSCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(VolTSCoerce, VolTSCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::OptionletVolatilityStructure> VolTSLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::OptionletVolatilityStructure,
                 QuantLib::OptionletVolatilityStructure>()(
-                    VolTSCoerce);
+                    VolTSCoerce, QuantLib::Handle<QuantLib::OptionletVolatilityStructure>());
 
         // Construct the Value Object
 
@@ -213,6 +266,7 @@ STRING SAL_CALL CalcAddins_impl::qlBlackCapFloorEngine(
                 ObjectIdCpp,
                 YieldCurveCpp,
                 VolTSCpp,
+                DisplacementCpp,
                 PermanentCpp));
 
         // Construct the Object
@@ -222,62 +276,216 @@ STRING SAL_CALL CalcAddins_impl::qlBlackCapFloorEngine(
                 valueObject,
                 YieldCurveLibObj,
                 VolTSLibObj,
+                DisplacementLib,
                 PermanentCpp));
 
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBlackCapFloorEngine: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlBlackCapFloorEngine: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine(
-        const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const STRING &VolTS,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlBlackCapFloorEngine2(
+        const ANY &ObjectId,
+        const ANY &YieldCurve,
+        const ANY &Vol,
+        const ANY &Displacement,
+        const ANY &DayCounter,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
-        std::string VolTSCpp = ouStringToStlString(VolTS);
+        std::string VolCpp;
+        calcToScalar(VolCpp, Vol);
+
+        double DisplacementCpp;
+        if(Displacement.hasValue()) 
+            calcToScalar(DisplacementCpp, Displacement);
+        else
+            DisplacementCpp = 0.0;
+
+        std::string DayCounterCpp;
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
+        // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Real DisplacementLib;
+        calcToScalar(DisplacementLib, Displacement);
+
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::YieldTermStructure> YieldCurveLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
-                    YieldCurveCoerce);
+                    YieldCurveCoerce, QuantLib::Handle<QuantLib::YieldTermStructure>());
 
-        OH_GET_OBJECT(VolTSCoerce, VolTSCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(VolCoerce, VolCpp, ObjectHandler::Object)
+        QuantLib::Handle<QuantLib::Quote> VolLibObj =
+            QuantLibAddin::CoerceHandle<
+                QuantLibAddin::Quote,
+                QuantLib::Quote>()(
+                    VolCoerce, QuantLib::Handle<QuantLib::Quote>());
+
+        // convert input datatypes to QuantLib enumerated datatypes
+
+        QuantLib::DayCounter DayCounterEnum =
+            ObjectHandler::Create<QuantLib::DayCounter>()(DayCounterCpp);
+
+        // Construct the Value Object
+
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new QuantLibAddin::ValueObjects::qlBlackCapFloorEngine2(
+                ObjectIdCpp,
+                YieldCurveCpp,
+                VolCpp,
+                DisplacementCpp,
+                DayCounterCpp,
+                PermanentCpp));
+
+        // Construct the Object
+        
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new QuantLibAddin::BlackCapFloorEngine(
+                valueObject,
+                YieldCurveLibObj,
+                VolLibObj,
+                DisplacementLib,
+                DayCounterEnum,
+                PermanentCpp));
+
+        // Store the Object in the Repository
+
+        std::string returnValue =
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
+
+        // Convert and return the return value
+
+
+
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
+
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlBlackCapFloorEngine2: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine(
+        const ANY &ObjectId,
+        const ANY &YieldCurve,
+        const ANY &VolTS,
+        const ANY &Displacement,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
+
+        std::string VolTSCpp;
+        calcToScalar(VolTSCpp, VolTS);
+
+        double DisplacementCpp;
+        if(Displacement.hasValue()) 
+            calcToScalar(DisplacementCpp, Displacement);
+        else
+            DisplacementCpp = 0.0;
+
+        bool PermanentCpp;
+        calcToScalar(PermanentCpp, Permanent);
+
+        // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Real DisplacementLib;
+        calcToScalar(DisplacementLib, Displacement);
+
+        // convert object IDs into library objects
+
+        OH_GET_OBJECT_DEFAULT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
+        QuantLib::Handle<QuantLib::YieldTermStructure> YieldCurveLibObj =
+            QuantLibAddin::CoerceHandle<
+                QuantLibAddin::YieldTermStructure,
+                QuantLib::YieldTermStructure>()(
+                    YieldCurveCoerce, QuantLib::Handle<QuantLib::YieldTermStructure>());
+
+        OH_GET_OBJECT_DEFAULT(VolTSCoerce, VolTSCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::SwaptionVolatilityStructure> VolTSLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::SwaptionVolatilityStructure,
                 QuantLib::SwaptionVolatilityStructure>()(
-                    VolTSCoerce);
+                    VolTSCoerce, QuantLib::Handle<QuantLib::SwaptionVolatilityStructure>());
 
         // Construct the Value Object
 
@@ -286,6 +494,7 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine(
                 ObjectIdCpp,
                 YieldCurveCpp,
                 VolTSCpp,
+                DisplacementCpp,
                 PermanentCpp));
 
         // Construct the Object
@@ -295,66 +504,102 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine(
                 valueObject,
                 YieldCurveLibObj,
                 VolTSLibObj,
+                DisplacementLib,
                 PermanentCpp));
 
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBlackSwaptionEngine: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlBlackSwaptionEngine: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
-        const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const STRING &Vol,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
+        const ANY &ObjectId,
+        const ANY &YieldCurve,
+        const ANY &Vol,
+        const ANY &Displacement,
         const ANY &DayCounter,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
-        std::string VolCpp = ouStringToStlString(Vol);
+        std::string VolCpp;
+        calcToScalar(VolCpp, Vol);
+
+        double DisplacementCpp;
+        if(Displacement.hasValue()) 
+            calcToScalar(DisplacementCpp, Displacement);
+        else
+            DisplacementCpp = 0.0;
 
         std::string DayCounterCpp;
-        calcToScalar(DayCounterCpp, DayCounter);
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
+        // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Real DisplacementLib;
+        calcToScalar(DisplacementLib, Displacement);
+
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::YieldTermStructure> YieldCurveLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
-                    YieldCurveCoerce);
+                    YieldCurveCoerce, QuantLib::Handle<QuantLib::YieldTermStructure>());
 
-        OH_GET_OBJECT(VolCoerce, VolCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(VolCoerce, VolCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::Quote> VolLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::Quote,
                 QuantLib::Quote>()(
-                    VolCoerce);
+                    VolCoerce, QuantLib::Handle<QuantLib::Quote>());
 
         // convert input datatypes to QuantLib enumerated datatypes
 
@@ -368,6 +613,7 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
                 ObjectIdCpp,
                 YieldCurveCpp,
                 VolCpp,
+                DisplacementCpp,
                 DayCounterCpp,
                 PermanentCpp));
 
@@ -378,53 +624,73 @@ STRING SAL_CALL CalcAddins_impl::qlBlackSwaptionEngine2(
                 valueObject,
                 YieldCurveLibObj,
                 VolLibObj,
+                DisplacementLib,
                 DayCounterEnum,
                 PermanentCpp));
 
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBlackSwaptionEngine2: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlBlackSwaptionEngine2: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlBondEngine(
-        const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlBondEngine(
+        const ANY &ObjectId,
+        const ANY &YieldCurve,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::YieldTermStructure> YieldCurveLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
-                    YieldCurveCoerce);
+                    YieldCurveCoerce, QuantLib::Handle<QuantLib::YieldTermStructure>());
 
         // Construct the Value Object
 
@@ -445,46 +711,65 @@ STRING SAL_CALL CalcAddins_impl::qlBondEngine(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlBondEngine: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlBondEngine: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlDiscountingSwapEngine(
-        const STRING &ObjectId,
-        const STRING &YieldCurve,
-        const ANY &IncludeSettlDate,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlDiscountingSwapEngine(
+        const ANY &ObjectId,
+        const ANY &YieldCurve,
+        const sal_Int32 IncludeSettlDate,
         const ANY &SettlementDate,
         const ANY &NpvDate,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string YieldCurveCpp = ouStringToStlString(YieldCurve);
+        std::string YieldCurveCpp;
+        calcToScalar(YieldCurveCpp, YieldCurve);
 
         bool IncludeSettlDateCpp;
         calcToScalar(IncludeSettlDateCpp, IncludeSettlDate);
 
-        long SettlementDateCpp;
+        ObjectHandler::property_t SettlementDateCpp;
         calcToScalar(SettlementDateCpp, SettlementDate);
 
-        long NpvDateCpp;
+        ObjectHandler::property_t NpvDateCpp;
         calcToScalar(NpvDateCpp, NpvDate);
 
         bool PermanentCpp;
@@ -493,19 +778,25 @@ STRING SAL_CALL CalcAddins_impl::qlDiscountingSwapEngine(
         // convert input datatypes to QuantLib datatypes
 
         QuantLib::Date SettlementDateLib;
-        calcToScalar(SettlementDateLib, SettlementDate);
+        if(!SettlementDate.hasValue() and typeid(QuantLib::Date())==typeid(QuantLib::Date())) 
+            SettlementDateLib = QuantLib::Date();
+        else
+            calcToScalar(SettlementDateLib, SettlementDate);
 
         QuantLib::Date NpvDateLib;
-        calcToScalar(NpvDateLib, NpvDate);
+        if(!NpvDate.hasValue() and typeid(QuantLib::Date())==typeid(QuantLib::Date())) 
+            NpvDateLib = QuantLib::Date();
+        else
+            calcToScalar(NpvDateLib, NpvDate);
 
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(YieldCurveCoerce, YieldCurveCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::YieldTermStructure> YieldCurveLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
-                    YieldCurveCoerce);
+                    YieldCurveCoerce, QuantLib::Handle<QuantLib::YieldTermStructure>());
 
         // Construct the Value Object
 
@@ -532,38 +823,58 @@ STRING SAL_CALL CalcAddins_impl::qlDiscountingSwapEngine(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlDiscountingSwapEngine: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlDiscountingSwapEngine: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlPricingEngine(
-        const STRING &ObjectId,
-        const STRING &EngineID,
-        const STRING &ProcessID,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlPricingEngine(
+        const ANY &ObjectId,
+        const ANY &EngineID,
+        const ANY &ProcessID,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string EngineIDCpp = ouStringToStlString(EngineID);
+        std::string EngineIDCpp;
+        calcToScalar(EngineIDCpp, EngineID);
 
-        std::string ProcessIDCpp = ouStringToStlString(ProcessID);
+        std::string ProcessIDCpp;
+        calcToScalar(ProcessIDCpp, ProcessID);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -594,19 +905,36 @@ STRING SAL_CALL CalcAddins_impl::qlPricingEngine(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlPricingEngine: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlPricingEngine: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

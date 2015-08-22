@@ -1,7 +1,7 @@
 
 /*  
  Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
@@ -24,7 +24,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -42,42 +42,47 @@
 #include <ql/termstructures/yieldtermstructure.hpp>
 #include <qlo/valueobjects/vo_swap.hpp>
 
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlMakeCms(
-        const STRING &ObjectId,
-        const STRING &SwapTenor,
-        const STRING &SwapIndex,
-        const STRING &IborIndex,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlMakeCms(
+        const ANY &ObjectId,
+        const ANY &SwapTenor,
+        const ANY &SwapIndex,
+        const ANY &IborIndex,
         const ANY &IborSpread,
-        const STRING &ForwardStart,
-        const STRING &CmsCouponPricer,
-        const ANY &Permanent,
+        const ANY &ForwardStart,
+        const ANY &CmsCouponPricer,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string SwapTenorCpp = ouStringToStlString(SwapTenor);
+        std::string SwapTenorCpp;
+        calcToScalar(SwapTenorCpp, SwapTenor);
 
-        std::string SwapIndexCpp = ouStringToStlString(SwapIndex);
+        std::string SwapIndexCpp;
+        calcToScalar(SwapIndexCpp, SwapIndex);
 
-        std::string IborIndexCpp = ouStringToStlString(IborIndex);
+        std::string IborIndexCpp;
+        calcToScalar(IborIndexCpp, IborIndex);
 
         double IborSpreadCpp;
-        calcToScalar(IborSpreadCpp, IborSpread);
+        if(IborSpread.hasValue()) 
+            calcToScalar(IborSpreadCpp, IborSpread);
+        else
+            IborSpreadCpp = QuantLib::Null<QuantLib::Spread>();
 
-        std::string ForwardStartCpp = ouStringToStlString(ForwardStart);
+        std::string ForwardStartCpp;
+        calcToScalar(ForwardStartCpp, ForwardStart);
 
-        std::string CmsCouponPricerCpp = ouStringToStlString(CmsCouponPricer);
+        std::string CmsCouponPricerCpp;
+        calcToScalar(CmsCouponPricerCpp, CmsCouponPricer);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -130,95 +135,108 @@ STRING SAL_CALL CalcAddins_impl::qlMakeCms(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlMakeCms: " << e.what());
-        THROW_RTE;
-    }
-}
-
-STRING SAL_CALL CalcAddins_impl::qlSwap(
-        const STRING &ObjectId,
-        const SEQSEQ(ANY) &LegIDs,
-        const SEQSEQ(sal_Int32) &Payer,
-        const ANY &Permanent,
-        const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
-    try {
-
-        // convert input datatypes to C++ datatypes
-
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
-
-        std::vector<std::string> LegIDsCpp;
-        calcToVector(LegIDsCpp, LegIDs);
-
-        bool PermanentCpp;
-        calcToScalar(PermanentCpp, Permanent);
-
-        // convert input datatypes to QuantLib datatypes
-
-        std::vector<std::string> LegIDsObjPtr;
-        calcToVector(LegIDsObjPtr, LegIDs);
-
-        std::vector<bool> Payer;
-        calcToVector(Payer, Payer);
-
-        // Construct the Value Object
-
-        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
-            new QuantLibAddin::ValueObjects::qlSwap(
-                ObjectIdCpp,
-                LegIDsCpp,
-                PayerCpp,
-                PermanentCpp));
-
-        // Construct the Object
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlMakeCms: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
         
-        boost::shared_ptr<ObjectHandler::Object> object(
-            new QuantLibAddin::Swap(
-                valueObject,
-                LegIDsCpp,
-                PayerCpp,
-                PermanentCpp));
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
 
-        // Store the Object in the Repository
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlSwapLegBPS(
+        const ANY &ObjectId,
+        const ANY &LegNumber,
+        const ANY &Trigger) throw(RuntimeException) {
+    try {
 
-        std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+        // convert input datatypes to C++ datatypes
 
-        // Convert and return the return value
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        long LegNumberCpp;
+        calcToScalar(LegNumberCpp, LegNumber);
+
+        // convert object IDs into library objects
+
+        OH_GET_REFERENCE(ObjectIdLibObjPtr, ObjectIdCpp,
+            QuantLibAddin::Swap, QuantLib::Swap)
+
+        // invoke the member function
+
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->legBPS(
+                LegNumberCpp);
+
+        // convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlSwap: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlSwapLegBPS: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlSwapLegBPS(
-        const STRING &ObjectId,
-        sal_Int32 LegNumber,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlSwapLegNPV(
+        const ANY &ObjectId,
+        const ANY &LegNumber,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        long LegNumberCpp;
+        calcToScalar(LegNumberCpp, LegNumber);
 
         // convert object IDs into library objects
 
@@ -227,30 +245,50 @@ double SAL_CALL CalcAddins_impl::qlSwapLegBPS(
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->legBPS(
-                LegNumber);
+        static double returnValue;
+        returnValue = ObjectIdLibObjPtr->legNPV(
+                LegNumberCpp);
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlSwapLegBPS: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlSwapLegNPV: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlSwapLegNPV(
-        const STRING &ObjectId,
-        sal_Int32 LegNumber,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlSwapMaturityDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -259,18 +297,86 @@ double SAL_CALL CalcAddins_impl::qlSwapLegNPV(
 
         // invoke the member function
 
-        double returnValue = ObjectIdLibObjPtr->legNPV(
-                LegNumber);
+        QuantLib::Date returnValue = ObjectIdLibObjPtr->maturityDate();
 
         // convert and return the return value
 
 
 
-        return returnValue;
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlSwapLegNPV: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlSwapMaturityDate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlSwapStartDate(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        // convert object IDs into library objects
+
+        OH_GET_REFERENCE(ObjectIdLibObjPtr, ObjectIdCpp,
+            QuantLibAddin::Swap, QuantLib::Swap)
+
+        // invoke the member function
+
+        QuantLib::Date returnValue = ObjectIdLibObjPtr->startDate();
+
+        // convert and return the return value
+
+
+
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
+
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlSwapStartDate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

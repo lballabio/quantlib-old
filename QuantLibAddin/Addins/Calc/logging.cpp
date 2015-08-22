@@ -23,7 +23,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -32,22 +32,19 @@
 #include <qlo/conversions/all.hpp>
 #include <oh/utilities.hpp>
 
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::ohLogSetFile(
-        const STRING &LogFileName,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::ohLogSetFile(
+        const ANY &LogFileName,
         const ANY &LogLevel,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string LogFileNameCpp = ouStringToStlString(LogFileName);
+        std::string LogFileNameCpp;
+        calcToScalar(LogFileNameCpp, LogFileName);
 
         long LogLevelCpp;
         calcToScalar(LogLevelCpp, LogLevel);
@@ -62,13 +59,75 @@ STRING SAL_CALL CalcAddins_impl::ohLogSetFile(
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: ohLogSetFile: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: ohLogSetFile: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::ohLogSetLevel(
+        const ANY &LogLevel,
+        const ANY &Trigger) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        long LogLevelCpp;
+        calcToScalar(LogLevelCpp, LogLevel);
+
+        // invoke the utility function
+
+        static bool returnValue = true;
+        ObjectHandler::logSetLevel(
+                LogLevelCpp);
+
+        // convert and return the return value
+
+
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        STRING s = STRFROMASCII( std::string("VOID").c_str() );    
+        retAnyVector[0] = CSS::uno::makeAny( s );
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
+
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: ohLogSetLevel: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

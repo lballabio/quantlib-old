@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2011, 2014 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  
  This file is part of QuantLib, a free-software/open-source library
@@ -21,39 +21,39 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_capfloor_hpp
 #define ql_calc_capfloor_hpp
 
-    STRING SAL_CALL qlCapFloor(
-        const STRING &ObjectId,
-        const STRING &OptionType,
-        const STRING &LegID,
-        const SEQSEQ(double) &Strikes,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlCapFloor(
+        const ANY &ObjectId,
+        const ANY &OptionType,
+        const ANY &LegID,
+        const SEQSEQ(ANY) &Strikes,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    sal_Int32 SAL_CALL qlCapFloorMaturityDate(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlCapFloorMaturityDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    sal_Int32 SAL_CALL qlCapFloorStartDate(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlCapFloorStartDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    STRING SAL_CALL qlMakeCapFloor(
-        const STRING &ObjectId,
-        const STRING &OptionType,
-        const STRING &Length,
-        const STRING &IborIndex,
+    SEQSEQ(ANY) SAL_CALL qlMakeCapFloor(
+        const ANY &ObjectId,
+        const ANY &OptionType,
+        const ANY &Length,
+        const ANY &IborIndex,
         const ANY &Strike,
-        const STRING &ForwardStart,
-        const STRING &PricingEngineID,
-        const ANY &Permanent,
+        const ANY &ForwardStart,
+        const ANY &PricingEngineID,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
 
 

@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2011, 2015 Ferdinando Ametrano
  Copyright (C) 2005, 2006 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
@@ -23,61 +23,84 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_vanillaswap_hpp
 #define ql_calc_vanillaswap_hpp
 
-    STRING SAL_CALL qlMakeVanillaSwap(
-        const STRING &ObjectId,
-        const STRING &SwapTenor,
-        const STRING &IborIndex,
+    SEQSEQ(ANY) SAL_CALL qlMakeIMMSwap(
+        const ANY &ObjectId,
+        const ANY &SwapTenor,
+        const ANY &IborIndex,
         const ANY &FixedRate,
-        const STRING &ForwardStart,
+        const ANY &FirstImmDate,
         const ANY &FixDayCounter,
         const ANY &Spread,
-        const ANY &Permanent,
+        const ANY &PricingEngineID,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlVanillaSwap(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlMakeVanillaSwap(
+        const ANY &ObjectId,
+        const ANY &SettlDays,
+        const ANY &SwapTenor,
+        const ANY &IborIndex,
+        const ANY &FixedRate,
+        const ANY &ForwardStart,
+        const ANY &FixDayCounter,
+        const ANY &Spread,
+        const ANY &PricingEngineID,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwap(
+        const ANY &ObjectId,
         const ANY &PayerReceiver,
         const ANY &Nominal,
-        const STRING &FixSchedule,
+        const ANY &FixSchedule,
         const ANY &FixedRate,
-        const STRING &FixDayCounter,
-        const STRING &FloatingLegSchedule,
-        const STRING &IborIndex,
+        const ANY &FixDayCounter,
+        const ANY &FloatingLegSchedule,
+        const ANY &IborIndex,
         const ANY &Spread,
-        const STRING &FloatingLegDayCounter,
+        const ANY &FloatingLegDayCounter,
         const ANY &PaymentConvention,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    double SAL_CALL qlVanillaSwapFairRate(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwapFairRate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    double SAL_CALL qlVanillaSwapFairSpread(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwapFairSpread(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    double SAL_CALL qlVanillaSwapFixedLegBPS(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwapFixedLegNPV(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    double SAL_CALL qlVanillaSwapFixedLegNPV(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwapFixedRate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    double SAL_CALL qlVanillaSwapFloatingLegBPS(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwapFloatingLegBPS(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    double SAL_CALL qlVanillaSwapFloatingLegNPV(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwapFloatingLegNPV(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwapNominal(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlVanillaSwapSpread(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
 

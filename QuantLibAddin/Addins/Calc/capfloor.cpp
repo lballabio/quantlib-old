@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2011, 2014 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  
  This file is part of QuantLib, a free-software/open-source library
@@ -21,7 +21,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -29,8 +29,8 @@
 #include <qlo/enumerations/factories/all.hpp>
 #include <qlo/conversions/all.hpp>
 #include <oh/enumerations/typefactory.hpp>
-#include <qlo/indexes/iborindex.hpp>
 #include <qlo/capfloor.hpp>
+#include <qlo/indexes/iborindex.hpp>
 #include <qlo/couponvectors.hpp>
 #include <qlo/pricingengines.hpp>
 #include <qlo/termstructures.hpp>
@@ -38,30 +38,29 @@
 #include <ql/indexes/iborindex.hpp>
 #include <qlo/valueobjects/vo_capfloor.hpp>
 
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlCapFloor(
-        const STRING &ObjectId,
-        const STRING &OptionType,
-        const STRING &LegID,
-        const SEQSEQ(double) &Strikes,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlCapFloor(
+        const ANY &ObjectId,
+        const ANY &OptionType,
+        const ANY &LegID,
+        const SEQSEQ(ANY) &Strikes,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string OptionTypeCpp = ouStringToStlString(OptionType);
+        std::string OptionTypeCpp;
+        calcToScalar(OptionTypeCpp, OptionType);
 
-        std::string LegIDCpp = ouStringToStlString(LegID);
+        std::string LegIDCpp;
+        calcToScalar(LegIDCpp, LegID);
 
         std::vector<double> StrikesCpp;
         calcToVector(StrikesCpp, Strikes);
@@ -71,7 +70,8 @@ STRING SAL_CALL CalcAddins_impl::qlCapFloor(
 
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(LegIDObjPtr, LegIDCpp, QuantLibAddin::Leg)
+        OH_GET_UNDERLYING(LegIDLibObj, LegIDCpp,
+            QuantLibAddin::Leg, QuantLib::Leg)
 
         // convert input datatypes to QuantLib enumerated datatypes
 
@@ -94,37 +94,55 @@ STRING SAL_CALL CalcAddins_impl::qlCapFloor(
             new QuantLibAddin::CapFloor(
                 valueObject,
                 OptionTypeEnum,
-                LegIDObjPtr,
+                LegIDLibObj,
                 StrikesCpp,
                 PermanentCpp));
 
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlCapFloor: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlCapFloor: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-sal_Int32 SAL_CALL CalcAddins_impl::qlCapFloorMaturityDate(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlCapFloorMaturityDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -139,24 +157,42 @@ sal_Int32 SAL_CALL CalcAddins_impl::qlCapFloorMaturityDate(
 
 
 
-        long returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlCapFloorMaturityDate: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlCapFloorMaturityDate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-sal_Int32 SAL_CALL CalcAddins_impl::qlCapFloorStartDate(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlCapFloorStartDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         // convert object IDs into library objects
 
@@ -171,45 +207,71 @@ sal_Int32 SAL_CALL CalcAddins_impl::qlCapFloorStartDate(
 
 
 
-        long returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlCapFloorStartDate: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlCapFloorStartDate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlMakeCapFloor(
-        const STRING &ObjectId,
-        const STRING &OptionType,
-        const STRING &Length,
-        const STRING &IborIndex,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlMakeCapFloor(
+        const ANY &ObjectId,
+        const ANY &OptionType,
+        const ANY &Length,
+        const ANY &IborIndex,
         const ANY &Strike,
-        const STRING &ForwardStart,
-        const STRING &PricingEngineID,
-        const ANY &Permanent,
+        const ANY &ForwardStart,
+        const ANY &PricingEngineID,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string OptionTypeCpp = ouStringToStlString(OptionType);
+        std::string OptionTypeCpp;
+        calcToScalar(OptionTypeCpp, OptionType);
 
-        std::string LengthCpp = ouStringToStlString(Length);
+        std::string LengthCpp;
+        calcToScalar(LengthCpp, Length);
 
-        std::string IborIndexCpp = ouStringToStlString(IborIndex);
+        std::string IborIndexCpp;
+        calcToScalar(IborIndexCpp, IborIndex);
 
         double StrikeCpp;
-        calcToScalar(StrikeCpp, Strike);
+        if(Strike.hasValue()) 
+            calcToScalar(StrikeCpp, Strike);
+        else
+            StrikeCpp = QuantLib::Null<QuantLib::Rate>();
 
-        std::string ForwardStartCpp = ouStringToStlString(ForwardStart);
+        std::string ForwardStartCpp;
+        calcToScalar(ForwardStartCpp, ForwardStart);
 
-        std::string PricingEngineIDCpp = ouStringToStlString(PricingEngineID);
+        std::string PricingEngineIDCpp;
+        calcToScalar(PricingEngineIDCpp, PricingEngineID);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -264,19 +326,36 @@ STRING SAL_CALL CalcAddins_impl::qlMakeCapFloor(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlMakeCapFloor: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlMakeCapFloor: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

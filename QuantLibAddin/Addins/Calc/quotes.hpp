@@ -23,36 +23,40 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_quotes_hpp
 #define ql_calc_quotes_hpp
 
-    double SAL_CALL qlQuoteValue(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlQuoteIsValid(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    STRING SAL_CALL qlRelinkableHandleQuote(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlQuoteValue(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlRelinkableHandleQuote(
+        const ANY &ObjectId,
         const ANY &CurrentLink,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlSimpleQuote(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlSimpleQuote(
+        const ANY &ObjectId,
         const ANY &Value,
-        double TickValue,
-        const ANY &Permanent,
+        const ANY &TickValue,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    sal_Int32 SAL_CALL qlSimpleQuoteReset(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlSimpleQuoteReset(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
-    double SAL_CALL qlSimpleQuoteSetValue(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlSimpleQuoteSetValue(
+        const ANY &ObjectId,
         const ANY &Value,
         const ANY &Trigger) throw(RuntimeException);
 

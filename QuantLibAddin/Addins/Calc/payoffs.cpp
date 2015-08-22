@@ -22,7 +22,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -33,34 +33,39 @@
 #include <qlo/stickyratchet.hpp>
 #include <qlo/valueobjects/vo_payoffs.hpp>
 
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlStrikedTypePayoff(
-        const STRING &ObjectId,
-        const STRING &PayoffID,
-        const STRING &OptionType,
-        double Strike,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlStrikedTypePayoff(
+        const ANY &ObjectId,
+        const ANY &PayoffID,
+        const ANY &OptionType,
+        const ANY &Strike,
         const ANY &ThirdParameter,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string PayoffIDCpp = ouStringToStlString(PayoffID);
+        std::string PayoffIDCpp;
+        calcToScalar(PayoffIDCpp, PayoffID);
 
-        std::string OptionTypeCpp = ouStringToStlString(OptionType);
+        std::string OptionTypeCpp;
+        calcToScalar(OptionTypeCpp, OptionType);
+
+        double StrikeCpp;
+        calcToScalar(StrikeCpp, Strike);
 
         double ThirdParameterCpp;
-        calcToScalar(ThirdParameterCpp, ThirdParameter);
+        if(ThirdParameter.hasValue()) 
+            calcToScalar(ThirdParameterCpp, ThirdParameter);
+        else
+            ThirdParameterCpp = QuantLib::Null<QuantLib::Real>();
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -82,7 +87,7 @@ STRING SAL_CALL CalcAddins_impl::qlStrikedTypePayoff(
                 ObjectIdCpp,
                 PayoffIDCpp,
                 OptionTypeCpp,
-                Strike,
+                StrikeCpp,
                 ThirdParameterCpp,
                 PermanentCpp));
 
@@ -100,19 +105,36 @@ STRING SAL_CALL CalcAddins_impl::qlStrikedTypePayoff(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlStrikedTypePayoff: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlStrikedTypePayoff: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

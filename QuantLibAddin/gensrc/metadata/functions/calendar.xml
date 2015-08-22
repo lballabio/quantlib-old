@@ -251,7 +251,7 @@
       <SupportedPlatforms>
         <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
         <SupportedPlatform name='Excel'/>
-        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Calc'/-->
       </SupportedPlatforms>
       <ParameterList>
         <Parameters>

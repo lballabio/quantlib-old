@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2006, 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2014 Ferdinando Ametrano
  Copyright (C) 2006 Cristina Duminuco
  Copyright (C) 2006 Eric Ehlers
  
@@ -22,29 +22,49 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_swaption_hpp
 #define ql_calc_swaption_hpp
 
-    STRING SAL_CALL qlMakeSwaption(
-        const STRING &ObjectId,
-        const STRING &SwapIndex,
-        const STRING &OptionTenor,
+    SEQSEQ(ANY) SAL_CALL qlMakeSwaption(
+        const ANY &ObjectId,
+        const ANY &SwapIndex,
+        const ANY &OptionTenor,
         const ANY &Strike,
-        const STRING &PricingEngineID,
-        const ANY &Permanent,
+        const ANY &PricingEngineID,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlSwaption(
-        const STRING &ObjectId,
-        const STRING &VanillaSwap,
-        const STRING &Exercise,
-        const STRING &SettlementType,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlSwaption(
+        const ANY &ObjectId,
+        const ANY &VanillaSwap,
+        const ANY &Exercise,
+        const ANY &SettlementType,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSwaptionImpliedVolatility(
+        const ANY &ObjectId,
+        const ANY &Price,
+        const ANY &YieldCurve,
+        const ANY &Guess,
+        const ANY &Accuracy,
+        const ANY &MaxIter,
+        const ANY &MinVol,
+        const ANY &MaxVol,
+        const ANY &Displacement,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSwaptionSettlementType(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSwaptionType(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
 
 
 

@@ -5,7 +5,7 @@
 
         %(functionName)sBind bindObject = 
             boost::bind(%(functionSignature)s
-                    &%(functionCodeName)s, %(objectName)s, %(inputList)s);
+                    &%(functionCodeName)s, %(inputList)s);
                     
         {
             returnValue.realloc(%(inputParam)sLib.size());

@@ -87,7 +87,6 @@ RL_LIB=  \
         -L$(OH_PATH)/oh/.libs -lObjectHandler \
         -L$(QL_PATH)/ql/.libs -lQuantLib \
         -L$(QA_PATH)/qlo/.libs  -lQuantLibAddin \
-	$(SIM_PATH)/sl/.libs/libSimulation.a \
 #       $(QA_PATH)/qlo/.libs/libQuantLibAddin.a \
 #       $(OH_PATH)/oh/.libs/libObjectHandler.a \
 #       $(QL_PATH)/ql/.libs/libQuantLib.a \
@@ -319,3 +318,4 @@ clean :
 	-$(DELRECURSIVE) $(subst /,$(PS),$(SAMPLE_SLO_OUT))
 	-$(DELRECURSIVE) $(subst /,$(PS),$(SAMPLE_OBJ_OUT))
 	-$(DEL) $(subst \\,\,$(subst /,$(PS),$(OUT_BIN)/$(COMP_NAME)*))
+

@@ -1,9 +1,10 @@
 
 /*  
  Copyright (C) 2005, 2006 Eric Ehlers
- Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2015 Ferdinando Ametrano
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2005 Aurelien Chanudet
+ Copyright (C) 2015 Maddalena Zanzi
  
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -23,128 +24,196 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_ratehelpers_hpp
 #define ql_calc_ratehelpers_hpp
 
-    STRING SAL_CALL qlBondHelper(
-        const STRING &ObjectId,
-        const STRING &CleanPrice,
-        const STRING &Bond,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlBondHelper(
+        const ANY &ObjectId,
+        const ANY &Price,
+        const ANY &Bond,
+        const sal_Int32 UseCleanPrice,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlDatedOISRateHelper(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlDatedOISRateHelper(
+        const ANY &ObjectId,
         const ANY &StartDate,
         const ANY &EndDate,
-        const STRING &FixedRate,
-        const STRING &ONIndex,
-        const ANY &Permanent,
+        const ANY &FixedRate,
+        const ANY &ONIndex,
+        const ANY &DiscountingCurve,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlDepositRateHelper(
-        const STRING &ObjectId,
-        const STRING &Rate,
-        const STRING &IborIndex,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlDepositRateHelper(
+        const ANY &ObjectId,
+        const ANY &Rate,
+        const ANY &IborIndex,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlDepositRateHelper2(
-        const STRING &ObjectId,
-        const STRING &Rate,
-        const STRING &Tenor,
-        sal_Int32 FixingDays,
-        const STRING &Calendar,
-        const STRING &Convention,
-        sal_Int32 EndOfMonth,
-        const STRING &DayCounter,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlDepositRateHelper2(
+        const ANY &ObjectId,
+        const ANY &Rate,
+        const ANY &Tenor,
+        const ANY &FixingDays,
+        const ANY &Calendar,
+        const ANY &Convention,
+        const sal_Int32 EndOfMonth,
+        const ANY &DayCounter,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlFixedRateBondHelper(
-        const STRING &ObjectId,
-        const STRING &CleanPrice,
-        sal_Int32 SettlementDays,
+    SEQSEQ(ANY) SAL_CALL qlFixedRateBondHelper(
+        const ANY &ObjectId,
+        const ANY &Price,
+        const ANY &SettlementDays,
         const ANY &FaceAmount,
-        const STRING &ScheduleID,
-        const SEQSEQ(double) &Coupons,
-        const STRING &DayCounter,
+        const ANY &ScheduleID,
+        const SEQSEQ(ANY) &Coupons,
+        const ANY &DayCounter,
         const ANY &PaymentBDC,
         const ANY &Redemption,
         const ANY &IssueDate,
-        const ANY &Permanent,
+        const ANY &PaymentCalendar,
+        const ANY &ExCouponPeriod,
+        const ANY &ExCouponCalendar,
+        const ANY &ExCouponBDC,
+        const sal_Int32 ExCouponEndOfMonth,
+        const sal_Int32 UseCleanPrice,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlFraRateHelper(
-        const STRING &ObjectId,
-        const STRING &Rate,
-        const STRING &PeriodToStart,
-        const STRING &IborIndex,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlFraRateHelper(
+        const ANY &ObjectId,
+        const ANY &Rate,
+        const ANY &PeriodToStart,
+        const ANY &IborIndex,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlFraRateHelper2(
-        const STRING &ObjectId,
-        const STRING &Rate,
-        const STRING &PeriodToStart,
-        sal_Int32 LengthInMonths,
-        sal_Int32 FixingDays,
-        const STRING &Calendar,
-        const STRING &Convention,
-        sal_Int32 EndOfMonth,
-        const STRING &DayCounter,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlFraRateHelper2(
+        const ANY &ObjectId,
+        const ANY &Rate,
+        const ANY &PeriodToStart,
+        const ANY &LengthInMonths,
+        const ANY &FixingDays,
+        const ANY &Calendar,
+        const ANY &Convention,
+        const sal_Int32 EndOfMonth,
+        const ANY &DayCounter,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlOISRateHelper(
-        const STRING &ObjectId,
-        sal_Int32 SettlDays,
-        const STRING &Tenor,
-        const STRING &FixedRate,
-        const STRING &ONIndex,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlFuturesRateHelper(
+        const ANY &ObjectId,
+        const ANY &Price,
+        const ANY &FuturesType,
+        const ANY &FuturesDate,
+        const ANY &IborIndex,
+        const ANY &ConvexityAdjQuote,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlSwapRateHelper(
-        const STRING &ObjectId,
-        const STRING &Rate,
-        const STRING &SwapIndex,
-        const STRING &Spread,
-        const STRING &ForwardStart,
+    SEQSEQ(ANY) SAL_CALL qlFuturesRateHelper2(
+        const ANY &ObjectId,
+        const ANY &Price,
+        const ANY &FuturesType,
+        const ANY &FuturesDate,
+        const ANY &LengthInMonths,
+        const ANY &Calendar,
+        const ANY &Convention,
+        const sal_Int32 EndOfMonth,
+        const ANY &DayCounter,
+        const ANY &ConvexityAdjQuote,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlFuturesRateHelper3(
+        const ANY &ObjectId,
+        const ANY &Price,
+        const ANY &FuturesType,
+        const ANY &FuturesDate,
+        const ANY &EndDate,
+        const ANY &DayCounter,
+        const ANY &ConvexityAdjQuote,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlOISRateHelper(
+        const ANY &ObjectId,
+        const ANY &SettlDays,
+        const ANY &Tenor,
+        const ANY &FixedRate,
+        const ANY &ONIndex,
         const ANY &DiscountingCurve,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlSwapRateHelper2(
-        const STRING &ObjectId,
-        const STRING &Rate,
-        const STRING &Tenor,
-        const STRING &Calendar,
-        const STRING &FixedLegFrequency,
-        const STRING &FixedLegConvention,
-        const STRING &FixedLegDayCounter,
-        const STRING &IborIndex,
-        const STRING &Spread,
-        const STRING &ForwardStart,
-        const ANY &DiscountingCurve,
-        const ANY &Permanent,
-        const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
-
-    double SAL_CALL qlSwapRateHelperSpread(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlRateHelperEarliestDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlRateHelperImpliedQuote(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlRateHelperLatestDate(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlRateHelperQuoteIsValid(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlRateHelperQuoteName(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlRateHelperQuoteValue(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSwapRateHelper(
+        const ANY &ObjectId,
+        const ANY &Rate,
+        const ANY &SwapIndex,
+        const ANY &Spread,
+        const ANY &ForwardStart,
+        const ANY &DiscountingCurve,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSwapRateHelper2(
+        const ANY &ObjectId,
+        const ANY &Rate,
+        const ANY &SettlDays,
+        const ANY &Tenor,
+        const ANY &Calendar,
+        const ANY &FixedLegFrequency,
+        const ANY &FixedLegConvention,
+        const ANY &FixedLegDayCounter,
+        const ANY &IborIndex,
+        const ANY &Spread,
+        const ANY &ForwardStart,
+        const ANY &DiscountingCurve,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
 
 

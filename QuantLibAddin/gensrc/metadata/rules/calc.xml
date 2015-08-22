@@ -144,6 +144,7 @@
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code80'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code81'/>
         <Rule tensorRank='scalar' superType='libraryQuote' codeID='codeCalc45c'/>
+        <Rule tensorRank='scalar' superType='objectQuote' codeID='codeCalc45c'/>
         <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='codeCalc46'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='codeCalc49'/>
         <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatisticsInc' codeID='codeCalc49'/>
@@ -297,17 +298,20 @@
     </Rules>
   </RuleGroup>
 
-  <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
+  <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true'>
     <Wrap>&#10;%s</Wrap>
     <Rules>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
         <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(name)sEnum</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sObjPtr</Rule>
+        <Rule tensorRank='scalar' objectReference='true'>%(indent)s%(name)sLibObjPtr</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='vector' loop='true'>%(indent)s_1</Rule>
         <Rule tensorRank='vector'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='matrix'>%(indent)s%(name)s</Rule>
+        <Rule>%(indent)s%(name)sXXX</Rule>
     </Rules>
   </RuleGroup>
 

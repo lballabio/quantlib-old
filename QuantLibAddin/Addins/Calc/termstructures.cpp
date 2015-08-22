@@ -23,7 +23,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -38,26 +38,23 @@
 #include <qlo/valueobjects/vo_termstructures.hpp>
 #include <qlo/loop/loop_termstructures.hpp>
 #include <loop.hpp>
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlDiscountCurve(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlDiscountCurve(
+        const ANY &ObjectId,
         const SEQSEQ(ANY) &CurveDates,
-        const SEQSEQ(double) &CurveDiscounts,
+        const SEQSEQ(ANY) &CurveDiscounts,
         const ANY &DayCounter,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         std::vector<ObjectHandler::property_t> CurveDatesCpp;
         calcToVector(CurveDatesCpp, CurveDates);
@@ -66,7 +63,10 @@ STRING SAL_CALL CalcAddins_impl::qlDiscountCurve(
         calcToVector(CurveDiscountsCpp, CurveDiscounts);
 
         std::string DayCounterCpp;
-        calcToScalar(DayCounterCpp, DayCounter);
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -104,67 +104,103 @@ STRING SAL_CALL CalcAddins_impl::qlDiscountCurve(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlDiscountCurve: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlDiscountCurve: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlFlatForward(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlFlatForward(
+        const ANY &ObjectId,
         const ANY &NDays,
         const ANY &Calendar,
-        const STRING &Rate,
+        const ANY &Rate,
         const ANY &DayCounter,
         const ANY &Compounding,
         const ANY &Frequency,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         long NDaysCpp;
         calcToScalar(NDaysCpp, NDays);
 
         std::string CalendarCpp;
-        calcToScalar(CalendarCpp, Calendar);
+        if(Calendar.hasValue()) 
+            calcToScalar(CalendarCpp, Calendar);
+        else
+            CalendarCpp = "NullCalendar";
 
-        std::string RateCpp = ouStringToStlString(Rate);
+        std::string RateCpp;
+        calcToScalar(RateCpp, Rate);
 
         std::string DayCounterCpp;
-        calcToScalar(DayCounterCpp, DayCounter);
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
 
         std::string CompoundingCpp;
-        calcToScalar(CompoundingCpp, Compounding);
+        if(Compounding.hasValue()) 
+            calcToScalar(CompoundingCpp, Compounding);
+        else
+            CompoundingCpp = "Continuous";
 
         std::string FrequencyCpp;
-        calcToScalar(FrequencyCpp, Frequency);
+        if(Frequency.hasValue()) 
+            calcToScalar(FrequencyCpp, Frequency);
+        else
+            FrequencyCpp = "Annual";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
+        // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Size NDaysLib;
+        calcToScalar(NDaysLib, NDays);
+
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(RateCoerce, RateCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(RateCoerce, RateCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::Quote> RateLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::Quote,
                 QuantLib::Quote>()(
-                    RateCoerce);
+                    RateCoerce, QuantLib::Handle<QuantLib::Quote>());
 
         // convert input datatypes to QuantLib enumerated datatypes
 
@@ -198,7 +234,7 @@ STRING SAL_CALL CalcAddins_impl::qlFlatForward(
         boost::shared_ptr<ObjectHandler::Object> object(
             new QuantLibAddin::FlatForward(
                 valueObject,
-                NDaysCpp,
+                NDaysLib,
                 CalendarEnum,
                 RateLibObj,
                 DayCounterEnum,
@@ -209,35 +245,53 @@ STRING SAL_CALL CalcAddins_impl::qlFlatForward(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlFlatForward: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlFlatForward: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlForwardCurve(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlForwardCurve(
+        const ANY &ObjectId,
         const SEQSEQ(ANY) &CurveDates,
-        const SEQSEQ(double) &ForwardYields,
+        const SEQSEQ(ANY) &ForwardYields,
         const ANY &DayCounter,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         std::vector<ObjectHandler::property_t> CurveDatesCpp;
         calcToVector(CurveDatesCpp, CurveDates);
@@ -246,7 +300,10 @@ STRING SAL_CALL CalcAddins_impl::qlForwardCurve(
         calcToVector(ForwardYieldsCpp, ForwardYields);
 
         std::string DayCounterCpp;
-        calcToScalar(DayCounterCpp, DayCounter);
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -284,57 +341,77 @@ STRING SAL_CALL CalcAddins_impl::qlForwardCurve(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlForwardCurve: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlForwardCurve: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlForwardSpreadedTermStructure(
-        const STRING &ObjectId,
-        const STRING &BaseYieldCurve,
-        const STRING &Spread,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlForwardSpreadedTermStructure(
+        const ANY &ObjectId,
+        const ANY &BaseYieldCurve,
+        const ANY &Spread,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string BaseYieldCurveCpp = ouStringToStlString(BaseYieldCurve);
+        std::string BaseYieldCurveCpp;
+        calcToScalar(BaseYieldCurveCpp, BaseYieldCurve);
 
-        std::string SpreadCpp = ouStringToStlString(Spread);
+        std::string SpreadCpp;
+        calcToScalar(SpreadCpp, Spread);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(BaseYieldCurveCoerce, BaseYieldCurveCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(BaseYieldCurveCoerce, BaseYieldCurveCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::YieldTermStructure> BaseYieldCurveLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
-                    BaseYieldCurveCoerce);
+                    BaseYieldCurveCoerce, QuantLib::Handle<QuantLib::YieldTermStructure>());
 
-        OH_GET_OBJECT(SpreadCoerce, SpreadCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(SpreadCoerce, SpreadCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::Quote> SpreadLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::Quote,
                 QuantLib::Quote>()(
-                    SpreadCoerce);
+                    SpreadCoerce, QuantLib::Handle<QuantLib::Quote>());
 
         // Construct the Value Object
 
@@ -357,36 +434,55 @@ STRING SAL_CALL CalcAddins_impl::qlForwardSpreadedTermStructure(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlForwardSpreadedTermStructure: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlForwardSpreadedTermStructure: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlImpliedTermStructure(
-        const STRING &ObjectId,
-        const STRING &BaseYieldCurve,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlImpliedTermStructure(
+        const ANY &ObjectId,
+        const ANY &BaseYieldCurve,
         const ANY &ReferenceDate,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string BaseYieldCurveCpp = ouStringToStlString(BaseYieldCurve);
+        std::string BaseYieldCurveCpp;
+        calcToScalar(BaseYieldCurveCpp, BaseYieldCurve);
 
         ObjectHandler::property_t ReferenceDateCpp;
         calcToScalar(ReferenceDateCpp, ReferenceDate);
@@ -401,12 +497,12 @@ STRING SAL_CALL CalcAddins_impl::qlImpliedTermStructure(
 
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(BaseYieldCurveCoerce, BaseYieldCurveCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(BaseYieldCurveCoerce, BaseYieldCurveCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::YieldTermStructure> BaseYieldCurveLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
-                    BaseYieldCurveCoerce);
+                    BaseYieldCurveCoerce, QuantLib::Handle<QuantLib::YieldTermStructure>());
 
         // Construct the Value Object
 
@@ -429,36 +525,201 @@ STRING SAL_CALL CalcAddins_impl::qlImpliedTermStructure(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlImpliedTermStructure: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlImpliedTermStructure: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlRelinkableHandleYieldTermStructure(
-        const STRING &ObjectId,
-        const ANY &CurrentLink,
-        const ANY &Permanent,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlInterpolatedYieldCurve(
+        const ANY &ObjectId,
+        const SEQSEQ(ANY) &Dates,
+        const SEQSEQ(ANY) &Data,
+        const ANY &Calendar,
+        const ANY &DayCounter,
+        const SEQSEQ(ANY) &Jumps,
+        const SEQSEQ(ANY) &JumpDates,
+        const ANY &TraitsID,
+        const ANY &InterpolatorID,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
+
+        std::vector<ObjectHandler::property_t> DatesCpp;
+        calcToVector(DatesCpp, Dates);
+
+        std::vector<double> DataCpp;
+        calcToVector(DataCpp, Data);
+
+        std::string CalendarCpp;
+        calcToScalar(CalendarCpp, Calendar);
+
+        std::string DayCounterCpp;
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
+
+        std::vector<ObjectHandler::property_t> JumpsCpp;
+        calcToVector(JumpsCpp, Jumps);
+
+        std::vector<ObjectHandler::property_t> JumpDatesCpp;
+        calcToVector(JumpDatesCpp, JumpDates);
+
+        std::string TraitsIDCpp;
+        if(TraitsID.hasValue()) 
+            calcToScalar(TraitsIDCpp, TraitsID);
+        else
+            TraitsIDCpp = "Discount";
+
+        std::string InterpolatorIDCpp;
+        if(InterpolatorID.hasValue()) 
+            calcToScalar(InterpolatorIDCpp, InterpolatorID);
+        else
+            InterpolatorIDCpp = "MonotonicLogCubicNaturalSpline";
+
+        bool PermanentCpp;
+        calcToScalar(PermanentCpp, Permanent);
+
+        // convert input datatypes to QuantLib datatypes
+
+        std::vector<QuantLib::Date> DatesLib;
+        calcToVector(DatesLib, Dates);
+
+        std::vector<QuantLib::Real> DataLib;
+        calcToVector(DataLib, Data);
+
+        std::vector<QuantLib::Handle<QuantLib::Quote> > JumpsLibObj =
+            ObjectHandler::vector::convert2<QuantLib::Handle<QuantLib::Quote> >(JumpsCpp, "Jumps");
+
+        std::vector<QuantLib::Date> JumpDatesLib;
+        calcToVector(JumpDatesLib, JumpDates);
+
+        // convert input datatypes to QuantLib enumerated datatypes
+
+        QuantLib::Calendar CalendarEnum =
+            ObjectHandler::Create<QuantLib::Calendar>()(CalendarCpp);
+
+        QuantLib::DayCounter DayCounterEnum =
+            ObjectHandler::Create<QuantLib::DayCounter>()(DayCounterCpp);
+
+        // Construct the Value Object
+
+        boost::shared_ptr<ObjectHandler::ValueObject> valueObject(
+            new QuantLibAddin::ValueObjects::qlInterpolatedYieldCurve(
+                ObjectIdCpp,
+                DatesCpp,
+                DataCpp,
+                CalendarCpp,
+                DayCounterCpp,
+                JumpsCpp,
+                JumpDatesCpp,
+                TraitsIDCpp,
+                InterpolatorIDCpp,
+                PermanentCpp));
+
+        // Construct the Object
+        
+        boost::shared_ptr<ObjectHandler::Object> object(
+            new QuantLibAddin::InterpolatedYieldCurve(
+                valueObject,
+                DatesLib,
+                DataLib,
+                CalendarEnum,
+                DayCounterEnum,
+                JumpsLibObj,
+                JumpDatesLib,
+                TraitsIDCpp,
+                InterpolatorIDCpp,
+                PermanentCpp));
+
+        // Store the Object in the Repository
+
+        std::string returnValue =
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
+
+        // Convert and return the return value
+
+
+
+        ANY returnValueCalc;
+        scalarToCalc(returnValueCalc, returnValue);
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
+
+    } catch (const std::exception &e) {
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlInterpolatedYieldCurve: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
+    }
+}
+
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlRelinkableHandleYieldTermStructure(
+        const ANY &ObjectId,
+        const ANY &CurrentLink,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException) {
+    try {
+
+        // convert input datatypes to C++ datatypes
+
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         std::string CurrentLinkCpp;
-        calcToScalar(CurrentLinkCpp, CurrentLink);
+        if(CurrentLink.hasValue()) 
+            calcToScalar(CurrentLinkCpp, CurrentLink);
+        else
+            CurrentLinkCpp = "";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -482,79 +743,111 @@ STRING SAL_CALL CalcAddins_impl::qlRelinkableHandleYieldTermStructure(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlRelinkableHandleYieldTermStructure: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlRelinkableHandleYieldTermStructure: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlTermStructureCalendar(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlTermStructureCalendar(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
+        // convert object IDs into library objects
 
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::YieldTermStructure> ObjectIdLibObjPtr =
-            QuantLibAddin::CoerceHandle<
-                QuantLibAddin::YieldTermStructure,
-                QuantLib::YieldTermStructure>()(
-                    ObjectIdCoerce);
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::TermStructure> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceTermStructure<
+                QuantLibAddin::TermStructure,
+                QuantLib::TermStructure>()(
+                    ObjectIdTemp);
 
         // invoke the member function
-	// RL: chnaged return type manually
 
-        // std::string returnValue = ObjectIdLibObjPtr->calendar();
-	QuantLib::Calendar returnValue = ObjectIdLibObjPtr->calendar();
+        QuantLib::Calendar returnValue = ObjectIdLibObjPtr->calendar();
 
         // convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlTermStructureCalendar: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlTermStructureCalendar: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-sal_Int32 SAL_CALL CalcAddins_impl::qlTermStructureMaxDate(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlTermStructureMaxDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
+        // convert object IDs into library objects
 
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::YieldTermStructure> ObjectIdLibObjPtr =
-            QuantLibAddin::CoerceHandle<
-                QuantLibAddin::YieldTermStructure,
-                QuantLib::YieldTermStructure>()(
-                    ObjectIdCoerce);
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::TermStructure> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceTermStructure<
+                QuantLibAddin::TermStructure,
+                QuantLib::TermStructure>()(
+                    ObjectIdTemp);
 
         // invoke the member function
 
@@ -564,34 +857,51 @@ sal_Int32 SAL_CALL CalcAddins_impl::qlTermStructureMaxDate(
 
 
 
-        long returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlTermStructureMaxDate: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlTermStructureMaxDate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-sal_Int32 SAL_CALL CalcAddins_impl::qlTermStructureReferenceDate(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlTermStructureReferenceDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
+        // convert object IDs into library objects
 
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::YieldTermStructure> ObjectIdLibObjPtr =
-            QuantLibAddin::CoerceHandle<
-                QuantLibAddin::YieldTermStructure,
-                QuantLib::YieldTermStructure>()(
-                    ObjectIdCoerce);
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::TermStructure> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceTermStructure<
+                QuantLibAddin::TermStructure,
+                QuantLib::TermStructure>()(
+                    ObjectIdTemp);
 
         // invoke the member function
 
@@ -601,34 +911,51 @@ sal_Int32 SAL_CALL CalcAddins_impl::qlTermStructureReferenceDate(
 
 
 
-        long returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlTermStructureReferenceDate: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlTermStructureReferenceDate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-sal_Int32 SAL_CALL CalcAddins_impl::qlTermStructureSettlementDays(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlTermStructureSettlementDays(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
+        // convert object IDs into library objects
 
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::YieldTermStructure> ObjectIdLibObjPtr =
-            QuantLibAddin::CoerceHandle<
-                QuantLibAddin::YieldTermStructure,
-                QuantLib::YieldTermStructure>()(
-                    ObjectIdCoerce);
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::TermStructure> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceTermStructure<
+                QuantLibAddin::TermStructure,
+                QuantLib::TermStructure>()(
+                    ObjectIdTemp);
 
         // invoke the member function
 
@@ -638,105 +965,135 @@ sal_Int32 SAL_CALL CalcAddins_impl::qlTermStructureSettlementDays(
 
 
 
-        long returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlTermStructureSettlementDays: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlTermStructureSettlementDays: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlYieldTSParRate(
-        const STRING &ObjectId,
-        sal_Int32 Tenor,
-        const ANY &StartDate,
-        const STRING &ResultDayCounter,
-        const ANY &Frequency,
-        const ANY &AllowExtrapolation,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlYieldTSDiscount(
+        const ANY &ObjectId,
+        const SEQSEQ(ANY) &DfDates,
+        const sal_Int32 AllowExtrapolation,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
-
-        ObjectHandler::property_t StartDateCpp;
-        calcToScalar(StartDateCpp, StartDate);
-
-        std::string ResultDayCounterCpp = ouStringToStlString(ResultDayCounter);
-
-        std::string FrequencyCpp;
-        calcToScalar(FrequencyCpp, Frequency);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         bool AllowExtrapolationCpp;
         calcToScalar(AllowExtrapolationCpp, AllowExtrapolation);
 
         // convert input datatypes to QuantLib datatypes
 
-        QuantLib::Date StartDateLib;
-        calcToScalar(StartDateLib, StartDate);
+        std::vector<QuantLib::Date> DfDatesLib;
+        calcToVector(DfDatesLib, DfDates);
 
-        // convert input datatypes to QuantLib enumerated datatypes
+        // convert object IDs into library objects
 
-        QuantLib::DayCounter ResultDayCounterEnum =
-            ObjectHandler::Create<QuantLib::DayCounter>()(ResultDayCounterCpp);
-
-        QuantLib::Frequency FrequencyEnum =
-            ObjectHandler::Create<QuantLib::Frequency>()(FrequencyCpp);
-
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
-
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::YieldTermStructure> ObjectIdLibObjPtr =
-            QuantLibAddin::CoerceHandle<
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::YieldTermStructure> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceTermStructure<
                 QuantLibAddin::YieldTermStructure,
                 QuantLib::YieldTermStructure>()(
-                    ObjectIdCoerce);
+                    ObjectIdTemp);
 
-        // invoke the member function
+        // loop on the input parameter and populate the return vector
 
-        double returnValue = ObjectIdLibObjPtr->parRate(
-                Tenor,
-                StartDateLib,
-                ResultDayCounterEnum,
-                FrequencyEnum,
+        SEQSEQ(ANY) returnValue;
+
+        QuantLibAddin::qlYieldTSDiscountBind bindObject = 
+            boost::bind((QuantLibAddin::qlYieldTSDiscountSignature)
+                    &QuantLib::YieldTermStructure::discount, 
+                ObjectIdLibObjPtr,
+                _1,
                 AllowExtrapolationCpp);
-
-        // convert and return the return value
+                    
+        {
+            returnValue.realloc(DfDatesLib.size());
+            for (unsigned int i=0; i<DfDatesLib.size(); ++i) {
+                SEQ(ANY) s(1);
+                scalarToCalc(s[0], bindObject( DfDatesLib[i] ) );
+                returnValue[i] = s;
+            }
+        }
+     	  
+        /* ObjectHandler::loop
+            <QuantLibAddin::qlYieldTSDiscountBind, QuantLib::Date, double>
+            (functionCall, bindObject, DfDatesLib, returnValue); */
 
 
 
         return returnValue;
-
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlYieldTSParRate: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlYieldTSDiscount: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-double SAL_CALL CalcAddins_impl::qlYieldTSParRate2(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlYieldTSZeroRate(
+        const ANY &ObjectId,
         const SEQSEQ(ANY) &Dates,
-        const STRING &ResultDayCounter,
+        const ANY &ResultDayCounter,
+        const ANY &Compounding,
         const ANY &Frequency,
-        const ANY &AllowExtrapolation,
+        const sal_Int32 AllowExtrapolation,
         const ANY &Trigger) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::vector<ObjectHandler::property_t> DatesCpp;
-        calcToVector(DatesCpp, Dates);
+        std::string ResultDayCounterCpp;
+        calcToScalar(ResultDayCounterCpp, ResultDayCounter);
 
-        std::string ResultDayCounterCpp = ouStringToStlString(ResultDayCounter);
+        std::string CompoundingCpp;
+        if(Compounding.hasValue()) 
+            calcToScalar(CompoundingCpp, Compounding);
+        else
+            CompoundingCpp = "Continuous";
 
         std::string FrequencyCpp;
-        calcToScalar(FrequencyCpp, Frequency);
+        if(Frequency.hasValue()) 
+            calcToScalar(FrequencyCpp, Frequency);
+        else
+            FrequencyCpp = "Annual";
 
         bool AllowExtrapolationCpp;
         calcToScalar(AllowExtrapolationCpp, AllowExtrapolation);
@@ -746,57 +1103,87 @@ double SAL_CALL CalcAddins_impl::qlYieldTSParRate2(
         std::vector<QuantLib::Date> DatesLib;
         calcToVector(DatesLib, Dates);
 
+        // convert object IDs into library objects
+
+        OH_GET_OBJECT(ObjectIdTemp, ObjectIdCpp, ObjectHandler::Object)
+        boost::shared_ptr<QuantLib::YieldTermStructure> ObjectIdLibObjPtr =
+            QuantLibAddin::CoerceTermStructure<
+                QuantLibAddin::YieldTermStructure,
+                QuantLib::YieldTermStructure>()(
+                    ObjectIdTemp);
+
         // convert input datatypes to QuantLib enumerated datatypes
 
         QuantLib::DayCounter ResultDayCounterEnum =
             ObjectHandler::Create<QuantLib::DayCounter>()(ResultDayCounterCpp);
 
+        QuantLib::Compounding CompoundingEnum =
+            ObjectHandler::Create<QuantLib::Compounding>()(CompoundingCpp);
+
         QuantLib::Frequency FrequencyEnum =
             ObjectHandler::Create<QuantLib::Frequency>()(FrequencyCpp);
 
-	// convert object IDs into library objects
-	// RL: conversion to library object added manually, fix gensrc
+        // loop on the input parameter and populate the return vector
 
-        OH_GET_OBJECT(ObjectIdCoerce, ObjectIdCpp, ObjectHandler::Object)
-        QuantLib::Handle<QuantLib::YieldTermStructure> ObjectIdLibObjPtr =
-            QuantLibAddin::CoerceHandle<
-                QuantLibAddin::YieldTermStructure,
-                QuantLib::YieldTermStructure>()(
-                    ObjectIdCoerce);
+        SEQSEQ(ANY) returnValue;
 
-        // invoke the member function
-
-        double returnValue = ObjectIdLibObjPtr->parRate(
-                DatesLib,
+        QuantLibAddin::qlYieldTSZeroRateBind bindObject = 
+            boost::bind((QuantLibAddin::qlYieldTSZeroRateSignature)
+                    &QuantLib::YieldTermStructure::zeroRate, 
+                ObjectIdLibObjPtr,
+                _1,
                 ResultDayCounterEnum,
+                CompoundingEnum,
                 FrequencyEnum,
                 AllowExtrapolationCpp);
-
-        // convert and return the return value
+                    
+        {
+            returnValue.realloc(DatesLib.size());
+            for (unsigned int i=0; i<DatesLib.size(); ++i) {
+                SEQ(ANY) s(1);
+                scalarToCalc(s[0], bindObject( DatesLib[i] ) );
+                returnValue[i] = s;
+            }
+        }
+     	  
+        /* ObjectHandler::loop
+            <QuantLibAddin::qlYieldTSZeroRateBind, QuantLib::Date, QuantLib::InterestRate>
+            (functionCall, bindObject, DatesLib, returnValue); */
 
 
 
         return returnValue;
-
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlYieldTSParRate2: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlYieldTSZeroRate: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlZeroCurve(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlZeroCurve(
+        const ANY &ObjectId,
         const SEQSEQ(ANY) &CurveDates,
-        const SEQSEQ(double) &CurveYields,
+        const SEQSEQ(ANY) &CurveYields,
         const ANY &DayCounter,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         std::vector<ObjectHandler::property_t> CurveDatesCpp;
         calcToVector(CurveDatesCpp, CurveDates);
@@ -805,7 +1192,10 @@ STRING SAL_CALL CalcAddins_impl::qlZeroCurve(
         calcToVector(CurveYieldsCpp, CurveYields);
 
         std::string DayCounterCpp;
-        calcToScalar(DayCounterCpp, DayCounter);
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -843,19 +1233,36 @@ STRING SAL_CALL CalcAddins_impl::qlZeroCurve(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlZeroCurve: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlZeroCurve: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

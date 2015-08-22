@@ -20,22 +20,63 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_calendar_hpp
 #define ql_calc_calendar_hpp
 
-    sal_Int32 SAL_CALL qlCalendarAddHoliday(
-        const STRING &calendar,
+    SEQSEQ(ANY) SAL_CALL qlCalendarAddHoliday(
+        const ANY &calendar,
         const ANY &Date,
         const ANY &Trigger) throw(RuntimeException);
 
-    STRING SAL_CALL qlCalendarName(
-        const STRING &calendar,
+    SEQSEQ(ANY) SAL_CALL qlCalendarAdjust(
+        const ANY &calendar,
+        const SEQSEQ(ANY) &Date,
+        const ANY &BusinessDayConvention,
         const ANY &Trigger) throw(RuntimeException);
 
-    sal_Int32 SAL_CALL qlCalendarRemoveHoliday(
-        const STRING &calendar,
+    SEQSEQ(ANY) SAL_CALL qlCalendarBusinessDaysBetween(
+        const ANY &calendar,
+        const SEQSEQ(ANY) &FirstDate,
+        const ANY &LastDate,
+        const sal_Int32 IncludeFirst,
+        const sal_Int32 IncludeLast,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlCalendarEndOfMonth(
+        const ANY &calendar,
+        const SEQSEQ(ANY) &Date,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlCalendarHolidayList(
+        const ANY &Calendar,
+        const ANY &FromDate,
+        const ANY &ToDate,
+        const sal_Int32 IncludeWeekEnds,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlCalendarIsBusinessDay(
+        const ANY &calendar,
+        const SEQSEQ(ANY) &Date,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlCalendarIsEndOfMonth(
+        const ANY &calendar,
+        const SEQSEQ(ANY) &Date,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlCalendarIsHoliday(
+        const ANY &calendar,
+        const SEQSEQ(ANY) &Date,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlCalendarName(
+        const ANY &calendar,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlCalendarRemoveHoliday(
+        const ANY &calendar,
         const ANY &Date,
         const ANY &Trigger) throw(RuntimeException);
 

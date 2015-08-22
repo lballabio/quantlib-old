@@ -20,7 +20,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -44,52 +44,60 @@
 #include <qlo/valueobjects/vo_capletvolstructure.hpp>
 #include <qlo/loop/loop_capletvolstructure.hpp>
 #include <loop.hpp>
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlConstantOptionletVolatility(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlConstantOptionletVolatility(
+        const ANY &ObjectId,
         const ANY &NDays,
-        const STRING &Calendar,
-        const STRING &BusinessDayConvention,
-        const STRING &Volatility,
+        const ANY &Calendar,
+        const ANY &BusinessDayConvention,
+        const ANY &Volatility,
         const ANY &DayCounter,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         long NDaysCpp;
         calcToScalar(NDaysCpp, NDays);
 
-        std::string CalendarCpp = ouStringToStlString(Calendar);
+        std::string CalendarCpp;
+        calcToScalar(CalendarCpp, Calendar);
 
-        std::string BusinessDayConventionCpp = ouStringToStlString(BusinessDayConvention);
+        std::string BusinessDayConventionCpp;
+        calcToScalar(BusinessDayConventionCpp, BusinessDayConvention);
 
-        std::string VolatilityCpp = ouStringToStlString(Volatility);
+        std::string VolatilityCpp;
+        calcToScalar(VolatilityCpp, Volatility);
 
         std::string DayCounterCpp;
-        calcToScalar(DayCounterCpp, DayCounter);
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
 
+        // convert input datatypes to QuantLib datatypes
+
+        QuantLib::Size NDaysLib;
+        calcToScalar(NDaysLib, NDays);
+
         // convert object IDs into library objects
 
-        OH_GET_OBJECT(VolatilityCoerce, VolatilityCpp, ObjectHandler::Object)
+        OH_GET_OBJECT_DEFAULT(VolatilityCoerce, VolatilityCpp, ObjectHandler::Object)
         QuantLib::Handle<QuantLib::Quote> VolatilityLibObj =
             QuantLibAddin::CoerceHandle<
                 QuantLibAddin::Quote,
                 QuantLib::Quote>()(
-                    VolatilityCoerce);
+                    VolatilityCoerce, QuantLib::Handle<QuantLib::Quote>());
 
         // convert input datatypes to QuantLib enumerated datatypes
 
@@ -119,7 +127,7 @@ STRING SAL_CALL CalcAddins_impl::qlConstantOptionletVolatility(
         boost::shared_ptr<ObjectHandler::Object> object(
             new QuantLibAddin::ConstantOptionletVolatility(
                 valueObject,
-                NDaysCpp,
+                NDaysLib,
                 CalendarEnum,
                 BusinessDayConventionEnum,
                 VolatilityLibObj,
@@ -129,36 +137,57 @@ STRING SAL_CALL CalcAddins_impl::qlConstantOptionletVolatility(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlConstantOptionletVolatility: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlConstantOptionletVolatility: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 
-STRING SAL_CALL CalcAddins_impl::qlRelinkableHandleOptionletVolatilityStructure(
-        const STRING &ObjectId,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlRelinkableHandleOptionletVolatilityStructure(
+        const ANY &ObjectId,
         const ANY &CurrentLink,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
         std::string CurrentLinkCpp;
-        calcToScalar(CurrentLinkCpp, CurrentLink);
+        if(CurrentLink.hasValue()) 
+            calcToScalar(CurrentLinkCpp, CurrentLink);
+        else
+            CurrentLinkCpp = "";
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -182,19 +211,36 @@ STRING SAL_CALL CalcAddins_impl::qlRelinkableHandleOptionletVolatilityStructure(
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlRelinkableHandleOptionletVolatilityStructure: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlRelinkableHandleOptionletVolatilityStructure: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

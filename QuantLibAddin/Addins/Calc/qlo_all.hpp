@@ -21,36 +21,57 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.header
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.header
 
 #ifndef ql_calc_auto_hpp
 #define ql_calc_auto_hpp
 
 #include <logging.hpp>
+#include <serialization.hpp>
+#include <accountingengines.hpp>
+#include <assetswap.hpp>
+#include <bonds.hpp>
+#include <browniangenerators.hpp>
 #include <calendar.hpp>
 #include <capfloor.hpp>
 #include <capletvolstructure.hpp>
+#include <correlation.hpp>
+#include <couponvectors.hpp>
+#include <credit.hpp>
+#include <daycounter.hpp>
+#include <defaultbasket.hpp>
 #include <defaulttermstructures.hpp>
+#include <evolutiondescription.hpp>
 #include <exercise.hpp>
-#include <handles.hpp>
 #include <index.hpp>
 #include <instruments.hpp>
+#include <interpolation.hpp>
+#include <latentmodels.hpp>
+#include <leg.hpp>
+#include <marketmodelevolvers.hpp>
+#include <marketmodels.hpp>
 #include <options.hpp>
-#include <overnightindexedswap.hpp>
 #include <payoffs.hpp>
 #include <piecewiseyieldcurve.hpp>
 #include <pricingengines.hpp>
 #include <processes.hpp>
+#include <products.hpp>
 #include <quotes.hpp>
+#include <randomsequencegenerator.hpp>
+#include <rangeaccrual.hpp>
 #include <ratehelpers.hpp>
 #include <schedule.hpp>
+#include <sequencestatistics.hpp>
 #include <settings.hpp>
+#include <shortratemodels.hpp>
+#include <swap.hpp>
 #include <swaption.hpp>
 #include <swaptionvolstructure.hpp>
 #include <termstructures.hpp>
 #include <utilities.hpp>
 #include <vanillaswap.hpp>
 #include <volatilities.hpp>
+#include <volatility.hpp>
 
 
 #endif

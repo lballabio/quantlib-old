@@ -20,7 +20,7 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.includes
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.includes
 
 #include <oh/utilities.hpp>
 #include <oh/ohdefines.hpp>
@@ -32,37 +32,47 @@
 #include <qlo/volatilities.hpp>
 #include <qlo/valueobjects/vo_processes.hpp>
 
-//#include <Addins/Calc/qladdin.hpp>
-//#include <Addins/Calc/calcutils.hpp>
-//#include <Addins/Calc/conversions.hpp>
-#include <calcaddins.hpp>
-#include <calcutils.hpp>
+#include <qladdin.hpp>
 #include <conversions.hpp>
 
-STRING SAL_CALL CalcAddins_impl::qlGeneralizedBlackScholesProcess(
-        const STRING &ObjectId,
-        const STRING &BlackVolID,
-        double Underlying,
+SEQSEQ(ANY) SAL_CALL CalcAddins_impl::qlGeneralizedBlackScholesProcess(
+        const ANY &ObjectId,
+        const ANY &BlackVolID,
+        const ANY &Underlying,
         const ANY &DayCounter,
         const ANY &SettlementDate,
-        double RiskFreeRate,
-        double DividendYield,
-        const ANY &Permanent,
+        const ANY &RiskFreeRate,
+        const ANY &DividendYield,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException) {
+        const sal_Int32 Overwrite) throw(RuntimeException) {
     try {
 
         // convert input datatypes to C++ datatypes
 
-        std::string ObjectIdCpp = ouStringToStlString(ObjectId);
+        std::string ObjectIdCpp;
+        calcToScalar(ObjectIdCpp, ObjectId);
 
-        std::string BlackVolIDCpp = ouStringToStlString(BlackVolID);
+        std::string BlackVolIDCpp;
+        calcToScalar(BlackVolIDCpp, BlackVolID);
+
+        double UnderlyingCpp;
+        calcToScalar(UnderlyingCpp, Underlying);
 
         std::string DayCounterCpp;
-        calcToScalar(DayCounterCpp, DayCounter);
+        if(DayCounter.hasValue()) 
+            calcToScalar(DayCounterCpp, DayCounter);
+        else
+            DayCounterCpp = "Actual/365 (Fixed)";
 
         ObjectHandler::property_t SettlementDateCpp;
         calcToScalar(SettlementDateCpp, SettlementDate);
+
+        double RiskFreeRateCpp;
+        calcToScalar(RiskFreeRateCpp, RiskFreeRate);
+
+        double DividendYieldCpp;
+        calcToScalar(DividendYieldCpp, DividendYield);
 
         bool PermanentCpp;
         calcToScalar(PermanentCpp, Permanent);
@@ -88,11 +98,11 @@ STRING SAL_CALL CalcAddins_impl::qlGeneralizedBlackScholesProcess(
             new QuantLibAddin::ValueObjects::qlGeneralizedBlackScholesProcess(
                 ObjectIdCpp,
                 BlackVolIDCpp,
-                Underlying,
+                UnderlyingCpp,
                 DayCounterCpp,
                 SettlementDateCpp,
-                RiskFreeRate,
-                DividendYield,
+                RiskFreeRateCpp,
+                DividendYieldCpp,
                 PermanentCpp));
 
         // Construct the Object
@@ -101,29 +111,46 @@ STRING SAL_CALL CalcAddins_impl::qlGeneralizedBlackScholesProcess(
             new QuantLibAddin::GeneralizedBlackScholesProcess(
                 valueObject,
                 BlackVolIDLibObjPtr,
-                Underlying,
+                UnderlyingCpp,
                 DayCounterEnum,
                 SettlementDateLib,
-                RiskFreeRate,
-                DividendYield,
+                RiskFreeRateCpp,
+                DividendYieldCpp,
                 PermanentCpp));
 
         // Store the Object in the Repository
 
         std::string returnValue =
-            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite);
+            ObjectHandler::Repository::instance().storeObject(ObjectIdCpp, object, Overwrite, valueObject);
 
         // Convert and return the return value
 
 
 
-        STRING returnValueCalc;
+        ANY returnValueCalc;
         scalarToCalc(returnValueCalc, returnValue);
-        return returnValueCalc;
+
+        SEQSEQ(ANY) retAnyArray;
+        retAnyArray.realloc(1);
+        SEQ(ANY) retAnyVector(1);
+        retAnyVector[0] = returnValueCalc;
+        retAnyArray[0] = retAnyVector;        
+        return retAnyArray;
 
     } catch (const std::exception &e) {
-        OH_LOG_MESSAGE("ERROR: qlGeneralizedBlackScholesProcess: " << e.what());
-        THROW_RTE;
+        do { 
+            std::ostringstream errorMsg; 
+            errorMsg << "ERROR: qlGeneralizedBlackScholesProcess: " << e.what(); 
+            OH_LOG_MESSAGE(errorMsg.str());
+        
+            SEQSEQ(ANY) retAnyArray;
+            retAnyArray.realloc(1);
+            SEQ(ANY) retAnyVector(1);
+            STRING s = STRFROMASCII( errorMsg.str().c_str() );    
+            retAnyVector[0] = CSS::uno::makeAny( s );
+            retAnyArray[0] = retAnyVector;	    
+            return retAnyArray;
+        } while (false);
     }
 }
 

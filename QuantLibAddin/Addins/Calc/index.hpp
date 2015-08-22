@@ -1,6 +1,6 @@
 
 /*  
- Copyright (C) 2006, 2007, 2008, 2009 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2010 Ferdinando Ametrano
  Copyright (C) 2006 Katiuscia Manzoni
  Copyright (C) 2005, 2007 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
@@ -23,76 +23,144 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_index_hpp
 #define ql_calc_index_hpp
 
-    STRING SAL_CALL qlBMAIndex(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlBMAIndex(
+        const ANY &ObjectId,
         const ANY &YieldCurve,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlEonia(
-        const STRING &ObjectId,
+    SEQSEQ(ANY) SAL_CALL qlEonia(
+        const ANY &ObjectId,
         const ANY &YieldCurve,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlEuribor(
-        const STRING &ObjectId,
-        const STRING &Tenor,
+    SEQSEQ(ANY) SAL_CALL qlEuribor(
+        const ANY &ObjectId,
+        const ANY &Tenor,
         const ANY &YieldCurve,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlEuribor365(
-        const STRING &ObjectId,
-        const STRING &Tenor,
+    SEQSEQ(ANY) SAL_CALL qlEuribor365(
+        const ANY &ObjectId,
+        const ANY &Tenor,
         const ANY &YieldCurve,
-        const ANY &Permanent,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlIborIndex(
-        const STRING &ObjectId,
-        const STRING &FamilyName,
-        const STRING &Tenor,
-        sal_Int32 FixingDays,
-        const STRING &Currency,
-        const STRING &Calendar,
-        const STRING &BDayConvention,
-        sal_Int32 EndOfMonth,
-        const STRING &DayCounter,
+    SEQSEQ(ANY) SAL_CALL qlEuriborSwap(
+        const ANY &ObjectId,
+        const ANY &FixingType,
+        const ANY &Tenor,
         const ANY &FwdCurve,
-        const ANY &Permanent,
+        const ANY &DiscCurve,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlLibor(
-        const STRING &ObjectId,
-        const STRING &Currency,
-        const STRING &Tenor,
-        const ANY &YieldCurve,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlEuriborSwapIsdaFixA(
+        const ANY &ObjectId,
+        const ANY &Tenor,
+        const ANY &FwdCurve,
+        const ANY &DiscCurve,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlOvernightIndex(
-        const STRING &ObjectId,
-        const STRING &FamilyName,
-        sal_Int32 FixingDays,
-        const STRING &Currency,
-        const STRING &Calendar,
-        const STRING &DayCounter,
-        const ANY &YieldCurve,
-        const ANY &Permanent,
+    SEQSEQ(ANY) SAL_CALL qlIborIndex(
+        const ANY &ObjectId,
+        const ANY &FamilyName,
+        const ANY &Tenor,
+        const ANY &FixingDays,
+        const ANY &Currency,
+        const ANY &Calendar,
+        const ANY &BDayConvention,
+        const sal_Int32 EndOfMonth,
+        const ANY &DayCounter,
+        const ANY &FwdCurve,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlIndexAddFixings(
+        const ANY &ObjectId,
+        const SEQSEQ(ANY) &FixingDates,
+        const SEQSEQ(ANY) &FixingValues,
+        const sal_Int32 ForceOverwrite,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlIndexClearFixings(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlIndexName(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlLibor(
+        const ANY &ObjectId,
+        const ANY &Currency,
+        const ANY &Tenor,
+        const ANY &YieldCurve,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlLiborSwap(
+        const ANY &ObjectId,
+        const ANY &Currency,
+        const ANY &FixingType,
+        const ANY &Tenor,
+        const ANY &FwdCurve,
+        const ANY &DiscCurve,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlOvernightIndex(
+        const ANY &ObjectId,
+        const ANY &FamilyName,
+        const ANY &FixingDays,
+        const ANY &Currency,
+        const ANY &Calendar,
+        const ANY &DayCounter,
+        const ANY &YieldCurve,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSonia(
+        const ANY &ObjectId,
+        const ANY &YieldCurve,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSwapIndex(
+        const ANY &ObjectId,
+        const ANY &FamilyName,
+        const ANY &Tenor,
+        const ANY &FixingDays,
+        const ANY &Currency,
+        const ANY &Calendar,
+        const ANY &FixedLegTenor,
+        const ANY &FixedLegBDC,
+        const ANY &FixedLegDayCounter,
+        const ANY &IborIndex,
+        const ANY &DiscCurve,
+        const sal_Int32 Permanent,
+        const ANY &Trigger,
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
 
 

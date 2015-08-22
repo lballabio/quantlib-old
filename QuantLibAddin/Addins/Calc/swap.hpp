@@ -1,7 +1,7 @@
 
 /*  
  Copyright (C) 2005 Eric Ehlers
- Copyright (C) 2006, 2007 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2011 Ferdinando Ametrano
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005 Plamen Neykov
  Copyright (C) 2006 Katiuscia Manzoni
@@ -24,39 +24,39 @@
 // manually then your changes will be lost the next time gensrc runs.
 
 // This source code file was generated from the following stub:
-//      gensrc/gensrc/stubs/stub.calc.category
+//      C:/Users/erik/Documents/repos/quantlib/gensrc/gensrc/stubs/stub.calc.category
 
 #ifndef ql_calc_swap_hpp
 #define ql_calc_swap_hpp
 
-    STRING SAL_CALL qlMakeCms(
-        const STRING &ObjectId,
-        const STRING &SwapTenor,
-        const STRING &SwapIndex,
-        const STRING &IborIndex,
+    SEQSEQ(ANY) SAL_CALL qlMakeCms(
+        const ANY &ObjectId,
+        const ANY &SwapTenor,
+        const ANY &SwapIndex,
+        const ANY &IborIndex,
         const ANY &IborSpread,
-        const STRING &ForwardStart,
-        const STRING &CmsCouponPricer,
-        const ANY &Permanent,
+        const ANY &ForwardStart,
+        const ANY &CmsCouponPricer,
+        const sal_Int32 Permanent,
         const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
+        const sal_Int32 Overwrite) throw(RuntimeException);
 
-    STRING SAL_CALL qlSwap(
-        const STRING &ObjectId,
-        const SEQSEQ(ANY) &LegIDs,
-        const SEQSEQ(sal_Int32) &Payer,
-        const ANY &Permanent,
-        const ANY &Trigger,
-        sal_Int32 Overwrite) throw(RuntimeException);
-
-    double SAL_CALL qlSwapLegBPS(
-        const STRING &ObjectId,
-        sal_Int32 LegNumber,
+    SEQSEQ(ANY) SAL_CALL qlSwapLegBPS(
+        const ANY &ObjectId,
+        const ANY &LegNumber,
         const ANY &Trigger) throw(RuntimeException);
 
-    double SAL_CALL qlSwapLegNPV(
-        const STRING &ObjectId,
-        sal_Int32 LegNumber,
+    SEQSEQ(ANY) SAL_CALL qlSwapLegNPV(
+        const ANY &ObjectId,
+        const ANY &LegNumber,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSwapMaturityDate(
+        const ANY &ObjectId,
+        const ANY &Trigger) throw(RuntimeException);
+
+    SEQSEQ(ANY) SAL_CALL qlSwapStartDate(
+        const ANY &ObjectId,
         const ANY &Trigger) throw(RuntimeException);
 
 
