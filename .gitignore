@@ -183,6 +183,7 @@ QuantLib/Examples/SviSmileSection/SviSmileSection
 QuantLib/Examples/Volaswap/Volaswap
 QuantLib/Examples/crosscurrencylgm
 QuantLib/Examples/fxtarf
+QuantLib/Examples/timingadj
 QuantLib/test-suite/main.cpp
 QuantLib/test-suite/quantlib-test-suite
 QuantLib/test-suite/quantlib-benchmark
