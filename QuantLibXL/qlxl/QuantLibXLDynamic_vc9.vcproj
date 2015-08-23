@@ -430,10 +430,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\register\register_overnightindexedswap.cpp"
-				>
-			</File>
-			<File
 				RelativePath="functions\schedule.cpp"
 				>
 			</File>
@@ -655,6 +651,10 @@
 			</File>
 			<File
 				RelativePath="register\register_options.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\register\register_overnightindexedswap.cpp"
 				>
 			</File>
 			<File

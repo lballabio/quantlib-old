@@ -14,6 +14,7 @@
 #    OH_PATH: Full path to the ObjectHandler directory
 #    QA_PATH: Full path to the QuantLibAddin directory
 #    LG_PATH: Full path to the log4cxx directory
+#    BOOST_PATH: Full path to boost directory
 #
 # Changes compared to the original: 
 # ---------------------------------
@@ -23,6 +24,7 @@
 # - replaced cxx with cpp
 # - additional include paths
 # - additional library paths and various libraries
+# - additional library information for windows 32 bit
 #
 ##########################################################################
 
@@ -69,17 +71,41 @@
 # Builds the C++ component example of the Developers Guide.
 
 # RL added: Absolute path to OOo SDK
-PRJ=$(OO_SDK_HOME)
+ifeq "$(OS)" "WIN"
+PRJ=../../..
+else 
+PRJ=/usr/lib64/libreoffice/sdk
+endif 
 
 # RL: added RL_INC and RL_LIB for QuantLib
-RL_INC= -I$(QL_PATH) -I$(OH_PATH) -I$(QA_PATH)
+RL_INC= -I$(QL_PATH) -I$(OH_PATH) -I$(QA_PATH) -I$(BOOST_PATH) -I$(SIM_PATH)
 
 # FIXME: link QuantLibAddin dynamically (this leads to a Calc crash currently)
-RL_LIB=	$(QA_PATH)/qlo/.libs/libQuantLibAddin.a \
-	-L$(OH_PATH)/oh/.libs -lObjectHandler \
-	-L$(QL_PATH)/ql/.libs -lQuantLib \
-	-L$(LG_PATH)/src/main/cpp/.libs -llog4cxx \
-	-lboost_serialization -lboost_filesystem -lboost_regex -lboost_system
+RL_LIB=  \
+        -L$(LG_PATH)/src/main/cpp/.libs/ -llog4cxx \
+        -L$(BOOST_PATH)/stage/lib/ \
+        -L$(OH_PATH)/oh/.libs -lObjectHandler \
+        -L$(QL_PATH)/ql/.libs -lQuantLib \
+        -L$(QA_PATH)/qlo/.libs  -lQuantLibAddin \
+#       $(QA_PATH)/qlo/.libs/libQuantLibAddin.a \
+#       $(OH_PATH)/oh/.libs/libObjectHandler.a \
+#       $(QL_PATH)/ql/.libs/libQuantLib.a \
+        -lboost_regex -lboost_serialization -lboost_filesystem -lboost_system
+
+
+WIN_LIB= $(QA_PATH)/lib/QuantLibObjects-vc100-mt-1_2_0.lib \
+	$(OH_PATH)/lib/ObjectHandler-vc100-mt-1_2_0.lib \
+	$(QL_PATH)/lib/QuantLib-vc100-mt.lib \
+	$(BOOST_PATH)/stage/lib/libboost_serialization-vc100-mt-1_48.lib \
+	$(BOOST_PATH)/stage/lib/libboost_filesystem-vc100-mt-1_48.lib \
+	$(BOOST_PATH)/stage/lib/libboost_regex-vc100-mt-1_48.lib \
+	$(BOOST_PATH)/stage/lib/libboost_system-vc100-mt-1_48.lib \
+	$(LG_PATH)/msvc/lib/log4cxxs-vc100-mt-0_10_0.lib \
+	$(LG_PATH)/msvc/lib/apr-vc100-mt-0_10_0.lib \
+	$(LG_PATH)/msvc/lib/aprutil-vc100-mt-0_10_0.lib
+# \
+#	$(LG_PATH)/msvc/lib/stricmp-vc80-mt-0_10_0.lib 
+
 
 SETTINGS=$(PRJ)/settings
 
@@ -95,7 +121,7 @@ SAMPLE_SLO_OUT=$(OUT_SLO)/$(SAMPLE_NAME)
 SAMPLE_OBJ_OUT=$(OUT_OBJ)/$(SAMPLE_NAME)
 
 COMP_NAME=CalcAddins
-COMP_IMPL_NAME=$(COMP_NAME).uno.$(SHAREDLIB_EXT) 
+COMP_IMPL_NAME=$(COMP_NAME).uno.$(SHAREDLIB_EXT)
 
 COMP_RDB_NAME = $(COMP_NAME).uno.rdb
 COMP_RDB = $(SAMPLE_GEN_OUT)/$(COMP_RDB_NAME)
@@ -103,6 +129,7 @@ COMP_PACKAGE = $(OUT_BIN)/$(COMP_NAME).$(UNOOXT_EXT)
 COMP_PACKAGE_URL = $(subst \\,\,"$(COMP_PACKAGE_DIR)$(PS)$(COMP_NAME).$(UNOOXT_EXT)")
 COMP_UNOPKG_MANIFEST = $(SAMPLE_GEN_OUT)/$(COMP_NAME)/META-INF/manifest.xml
 COMP_MAPFILE = $(SAMPLE_GEN_OUT)/$(COMP_NAME).uno.map
+COMP_COMPONENTS = $(SAMPLE_GEN_OUT)/$(COMP_NAME).components
 
 COMP_REGISTERFLAG = $(SAMPLE_GEN_OUT)/devguide_$(COMP_NAME)_register_component.flag
 COMP_TYPEFLAG = $(SAMPLE_GEN_OUT)/devguide_$(COMP_NAME)_types.flag
@@ -111,36 +138,57 @@ COMP_TYPEFLAG = $(SAMPLE_GEN_OUT)/devguide_$(COMP_NAME)_types.flag
 IDLFILES = QuantLibAddinCalc.idl
 
 # RL: enter all sources here
-CPPFILES = calcaddins.cpp \
-	calcutils.cpp \
-	conversions.cpp \
+CPPFILES = qladdin.cpp \
 	init.cpp \
+	funcdef.cpp \
+	conversions.cpp \
+	accountingengines.cpp \
+	assetswap.cpp \
+	bonds.cpp \
+	browniangenerators.cpp \
+	calendar.cpp \
 	capfloor.cpp \
 	capletvolstructure.cpp \
+	correlation.cpp \
+	couponvectors.cpp \
+	credit.cpp \
+	daycounter.cpp \
+	defaultbasket.cpp \
 	defaulttermstructures.cpp \
+	evolutiondescription.cpp \
 	exercise.cpp \
-	funcdef.cpp \
-	handles.cpp \
 	index.cpp \
 	instruments.cpp \
+	interpolation.cpp \
+	leg.cpp \
 	logging.cpp \
+	latentmodels.cpp \
+	marketmodels.cpp \
+	marketmodelevolvers.cpp \
 	options.cpp \
-	overnightindexedswap.cpp \
 	payoffs.cpp \
 	piecewiseyieldcurve.cpp \
 	pricingengines.cpp \
 	processes.cpp \
+	products.cpp \
 	quotes.cpp \
+	rangeaccrual.cpp \
+	randomsequencegenerator.cpp \
 	ratehelpers.cpp \
 	schedule.cpp \
+	sequencestatistics.cpp \
+	serialization.cpp \
 	settings.cpp \
+        shortratemodels.cpp \
+	swap.cpp \
 	swaption.cpp \
 	swaptionvolstructure.cpp \
 	termstructures.cpp \
 	utilities.cpp \
 	vanillaswap.cpp \
 	volatilities.cpp \
-	credit.cpp 
+	volatility.cpp 
+ 
 
 SLOFILES = $(patsubst %.cpp,$(SAMPLE_SLO_OUT)/%.$(OBJ_EXT),$(CPPFILES))
 
@@ -170,7 +218,7 @@ $(SAMPLE_GEN_OUT)/%.rdb : $(GENURDFILES)
 $(COMP_TYPEFLAG) : $(COMP_RDB) $(SDKTYPEFLAG)
 	-$(DEL) $(subst \\,\,$(subst /,$(PS),$@))
 	-$(MKDIR) $(subst /,$(PS),$(@D))
-	$(CPPUMAKER) -Gc -BUCR -O$(SAMPLE_INC_OUT) $(TYPESLIST) $(COMP_RDB) -X$(URE_TYPES) -X$(OFFICE_TYPES)
+	$(CPPUMAKER) -Gc -O$(SAMPLE_INC_OUT) $(TYPESLIST) $(COMP_RDB) -X$(URE_TYPES) -X$(OFFICE_TYPES)
 	echo flagged > $@
 
 # modified: added RL_INC
@@ -180,7 +228,7 @@ $(SAMPLE_SLO_OUT)/%.$(OBJ_EXT) : %.cpp $(COMP_TYPEFLAG)
 
 $(COMP_MAPFILE) : $(SLOFILES)
 	-$(MKDIR) $(subst /,$(PS),$(@D))
-	cat $(PRJ)/settings/component.uno.map > $(COMP_MAPFILE) 
+	#cat $(PRJ)/settings/component.uno.map > $(COMP_MAPFILE) 
 ifeq "$(OS)" "MACOSX"
 	nm -gx $(SLOFILES) | $(ADDSYMBOLS) >> $(COMP_MAPFILE)
 endif
@@ -191,14 +239,21 @@ $(SHAREDLIB_OUT)/%.$(SHAREDLIB_EXT) : $(SLOFILES)
 	-$(MKDIR) $(subst /,$(PS),$(@D))
 	-$(MKDIR) $(subst /,$(PS),$(SAMPLE_GEN_OUT))
 	$(LINK) $(COMP_LINK_FLAGS) /OUT:$@ \
-	/MAP:$(SAMPLE_GEN_OUT)/$(subst $(SHAREDLIB_EXT),map,$(@F)) $(SLOFILES) \
-	$(CPPUHELPERLIB) $(CPPULIB) $(SALLIB) $(STLPORTLIB) msvcrt.lib kernel32.lib
+	/MAP:$(SAMPLE_GEN_OUT)/$(subst $(SHAREDLIB_EXT),map,$(@F)) $(SLOFILES) $(WIN_LIB) \
+	$(CPPUHELPERLIB) $(CPPULIB) $(SALLIB) $(STLPORTLIB) msvcrt.lib kernel32.lib advapi32.lib odbc32.lib \
+	msvcprt.lib mswsock.lib ws2_32.lib kernel32.lib user32.lib 
 	$(LINK_MANIFEST_VC8_ONLY)
 else
 $(SHAREDLIB_OUT)/%.$(SHAREDLIB_EXT) : $(SLOFILES) $(COMP_MAPFILE)
 	-$(MKDIR) $(subst /,$(PS),$(@D)) && $(DEL) $(subst \\,\,$(subst /,$(PS),$@))
-	$(LINK) $(COMP_LINK_FLAGS) $(LINK_LIBS) -o $@ $(SLOFILES) \
-	$(CPPUHELPERLIB) $(CPPULIB) $(SALLIB) $(STLPORTLIB) $(STC++LIB) $(CPPUHELPERDYLIB) $(CPPUDYLIB) $(SALDYLIB) $(RL_LIB)
+	$(LINK) $(COMP_LINK_FLAGS) $(LINK_LIBS) $(RL_LIB) -o $@ $(SLOFILES) \
+	$(CPPUHELPERLIB) $(CPPULIB) $(SALLIB) $(STLPORTLIB) $(STC++LIB) $(CPPUHELPERDYLIB) $(CPPUDYLIB) \
+	$(SALDYLIB) $(RL_LIB) 
+#$(SHAREDLIB_OUT)/$(COMP_IMPL_NAME) : $(SLOFILES) $(COMP_MAPFILE)
+#	-$(MKDIR) $(subst /,$(PS),$(@D)) && $(DEL) $(subst \\,\,$(subst /,$(PS),$@))
+#	$(LINK) $(COMP_LINK_FLAGS) $(LINK_LIBS) -o $@ $(SLOFILES) \
+#	$(CPPUHELPERLIB) $(CPPULIB) $(SALLIB) $(STLPORTLIB) $(STC++LIB) $(CPPUHELPERDYLIB) $(CPPUDYLIB) \
+#	$(SALDYLIB) $(RL_LIB) 
 ifeq "$(OS)" "MACOSX"
 	$(INSTALL_NAME_URELIBS)  $@
 endif
@@ -210,18 +265,34 @@ $(SAMPLE_GEN_OUT)/%/manifest.xml :
 	@echo $(OSEP)?xml version="$(QM)1.0$(QM)" encoding="$(QM)UTF-8$(QM)"?$(CSEP) > $@
 	@echo $(OSEP)!DOCTYPE manifest:manifest PUBLIC "$(QM)-//OpenOffice.org//DTD Manifest 1.0//EN$(QM)" "$(QM)Manifest.dtd$(QM)"$(CSEP) >> $@
 	@echo $(OSEP)manifest:manifest xmlns:manifest="$(QM)http://openoffice.org/2001/manifest$(QM)"$(CSEP) >> $@
+#	@echo $(SQM)  $(SQM)$(OSEP)manifest:file-entry manifest:media-type="$(QM)application/vnd.sun.star.uno-components;platform=$(UNOPKG_PLATFORM)$(QM)">> $@
+#	@echo $(SQM)                       $(SQM)manifest:full-path="$(QM)$(COMP_NAME).components$(QM)"/$(CSEP)>> $@
 	@echo $(SQM)  $(SQM)$(OSEP)manifest:file-entry manifest:media-type="$(QM)application/vnd.sun.star.uno-typelibrary;type=RDB$(QM)" >> $@
 	@echo $(SQM)                       $(SQM)manifest:full-path="$(QM)$(subst /META-INF,,$(subst $(SAMPLE_GEN_OUT)/,,$(@D))).uno.rdb$(QM)"/$(CSEP) >> $@
 	@echo $(SQM)  $(SQM)$(OSEP)manifest:file-entry manifest:media-type="$(QM)application/vnd.sun.star.uno-component;type=native;platform=$(UNOPKG_PLATFORM)$(QM)" >> $@
 	@echo $(SQM)                       $(SQM)manifest:full-path="$(QM)$(subst /META-INF,,$(subst $(SAMPLE_GEN_OUT)/,,$(UNOPKG_PLATFORM)/$(@D))).uno.$(SHAREDLIB_EXT)$(QM)"/$(CSEP) >> $@
 	@echo $(OSEP)/manifest:manifest$(CSEP) >> $@
 
-$(COMP_PACKAGE) : $(SHAREDLIB_OUT)/$(COMP_IMPL_NAME) $(COMP_RDB) $(COMP_UNOPKG_MANIFEST)
+$(COMP_COMPONENTS) :
+	-$(MKDIR) $(subst /,$(PS),$(@D))
+	@echo $(OSEP)?xml version="$(QM)1.0$(QM)" encoding="$(QM)UTF-8$(QM)"?$(CSEP) > $@
+	@echo $(OSEP)components xmlns="$(QM)http://openoffice.org/2010/uno-components$(QM)"$(CSEP) >> $@
+	@echo $(SQM)  $(SQM)$(OSEP)component loader="$(QM)com.sun.star.loader.SharedLibrary$(QM)" uri="$(QM)$(UNOPKG_PLATFORM)/$(COMP_IMPL_NAME)$(QM)"$(CSEP) >> $@
+	@echo $(SQM)    $(SQM)$(OSEP)implementation name="$(QM)CalcAddins_impl$(QM)"$(CSEP) >> $@
+	@echo $(SQM)      $(SQM)$(OSEP)service name="$(QM)quantlib.CalcAddins$(QM)"/$(CSEP) >> $@
+	@echo $(SQM)      $(SQM)$(OSEP)service name="$(QM)com.sun.star.sheet.AddIn$(QM)"/$(CSEP) >> $@
+	@echo $(SQM)    $(SQM)$(OSEP)/implementation$(CSEP) >> $@
+	@echo $(SQM)  $(SQM)$(OSEP)/component$(CSEP) >> $@
+	@echo $(OSEP)/components$(CSEP) >> $@
+
+
+$(COMP_PACKAGE) : $(SHAREDLIB_OUT)/$(COMP_IMPL_NAME) $(COMP_RDB) $(COMP_UNOPKG_MANIFEST) $(COMP_COMPONENTS)
 	-$(DEL) $(subst \\,\,$(subst /,$(PS),$@))
 	-$(MKDIR) $(subst /,$(PS),$(@D))
 	-$(MKDIR) $(subst /,$(PS),$(SAMPLE_GEN_OUT)/$(UNOPKG_PLATFORM))	 
 	$(COPY) $(subst /,$(PS),$<) $(subst /,$(PS),$(SAMPLE_GEN_OUT)/$(UNOPKG_PLATFORM))
-	cd $(subst /,$(PS),$(SAMPLE_GEN_OUT)) && $(SDK_ZIP) ../../bin/$(@F) $(COMP_RDB_NAME) $(UNOPKG_PLATFORM)/$(<F)
+	cd $(subst /,$(PS),$(SAMPLE_GEN_OUT)) && $(SDK_ZIP) -u ../../bin/$(@F) $(COMP_NAME).components
+	cd $(subst /,$(PS),$(SAMPLE_GEN_OUT)) && $(SDK_ZIP) -u ../../bin/$(@F) $(COMP_RDB_NAME) $(UNOPKG_PLATFORM)/$(<F)
 	cd $(subst /,$(PS),$(SAMPLE_GEN_OUT)/$(subst .$(UNOOXT_EXT),,$(@F))) && $(SDK_ZIP) -u ../../../bin/$(@F) META-INF/manifest.xml
 
 $(COMP_REGISTERFLAG) : $(COMP_PACKAGE)
@@ -247,3 +318,4 @@ clean :
 	-$(DELRECURSIVE) $(subst /,$(PS),$(SAMPLE_SLO_OUT))
 	-$(DELRECURSIVE) $(subst /,$(PS),$(SAMPLE_OBJ_OUT))
 	-$(DEL) $(subst \\,\,$(subst /,$(PS),$(OUT_BIN)/$(COMP_NAME)*))
+

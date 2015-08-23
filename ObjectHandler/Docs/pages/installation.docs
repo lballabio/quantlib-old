@@ -123,7 +123,7 @@ to work, these projects must reside side by side in the directory tree.
 
 Create a new empty folder on your hard drive to serve as the root directory for
 the build.  You can use any path, for purposes of this tutorial the build
-directory is <tt>C:\\build_ql_1_5_0</tt>.  As described below you should copy
+directory is <tt>C:\\build_ql_1_6_0</tt>.  As described below you should copy
 all of the required source code zip files to that directory and then unzip them
 in place.  After all of the source code is unzipped you should have the
 following directory structure:
