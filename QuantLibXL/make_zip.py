@@ -9,8 +9,8 @@ import argparse
 import re
 
 QLXL = "QuantLibXL"
-VERSION = "1.6.0"
-VERSION_ = "1_6_0"
+VERSION = "1.7.0"
+VERSION_ = "1_7_0"
 VC_VERSION = "vc120"
 QLXL_VERSION = QLXL + "-" + VERSION
 ROOT_DIR = QLXL_VERSION + "\\"

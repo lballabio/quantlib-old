@@ -149,8 +149,8 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\buildXllStatic\vc120\$(Platform)\$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\xll\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\buildXllStatic\vc120\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ExampleXllStatic-vc120-mt-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ExampleXllStatic-vc120-x64-mt-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ExampleXllStatic-vc120-mt-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ExampleXllStatic-vc120-x64-mt-1_7_0</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.xll</TargetExt>
@@ -159,12 +159,12 @@
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.xll</TargetExt>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ExampleXllStatic-vc120-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ExampleXllStatic-vc120-x64-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">ExampleXllStatic-vc120-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">ExampleXllStatic-vc120-x64-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">ExampleXllStatic-vc120-mt-s-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">ExampleXllStatic-vc120-x64-mt-s-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">ExampleXllStatic-vc120-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ExampleXllStatic-vc120-x64-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">ExampleXllStatic-vc120-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">ExampleXllStatic-vc120-x64-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">ExampleXllStatic-vc120-mt-s-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">ExampleXllStatic-vc120-x64-mt-s-1_7_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">
     <Midl>
@@ -203,11 +203,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;..\..\..\log4cxx\msvc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-sgd-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-sgd-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-sgd-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-sgd-1_7_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -251,11 +251,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;..\..\..\log4cxx\msvc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-sgd-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-sgd-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-x64-mt-sgd-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-x64-mt-sgd-1_7_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
@@ -299,11 +299,11 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;..\..\..\log4cxx\msvc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-s-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-s-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-s-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-s-1_7_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -347,11 +347,11 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;..\..\..\log4cxx\msvc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-s-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-s-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-x64-mt-s-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-x64-mt-s-1_7_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
@@ -395,11 +395,11 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;..\..\..\log4cxx\msvc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-1_7_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -443,11 +443,11 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;..\..\..\log4cxx\msvc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-1_7_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
@@ -492,11 +492,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;..\..\..\log4cxx\msvc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-gd-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-gd-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-gd-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-gd-1_7_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
@@ -540,11 +540,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>..\..\lib;..\..\..\log4cxx\msvc\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-gd-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-gd-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-gd-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildXllStatic\vc120\$(Platform)\$(Configuration)\ExampleXLLStatic-vc120-mt-gd-1_7_0.lib</ImportLibrary>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <Bscmake>
