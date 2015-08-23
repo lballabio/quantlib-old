@@ -118,6 +118,9 @@ namespace QuantLibAddin {
             libraryObject_);
     }
 
+    // This class does not compile under gcc because of problems with static
+    // const template arguments.
+#ifndef __GNUC__
     MixedLinearCubicInterpolation::MixedLinearCubicInterpolation(
         const shared_ptr<ValueObject>& properties,
         const vector<Real>& x,
@@ -144,6 +147,7 @@ namespace QuantLibAddin {
         qlMixedLinearCubicInterpolation_ =
             dynamic_pointer_cast<QuantLib::MixedLinearCubicInterpolation>(libraryObject_);
     }
+#endif
 
     CubicInterpolation::CubicInterpolation(
         const shared_ptr<ValueObject>& properties,

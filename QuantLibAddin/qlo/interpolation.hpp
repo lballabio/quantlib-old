@@ -88,6 +88,7 @@ namespace QuantLibAddin {
                       bool permanent);
     };
     
+#ifndef __GNUC__
     class MixedLinearCubicInterpolation : public Interpolation {
       public:
         MixedLinearCubicInterpolation(
@@ -109,6 +110,7 @@ namespace QuantLibAddin {
       protected:
         boost::shared_ptr<QuantLib::MixedLinearCubicInterpolation> qlMixedLinearCubicInterpolation_;
     };
+#endif
 
     class CubicInterpolation : public Interpolation {
       public:
