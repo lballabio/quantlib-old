@@ -243,8 +243,6 @@
       </ReturnValue>
     </EnumerationMember>
 
-    <!-- FIXME CALC This change for the Calc addin changes behavior for other addins (?) -->
-    <!--EnumerationMember name='qlCalendarAdvance' type='QuantLib::Calendar'-->
     <EnumerationMember name='qlCalendarAdvance' type='QuantLib::Calendar' loopParameter='Period'>
       <description>advances a date according to a given calendar.</description>
       <libraryFunction>advance</libraryFunction>
@@ -262,8 +260,6 @@
           </Parameter>
           <Parameter name='Period'>
             <type>QuantLib::Period</type>
-            <!-- FIXME CALC This change for the Calc addin changes behavior for other addins (?) -->
-            <!--tensorRank>scalar</tensorRank-->
             <tensorRank>vector</tensorRank>
             <description>period(s) to advance (e.g. 2D for two days , 3W for three weeks, 6M for six months, 1Y for one year).</description>
           </Parameter>
@@ -281,8 +277,6 @@
       </ParameterList>
       <ReturnValue>
         <type>QuantLib::Date</type>
-        <!-- FIXME CALC This change for the Calc addin changes behavior for other addins (?) -->
-        <!--tensorRank>scalar</tensorRank-->
         <tensorRank>vector</tensorRank>
       </ReturnValue>
     </EnumerationMember>
