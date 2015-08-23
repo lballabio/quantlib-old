@@ -30,7 +30,7 @@ QuantLibAddin project, please refer to
 
 <strong>Release 1.6.0 - August 2015</strong>
 
-- xx new functions / xxxx in total.
+- 8 new functions / 1,080 in total
 - The XLL is provided for 32- or 64-bit Excel.
 - This release includes the updated VBA Framework application (at present this
   does not work correctly under 64-bit Excel).

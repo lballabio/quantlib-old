@@ -34,6 +34,9 @@ If you want a binary installation of the precompiled addin, go instead to the
 For other tutorials which explain how to compile %QuantLibAddin for platforms
 other than Microsoft Excel on Windows, return to the \ref tutorials index.
 
+The source code for QuantLibXL version 1.6.0 may be compiled against either
+%QuantLib 1.6.0 or 1.6.1.
+
 \ref build_qlxl_builds \n
 \ref build_qlxl_prerequisites \n
 \ref build_qlxl_directories \n
@@ -105,8 +108,8 @@ on your machine, e.g:
 
 You are now ready to proceed with the build.  You need to install the following
 projects:
-\li <a href="http://quantlib.org/">QuantLib</a> 1.6.0 - The core C++ analytics
-    library
+\li <a href="http://quantlib.org/">QuantLib</a> 1.6.0 or 1.6.1 - The core C++
+    analytics library
 \li <a href="http://www.objecthandler.org">ObjectHandler</a> 1.6.0 - An object
     repository
 \li log4cxx 0.10.0f4 - A logging framework, used by ObjectHandler
