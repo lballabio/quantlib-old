@@ -51,6 +51,11 @@ namespace QuantLib {
             optionletStripper_->optionletStrikes(
                 0); // strikes are the same for all times ?!
         std::vector<Real> stddevs;
+        std::vector<Real> vols;
+        for (Size i = 0; i < optionletStrikes.size(); i++) {
+            vols.push_back(volatilityImpl(t, optionletStrikes[i]));
+            stddevs.push_back(vols.back() * std::sqrt(t));
+        }
         const std::vector<Time>& optionletTimes =
                                     optionletStripper_->optionletFixingTimes();
         Real atm = (*atmInterpolation_)(std::max(
@@ -58,16 +63,17 @@ namespace QuantLib {
         // ----------------------
         // cubic splines
         // ----------------------
-        for (Size i = 0; i < optionletStrikes.size(); i++) {
-            stddevs.push_back(volatilityImpl(t, optionletStrikes[i]) *
-                              std::sqrt(t));
-        }
         // Extrapolation may be a problem with splines, but since minStrike()
         // and maxStrike() are set, we assume that no one will use stddevs for
         // strikes outside these strikes
         CubicInterpolation::BoundaryCondition bc =
             optionletStrikes.size() >= 4 ? CubicInterpolation::Lagrange
                                          : CubicInterpolation::SecondDerivative;
+        return boost::shared_ptr<SmileSection>(
+            new InterpolatedSmileSection<Cubic>(
+                t, optionletStrikes, stddevs, atm,
+                Cubic(CubicInterpolation::Spline, false, bc, 0.0, bc, 0.0),
+                Actual365Fixed(), volatilityType(), displacement()));
         // ----------------------
         // SABR
         // ----------------------
@@ -77,10 +83,6 @@ namespace QuantLib {
         // return boost::shared_ptr<SmileSection>(new SabrSmileSection(
         //     t, atm, boost::assign::list_of(sabr.alpha())(sabr.beta())(
         //                 sabr.nu())(sabr.rho())));
-        return boost::make_shared<InterpolatedSmileSection<Cubic> >(
-            t, optionletStrikes, stddevs, Null<Real>(),
-            Cubic(CubicInterpolation::Spline, false, bc, 0.0, bc, 0.0),
-            Actual365Fixed(), volatilityType(), displacement());
     }
 
     Volatility StrippedOptionletAdapter::volatilityImpl(Time length,
