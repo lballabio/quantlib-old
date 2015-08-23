@@ -1,11 +1,30 @@
-commit 0f11fcba3e2c9d3a8f2b655be3f549c86db2eae9
+commit 1012c22065bc7bc929cd312b5665af914ef248d8
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 28 Jul 2015 18:39:16 +0200
+
+    Update VS projects and solutions to work with x64 target.
+    
+    Thanks to Grant Bartel.
+
+ QuantLib-SWIG/CSharp/QuantLib_vc10.sln             | 48 ++++++++--------
+ QuantLib-SWIG/CSharp/QuantLib_vc11.sln             | 48 ++++++++--------
+ QuantLib-SWIG/CSharp/QuantLib_vc12.sln             | 50 ++++++++---------
+ QuantLib-SWIG/CSharp/QuantLib_vc14.sln             | 50 ++++++++---------
+ QuantLib-SWIG/CSharp/cpp/QuantLibWrapper.vcxproj   |  4 +-
+ QuantLib-SWIG/CSharp/csharp/NQuantLib.csproj       | 50 ++++++++++++++++-
+ .../CSharp/examples/BermudanSwaption.csproj        | 65 ++++++++++++++++++----
+ QuantLib-SWIG/CSharp/examples/EquityOption.csproj  | 65 ++++++++++++++++++----
+ 8 files changed, 257 insertions(+), 123 deletions(-)
+
+commit 4e34799eb4587de6f9f908080fb3009cb7495126
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
 Date:   Wed, 15 Jul 2015 12:05:56 +0200
 
     Update changelog and news.
 
- QuantLib-SWIG/News.txt | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+ QuantLib-SWIG/ChangeLog.txt | 48 +++++++++++++++++++++++++++++++++++++++++++++
+ QuantLib-SWIG/News.txt      | 14 ++++---------
+ 2 files changed, 52 insertions(+), 10 deletions(-)
 
 commit dde6aab53c24dd4053e0fe74a6609a0535bad2ff
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
