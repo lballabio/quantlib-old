@@ -117,12 +117,16 @@ namespace QuantLib {
         Time tau = index_->dayCounter().yearFraction(d2, d3);
         Real variance = capletVolatility()->blackVariance(d1, fixing);
 
-        // see Hull, 4th ed., page 550
-        Spread adjustment = fixing * fixing * variance * tau / (1.0 + fixing * tau);
+        Real shift = capletVolatility()->displacement();
+        bool shiftedLn = capletVolatility()->volatilityType() == ShiftedLognormal;
+
+        Spread adjustment = shiftedLn
+                                ? (fixing + shift) * (fixing + shift) *
+                                      variance * tau / (1.0 + fixing * tau)
+                                : variance * tau / (1.0 + fixing * tau);
 
         if(timingAdjustment_ == BivariateLognormal) {
             QL_REQUIRE(!correlation_.empty(), "no correlation given");
-            // see http://ssrn.com/abstract=2170721
             Date d4 = coupon_->date();
             Date d5 = d4 >= d3 ? d3 : d2;
             Time tau2 = index_->dayCounter().yearFraction(d5, d4);
@@ -136,8 +140,12 @@ namespace QuantLib {
                          index_->forwardingTermStructure()->discount(d4) -
                      1.0) /
                     tau2;
-                adjustment -= correlation_->value() * tau2 * variance * fixing *
-                              fixing2 / (1.0 + fixing2 * tau2);
+                adjustment -= shiftedLn
+                                  ? correlation_->value() * tau2 * variance *
+                                        (fixing + shift) * (fixing2 + shift) /
+                                        (1.0 + fixing2 * tau2)
+                                  : correlation_->value() * tau2 * variance /
+                                        (1.0 + fixing2 * tau2);
             }
         }
         return fixing + adjustment;
