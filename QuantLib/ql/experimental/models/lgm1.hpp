@@ -46,9 +46,6 @@ class Lgm1 : public Lgm<detail::LgmPiecewiseAlphaConstantKappa>,
     const Array &alpha() const { return alpha_.params(); };
     const Real kappa() const { return kappa_.params()[0]; };
 
-    const Real hullWhiteSigma(const Time t) const { return parametrization()->hullWhiteSigma(t); }
-    const Real hullWhiteKappa(const Time t) const { return parametrization()->hullWhiteKappa(t); }
-
     // calibration constraints
 
     // fixed reversion
@@ -83,7 +80,9 @@ class Lgm1 : public Lgm<detail::LgmPiecewiseAlphaConstantKappa>,
     }
 
   protected:
-    void generateArguments() { notifyObservers(); }
+    void generateArguments() {
+        Lgm<detail::LgmPiecewiseAlphaConstantKappa>::generateArguments();
+    }
     void update() { LazyObject::update(); }
     void performCalculations() const {
         Lgm::performCalculations();
