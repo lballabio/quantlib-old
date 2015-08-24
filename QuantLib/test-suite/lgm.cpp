@@ -19,12 +19,15 @@
 
 #include "lgm.hpp"
 #include "utilities.hpp"
+#include <ql/math/optimization/levenbergmarquardt.hpp>
 #include <ql/time/calendars/target.hpp>
 #include <ql/time/daycounters/actual360.hpp>
 #include <ql/time/daycounters/thirty360.hpp>
+#include <ql/quotes/simplequote.hpp>
 #include <ql/indexes/ibor/euribor.hpp>
 #include <ql/termstructures/yield/flatforward.hpp>
 #include <ql/models/shortrate/onefactormodels/gsr.hpp>
+#include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
 #include <ql/pricingengines/swaption/gaussian1dswaptionengine.hpp>
 #include <ql/experimental/models/lgm1.hpp>
 
@@ -38,7 +41,7 @@ using boost::unit_test_framework::test_suite;
 void LgmTest::testBermudanLgm1fGsr() {
 
     BOOST_TEST_MESSAGE("Testing consistency of Bermudan swaption pricing in "
-                       "Lgm1f and Gsr models...");
+                       "LGM1F and GSR models...");
 
     // for kappa (LGM) = reversion (GSR) = 0.0
     // we have alpha (LGM) = sigma (GSR), so
@@ -111,11 +114,11 @@ void LgmTest::testBermudanLgm1fGsr() {
             "Failed to verify consistency of Bermudan swaption price in Lgm1f ("
             << npvLgm << ") and Gsr (" << npvGsr << ") models, tolerance is "
             << tol);
-}
+} // testBermudanLgm1fGsr
 
 void LgmTest::testLgm1fCalibration() {
 
-    BOOST_TEST_MESSAGE("Testing calibration of Lgm1f model...");
+    BOOST_TEST_MESSAGE("Testing calibration of LGM1F model against GSR parameters...");
 
     // for fixed kappa != 0.0 we calibrate alpha
     // and compare the effective Hull White parameters
@@ -133,18 +136,21 @@ void LgmTest::testLgm1fCalibration() {
     // coterminal basket 1y-9y, 2y-8y, ... 9y-1y
 
     std::vector<boost::shared_ptr<CalibrationHelper> > basket;
-    double[] impliedVols = {0.4, 0.39, 0.38, 0.35, 0.31, 0.27, 0.22, 0.2, 0.2};
+    Real impliedVols[] = {0.4, 0.39, 0.38, 0.35, 0.35, 0.34, 0.33, 0.32, 0.31};
     std::vector<Date> expiryDates;
 
     for (Size i = 0; i < 9; ++i) {
-        boost::shared<CalibrationHelper> helper =
+        boost::shared_ptr<CalibrationHelper> helper =
             boost::make_shared<SwaptionHelper>(
                 (i + 1) * Years, (9 - i) * Years,
-                Handle<Quote>(boost::make_shared<SimpleQuote>(impliedVols[i]),
-                              euribor6m, 1 * Years, Thirty360(), Actual360(),
-                              yts));
+                Handle<Quote>(boost::make_shared<SimpleQuote>(impliedVols[i])),
+                euribor6m, 1 * Years, Thirty360(), Actual360(), yts);
         basket.push_back(helper);
-        expiryDates.push_back(helper->swaption()->exercise()->dates().back());
+        expiryDates.push_back(boost::static_pointer_cast<SwaptionHelper>(helper)
+                                  ->swaption()
+                                  ->exercise()
+                                  ->dates()
+                                  .back());
     }
 
     std::vector<Date> stepDates(expiryDates.begin(), expiryDates.end() - 1);
@@ -152,7 +158,7 @@ void LgmTest::testLgm1fCalibration() {
     std::vector<Real> gsrInitialSigmas(stepDates.size() + 1, 0.0050);
     std::vector<Real> lgmInitialAlphas(stepDates.size() + 1, 0.0050);
 
-    Real kappa = 0.03;
+    Real kappa = 0.05;
 
     // fix any T forward measure
     boost::shared_ptr<Gsr> gsr =
@@ -169,43 +175,87 @@ void LgmTest::testLgm1fCalibration() {
 
     // calibrate GSR
 
-    LevenbergMarquardt lm(1E-8,1E-8,1E-8);
-    EndCriteria ec(1000,500,1E-8,1E-8,1E-8);
+    LevenbergMarquardt lm(1E-8, 1E-8, 1E-8);
+    EndCriteria ec(1000, 500, 1E-8, 1E-8, 1E-8);
 
     for (Size i = 0; i < basket.size(); ++i) {
-        helper[i]->setPricingEngine(swaptionEngineGsr);
+        basket[i]->setPricingEngine(swaptionEngineGsr);
     }
 
-    gsr->calibrateVolatilitiesIterative(helpers, method, ec);
+    gsr->calibrateVolatilitiesIterative(basket, lm, ec);
 
     Array gsrSigmas = gsr->volatility();
 
     // calibrate LGM
 
-    for(Size i=0;i<basket.size();++i) {
-        helper[i]->setPricingEngine(swaptionEngineLgm);
+    for (Size i = 0; i < basket.size(); ++i) {
+        basket[i]->setPricingEngine(swaptionEngineLgm);
     }
 
-    lgm->calibrateAlphasIterative(helpers, method, ec);
+    lgm->calibrateAlphasIterative(basket, lm, ec);
 
-    Array lgmAlphas = lgm->alpha();
+    std::vector<Real> lgmHwSigmas;
+    std::vector<Real> lgmHwKappas;
 
-    for(Size i=0;i<gsrSigmas.size();++i) {
-        std::clog << "#" << i << " gsr " << gsrSigmas[i] << " lgm " << lgmAlphas[i] << std::endl;
+    for (Size i = 0; i < gsrSigmas.size(); ++i) {
+        lgmHwSigmas.push_back(
+            lgm->hullWhiteSigma(static_cast<double>(i) + 0.5));
+        lgmHwKappas.push_back(
+            lgm->hullWhiteKappa(static_cast<double>(i) + 0.5));
     }
 
-    Real t=0.0;
-    while(t<=10.0) {
-        std::clog << t << " " << lgm->hullWhiteSigma(t) << " " << lgm->hullWhiteKappa << std::endl;
-        t+=0.1;
+    Real tol0 = 1E-8;
+    Real tol = 1E-4;
+
+    for (Size i = 0; i < gsrSigmas.size(); ++i) {
+        // check calibration itself, we should match the market prices
+        // rather exactly
+        if (std::fabs(basket[i]->modelValue() - basket[i]->marketValue()) >
+            tol0)
+            BOOST_ERROR("Failed to calibrate to market swaption #"
+                        << i << ", market price is " << basket[i]->marketValue()
+                        << " while model price is " << basket[i]->modelValue());
+        // we can not directly compare the gsr model's sigma with
+        // the lgm model's equivalent HW sigma (since the former
+        // is piecewise constant, while the latter is not), but
+        // we can do a rough check on the mid point of each interval
+        if (std::fabs(gsrSigmas[i] - lgmHwSigmas[i]) > tol)
+            BOOST_ERROR("Failed to verify LGM's equivalent Hull White sigma (#"
+                        << i << "), which is " << lgmHwSigmas[i]
+                        << " while GSR's sigma is " << gsrSigmas[i] << ")");
     }
-    
-}
+
+} // testLgm1fCalibration
+
+void LgmTest::testLgm3fDeterministicCashFlow() {
+    BOOST_TEST_MESSAGE("Testing pricing of foreign currency cashflow in LGM3F model...");
+
+} // testLgm3fDeterministicCashFlow
+
+void LgmTest::testLgm3fZeroBondOption() {
+    BOOST_TEST_MESSAGE("Testing pricing of foreign zerobond option in LGM3F model...");
+} // testLgm3fZerobondOption
+
+void LgmTest::testLgm3fFxOption() {
+    BOOST_TEST_MESSAGE("Testing pricing of fx option in LGM3F model...");
+} // testLgm3fFxOption
+
+void LgmTest::testLgm3fFxCalibration() {
+    BOOST_TEST_MESSAGE("Testing fx calibration of LGM3F model...");
+} // testLgm3fFxCalibration
+
+void LgmTest::testLgm4f() {
+    BOOST_TEST_MESSAGE("Testing LGM4F model...");
+} // testLgm4fModel
 
 test_suite *LgmTest::suite() {
     test_suite *suite = BOOST_TEST_SUITE("LGM model tests");
     suite->add(QUANTLIB_TEST_CASE(&LgmTest::testBermudanLgm1fGsr));
     suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm1fCalibration));
-
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fDeterministicCashFlow));
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fZeroBondOption));
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fFxOption));
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fFxCalibration));
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm4f));
     return suite;
 }

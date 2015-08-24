@@ -112,6 +112,7 @@
 #include "integrals.hpp"
 #include "interestrates.hpp"
 #include "interpolations.hpp"
+#include "lgm.hpp"
 #include "libormarketmodel.hpp"
 #include "libormarketmodelprocess.hpp"
 #include "linearleastsquaresregression.hpp"
@@ -387,6 +388,7 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(HimalayaOptionTest::suite());
     test->add(InflationCPICapFloorTest::suite());
     test->add(InflationVolTest::suite());
+    test->add(LgmTest::suite());
     test->add(MargrabeOptionTest::suite());
     test->add(MonteCarloMultiThreadedTest::suite());
     test->add(NoArbSabrTest::suite());

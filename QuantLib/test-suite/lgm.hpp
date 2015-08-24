@@ -18,7 +18,7 @@
 */
 
 /*! \file lgm.hpp
-    \brief 
+    \brief tests for the lgm one factor and cross currency models
 */
 
 #ifndef quantlib_test_lgm_hpp
@@ -33,8 +33,12 @@ class LgmTest {
   public:
     static void testBermudanLgm1fGsr();
     static void testLgm1fCalibration();
+    static void testLgm3fDeterministicCashFlow();
+    static void testLgm3fZeroBondOption();
+    static void testLgm3fFxOption();
+    static void testLgm3fFxCalibration();
+    static void testLgm4f();
     static boost::unit_test_framework::test_suite *suite();
-    
 };
 
 #endif
