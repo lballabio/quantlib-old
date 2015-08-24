@@ -46,8 +46,8 @@ class LgmParametrization : public CuriouslyRecurringTemplate<Impl> {
     const Array &times() const;
 
     //! corresponding Hull White parameters
-    const Real HullWhiteSigma(Time t) const;
-    const Real HullWhiteKappa(Time t) const;
+    const Real hullWhiteSigma(Time t) const;
+    const Real hullWhiteKappa(Time t) const;
 
     //! constructor with step for numerical differentiation
     LgmParametrization() : h_(1E-6) {}
@@ -102,12 +102,12 @@ inline const Array &LgmParametrization<Impl>::times() const {
 }
 
 template <class Impl>
-const Real LgmParametrization<Impl>::HullWhiteSigma(Time t) const {
+const Real LgmParametrization<Impl>::hullWhiteSigma(Time t) const {
     return Hprime(t) * alpha(t);
 }
 
 template <class Impl>
-const Real LgmParametrization<Impl>::HullWhiteKappa(Time t) const {
+const Real LgmParametrization<Impl>::hullWhiteKappa(Time t) const {
     return -Hprime2(t) / Hprime(t);
 }
 
