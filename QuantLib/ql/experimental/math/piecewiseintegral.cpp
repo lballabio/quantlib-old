@@ -33,6 +33,7 @@ PiecewiseIntegral::PiecewiseIntegral(
         std::unique(criticalPoints_.begin(), criticalPoints_.end(),
                     std::ptr_fun(close_enough));
     criticalPoints_.resize(end - criticalPoints_.begin());
+
 }
 
 } // namespace QuantLib

@@ -73,8 +73,13 @@ inline Real PiecewiseIntegral::integrate(const boost::function<Real(Real)> &f,
         std::lower_bound(criticalPoints_.begin(), criticalPoints_.end(), b);
 
     if (a0 == criticalPoints_.end()) {
-        return integrate_h(
-            f, a * (close_enough(a, criticalPoints_.back()) ? eps_ : 1.0), b);
+        Real tmp = 1.0;
+        if (!criticalPoints_.empty()) {
+            if (close_enough(a, criticalPoints_.back())) {
+                tmp = eps_;
+            }
+        }
+        return integrate_h(f, a * tmp, b);
     }
 
     Real res = 0.0;
