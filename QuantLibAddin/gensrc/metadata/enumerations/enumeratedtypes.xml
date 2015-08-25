@@ -345,6 +345,29 @@
           <value>QuantLib::Indonesia(QuantLib::Indonesia::JSX)</value>
         </EnumeratedType>
         <EnumeratedType>
+          <string>Israel::Settlement</string>
+          <value>QuantLib::Israel(QuantLib::Israel::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Israel::Settlement -->
+          <string>Israel settlement</string>
+          <value>QuantLib::Israel(QuantLib::Israel::Settlement)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Israel::TASE</string>
+          <value>QuantLib::Israel(QuantLib::Israel::TASE)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Israel::TASE -->
+          <string>Tel-Aviv stock exchange</string>
+          <value>QuantLib::Israel(QuantLib::Israel::TASE)</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Israel::TASE -->
+          <string>Tel Aviv stock exchange</string>
+          <value>QuantLib::Israel(QuantLib::Israel::TASE)</value>
+        </EnumeratedType>
+        <EnumeratedType>
           <string>Italy::Exchange</string>
           <value>QuantLib::Italy(QuantLib::Italy::Exchange)</value>
         </EnumeratedType>

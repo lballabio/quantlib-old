@@ -1,18 +1,22 @@
 #include <com/sun/star/uno/XInterface.idl>
-#include <com/sun/star/beans/XPropertySet.idl>
+#include <com/sun/star/uno/Exception.idl>
+#include <com/sun/star/lang/XInitialization.idl>
+#include <com/sun/star/lang/XServiceName.idl>
+#include <com/sun/star/lang/XLocalizable.idl>
+#include <com/sun/star/sheet/XAddIn.idl>
 
-module com {
-  module sun {
-    module star {
-      module sheet {
-        module addin {
-          interface XQL: com::sun::star::uno::XInterface {
+module quantlib {
+  interface XCalcAddins {
 
 %(buffer)s
-          };
-        };
-      };
-    };
+
+  };
+
+  service CalcAddins {
+    interface XCalcAddins;
+    interface com::sun::star::lang::XInitialization;
+    interface com::sun::star::lang::XServiceName;
+    interface com::sun::star::sheet::XAddIn;           
   };
 };
 
