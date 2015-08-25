@@ -66,7 +66,7 @@ class CcLgm : public virtual Observer, public virtual Observable {
         QL_REQUIRE(parametrization->n() == n(),
                    "parametrization's dimension (n="
                        << parametrization->n()
-                       << ") is inconsistent to the number of models ("
+                       << ") is inconsistent with the number of models ("
                        << n() + 1 << "=n+1)");
         parametrization_->update();
     }
@@ -93,7 +93,7 @@ class CcLgm : public virtual Observer, public virtual Observable {
 template <class Impl, class ImplFx, class ImplLgm>
 CcLgm<Impl, ImplFx, ImplLgm>::CcLgm(
     const std::vector<boost::shared_ptr<Lgm<ImplLgm> > > &models)
-    : n_(models_.size() - 1), models_(models) {
+    : n_(models.size() - 1), models_(models) {
     QL_REQUIRE(models.size() >= 2, "at least two models ("
                                        << models.size() << ") must be given");
     for (Size i = 1; i < models.size(); ++i) {
