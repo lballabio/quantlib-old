@@ -81,7 +81,7 @@ inline const Real LgmFxParametrization<Impl>::stdDeviation(const Time t) const {
 
 template <class Impl>
 inline const Array &LgmFxParametrization<Impl>::times() const {
-    return this->impl().times();
+    return this->impl().timesImpl();
 }
 
 // default implementations
