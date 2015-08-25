@@ -258,9 +258,9 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::covariance(Time t0, const Array &x0,
                     p_->H_i(0, t0 + dt) *
                         p_->int_alpha_i_alpha_j(0, i, t0, t0 + dt) -
                     p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
-                    p_->H_i(j, t0 + dt) *
-                        p_->int_alpha_i_alpha_j(j, i, t0, t0 + dt) +
-                    p_->int_H_i_alpha_i_alpha_j(j, i, t0, t0 + dt) +
+                    p_->H_i(j+1, t0 + dt) *
+                        p_->int_alpha_i_alpha_j(j+1, i, t0, t0 + dt) +
+                    p_->int_H_i_alpha_i_alpha_j(j+1, i, t0, t0 + dt) +
                     p_->int_alpha_i_sigma_j(i, j, t0, t0 + dt);
             }
         }
