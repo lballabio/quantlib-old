@@ -178,8 +178,9 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::expectation(Time t0, const Array &x0,
         res = it->second;
     }
     for (Size i = 0; i < n_; ++i) {
-        res[i] += x0[i] + (p_->H_i(0, t0 + dt) - p_->H_i(0, t0)) * x0[n_] -
-                  (p_->H_i(i + 1, t0 + dt) - p_->H_i(i + 1, t0)) * x0[n_ + i];
+        res[i] +=
+            x0[i] + (p_->H_i(0, t0 + dt) - p_->H_i(0, t0)) * x0[n_] -
+            (p_->H_i(i + 1, t0 + dt) - p_->H_i(i + 1, t0)) * x0[n_ + i + 1];
     }
     for (Size i = 0; i < n_ + 1; ++i) {
         res[n_ + i] += x0[n_ + i];
