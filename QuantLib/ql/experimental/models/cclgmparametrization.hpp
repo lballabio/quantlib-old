@@ -110,6 +110,8 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
                                         const Real a, const Real b) const;
     const Real int_alpha_i_sigma_j_impl(const Size i, const Size j,
                                         const Real a, const Real b) const;
+    // for i=j this is not used, but the native variance implementation
+    // in LgmFxParametrization
     const Real int_sigma_i_sigma_j_impl(const Size i, const Size j,
                                         const Real a, const Real b) const;
     const Real int_H_i_alpha_i_alpha_j_impl(const Size i, const Size j,
@@ -224,6 +226,10 @@ template <class Impl, class ImplFx, class ImplLgm>
 inline const Real
 CcLgmParametrization<Impl, ImplFx, ImplLgm>::int_sigma_i_sigma_j(
     const Size i, const Size j, const Real a, const Real b) const {
+    // use the "native" implementation if possible
+    if(i==j)
+        return fxParametrizations_[i]->variance(b) -
+               fxParametrizations_[i]->variance(a);
     return this->impl().int_sigma_i_sigma_j_impl(i, j, a, b);
 }
 
