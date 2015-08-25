@@ -30,6 +30,10 @@
 #include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
 #include <ql/pricingengines/swaption/gaussian1dswaptionengine.hpp>
 #include <ql/experimental/models/lgm1.hpp>
+#include <ql/experimental/models/cclgm1.hpp>
+#include <ql/math/statistics/incrementalstatistics.hpp>
+#include <ql/math/randomnumbers/rngtraits.hpp>
+#include <ql/methods/montecarlo/multipathgenerator.hpp>
 
 #include <boost/make_shared.hpp>
 
@@ -118,7 +122,8 @@ void LgmTest::testBermudanLgm1fGsr() {
 
 void LgmTest::testLgm1fCalibration() {
 
-    BOOST_TEST_MESSAGE("Testing calibration of LGM1F model against GSR parameters...");
+    BOOST_TEST_MESSAGE(
+        "Testing calibration of LGM1F model against GSR parameters...");
 
     // for fixed kappa != 0.0 we calibrate alpha
     // and compare the effective Hull White parameters
@@ -228,12 +233,153 @@ void LgmTest::testLgm1fCalibration() {
 } // testLgm1fCalibration
 
 void LgmTest::testLgm3fDeterministicCashFlow() {
-    BOOST_TEST_MESSAGE("Testing pricing of foreign currency cashflow in LGM3F model...");
+    BOOST_TEST_MESSAGE(
+        "Testing pricing of foreign currency cashflow in LGM3F model...");
+
+    SavedSettings backup;
+
+    Date referenceDate(30, July, 2015);
+
+    Settings::instance().evaluationDate() = referenceDate;
+
+    Handle<YieldTermStructure> eurYts(
+        boost::make_shared<FlatForward>(referenceDate, 0.02, Actual365Fixed()));
+
+    Handle<YieldTermStructure> usdYts(
+        boost::make_shared<FlatForward>(referenceDate, 0.05, Actual365Fixed()));
+
+    // use different grids for the EUR and USD  models and the FX volatility
+    // process to test the piecewise numerical integration ...
+
+    std::vector<Date> volstepdatesEur, volstepdatesUsd, volstepdatesFx;
+
+    volstepdatesEur.push_back(Date(15, July, 2016));
+    volstepdatesEur.push_back(Date(15, July, 2017));
+    volstepdatesEur.push_back(Date(15, July, 2018));
+    volstepdatesEur.push_back(Date(15, July, 2019));
+    volstepdatesEur.push_back(Date(15, July, 2020));
+
+    volstepdatesUsd.push_back(Date(13, April, 2016));
+    volstepdatesUsd.push_back(Date(13, September, 2016));
+    volstepdatesUsd.push_back(Date(13, April, 2017));
+    volstepdatesUsd.push_back(Date(13, September, 2017));
+    volstepdatesUsd.push_back(Date(13, April, 2018));
+    volstepdatesUsd.push_back(Date(15, July, 2018)); // shared with EUR
+    volstepdatesUsd.push_back(Date(13, April, 2019));
+    volstepdatesUsd.push_back(Date(13, September, 2019));
+
+    volstepdatesFx.push_back(Date(15, July, 2016)); // shared with EUR
+    volstepdatesFx.push_back(Date(15, October, 2016));
+    volstepdatesFx.push_back(Date(15, May, 2017));
+    volstepdatesFx.push_back(Date(13, September, 2017)); // shared with USD
+    volstepdatesFx.push_back(Date(15, July, 2018)); //  shared with EUR and USD
+
+    std::vector<Real> eurVols, usdVols, fxSigmas;
+
+    for (Size i = 0; i < volstepdatesEur.size() + 1; ++i) {
+        eurVols.push_back(0.0050 +
+                          (0.0080 - 0.0050) *
+                              std::exp(-0.3 * static_cast<double>(i)));
+        std::clog << "eur vol " << eurVols.back() << std::endl;
+    }
+    for (Size i = 0; i < volstepdatesUsd.size() + 1; ++i) {
+        usdVols.push_back(0.0030 +
+                          (0.0110 - 0.0030) *
+                              std::exp(-0.3 * static_cast<double>(i)));
+        std::clog << "usd vol " << usdVols.back() << std::endl;
+    }
+    for (Size i = 0; i < volstepdatesFx.size() + 1; ++i) {
+        fxSigmas.push_back(
+            0.15 + (0.20 - 0.15) * std::exp(-0.3 * static_cast<double>(i)));
+        std::clog << "fx vol " << fxSigmas.back() << std::endl;
+    }
+
+    boost::shared_ptr<Lgm1::model_type> eurLgm =
+        boost::make_shared<Lgm1>(eurYts, volstepdatesEur, eurVols, 0.02);
+    boost::shared_ptr<Lgm1::model_type> usdLgm =
+        boost::make_shared<Lgm1>(usdYts, volstepdatesUsd, usdVols, 0.04);
+
+    std::vector<boost::shared_ptr<Lgm1::model_type> > singleModels;
+    singleModels.push_back(eurLgm);
+    singleModels.push_back(usdLgm);
+
+    std::vector<Handle<YieldTermStructure> > curves;
+    curves.push_back(eurYts);
+    curves.push_back(usdYts);
+
+    std::vector<Handle<Quote> > fxSpots;
+    fxSpots.push_back(Handle<Quote>(boost::make_shared<SimpleQuote>(
+        std::log(0.90)))); // USD per EUR in log scale
+
+    std::vector<std::vector<Real> > fxVolatilities;
+    fxVolatilities.push_back(fxSigmas);
+
+    Matrix c(3, 3);
+    // commented out version of the correlation matrix
+    // ... this will not be reformmated automatically ...
+    // //  FX             EUR         USD
+    // c[0][0] = 1.0; c[0][1] = 0.8; c[0][2] = -0.5; // FX
+    // c[1][0] = 0.8; c[1][1] = 1.0; c[1][2] = -0.2; // EUR
+    // c[2][0] = -0.5; c[2][1] = -0.2; c[2][2] = 1.0; // USD
+    // .. like maybe this code ...
+    //  FX             EUR         USD
+    c[0][0] = 1.0;
+    c[0][1] = 0.8;
+    c[0][2] = -0.5; // FX
+    c[1][0] = 0.8;
+    c[1][1] = 1.0;
+    c[1][2] = -0.2; // EUR
+    c[2][0] = -0.5;
+    c[2][1] = -0.2;
+    c[2][2] = 1.0; // USD
+
+    boost::shared_ptr<CcLgm1> ccLgm = boost::make_shared<CcLgm1>(
+        singleModels, fxSpots, volstepdatesFx, fxVolatilities, c, curves);
+
+    std::clog << "extracting process..." << std::endl;
+
+    boost::shared_ptr<StochasticProcess> process = ccLgm->stateProcess();
+
+    // path generation
+
+    std::clog << "path generation..." << std::endl;
+
+    Size n = 10;        // number of paths
+    TimeGrid grid(5.0, 8); // take large steps, but not only one for testing ...
+    PseudoRandom::rsg_type sg = PseudoRandom::make_sequence_generator(3 * 8, 42);
+    MultiPathGenerator<PseudoRandom::rsg_type> pg(process, grid, sg, false);
+
+    std::vector<Sample<MultiPath> > paths;
+    for (Size j = 0; j < n; ++j) {
+        paths.push_back(pg.next());
+    }
+
+    std::clog << "pricing..." << std::endl;
+
+    // pricing of deterministic USD cashflow under EUR numeraire
+    IncrementalStatistics stat;
+    Size l = paths[0].value[0].length() - 1;
+    for (Size j = 0; j < n; ++j) {
+        Real fx = std::exp(paths[j].value[0][l]);
+        Real zeur = paths[j].value[1][l];
+        Real zusd = paths[j].value[2][l];
+        Real yeur =
+            (zeur - eurLgm->stateProcess()->expectation(0.0, 0.0, 1.0)) /
+            eurLgm->stateProcess()->stdDeviation(0.0, 0.0, 1.0);
+        stat.add(1.0 * fx / eurLgm->numeraire(5.0, yeur));
+    }
+
+    std::clog << "pricing " << stat.mean() << " EUR +- " << stat.errorEstimate()
+              << std::endl;
+    std::clog << "curve price "
+              << usdYts->discount(5.0) * std::exp(fxSpots[0]->value())
+              << std::endl;
 
 } // testLgm3fDeterministicCashFlow
 
 void LgmTest::testLgm3fZeroBondOption() {
-    BOOST_TEST_MESSAGE("Testing pricing of foreign zerobond option in LGM3F model...");
+    BOOST_TEST_MESSAGE(
+        "Testing pricing of foreign zerobond option in LGM3F model...");
 } // testLgm3fZerobondOption
 
 void LgmTest::testLgm3fFxOption() {
