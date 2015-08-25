@@ -283,10 +283,12 @@ const Real CcLgmParametrization<Impl, ImplFx, ImplLgm>::rho_sigma_sigma_impl(
 
 template <class Impl, class ImplFx, class ImplLgm>
 const void CcLgmParametrization<Impl, ImplFx, ImplLgm>::update_impl() const {
-    for (Size i = 0; i < fxParametrizations_.size(); ++i)
+    for (Size i = 0; i < fxParametrizations_.size(); ++i) {
         fxParametrizations_[i]->update();
-    for (Size i = 0; i < lgmParametrizations_.size(); ++i)
+    }
+    for (Size i = 0; i < lgmParametrizations_.size(); ++i) {
         lgmParametrizations_[i]->update();
+    }
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
