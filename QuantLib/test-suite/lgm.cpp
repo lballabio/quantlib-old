@@ -34,6 +34,7 @@
 #include <ql/math/statistics/incrementalstatistics.hpp>
 #include <ql/math/randomnumbers/rngtraits.hpp>
 #include <ql/methods/montecarlo/multipathgenerator.hpp>
+#include <ql/methods/montecarlo/pathgenerator.hpp>
 
 #include <boost/make_shared.hpp>
 
@@ -232,9 +233,9 @@ void LgmTest::testLgm1fCalibration() {
 
 } // testLgm1fCalibration
 
-void LgmTest::testLgm3fDeterministicCashFlow() {
-    BOOST_TEST_MESSAGE(
-        "Testing pricing of foreign currency cashflow in LGM3F model...");
+void LgmTest::testLgm3fForeignPayouts() {
+    BOOST_TEST_MESSAGE("Testing pricing of foreign payouts under domestic "
+                       "measure in LGM3F model...");
 
     SavedSettings backup;
 
@@ -280,18 +281,15 @@ void LgmTest::testLgm3fDeterministicCashFlow() {
         eurVols.push_back(0.0050 +
                           (0.0080 - 0.0050) *
                               std::exp(-0.3 * static_cast<double>(i)));
-        std::clog << "eur vol " << eurVols.back() << std::endl;
     }
     for (Size i = 0; i < volstepdatesUsd.size() + 1; ++i) {
         usdVols.push_back(0.0030 +
                           (0.0110 - 0.0030) *
                               std::exp(-0.3 * static_cast<double>(i)));
-        std::clog << "usd vol " << usdVols.back() << std::endl;
     }
     for (Size i = 0; i < volstepdatesFx.size() + 1; ++i) {
         fxSigmas.push_back(
             0.15 + (0.20 - 0.15) * std::exp(-0.3 * static_cast<double>(i)));
-        std::clog << "fx vol " << fxSigmas.back() << std::endl;
     }
 
     boost::shared_ptr<Lgm1::model_type> eurLgm =
@@ -336,55 +334,81 @@ void LgmTest::testLgm3fDeterministicCashFlow() {
     boost::shared_ptr<CcLgm1> ccLgm = boost::make_shared<CcLgm1>(
         singleModels, fxSpots, volstepdatesFx, fxVolatilities, c, curves);
 
-    std::clog << "extracting process..." << std::endl;
-
     boost::shared_ptr<StochasticProcess> process = ccLgm->stateProcess();
+
+    boost::shared_ptr<StochasticProcess> usdProcess = usdLgm->stateProcess();
 
     // path generation
 
-    std::clog << "path generation..." << std::endl;
+    Size n = atoi(getenv("N"));       // number of paths
+    Size seed = atoi(getenv("SEED")); // seed
+    // maturity of test payoffs
+    Time T = 5.0;
+    // take large steps, but not only one (since we are testing)
+    Size steps = static_cast<Size>(T * 2.0);
+    TimeGrid grid(T, steps);
+    PseudoRandom::rsg_type sg =
+        PseudoRandom::make_sequence_generator(3 * steps, seed);
+    PseudoRandom::rsg_type sg2 =
+        PseudoRandom::make_sequence_generator(steps, seed);
 
-    Size n = 10;        // number of paths
-    TimeGrid grid(5.0, 8); // take large steps, but not only one for testing ...
-    PseudoRandom::rsg_type sg = PseudoRandom::make_sequence_generator(3 * 8, 42);
     MultiPathGenerator<PseudoRandom::rsg_type> pg(process, grid, sg, false);
+    PathGenerator<PseudoRandom::rsg_type> pg2(usdProcess, grid, sg2, false);
 
     std::vector<Sample<MultiPath> > paths;
     for (Size j = 0; j < n; ++j) {
         paths.push_back(pg.next());
     }
 
-    std::clog << "pricing..." << std::endl;
+    std::vector<Sample<Path> > paths2;
+    for (Size j = 0; j < n; ++j) {
+        paths2.push_back(pg2.next());
+    }
 
-    // pricing of deterministic USD cashflow under EUR numeraire
-    IncrementalStatistics stat;
+    // test
+    // 1 deterministic USD cashflow under EUR numeraire vs. price on USD curve
+    // 2 zero bond option USD under EUR numeraire vs. USD numeraire
+    // 3 fx option EUR-USD under EUR numeraire vs. analytical price
+
+    IncrementalStatistics stat1, stat2a, stat2b, stat3;
+    // same for paths2 since shared time grid
     Size l = paths[0].value[0].length() - 1;
     for (Size j = 0; j < n; ++j) {
         Real fx = std::exp(paths[j].value[0][l]);
         Real zeur = paths[j].value[1][l];
         Real zusd = paths[j].value[2][l];
-        Real yeur =
-            (zeur - eurLgm->stateProcess()->expectation(0.0, 0.0, 1.0)) /
-            eurLgm->stateProcess()->stdDeviation(0.0, 0.0, 1.0);
-        stat.add(1.0 * fx / eurLgm->numeraire(5.0, yeur));
+        Real zusd2 = paths2[j].value[l];
+        Real yeur = (zeur - eurLgm->stateProcess()->expectation(0.0, 0.0, T)) /
+                    eurLgm->stateProcess()->stdDeviation(0.0, 0.0, T);
+        Real yusd = (zusd - usdLgm->stateProcess()->expectation(0.0, 0.0, T)) /
+                    usdLgm->stateProcess()->stdDeviation(0.0, 0.0, T);
+        Real yusd2 =
+            (zusd2 - usdLgm->stateProcess()->expectation(0.0, 0.0, T)) /
+            usdLgm->stateProcess()->stdDeviation(0.0, 0.0, T);
+
+        // 1 USD paid at T deflated with EUR numeraire
+        stat1.add(1.0 * fx / eurLgm->numeraire(T, yeur));
+
+        // 2 USD zero bond option at T on P(T,T+10) strike 0.5 ...
+        // ... under EUR numeraire ...
+        Real zbOpt = std::max(usdLgm->zerobond(T + 10.0, T, yusd) - 0.5, 0.0);
+        stat2a.add(zbOpt * fx / eurLgm->numeraire(T, yeur));
+        // ... and under USD numeraire ...
+        Real zbOpt2 = std::max(usdLgm->zerobond(T + 10.0, T, yusd2) - 0.5, 0.0);
+        stat2b.add(zbOpt2 / usdLgm->numeraire(T, yusd2));
     }
 
-    std::clog << "pricing " << stat.mean() << " EUR +- " << stat.errorEstimate()
-              << std::endl;
-    std::clog << "curve price "
+    std::clog << "det cf pricing " << stat1.mean() << " EUR +- "
+              << stat1.errorEstimate() << " curve price "
               << usdYts->discount(5.0) * std::exp(fxSpots[0]->value())
               << std::endl;
 
-} // testLgm3fDeterministicCashFlow
+    std::clog << "zb option pricing " << stat2a.mean() << " EUR +- "
+              << stat2a.errorEstimate() << " domestic numeraire "
+              << stat2b.mean() * std::exp(fxSpots[0]->value()) << " EUR +- "
+              << stat2b.errorEstimate() * std::exp(fxSpots[0]->value()) << std::endl;
 
-void LgmTest::testLgm3fZeroBondOption() {
-    BOOST_TEST_MESSAGE(
-        "Testing pricing of foreign zerobond option in LGM3F model...");
-} // testLgm3fZerobondOption
-
-void LgmTest::testLgm3fFxOption() {
-    BOOST_TEST_MESSAGE("Testing pricing of fx option in LGM3F model...");
-} // testLgm3fFxOption
+} // testLgm3fForeignPayouts
 
 void LgmTest::testLgm3fFxCalibration() {
     BOOST_TEST_MESSAGE("Testing fx calibration of LGM3F model...");
@@ -398,9 +422,7 @@ test_suite *LgmTest::suite() {
     test_suite *suite = BOOST_TEST_SUITE("LGM model tests");
     suite->add(QUANTLIB_TEST_CASE(&LgmTest::testBermudanLgm1fGsr));
     suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm1fCalibration));
-    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fDeterministicCashFlow));
-    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fZeroBondOption));
-    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fFxOption));
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fForeignPayouts));
     suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fFxCalibration));
     suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm4f));
     return suite;
