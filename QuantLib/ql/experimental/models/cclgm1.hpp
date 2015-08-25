@@ -35,6 +35,10 @@ class CcLgm1 : public CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
                             detail::LgmPiecewiseAlphaConstantKappa>,
                public CalibratedModel {
   public:
+    typedef CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+                  detail::LgmPiecewiseAlphaConstantKappa> model_type;
+    typedef CcLgmProcess<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
+                         detail::LgmPiecewiseAlphaConstantKappa> process_type;
     //! fx spots are interpreted as spots as of today (or discounted spots)
     CcLgm1(const std::vector<boost::shared_ptr<
                Lgm<detail::LgmPiecewiseAlphaConstantKappa> > > &models,
