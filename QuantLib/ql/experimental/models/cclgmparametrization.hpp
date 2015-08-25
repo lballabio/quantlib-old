@@ -120,6 +120,7 @@ class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
     const Real int_H_i_alpha_i_sigma_j_impl(const Size i, const Size j,
                                             const Real a, const Real b) const;
 
+    //! optionally changes the integrator
     void setIntegrator(const boost::shared_ptr<Integrator> &integrator) {
         integrator_ = integrator;
     }
