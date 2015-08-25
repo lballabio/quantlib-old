@@ -18,7 +18,6 @@
 */
 
 #include <ql/experimental/models/lgm1.hpp>
-#include <ql/experimental/models/lgmstateprocess.hpp>
 #include <ql/quotes/simplequote.hpp>
 
 #include <boost/make_shared.hpp>
