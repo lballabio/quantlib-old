@@ -35,11 +35,20 @@ class CcLgm1 : public CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
                             detail::LgmPiecewiseAlphaConstantKappa>,
                public CalibratedModel {
   public:
+    typedef detail::CcLgmPiecewise cclgm_model_type;
+    typedef detail::LgmPiecewiseAlphaConstantKappa lgm_model_type;
+    typedef detail::LgmFxPiecewiseSigma lgmfx_model_type;
     typedef CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
                   detail::LgmPiecewiseAlphaConstantKappa> model_type;
     typedef CcLgmProcess<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
                          detail::LgmPiecewiseAlphaConstantKappa> process_type;
-    //! fx spots are interpreted as spots as of today (or discounted spots)
+
+    /*! fx spots are interpreted as spots as of today (or discounted spots)
+        note that they are assumed to be given as log spot values throughout
+        this model; we could allow for different fx vol step dates for each
+        currency without any difficulty, only the constructor here would have
+        to be extended. */
+
     CcLgm1(const std::vector<boost::shared_ptr<
                Lgm<detail::LgmPiecewiseAlphaConstantKappa> > > &models,
            const std::vector<Handle<Quote> > &fxSpots,
@@ -73,8 +82,8 @@ class CcLgm1 : public CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
         OptimizationMethod &method, const EndCriteria &endCriteria,
         const Constraint &constraint = Constraint(),
         const std::vector<Real> &weights = std::vector<Real>()) {
-        for (Size j = 0; j < helpers.size(); ++i) {
-            std::vector<boost::shared_ptr<CalibrationHelper> > h(1, helpers[i]);
+        for (Size j = 0; j < helpers.size(); ++j) {
+            std::vector<boost::shared_ptr<CalibrationHelper> > h(1, helpers[j]);
             calibrate(h, method, endCriteria, constraint, weights,
                       MoveFxVolatility(i, j));
         }
