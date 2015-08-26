@@ -56,7 +56,11 @@ class CcLgmProcess : public StochasticProcess {
     void flushCache() const;
 
     //! curves inspector
-    Handle<YieldTermStructure> curve(const Size i) const { return curves_[i]; }
+    Handle<YieldTermStructure> termStructure(const Size i) const {
+        QL_REQUIRE(i <= n_, "term structure index ("
+                                << i << ") out of range 0..." << n_);
+        return curves_[i];
+    }
 
   private:
     const boost::shared_ptr<
@@ -98,12 +102,12 @@ void CcLgmProcess<Impl, ImplFx, ImplLgm>::flushCache() const {
 
 template <class Impl, class ImplFx, class ImplLgm>
 inline Size CcLgmProcess<Impl, ImplFx, ImplLgm>::size() const {
-    return 2 * p_->n() + 1;
+    return 2 * n_ + 1;
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
 inline Size CcLgmProcess<Impl, ImplFx, ImplLgm>::factors() const {
-    return 2 * p_->n() + 1;
+    return 2 * n_ + 1;
 }
 
 template <class Impl, class ImplFx, class ImplLgm>
@@ -258,9 +262,9 @@ CcLgmProcess<Impl, ImplFx, ImplLgm>::covariance(Time t0, const Array &x0,
                     p_->H_i(0, t0 + dt) *
                         p_->int_alpha_i_alpha_j(0, i, t0, t0 + dt) -
                     p_->int_H_i_alpha_i_alpha_j(0, i, t0, t0 + dt) -
-                    p_->H_i(j+1, t0 + dt) *
-                        p_->int_alpha_i_alpha_j(j+1, i, t0, t0 + dt) +
-                    p_->int_H_i_alpha_i_alpha_j(j+1, i, t0, t0 + dt) +
+                    p_->H_i(j + 1, t0 + dt) *
+                        p_->int_alpha_i_alpha_j(j + 1, i, t0, t0 + dt) +
+                    p_->int_H_i_alpha_i_alpha_j(j + 1, i, t0, t0 + dt) +
                     p_->int_alpha_i_sigma_j(i, j, t0, t0 + dt);
             }
         }
