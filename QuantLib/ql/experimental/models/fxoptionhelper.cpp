@@ -20,8 +20,11 @@
 #include <ql/exercise.hpp>
 #include <ql/pricingengines/blackformula.hpp>
 #include <ql/experimental/models/fxoptionhelper.hpp>
+#include <ql/time/calendars/nullcalendar.hpp>
 
 #include <boost/make_shared.hpp>
+
+#include <iostream>
 
 namespace QuantLib {
 
@@ -31,22 +34,39 @@ FxOptionHelper::FxOptionHelper(
     const Handle<YieldTermStructure> &domesticYield,
     const Handle<YieldTermStructure> &foreignYield,
     CalibrationHelper::CalibrationErrorType errorType)
-    : CalibrationHelper(volatility, domesticYield, errorType), 
-      maturity_(maturity), calendar_(calendar), strike_(strike),
+    : CalibrationHelper(volatility, domesticYield, errorType),
+      hasMaturity_(true), maturity_(maturity), calendar_(calendar),
+      strike_(strike), fxSpot_(fxSpot), foreignYield_(foreignYield) {
+    registerWith(fxSpot_);
+    registerWith(foreignYield_);
+}
+
+FxOptionHelper::FxOptionHelper(
+    const Date &exerciseDate, const Real strike, const Handle<Quote> fxSpot,
+    const Handle<Quote> volatility,
+    const Handle<YieldTermStructure> &domesticYield,
+    const Handle<YieldTermStructure> &foreignYield,
+    CalibrationHelper::CalibrationErrorType errorType)
+    : CalibrationHelper(volatility, domesticYield, errorType),
+      hasMaturity_(false), exerciseDate_(exerciseDate), strike_(strike),
       fxSpot_(fxSpot), foreignYield_(foreignYield) {
     registerWith(fxSpot_);
     registerWith(foreignYield_);
 }
 
 void FxOptionHelper::performCalculations() const {
-    exerciseDate_ =
-        calendar_.advance(termStructure_->referenceDate(), maturity_);
+    if (hasMaturity_)
+        exerciseDate_ =
+            calendar_.advance(termStructure_->referenceDate(), maturity_);
     tau_ = termStructure_->timeFromReference(exerciseDate_);
     atm_ = fxSpot_->value() * foreignYield_->discount(tau_) /
            termStructure_->discount(tau_);
-    type_ = strike_ >= atm_ ? Option::Call : Option::Put;
+    effStrike_ = strike_;
+    if(effStrike_ == Null<Real>())
+        effStrike_ = atm_;
+    type_ = effStrike_ >= atm_ ? Option::Call : Option::Put;
     boost::shared_ptr<StrikedTypePayoff> payoff(
-        new PlainVanillaPayoff(type_, strike_));
+        new PlainVanillaPayoff(type_, effStrike_));
     boost::shared_ptr<Exercise> exercise =
         boost::make_shared<EuropeanExercise>(exerciseDate_);
     option_ =
@@ -63,7 +83,10 @@ Real FxOptionHelper::modelValue() const {
 Real FxOptionHelper::blackPrice(Real volatility) const {
     calculate();
     const Real stdDev = volatility * std::sqrt(tau_);
-    return blackFormula(type_, strike_, atm_, stdDev);
+    std::clog << "helper market price (" << volatility << "), tau=" << tau_ << " atm=" << atm_
+              << " strike " << effStrike_ << " is "
+              << blackFormula(type_, effStrike_, atm_, stdDev, termStructure_->discount(tau_)) << std::endl;
+    return blackFormula(type_, strike_, atm_, stdDev, termStructure_->discount(tau_));
 }
 
 } // namespace QuantLib
