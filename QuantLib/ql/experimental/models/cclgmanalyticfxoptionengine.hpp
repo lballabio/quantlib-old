@@ -19,18 +19,22 @@
 
 /*! \file cclgmanalyticfxoptionengine.hpp
     \brief analytic fx option engine for the cross currency lgm model
-    TODO add optional discounting curve
+    Reference: Lichters, Stamm, Gallagher: Modern Derivatives Pricing
+               and Credit Exposure Analysis, Palgrave Macmillan, 2015
+    the discounting curve for the option premium is the domestic yield
+    curve from the cclgm model (which may be different from the single
+    model's yield curve, see e.g. the CcLgm1 model constructor).
 */
 
 #ifndef quantlib_cclgm_analytic_fx_option_engine_hpp
 #define quantlib_cclgm_analytic_fx_option_engine_hpp
 
+#include <ql/pricingengines/blackcalculator.hpp>
+#include <ql/instruments/vanillaoption.hpp>
 #include <ql/experimental/models/cclgm.hpp>
 #include <ql/experimental/models/cclgmpiecewise.hpp>
 #include <ql/experimental/models/lgmfxpiecewisesigma.hpp>
 #include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
-
-#include <ql/instruments/vanillaoption.hpp>
 
 namespace QuantLib {
 
@@ -73,16 +77,19 @@ void CcLgmAnalyticFxOptionEngine<Impl, ImplFx, ImplLgm>::calculate() const {
     Date expiry = arguments_.exercise->lastDate();
     Time t = model_->termStructure(0)->timeFromReference(expiry);
 
-    Real foreignDiscount = model_->curve(foreignCurrency_)->discount(expiry);
-    Real domesticDiscount = model_->curve(0)->discount(expiry);
+    Real foreignDiscount =
+        model_->termStructure(foreignCurrency_ + 1)->discount(expiry);
+    Real domesticDiscount = model_->termStructure(0)->discount(expiry);
 
-    Real fxForward = model_->stateProcess()->initialValues[foreignCurrency_] *
-                     foreignDiscount / domesticDiscount;
+    Real fxForward =
+        std::exp(model_->stateProcess()->initialValues()[foreignCurrency_]) *
+        foreignDiscount / domesticDiscount;
 
     boost::shared_ptr<detail::CcLgmParametrization<Impl, ImplFx, ImplLgm> > p =
         model_->parametrization();
 
-    Size &i = foreignCurrency_; // just an alias ...
+    // just an alias to make things below more readble
+    const Size &i = foreignCurrency_;
 
     Real variance =
         // first term
@@ -92,13 +99,15 @@ void CcLgmAnalyticFxOptionEngine<Impl, ImplFx, ImplLgm>::calculate() const {
         // second term
         p->H_i(i + 1, t) * p->H_i(i + 1, t) *
             p->int_alpha_i_alpha_j(i + 1, i + 1, 0.0, t) -
-        2.0 * p->H_i(0, t) * p->int_H_i_alpha_i_alpha_j(0, 0, 0.0, t) +
-        p->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, 0.0, t) -
+        2.0 * p->H_i(i+1, t) * p->int_H_i_alpha_i_alpha_j(i+1, i+1, 0.0, t) +
+        p->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, 0.0, t) +
+        // term two three/fourth
+        p->int_sigma_i_sigma_j(i,i,0.0,t) -
         // third term
         2.0 * (p->H_i(0, t) * p->H_i(i + 1, t) *
                    p->int_alpha_i_alpha_j(0, i + 1, 0.0, t) -
-               p->H_i(0, t) * p->int_H_i_alpha_i_alpha_j(0, i + 1, 0.0, t) -
-               p->H_i(i + 1, t) * p->int_H_i_alpha_i_alpha_j(i + 1, 0, 0.0, t) +
+               p->H_i(0, t) * p->int_H_i_alpha_i_alpha_j(i+1, 0, 0.0, t) -
+               p->H_i(i + 1, t) * p->int_H_i_alpha_i_alpha_j(0, i+1, 0.0, t) +
                p->int_H_i_H_j_alpha_i_alpha_j(0, i + 1, 0.0, t)) +
         // forth term
         2.0 * (p->H_i(0, t) * p->int_alpha_i_sigma_j(0, i, 0.0, t) -
@@ -110,7 +119,7 @@ void CcLgmAnalyticFxOptionEngine<Impl, ImplFx, ImplLgm>::calculate() const {
     BlackCalculator black(payoff, fxForward, std::sqrt(variance),
                           domesticDiscount);
 
-    // TODO what results are meaningful to provide also ?
+    // TODO what results are meaningful to provide ?
     results_.value = black.value();
     results_.delta = Null<Real>();
     results_.deltaForward = black.deltaForward();
@@ -122,6 +131,10 @@ void CcLgmAnalyticFxOptionEngine<Impl, ImplFx, ImplLgm>::calculate() const {
     results_.thetaPerDay = Null<Real>();
     results_.strikeSensitivity = black.strikeSensitivity();
     results_.itmCashProbability = black.itmCashProbability();
+
+    // debug
+    std::clog << "fx option pricing t=" << t << " vol=" << std::sqrt(variance/t) << " strike " << payoff->strike() << " atm=" << fxForward << " is " << results_.value << std::endl;
+
 }
 
 } // namesapce QuantLib
