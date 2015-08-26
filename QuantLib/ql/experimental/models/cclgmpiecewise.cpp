@@ -19,6 +19,7 @@
 
 #include <ql/experimental/models/cclgmpiecewise.hpp>
 #include <ql/math/comparison.hpp>
+#include <ql/math/matrixutilities/symmetricschurdecomposition.hpp>
 
 namespace QuantLib {
 
@@ -51,6 +52,15 @@ CcLgmPiecewise::CcLgmPiecewise(
         QL_REQUIRE(
             close_enough(correlation_[i][i], 1.0),
             "correlation matrix contains diagonal elements not equal to 1");
+    }
+
+    SymmetricSchurDecomposition ssd(correlation_);
+    for (Size i = 0; i < ssd.eigenvalues().size(); ++i) {
+        std::clog << "correlation matrix eigen value #" << i << " is "
+                  << ssd.eigenvalues()[i] << std::endl;
+        QL_REQUIRE(ssd.eigenvalues()[i] >= 0.0,
+                   "correlation matrix has negative eigenvalue @"
+                       << i << ": " << ssd.eigenvalues()[i]);
     }
 
     std::vector<Time> allTimes;
