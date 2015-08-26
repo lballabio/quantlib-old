@@ -19,8 +19,14 @@
 
 /*! \file lgm.hpp
     \brief LGM model base class
-           Reference: Patrick S. Hagan, Evaluating and hedging exotic swap
-                      instruments via LGM
+
+           References:
+
+           Patrick S. Hagan: Evaluating and hedging exotic swap
+           instruments via LGM
+
+           Lichters, Stamm, Gallagher: Modern Derivatives Pricing
+           and Credit Exposure Analysis, Palgrave Macmillan, 2015
 */
 
 #ifndef quantlib_lgm_hpp
