@@ -34,8 +34,7 @@ class LgmTest {
     static void testBermudanLgm1fGsr();
     static void testLgm1fCalibration();
     static void testLgm3fForeignPayouts();
-    static void testLgm3fFxCalibration();
-    static void testLgm4f();
+    static void testLgm4fAndFxCalibration();
     static boost::unit_test_framework::test_suite *suite();
 };
 
