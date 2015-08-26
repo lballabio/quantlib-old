@@ -34,6 +34,7 @@
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
     Copyright (C) 2015 Maddalena Zanzi
+    Copyright (C) 2015 Paolo Mazzocchi
   </copyright>
   <Functions>
 
@@ -54,9 +55,43 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRateHelperLatestDate' type='QuantLib::RateHelper'>
-      <description>returns the latest date for the given RateHelper object.</description>
-      <libraryFunction>latestDate</libraryFunction>
+    <Member name='qlRateHelperLatestRelevantDate' type='QuantLib::RateHelper'>
+      <description>returns the latest relevant date for the given RateHelper object.</description>
+      <libraryFunction>latestRelevantDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperPillarDate' type='QuantLib::RateHelper'>
+      <description>returns the pillar date for the given RateHelper object.</description>
+      <libraryFunction>pillarDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperMaturityDate' type='QuantLib::RateHelper'>
+      <description>returns the maturity date for the given RateHelper object.</description>
+      <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Calc'/>
