@@ -19,6 +19,9 @@
 
 /*! \file cclgm.hpp
     \brief multicurrency lgm model with generic parametrization
+
+    Reference: Lichters, Stamm, Gallagher: Modern Derivatives Pricing
+               and Credit Exposure Analysis, Palgrave Macmillan, 2015
 */
 
 #ifndef quantlib_multicurrency_lgm_hpp
@@ -46,7 +49,7 @@ class CcLgm : public virtual Observer, public virtual Observable {
     const Handle<YieldTermStructure> termStructure(const Size i) const {
         return boost::static_pointer_cast<CcLgmProcess<Impl, ImplFx, ImplLgm> >(
                    stateProcess())
-            ->curve(i);
+            ->termStructure(i);
     }
 
     const Size n() const { return n_; }
