@@ -1,4 +1,4 @@
 # Eric's cheat sheet for running configure
-#./configure --prefix=$IDIR --enable-addin-cpp     --with-gensrc=/media/windows/data/erik/linux/repos/quantlib/gensrc     --with-oh=/media/windows/data/erik/linux/repos/quantlib/ObjectHandler     CPPFLAGS=-I$IDIR/include LDFLAGS=-L$IDIR/lib
+DOXYGEN=/home/erik/doxygen-1.8.7/bin/doxygen ./configure --prefix=$IDIR --enable-addin-cpp --with-gensrc=/media/windows/linux/repos/quantlib/gensrc --with-oh=/media/windows/linux/repos/quantlib/ObjectHandler CPPFLAGS=-I$IDIR/include LDFLAGS=-L$IDIR/lib
 #DOXYGEN=/home/erik/doxygen-1.8.7/bin/doxygen ./configure --with-gensrc=/home/erik/repos/quantlib/gensrc --with-oh=/home/erik/repos/quantlib/ObjectHandler
-DOXYGEN=/home/erik/doxygen-1.8.7/bin/doxygen ./configure --prefix=$IDIR --enable-addin-cpp --with-gensrc=/home/erik/repos/quantlib/gensrc --with-oh=/home/erik/repos/quantlib/ObjectHandler CPPFLAGS=-I$IDIR/include LDFLAGS=-L$IDIR/lib
+#DOXYGEN=/home/erik/doxygen-1.8.7/bin/doxygen ./configure --prefix=$IDIR --enable-addin-cpp --with-gensrc=/home/erik/repos/quantlib/gensrc --with-oh=/home/erik/repos/quantlib/ObjectHandler CPPFLAGS=-I$IDIR/include LDFLAGS=-L$IDIR/lib

@@ -78,10 +78,10 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\buildStatic\vc100\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibXL-vc100-mt-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXL-vc100-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibXL-vc100-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibXL-vc100-mt-s-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibXL-vc100-mt-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibXL-vc100-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibXL-vc100-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibXL-vc100-mt-s-1_7_0</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.xll</TargetExt>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">.xll</TargetExt>
@@ -125,11 +125,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-sgd-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-sgd-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-sgd-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-sgd-1_7_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
@@ -175,11 +175,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-gd-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-gd-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-gd-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-gd-1_7_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
@@ -225,11 +225,11 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-s-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-s-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-s-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-s-1_7_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
@@ -275,11 +275,11 @@
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>../../ObjectHandler/lib;../../QuantLib/lib;../../QuantLibAddin/lib;../../log4cxx/msvc/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-1_6_0.pdb</ProgramDatabaseFile>
+      <ProgramDatabaseFile>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-1_7_0.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-1_6_0.lib</ImportLibrary>
+      <ImportLibrary>.\buildStatic\vc100\$(Configuration)/QuantLibXL-vc100-mt-1_7_0.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
     <Bscmake>
