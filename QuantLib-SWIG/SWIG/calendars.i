@@ -216,6 +216,8 @@ namespace QuantLib {
         Russia(Market m = Settlement);
     };
 
+    class Romania : public Calendar {};
+
     class SaudiArabia : public Calendar {
       public:
         enum Market { Tadawul };
