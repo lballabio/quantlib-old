@@ -99,15 +99,16 @@ void CcLgmAnalyticFxOptionEngine<Impl, ImplFx, ImplLgm>::calculate() const {
         // second term
         p->H_i(i + 1, t) * p->H_i(i + 1, t) *
             p->int_alpha_i_alpha_j(i + 1, i + 1, 0.0, t) -
-        2.0 * p->H_i(i+1, t) * p->int_H_i_alpha_i_alpha_j(i+1, i+1, 0.0, t) +
+        2.0 * p->H_i(i + 1, t) *
+            p->int_H_i_alpha_i_alpha_j(i + 1, i + 1, 0.0, t) +
         p->int_H_i_H_j_alpha_i_alpha_j(i + 1, i + 1, 0.0, t) +
         // term two three/fourth
-        p->int_sigma_i_sigma_j(i,i,0.0,t) -
+        p->int_sigma_i_sigma_j(i, i, 0.0, t) -
         // third term
         2.0 * (p->H_i(0, t) * p->H_i(i + 1, t) *
                    p->int_alpha_i_alpha_j(0, i + 1, 0.0, t) -
-               p->H_i(0, t) * p->int_H_i_alpha_i_alpha_j(i+1, 0, 0.0, t) -
-               p->H_i(i + 1, t) * p->int_H_i_alpha_i_alpha_j(0, i+1, 0.0, t) +
+               p->H_i(0, t) * p->int_H_i_alpha_i_alpha_j(i + 1, 0, 0.0, t) -
+               p->H_i(i + 1, t) * p->int_H_i_alpha_i_alpha_j(0, i + 1, 0.0, t) +
                p->int_H_i_H_j_alpha_i_alpha_j(0, i + 1, 0.0, t)) +
         // forth term
         2.0 * (p->H_i(0, t) * p->int_alpha_i_sigma_j(0, i, 0.0, t) -
@@ -131,10 +132,6 @@ void CcLgmAnalyticFxOptionEngine<Impl, ImplFx, ImplLgm>::calculate() const {
     results_.thetaPerDay = Null<Real>();
     results_.strikeSensitivity = black.strikeSensitivity();
     results_.itmCashProbability = black.itmCashProbability();
-
-    // debug
-    std::clog << "fx option pricing t=" << t << " vol=" << std::sqrt(variance/t) << " strike " << payoff->strike() << " atm=" << fxForward << " is " << results_.value << std::endl;
-
 }
 
 } // namesapce QuantLib
