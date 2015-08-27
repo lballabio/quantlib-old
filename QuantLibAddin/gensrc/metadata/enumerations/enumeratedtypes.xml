@@ -9,6 +9,7 @@
     Copyright (C) 2006 Katiuscia Manzoni
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2015 Maddalena Zanzi
+    Copyright (C) 2015 Riccardo Barone
   </enumeratedTypeCopyright>
 
   <EnumeratedTypeGroups>
@@ -390,6 +391,20 @@
         <EnumeratedType>
           <string>Poland</string>
           <value>QuantLib::Poland()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>Romania</string>
+          <value>QuantLib::Romania()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Romania -->
+          <string>BVB</string>
+          <value>QuantLib::Romania()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <!-- Clone for Romania -->
+          <string>Bucharest stock exchange</string>
+          <value>QuantLib::Romania()</value>
         </EnumeratedType>
         <EnumeratedType>
           <string>Russia</string>
