@@ -24,8 +24,6 @@
 
 #include <boost/make_shared.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 FxOptionHelper::FxOptionHelper(
@@ -83,9 +81,6 @@ Real FxOptionHelper::modelValue() const {
 Real FxOptionHelper::blackPrice(Real volatility) const {
     calculate();
     const Real stdDev = volatility * std::sqrt(tau_);
-    std::clog << "helper market price (" << volatility << "), tau=" << tau_ << " atm=" << atm_
-              << " strike " << effStrike_ << " is "
-              << blackFormula(type_, effStrike_, atm_, stdDev, termStructure_->discount(tau_)) << std::endl;
     return blackFormula(type_, strike_, atm_, stdDev, termStructure_->discount(tau_));
 }
 
