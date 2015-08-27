@@ -192,6 +192,12 @@ namespace QuantLib {
         Indonesia(Market m = BEJ);
     };
 
+    class Israel : public Calendar {
+      public:
+        enum Market { Settlement, TASE };
+        Israel(Market m = Settlement);
+    };
+
     class Italy : public Calendar {
       public:
         enum Market { Settlement, Exchange };
