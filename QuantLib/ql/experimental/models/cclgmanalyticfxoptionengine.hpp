@@ -21,7 +21,7 @@
     \brief analytic fx option engine for the cross currency lgm model
     Reference: Lichters, Stamm, Gallagher: Modern Derivatives Pricing
                and Credit Exposure Analysis, Palgrave Macmillan, 2015
-    the discounting curve for the option premium is the domestic yield
+    The discounting curve for the option premium is the domestic yield
     curve from the cclgm model (which may be different from the single
     model's yield curve, see e.g. the CcLgm1 model constructor).
 */
