@@ -348,16 +348,6 @@ void LgmTest::testLgm3fForeignPayouts() {
     MultiPathGenerator<PseudoRandom::rsg_type> pg(process, grid, sg, false);
     PathGenerator<PseudoRandom::rsg_type> pg2(usdProcess, grid, sg2, false);
 
-    std::vector<Sample<MultiPath> > paths;
-    for (Size j = 0; j < n; ++j) {
-        paths.push_back(pg.next());
-    }
-
-    std::vector<Sample<Path> > paths2;
-    for (Size j = 0; j < n; ++j) {
-        paths2.push_back(pg2.next());
-    }
-
     // test
     // 1 deterministic USD cashflow under EUR numeraire vs. price on USD curve
     // 2 zero bond option USD under EUR numeraire vs. USD numeraire
@@ -367,14 +357,14 @@ void LgmTest::testLgm3fForeignPayouts() {
         stat2a, stat2b, stat3;
 
     // same for paths2 since shared time grid
-    Size l = paths[0].value[0].length() - 1;
     for (Size j = 0; j < n; ++j) {
         Sample<MultiPath> path = pg.next();
         Sample<Path> path2 = pg2.next();
-        Real fx = std::exp(paths[j].value[0][l]);
-        Real zeur = paths[j].value[1][l];
-        Real zusd = paths[j].value[2][l];
-        Real zusd2 = paths2[j].value[l];
+        Size l = path.value[0].length() - 1;
+        Real fx = std::exp(path.value[0][l]);
+        Real zeur = path.value[1][l];
+        Real zusd = path.value[2][l];
+        Real zusd2 = path2.value[l];
         Real yeur = (zeur - eurLgm->stateProcess()->expectation(0.0, 0.0, T)) /
                     eurLgm->stateProcess()->stdDeviation(0.0, 0.0, T);
         Real yusd = (zusd - usdLgm->stateProcess()->expectation(0.0, 0.0, T)) /
