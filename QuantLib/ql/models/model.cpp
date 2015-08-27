@@ -103,9 +103,10 @@ namespace QuantLib {
         const std::vector<Real>& weights,
         const std::vector<bool>& fixParameters) {
 
-        QL_REQUIRE(weights.empty() ||
-                   weights.size() == instruments.size(),
-                   "mismatch between number of instruments and weights");
+        QL_REQUIRE(weights.empty() || weights.size() == instruments.size(),
+                   "mismatch between number of instruments (" <<
+                   instruments.size() << ") and weights(" <<
+                   weights.size() << ")");
 
         Constraint c;
         if (additionalConstraint.empty())
