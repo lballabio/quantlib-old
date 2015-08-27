@@ -71,7 +71,7 @@ class CcLgm1 : public CcLgm<detail::CcLgmPiecewise, detail::LgmFxPiecewiseSigma,
                    "fx volatility step (" << step << ") out of range (0..."
                                           << fxVolStepTimes_.size() << ")");
         std::vector<bool> res(n() * (fxVolStepTimes_.size() + 1), true);
-        res[n() * i + step] = false;
+        res[(fxVolStepTimes_.size() + 1) * i + step] = false;
         return res;
     }
 
