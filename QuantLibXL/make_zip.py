@@ -63,7 +63,7 @@ class Selector:
     def process(self):
         for root, dirs, files in os.walk(self.inputPath):
             root += "\\"
-            for d in dirs:
+            for d in reversed(dirs):
                 if self.excludeDir(d):
                     dirs.remove(d)
                     continue

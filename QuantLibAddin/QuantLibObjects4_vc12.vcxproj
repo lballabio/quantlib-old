@@ -556,8 +556,8 @@
     <ClCompile Include="qlo\serialization\create\create_abcd.cpp" />
     <ClCompile Include="qlo\serialization\create\create_accountingengines.cpp" />
     <ClCompile Include="qlo\serialization\create\create_alphaform.cpp" />
-    <ClCompile Include="qlo\serialization\create\create_basketlossmodels.cpp" />
     <ClCompile Include="qlo\serialization\create\create_assetswap.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_basketlossmodels.cpp" />
     <ClCompile Include="qlo\serialization\create\create_bonds.cpp" />
     <ClCompile Include="qlo\serialization\create\create_browniangenerators.cpp" />
     <ClCompile Include="qlo\serialization\create\create_btp.cpp" />
@@ -853,8 +853,8 @@
     <ClInclude Include="qlo\serialization\create\create_accountingengines.hpp" />
     <ClInclude Include="qlo\serialization\create\create_all.hpp" />
     <ClInclude Include="qlo\serialization\create\create_alphaform.hpp" />
-    <ClInclude Include="qlo\serialization\create\create_basketlossmodels.hpp" />
     <ClInclude Include="qlo\serialization\create\create_assetswap.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_basketlossmodels.hpp" />
     <ClInclude Include="qlo\serialization\create\create_bonds.hpp" />
     <ClInclude Include="qlo\serialization\create\create_browniangenerators.hpp" />
     <ClInclude Include="qlo\serialization\create\create_btp.hpp" />

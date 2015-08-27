@@ -16,15 +16,18 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \page build_calc Build QuantLib Calc Addin on Windows and/or Linux
+/*! \page build_calc Build %QuantLib Calc Addin on Windows and/or Linux
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div> 
 
 <table border="1" bgcolor="lightsteelblue">
 <tr>
-<td><b>NB:</b> This document is out of date, the Calc build has not been
-maintained.  For further information please refer to the %QuantLibAddin source
-code or send email to quantlib-users@lists.sf.net.</td>
+<td><b>NB:</b> In the current release of %QuantLibAddin 1.6.0, support for the
+LibreOffice addin has been re-enabled.  The relevant source code is provided in
+the release.  The build has only been tested on Linux.  The documentation (this
+page) has not been updated and the information below relates to a very old
+build.  For further information please send email to
+quantlib-users@lists.sf.net.</td>
 </tr>
 </table>
 
