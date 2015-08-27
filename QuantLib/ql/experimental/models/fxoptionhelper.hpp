@@ -61,7 +61,7 @@ class FxOptionHelper : public CalibrationHelper {
     Calendar calendar_;
     const Real strike_;
     const Handle<Quote> fxSpot_;
-    const Handle<YieldTermStructure> &foreignYield_;
+    const Handle<YieldTermStructure> foreignYield_;
     mutable Real tau_;
     mutable Real atm_;
     mutable Option::Type type_;
