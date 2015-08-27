@@ -21,8 +21,6 @@
 #include <ql/models/marketmodels/curvestate.hpp>
 #include <ql/models/marketmodels/utilities.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
     MultiStepCmsSwap::MultiStepCmsSwap(const std::vector<Time>& rateTimes,

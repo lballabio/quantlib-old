@@ -23,8 +23,6 @@
 #include <ql/math/interpolations/bilinearinterpolation.hpp>
 #include <ql/math/interpolations/flatextrapolation2d.hpp>
 
-#include <iostream> // just for debug
-
 namespace QuantLib {
 
 void ProxyFxTarfEngine::calculate() const {

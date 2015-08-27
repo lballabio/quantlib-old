@@ -56,8 +56,6 @@ CcLgmPiecewise::CcLgmPiecewise(
 
     SymmetricSchurDecomposition ssd(correlation_);
     for (Size i = 0; i < ssd.eigenvalues().size(); ++i) {
-        std::clog << "correlation matrix eigen value #" << i << " is "
-                  << ssd.eigenvalues()[i] << std::endl;
         QL_REQUIRE(ssd.eigenvalues()[i] >= 0.0,
                    "correlation matrix has negative eigenvalue @"
                        << i << ": " << ssd.eigenvalues()[i]);

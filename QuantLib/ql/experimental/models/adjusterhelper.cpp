@@ -25,8 +25,6 @@
 #include <boost/assign/list_of.hpp>
 #include <boost/make_shared.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 void AdjusterHelper::performCalculations() const {

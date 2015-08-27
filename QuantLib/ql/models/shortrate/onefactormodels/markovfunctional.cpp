@@ -28,8 +28,6 @@
 #include <ql/termstructures/volatility/atmadjustedsmilesection.hpp>
 #include <ql/termstructures/volatility/atmsmilesection.hpp>
 
-//#include <iostream>
-
 namespace QuantLib {
 
     MarkovFunctional::MarkovFunctional(

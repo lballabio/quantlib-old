@@ -31,8 +31,6 @@
 #include <ql/math/comparison.hpp>
 #include <boost/shared_ptr.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 class PiecewiseIntegral : public Integrator {

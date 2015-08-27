@@ -27,8 +27,6 @@
 
 #include <boost/make_shared.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 BetaEta::BetaEta(const Handle<YieldTermStructure> &termStructure,

@@ -19,8 +19,6 @@
 
 #include <ql/experimental/fx/mcfxtarfengine.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 FxTarfPathPricer::FxTarfPathPricer(

@@ -32,8 +32,6 @@
 
 #include <boost/make_shared.hpp>
 
-#include <iostream> // only necessary for logging
-
 namespace QuantLib {
 
 namespace {
