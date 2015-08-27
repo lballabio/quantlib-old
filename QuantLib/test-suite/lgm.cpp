@@ -40,11 +40,14 @@
 #include <ql/experimental/models/fxoptionhelper.hpp>
 
 #include <boost/make_shared.hpp>
-
-#include <iostream> // just for debug
+#include <boost/accumulators/accumulators.hpp>
+#include <boost/accumulators/statistics/mean.hpp>
+#include <boost/accumulators/statistics/stats.hpp>
+#include <boost/accumulators/statistics/error_of_mean.hpp>
 
 using namespace QuantLib;
 using boost::unit_test_framework::test_suite;
+using namespace boost::accumulators;
 
 void LgmTest::testBermudanLgm1fGsr() {
 
@@ -316,23 +319,10 @@ void LgmTest::testLgm3fForeignPayouts() {
     fxVolatilities.push_back(fxSigmas);
 
     Matrix c(3, 3);
-    // commented out version of the correlation matrix
-    // ... this will not be reformmated automatically ...
-    // //  FX             EUR         USD
-    // c[0][0] = 1.0; c[0][1] = 0.8; c[0][2] = -0.5; // FX
-    // c[1][0] = 0.8; c[1][1] = 1.0; c[1][2] = -0.2; // EUR
-    // c[2][0] = -0.5; c[2][1] = -0.2; c[2][2] = 1.0; // USD
-    // .. like maybe this code ...
     //  FX             EUR         USD
-    c[0][0] = 1.0;
-    c[0][1] = 0.8;
-    c[0][2] = -0.5; // FX
-    c[1][0] = 0.8;
-    c[1][1] = 1.0;
-    c[1][2] = -0.2; // EUR
-    c[2][0] = -0.5;
-    c[2][1] = -0.2;
-    c[2][2] = 1.0; // USD
+    c[0][0] = 1.0; c[0][1] = 0.8; c[0][2] = -0.5; // FX
+    c[1][0] = 0.8; c[1][1] = 1.0; c[1][2] = -0.2; // EUR
+    c[2][0] = -0.5; c[2][1] = -0.2; c[2][2] = 1.0; // USD
 
     boost::shared_ptr<CcLgm1> ccLgm = boost::make_shared<CcLgm1>(
         singleModels, fxSpots, volstepdatesFx, fxVolatilities, c, curves);
@@ -373,10 +363,14 @@ void LgmTest::testLgm3fForeignPayouts() {
     // 2 zero bond option USD under EUR numeraire vs. USD numeraire
     // 3 fx option USD-EUR under EUR numeraire vs. analytical price
 
-    IncrementalStatistics stat1, stat2a, stat2b, stat3;
+    accumulator_set<double, stats<tag::mean, tag::error_of<tag::mean> > > stat1,
+        stat2a, stat2b, stat3;
+
     // same for paths2 since shared time grid
     Size l = paths[0].value[0].length() - 1;
     for (Size j = 0; j < n; ++j) {
+        Sample<MultiPath> path = pg.next();
+        Sample<Path> path2 = pg2.next();
         Real fx = std::exp(paths[j].value[0][l]);
         Real zeur = paths[j].value[1][l];
         Real zusd = paths[j].value[2][l];
@@ -390,18 +384,18 @@ void LgmTest::testLgm3fForeignPayouts() {
             usdLgm->stateProcess()->stdDeviation(0.0, 0.0, T);
 
         // 1 USD paid at T deflated with EUR numeraire
-        stat1.add(1.0 * fx / eurLgm->numeraire(T, yeur));
+        stat1(1.0 * fx / eurLgm->numeraire(T, yeur));
 
         // 2 USD zero bond option at T on P(T,T+10) strike 0.5 ...
         // ... under EUR numeraire ...
         Real zbOpt = std::max(usdLgm->zerobond(T + 10.0, T, yusd) - 0.5, 0.0);
-        stat2a.add(zbOpt * fx / eurLgm->numeraire(T, yeur));
+        stat2a(zbOpt * fx / eurLgm->numeraire(T, yeur));
         // ... and under USD numeraire ...
         Real zbOpt2 = std::max(usdLgm->zerobond(T + 10.0, T, yusd2) - 0.5, 0.0);
-        stat2b.add(zbOpt2 / usdLgm->numeraire(T, yusd2));
+        stat2b(zbOpt2 / usdLgm->numeraire(T, yusd2));
 
         // 3 USD-EUR fx option @0.9
-        stat3.add(std::max(fx - 0.9, 0.0) / eurLgm->numeraire(T, yeur));
+        stat3(std::max(fx - 0.9, 0.0) / eurLgm->numeraire(T, yeur));
     }
 
     boost::shared_ptr<VanillaOption> fxOption =
@@ -416,15 +410,15 @@ void LgmTest::testLgm3fForeignPayouts() {
 
     fxOption->setPricingEngine(ccLgmFxOptionEngine);
 
-    Real npv1 = stat1.mean();
-    Real error1 = stat1.errorEstimate();
+    Real npv1 = mean(stat1);
+    Real error1 = error_of<tag::mean>(stat1);
     Real expected1 = usdYts->discount(5.0) * std::exp(fxSpots[0]->value());
-    Real npv2a = stat2a.mean();
-    Real error2a = stat2a.errorEstimate();
-    Real npv2b = stat2b.mean() * std::exp(fxSpots[0]->value());
-    Real error2b = stat2b.errorEstimate() * std::exp(fxSpots[0]->value());
-    Real npv3 = stat3.mean();
-    Real error3 = stat3.errorEstimate();
+    Real npv2a = mean(stat2a);
+    Real error2a = error_of<tag::mean>(stat2a);
+    Real npv2b = mean(stat2b) * std::exp(fxSpots[0]->value());
+    Real error2b = error_of<tag::mean>(stat2b) * std::exp(fxSpots[0]->value());
+    Real npv3 = mean(stat3);
+    Real error3 = error_of<tag::mean>(stat3);
 
     // accept this relative difference in error estimates
     Real tolError = 0.2;
@@ -550,10 +544,19 @@ void LgmTest::testLgm4fAndFxCalibration() {
     singleModels.push_back(usdLgm);
     singleModels.push_back(gbpLgm);
 
+    // we test the 4f model against the 3f model eur-gbp
+    std::vector<boost::shared_ptr<Lgm1::model_type> > singleModelsProjected;
+    singleModelsProjected.push_back(eurLgm);
+    singleModelsProjected.push_back(gbpLgm);
+
     std::vector<Handle<YieldTermStructure> > curves;
     curves.push_back(eurYts);
     curves.push_back(usdYts);
     curves.push_back(gbpYts);
+
+    std::vector<Handle<YieldTermStructure> > curvesProjected;
+    curvesProjected.push_back(eurYts);
+    curvesProjected.push_back(gbpYts);
 
     std::vector<Handle<Quote> > fxSpots;
     fxSpots.push_back(Handle<Quote>(boost::make_shared<SimpleQuote>(
@@ -561,28 +564,41 @@ void LgmTest::testLgm4fAndFxCalibration() {
     fxSpots.push_back(Handle<Quote>(boost::make_shared<SimpleQuote>(
         std::log(1.35)))); // EUR per one unit of GBP in log scale
 
+    std::vector<Handle<Quote> > fxSpotsProjected;
+    fxSpotsProjected.push_back(fxSpots[1]);
+
     std::vector<std::vector<Real> > fxVolatilities;
     fxVolatilities.push_back(fxSigmasUsd);
     fxVolatilities.push_back(fxSigmasGbp);
 
+    std::vector<std::vector<Real> > fxVolatilitiesProjected;
+    fxVolatilitiesProjected.push_back(fxSigmasGbp);
+
     Matrix c(5, 5);
-    // commented out version of the correlation matrix
-    // ... this will not be reformmated automatically ...
     //  FX USD-EUR      FX GBP-EUR     EUR           USD             GBP
-    // c[0][0] = 1.0;  c[0][1]= 0.3;   c[0][2] = 0.2; c[0][3] = -0.2; c[0][4]=0.0;  // FX USD-EUR
-    // c[1][0] = 0.3;  c[1][1]= 1.0;   c[1][2] = 0.3; c[1][3] = -0.1; c[1][4]=0.1;  // FX GBP-EUR
-    // c[2][0] = 0.2;  c[2][1]= 0.3;   c[2][2] = 1.0; c[2][3] = 0.6;  c[2][4]=0.3;  // EUR
-    // c[3][0] = -0.2; c[3][1]=-0.1;   c[3][2] = 0.6; c[3][3] = 1.0;  c[3][4]=0.1;  // USD
-    // c[4][0] = 0.0;  c[4][1]= 0.1;   c[4][2] = 0.3; c[4][3] = 0.1;  c[4][4]=1.0;  // GBP
-    // .. like maybe this code ...
-    c[0][0] = 1.0;  c[0][1]= 0.3;   c[0][2] = 0.2; c[0][3] = 0.2; c[0][4]=0.0;  // FX USD-EUR
-    c[1][0] = 0.3;  c[1][1]= 1.0;   c[1][2] = 0.3; c[1][3] = 0.1; c[1][4]=0.1;  // FX GBP-EUR
-    c[2][0] = 0.2;  c[2][1]= 0.3;   c[2][2] = 1.0; c[2][3] = 0.6; c[2][4]=0.3;  // EUR
-    c[3][0] = 0.2;  c[3][1]= 0.1;   c[3][2] = 0.6; c[3][3] = 1.0; c[3][4]=0.1;  // USD
-    c[4][0] = 0.0;  c[4][1]= 0.1;   c[4][2] = 0.3; c[4][3] = 0.1; c[4][4]=1.0;  // GBP
+    c[0][0] = 1.0;  c[0][1]= 0.3;   c[0][2] = 0.2; c[0][3] = -0.2; c[0][4]=0.0;  // FX USD-EUR
+    c[1][0] = 0.3;  c[1][1]= 1.0;   c[1][2] = 0.3; c[1][3] = -0.1; c[1][4]=0.1;  // FX GBP-EUR
+    c[2][0] = 0.2;  c[2][1]= 0.3;   c[2][2] = 1.0; c[2][3] = 0.6;  c[2][4]=0.3;  // EUR
+    c[3][0] = -0.2; c[3][1]=-0.1;   c[3][2] = 0.6; c[3][3] = 1.0;  c[3][4]=0.1;  // USD
+    c[4][0] = 0.0;  c[4][1]= 0.1;   c[4][2] = 0.3; c[4][3] = 0.1;  c[4][4]=1.0;  // GBP
+
+    Matrix cProjected(3, 3);
+    for (Size i = 0, ii = 0; i < 5; ++i) {
+        if (i != 0 && i != 3) {
+            for (Size j = 0, jj = 0; j < 5; ++j) {
+                if (j != 0 && j != 3)
+                    cProjected[ii][jj++] = c[i][j];
+            }
+            ++ii;
+        }
+    }
 
     boost::shared_ptr<CcLgm1> ccLgm = boost::make_shared<CcLgm1>(
         singleModels, fxSpots, volstepdatesFx, fxVolatilities, c, curves);
+
+    boost::shared_ptr<CcLgm1> ccLgmProjected = boost::make_shared<CcLgm1>(
+        singleModelsProjected, fxSpotsProjected, volstepdatesFx,
+        fxVolatilitiesProjected, cProjected, curvesProjected);
 
     boost::shared_ptr<PricingEngine> ccLgmFxOptionEngineUsd =
         boost::make_shared<CcLgmAnalyticFxOptionEngine<
@@ -593,6 +609,11 @@ void LgmTest::testLgm4fAndFxCalibration() {
         boost::make_shared<CcLgmAnalyticFxOptionEngine<
             CcLgm1::cclgm_model_type, CcLgm1::lgmfx_model_type,
             CcLgm1::lgm_model_type> >(ccLgm, 1);
+
+    boost::shared_ptr<PricingEngine> ccLgmProjectedFxOptionEngineGbp =
+        boost::make_shared<CcLgmAnalyticFxOptionEngine<
+            CcLgm1::cclgm_model_type, CcLgm1::lgmfx_model_type,
+            CcLgm1::lgm_model_type> >(ccLgmProjected, 0);
 
     // while the initial fx vol starts at 0.2 for usd and 0.15 for gbp
     // we calibrate to helpers with 0.15 and 0.2 target implied vol
@@ -620,34 +641,77 @@ void LgmTest::testLgm4fAndFxCalibration() {
         helpersGbp.push_back(tmpGbp);
     }
 
-    LevenbergMarquardt lm(1E-8,1E-8,1E-8);
-    EndCriteria ec(1000,500,1E-8,1E-8,1E-8);
+    LevenbergMarquardt lm(1E-8, 1E-8, 1E-8);
+    EndCriteria ec(1000, 500, 1E-8, 1E-8, 1E-8);
 
     // calibrate USD-EUR FX volatility
     ccLgm->calibrateFxVolatilitiesIterative(0, helpersUsd, lm, ec);
     // calibrate GBP-EUR FX volatility
-    ccLgm->calibrateFxVolatilitiesIterative(0, helpersGbp, lm, ec);
+    ccLgm->calibrateFxVolatilitiesIterative(1, helpersGbp, lm, ec);
 
-    std::clog << "usd calibrated fx vol;market price; model price" << std::endl;
+    Real tol = 1E-6;
     for (Size i = 0; i < helpersUsd.size(); ++i) {
-        std::clog << ccLgm->fxVolatility(0)[i] << " "
-                  << helpersUsd[i]->marketValue() << " "
-                  << helpersUsd[i]->modelValue() << std::endl;
+        Real market = helpersUsd[i]->marketValue();
+        Real model = helpersUsd[i]->modelValue();
+        Real calibratedVol = ccLgm->fxVolatility(0)[i];
+        if (std::fabs(market - model) > tol)
+            BOOST_ERROR("calibration for fx option helper #"
+                        << i << " (USD) failed, market premium is " << market
+                        << " while model premium is " << model);
+        // the stochastic rates produce some noise, but do not have a huge
+        // impact on the effective volatility, so we check that they are
+        // in line with a cached example
+        if (std::fabs(calibratedVol - 0.15) > 0.0030)
+            BOOST_ERROR(
+                "calibrated fx volatility #"
+                << i
+                << " (USD) seems off, expected to be 0.15 +- 0.0030, but is "
+                << calibratedVol);
     }
-    std::clog << "gbp calibrated fx vol;market price; model price" << std::endl;
     for (Size i = 0; i < helpersGbp.size(); ++i) {
-        std::clog << ccLgm->fxVolatility(1)[i] << " "
-                  << helpersGbp[i]->marketValue() << " "
-                  << helpersGbp[i]->modelValue() << std::endl;
+        Real market = helpersGbp[i]->marketValue();
+x        Real model = helpersGbp[i]->modelValue();
+        Real calibratedVol = ccLgm->fxVolatility(1)[i];
+        if (std::fabs(market - model) > tol)
+            BOOST_ERROR("calibration for fx option helper #"
+                        << i << " (GBP) failed, market premium is " << market
+                        << " while model premium is " << model);
+        // see above
+        if (std::fabs(calibratedVol - 0.20) > 0.01)
+            BOOST_ERROR(
+                "calibrated fx volatility #"
+                << i << " (USD) seems off, expected to be 0.20 +- 0.01, but is "
+                << calibratedVol);
+    }
+
+    // calibrate the projected model
+
+    for (Size i = 0; i < helpersGbp.size(); ++i) {
+        helpersGbp[i]->setPricingEngine(ccLgmProjectedFxOptionEngineGbp);
+    }
+
+    ccLgmProjected->calibrateFxVolatilitiesIterative(0, helpersGbp, lm, ec);
+
+    for (Size i = 0; i < helpersGbp.size(); ++i) {
+        Real market = helpersGbp[i]->marketValue();
+        Real model = helpersGbp[i]->modelValue();
+        Real fullModelVol = ccLgm->fxVolatility(1)[i];
+        Real projectedModelVol = ccLgmProjected->fxVolatility(0)[i];
+        if (std::fabs(fullModelVol - projectedModelVol) > tol)
+            BOOST_ERROR(
+                "calibrated fx volatility of full model @"
+                << i << " (" << fullModelVol
+                << ") is inconsistent with that of the projected model ("
+                << projectedModelVol << ")");
     }
 
 } // testLgm4fAndFxCalibration
 
 test_suite *LgmTest::suite() {
     test_suite *suite = BOOST_TEST_SUITE("LGM model tests");
-    // suite->add(QUANTLIB_TEST_CASE(&LgmTest::testBermudanLgm1fGsr));
-    // suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm1fCalibration));
-    // suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fForeignPayouts));
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testBermudanLgm1fGsr));
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm1fCalibration));
+    suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm3fForeignPayouts));
     suite->add(QUANTLIB_TEST_CASE(&LgmTest::testLgm4fAndFxCalibration));
     return suite;
 }
