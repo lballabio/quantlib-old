@@ -65,7 +65,7 @@
       <libraryFunction>isValid</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
-	<!--SupportedPlatform name='Calc'/-->
+    <SupportedPlatform name='Calc'/>
         <!--SupportedPlatform name='Cpp'/-->
       </SupportedPlatforms>
       <ParameterList>

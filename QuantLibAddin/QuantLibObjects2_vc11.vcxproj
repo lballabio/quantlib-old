@@ -150,14 +150,14 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\build\vc110\$(Platform)\$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\build\vc110\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc110-mt-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibObjects-vc110-x64-mt-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc110-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibObjects-vc110-x64-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc110-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibObjects-vc110-x64-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc110-mt-s-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibObjects-vc110-x64-mt-s-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc110-mt-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibObjects-vc110-x64-mt-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc110-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibObjects-vc110-x64-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc110-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibObjects-vc110-x64-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc110-mt-s-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibObjects-vc110-x64-mt-s-1_7_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -526,7 +526,6 @@
     <ClCompile Include="qlo\conundrumpricer.cpp" />
     <ClCompile Include="qlo\couponvectors.cpp" />
     <ClCompile Include="qlo\flowanalysis.cpp" />
-    <ClCompile Include="qlo\latentmodels.cpp" />
     <ClCompile Include="qlo\leg.cpp" />
     <ClCompile Include="qlo\rangeaccrual.cpp" />
     <ClCompile Include="qlo\pricingengines.cpp" />
@@ -679,6 +678,7 @@
     <ClCompile Include="qlo\creditdefaultswap.cpp" />
     <ClCompile Include="qlo\defaultbasket.cpp" />
     <ClCompile Include="qlo\defaulttermstructures.cpp" />
+    <ClCompile Include="qlo\latentmodels.cpp" />
     <ClCompile Include="qlo\date.cpp" />
     <ClCompile Include="qlo\exercise.cpp" />
     <ClCompile Include="qlo\index.cpp" />
@@ -797,7 +797,6 @@
     <ClInclude Include="qlo\conundrumpricer.hpp" />
     <ClInclude Include="qlo\couponvectors.hpp" />
     <ClInclude Include="qlo\flowanalysis.hpp" />
-    <ClInclude Include="qlo\latentmodels.hpp" />
     <ClInclude Include="qlo\leg.hpp" />
     <ClInclude Include="qlo\rangeaccrual.hpp" />
     <ClInclude Include="qlo\pricingengines.hpp" />
@@ -979,6 +978,7 @@
     <ClInclude Include="qlo\creditdefaultswap.hpp" />
     <ClInclude Include="qlo\defaultbasket.hpp" />
     <ClInclude Include="qlo\defaulttermstructures.hpp" />
+    <ClInclude Include="qlo\latentmodels.hpp" />
     <ClInclude Include="qlo\auto_link.hpp" />
     <ClInclude Include="qlo\date.hpp" />
     <ClInclude Include="qlo\exercise.hpp" />

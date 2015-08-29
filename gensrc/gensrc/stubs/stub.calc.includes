@@ -4,8 +4,7 @@
 #include <%(libRoot)s/enumerations/factories/all.hpp>
 #include <%(libRoot)s/conversions/all.hpp>
 %(categoryIncludes)s
-#include <Addins/Calc/%(prefix)saddin.hpp>
-#include <Addins/Calc/calcutils.hpp>
-#include <Addins/Calc/conversions.hpp>
+#include <qladdin.hpp>
+#include <conversions.hpp>
 
 %(buffer)s

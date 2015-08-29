@@ -21,7 +21,7 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page extend_template_tutorial Expose QuantLib Template Classes to QuantLibXL
+/*! \page extend_template_tutorial Expose %QuantLib Template Classes to QuantLibXL
 
 <div align="center"><small>&copy; 2011 Andrew Downes</small></div>
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>

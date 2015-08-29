@@ -25,19 +25,10 @@ data feeds, creation of instruments, etc.
 <dl>
 <dt>\ref fw_overview</dt>
 <dd><dl>
-<dt>\ref fw_prerequisites</dt>
 <dt>\ref fw_installation</dt>
 <dt>\ref fw_startup</dt>
 <dt>\ref fw_ui</dt>
 </dl></dd>
-<dt>\ref fw_demos</dt>
-<dd><dl>
-<dt>\ref fw_demo_menu</dt>
-<dt>\ref fw_demo_xml1</dt>
-<dt>\ref fw_demo_xml2</dt>
-<dt>\ref fw_demo_swap</dt>
-</dl></dd>
-<dt>\ref fw_fi</dt>
 <dt>\ref fw_code</dt>
 <dd><dl>
 <dt>\ref fw_code_main</dt>
@@ -56,30 +47,43 @@ data feeds, creation of instruments, etc.
 
 \section fw_overview 1 Overview
 
-\subsection fw_prerequisites 1.1 Prerequisites
+\subsection fw_installation 1.1 Installation
 
-The Framework was first developed under Excel 2002 and is currently in use
-under Excel 2010.  Not a lot of work has been done to ensure compatibility with
-different versions of Excel so it is possible that the Framework could
-malfunction under certain versions of Excel.
+The application only works under 32-bit Excel.  Under 64-bit Excel, the XLL
+works, but the VBA code does not.
 
-\subsection fw_installation 1.2 Installation
+Here is the link to the zip file for 32-bit Excel:
 
-Download
-<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.5.0/QuantLibXL-1.5.0-framework.zip/download">QuantLibXL-1.5.0-framework.zip</a>.
-Copy the zip file to your hard drive and uncompress it.
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.7.0/QuantLibXL-1.7.0-RateCurveFramework.zip">QuantLibXL-1.7.0-RateCurveFramework.zip</a>.
 
-\subsection fw_startup 1.3 Startup
+We have packaged up a build for 64-bit Excel, and it is configured to load the
+64-bit XLL, but as mentioned the VBA code does not work under 64-bit Excel so
+this build is broken.  If you would like to help fix it then please send mail
+to quantlib-users@lists.sf.net.
 
-<b>NB</b>: The Framework is configured for 32-bit Excel.  If you are running
-64-bit Excel then before starting the Framework you need to edit workbook
-<tt>framework\\config\\Loader.xls</tt> and change the value of cell
-<tt>Loader.xls!$C$17</tt> to <tt>QuantLibXL-vc110-x64-mt-s-1_6_0.xll</tt>.
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.7.0/QuantLibXL-1.7.0-x64-RateCurveFramework.zip">QuantLibXL-1.7.0-x64-RateCurveFramework.zip</a>.
 
-To load the Framework into Excel, double click on file
-<tt>framework\\QuantLibXL.xla</tt>.
+Download the zip file to your hard drive and uncompress it.
 
-\subsection fw_ui 1.4 User Interface
+\subsection fw_startup 1.2 Startup
+
+The installation provides a large selection of DOS batch files for launching
+the application.  For each supported currency, two batch files are provided,
+one for a live data feed (if you have Reuters installed on your machine) and
+another which loads a static snapshot of market data.  Choose the desired batch
+file, e.g. <b><tt>session_file.EUR-s-static.bat</tt></b>, and double-click it.
+
+Excel should start up and load the Framework application, which should then
+initialize the chosen market data environment.  After a few moments you should
+see the main checks workbook:
+
+<div class="center"><img src="images/framework_fixed_income.png"></div>
+
+The market environment is now initialized with over 2,000 data objects loaded
+(rates, indexes, curves, ...)  You can now create pricing worksheets which
+define instruments that price against this data.
+
+\subsection fw_ui 1.3 User Interface
 
 The Framework menu appears on the ribbon under the Add-Ins tab.
 
@@ -104,120 +108,7 @@ Similar to the main menu bar, the contents of the right click menu may change
 depending on which workbook, worksheet, or range is active, or which addins are
 loaded.
 
-The functionality and configuration of context sensitive menus are described in
-greater detail in the demos below.
-
-If the application is reset - for example if there is an unhandled exception,
-and the user clicks on the Reset (Stop) button in the VBA editor - then the
-Framework state is lost.  In particular the menus are lost.  Clicking
-<tt>Ctrl-Shift-R</tt> reinitializes the Framework configuration.
-
-\section fw_demos 2 Demos
-
-These demos provide examples for various aspects of Framework configuration and
-functionality.
-
-\subsection fw_demo_menu 2.1 Menu
-
-This demo shows how the contents of the main menu and the right click cell menu
-change depending on which book, sheet, and range is active.
-
-<div class="center"><img src="images/framework_menu_demo.png"></div>
-
-\li Start Excel
-\li Load <tt>framework\\QuantLibXL.xla</tt>
-\li Do <tt>Addins / QuantLibXL / Load / Menu Demo</tt>
-\li Workbook <tt>MenuDemo.xls</tt> is loaded
-
-Various dummy menu functions are enabled depending on which book, sheet, or
-range is active:
-
-\li When the <tt>MenuDemo</tt> addin is loaded, menu item <tt>QuantLibXL / Menu Demo / Menu Demo</tt> is enabled.
-\li When the <tt>MenuDemo</tt> addin is loaded, cell right click menu item <tt>QuantLibXL / Menu Demo</tt> is enabled.
-\li When <tt>MenuDemo.xls</tt> is active, menu item <tt>QuantLibXL / Book Demo / Test1</tt> is enabled.
-\li When sheet <tt>Demo2</tt> is active, menu item <tt>QuantLibXL / Sheet Demo / Test2</tt> is enabled.
-\li When sheet <tt>Demo2</tt> is active, cell right click menu item <tt>QuantLibXL / Demo1 / Item 1</tt> is enabled.
-\li When the blue range in sheet <tt>Demo2</tt> is active, cell right click menu item <tt>QuantLibXL / Demo1 / Item 2</tt> is enabled.
-
-\subsection fw_demo_xml1 2.2 Boost Serialization
-
-Boost serialization is supported automatically for all QuantLib objects and is
-appropriate when you want to save/load a hierarchy of objects without worrying
-about the specifics of the corresponding XML.
-
-<div class="center"><img src="images/framework_serialization_demo.png"></div>
-
-Initialization
-
-\li Start Excel
-\li Load <tt>framework\\QuantLibXL.xla</tt>
-\li Do <tt>Addins / QuantLibXL / Load / Serialization Demo</tt>
-\li Workbook <tt>SerializationDemo.xls</tt> is loaded
-\li If today is not a business day then call <tt>qlSettingsSetEvaluationDate()</tt> to set the evaluation date to a working day
-\li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation of all cells
-
-Export
-
-\li Activate sheet <tt>Serialization</tt>
-\li Do <tt>Addins / QuantLibXL / Serialization Demo / Export</tt>
-\li In subdirectory <tt>QuantLibXL\framework\xml</tt>, files <tt>MarketData.xml</tt> and <tt>Swap.xml</tt> are created
-
-Import
-
-\li Set the value of range <tt>Settings!H15</tt> to <tt>Import</tt>
-\li Do <tt>Addins / QuantLibXL / ObjectHandler / Delete All Objects</tt>
-\li Activate sheet <tt>Serialization</tt>
-\li Do <tt>Addins / QuantLibXL / Serialization Demo / Import</tt>
-\li From subdirectory <tt>QuantLibXL\\framework\\xml</tt>, files <tt>MarketData.xml</tt> and <tt>Swap.xml</tt> are loaded
-
-\subsection fw_demo_xml2 2.3 MSXML Serialization
-
-MSXML Serialization allows you to export/import the contents of a workbook
-while exerting fine grained control over the corresponding XML.
-
-<div class="center"><img src="images/framework_serialization_msxml_demo.png"></div>
-
-\li Start Excel
-\li Load <tt>framework\\QuantLibXL.xla</tt>
-\li Do <tt>Addins / QuantLibXL / Load / Serialization Demo - MSXML</tt>
-\li Workbook <tt>SerializationDemoMSXML.xls</tt> is loaded
-\li In cell <tt>H17</tt>, specify the desired directory for the export file
-\li Do <tt>Addins / QuantLibXL / Serialization Demo - MSXML / Export</tt>
-\li In the specified export directory, an export XML file is generated with a filename in the format <tt>xml_YYYYMMDDHHMMSS.xml</tt>
-
-\subsection fw_demo_swap 2.4 Swap Portfolio
-
-This demo workbook/addin provides a skeleton implementation for a workbook to
-calculate real time prices of a trading portfolio.
-
-<div class="center"><img src="images/framework_swap_demo.png"></div>
-
-\li Start Excel
-\li Load <tt>framework\\QuantLibXL.xla</tt>
-\li Do <tt>Addins / QuantLibXL / Load / Swap Demo</tt>
-\li Workbook <tt>SwapDemo.xls</tt> is loaded
-\li Hit <tt>Ctrl-Alt-F9</tt> to force a full recalculation of all cells
-\li Click on any cell(s) in row 18 and select a number of rows extending down
-\li Right click in the selection and do <tt>Addins / QuantLibXL / Swaps / Insert Row</tt>
-
-This workbook is configured with calculation set to manual.  For production use
-you would want to set calculation to automatic.  The Inputs worksheet must be
-extended to receive data from some live feed e.g. Reuters.
-
-\section fw_fi 3 Fixed Income
-
-The Fixed Income addin initializes a market environment which can be configured
-to accept live feeds from Reuters or Bloomberg in support of real time trading.
-
-<div class="center"><img src="images/framework_fixed_income.png"></div>
-
-\li Start Excel
-\li Load <tt>Launcher.xla</tt>
-
-Startup parameters are loaded from file <tt>session_file.xml</tt>.  Edit that
-file as necessary to customize startup behavior.
-
-\section fw_code 4 Code
+\section fw_code 2 Code
 
 QuantLibXL.xla resides in the framework directory and all of the other Excel VBA
 code resides in xla files in the addin subdirectory.
@@ -229,13 +120,13 @@ Every addin is given a project name in the format qlxlXxx.  Naming every project
 with the qlxl prefix causes the addins to appear together in the project window
 in the Excel VBA editor.
 
-\subsection fw_code_main 4.1 QuantLibXL.xla
+\subsection fw_code_main 2.1 QuantLibXL.xla
 
 QuantLibXL.xla is the entry point for the application.  The Workbook_Open event
 loads some additional modules which are essential for minimum functionality:
 Errors.xla, Utilities.xla, Configuration.xla, Loader.xla
 
-\subsection fw_code_errors 4.2 Errors.xla
+\subsection fw_code_errors 2.2 Errors.xla
 
 Errors.xla provides a central implementation for all error handling for the
 application.  Errors.xla implements three functions in support of error
@@ -251,12 +142,12 @@ displayError: Displays the error message to the user.  All entry points into the
 Excel VBA code must be wrapped in On Error Goto / Catch, and the Catch must call
 displayError.
 
-\subsection fw_code_utils 4.3 Utilities.xla
+\subsection fw_code_utils 2.3 Utilities.xla
 
 Implements various utility functions for the application, including access to
 the file system, processing for ranges/sheets/books, etc.
 
-\subsection fw_code_config 4.4 Configuration.xla
+\subsection fw_code_config 2.4 Configuration.xla
 
 Configuration.xla implements a global singleton object which encapsulates
 various information related to the running instance of the Framework
@@ -265,7 +156,7 @@ e.g:
 
 Debug.Print "root dir = " & Config().rootDirectory
 
-\subsection fw_code_loader 4.5 Loader.xla
+\subsection fw_code_loader 2.5 Loader.xla
 
 Loader.xla implements a facility for loading components required by a given
 instance of the Framework.  A component can comprise any item which may be
@@ -282,34 +173,34 @@ startup.
 To load a given environment, call loadEnvironment("xxx") where xxx is a column
 in Loader.xls.
 
-\subsection fw_code_events 4.6 Events.xla
+\subsection fw_code_events 2.6 Events.xla
 
 Events.xla implements an event listener which intercepts various Excel events,
 such as the activation of a workbook.  These event handlers are used to call
 various Framework functionality, such as recreating menu items in response to a
 change in context.
 
-\subsection fw_code_keyboard 4.7 Keyboard.xla
+\subsection fw_code_keyboard 2.7 Keyboard.xla
 
 Keyboard.xla implements a few keyboard shortcuts for the application.
 
-\subsection fw_code_shortcut 4.8 Shortcut.xla
+\subsection fw_code_shortcut 2.8 Shortcut.xla
 
 Shortcut.xla is a small utility addin which can be used to create a shortcut
 (icon, link) for the Framework application.  For example, after installing the
 Framework to a network drive, you can use Shortcut.xla to generate a .lnk file
 that anyone can use to invoke the application from the server.
 
-\subsection fw_code_menu 4.9 Menu.xla
+\subsection fw_code_menu 2.9 Menu.xla
 
 Menu.xla creates the QuantLibXL menu on the main Excel toolbar.
 
-\subsection fw_code_cell_menu 4.10 CellMenu.xla
+\subsection fw_code_cell_menu 2.10 CellMenu.xla
 
 CellMenu.xla creates the QuantLibXL entry on the menu which appears when the
 user right clicks on a cell or range.
 
-\subsection fw_code_xml 4.11 Serialization.xla
+\subsection fw_code_xml 2.11 Serialization.xla
 
 Serialization.xla implements support for serialization.  This implementation
 relies on the fact that the QuantLibAddin C++ layer implements
