@@ -33,8 +33,6 @@
 #include <ql/math/comparison.hpp>
 #include <ql/utilities/dataformatters.hpp>
 
-#include <ql/math/statistics/incrementalstatistics2.hpp>
-
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
 
@@ -347,13 +345,11 @@ void StatisticsTest::testIncrementalStatistics() {
     MersenneTwisterUniformRng mt(42);
 
     IncrementalStatistics stat;
-    IncrementalStatistics2 s1b;
 
     for (Size i = 0; i < 500000; ++i) {
         Real x = 2.0 * (mt.nextReal() - 0.5) * 1234.0;
         Real w = mt.nextReal();
         stat.add(x, w);
-        s1b.add(x, w);
     }
 
     TEST_INC_STAT(stat.samples(), 500000);
