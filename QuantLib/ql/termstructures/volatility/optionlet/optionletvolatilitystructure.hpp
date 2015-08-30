@@ -26,6 +26,7 @@
 #define quantlib_optionlet_volatility_structure_hpp
 
 #include <ql/termstructures/voltermstructure.hpp>
+#include <ql/termstructures/volatility/optionlet/optionletstripper.hpp>
 
 namespace QuantLib {
 
@@ -98,6 +99,10 @@ namespace QuantLib {
         //! returns the smile for a given option time
         boost::shared_ptr<SmileSection> smileSection(Time optionTime,
                                                      bool extr = false) const;
+        //@}
+        //! returns the optionletstripper of derived classes if it has been used. 
+        //! (otherwise a null pointer will be returned)
+        virtual boost::shared_ptr<OptionletStripper> optionletStripper() const;
         //@}
       protected:
         virtual boost::shared_ptr<SmileSection> smileSectionImpl(
@@ -203,6 +208,10 @@ namespace QuantLib {
         return volatilityImpl(timeFromReference(optionDate), strike);
     }
 
+    inline boost::shared_ptr< OptionletStripper >
+    OptionletVolatilityStructure::optionletStripper() const {
+        QL_FAIL("Inspector to optionletstripper not implemented!");
+    }
 }
 
 #endif
