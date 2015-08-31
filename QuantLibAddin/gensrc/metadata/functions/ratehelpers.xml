@@ -303,6 +303,16 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
+          <Parameter name='PillarDate' default='"MaturityDate"'>
+            <type>QuantLib::Pillar::Choice</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Pillar date can be: MaturityDate, LastRelevantDate or CustomDate.</description>
+          </Parameter>
+          <Parameter name='CustomPillarDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Custom Pillar Date.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -374,6 +384,16 @@
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='PillarDate' default='"MaturityDate"'>
+            <type>QuantLib::Pillar::Choice</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Pillar date can be: MaturityDate, LastRelevantDate or CustomDate.</description>
+          </Parameter>
+          <Parameter name='CustomPillarDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Custom Pillar Date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -521,6 +541,16 @@
             <tensorRank>scalar</tensorRank>
             <description>IborIndex object ID.</description>
           </Parameter>
+          <Parameter name='PillarDate' default='"MaturityDate"'>
+            <type>QuantLib::Pillar::Choice</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Pillar date can be: MaturityDate, LastRelevantDate or CustomDate.</description>
+          </Parameter>
+          <Parameter name='CustomPillarDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Custom Pillar Date.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -575,6 +605,16 @@
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='PillarDate' default='"MaturityDate"'>
+            <type>QuantLib::Pillar::Choice</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Pillar date can be: MaturityDate, LastRelevantDate or CustomDate.</description>
+          </Parameter>
+          <Parameter name='CustomPillarDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Custom Pillar Date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

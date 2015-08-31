@@ -20,6 +20,7 @@
     <DataType defaultSuperType='enumeration'>QuantLib::GFunctionFactory::YieldCurveModel</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Month</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Option::Type</DataType>
+    <DataType defaultSuperType='enumeration'>QuantLib::Pillar::Choice</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Position::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Replication::Type</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::SalvagingAlgorithm::Type</DataType>
