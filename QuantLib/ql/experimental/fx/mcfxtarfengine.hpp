@@ -157,7 +157,7 @@ McFxTarfEngine<RNG, S>::QuadraticProxyFunction::QuadraticProxyFunction(
     } else {
         extrapolationPoint1_ = -b1_ / (2.0 * a1_);
         flatExtrapolationType1_ =
-            (type_ == Option::Call ? 1.0 : -1.0) * (a1_ > 0.0 ? -1 : 1);
+            (type_ == Option::Call ? 1 : -1) * (a1_ > 0.0 ? -1 : 1);
     }
     if (close(a2_, 0.0)) {
         // for minspot = maxspot a constant function with a=b=0
@@ -167,7 +167,7 @@ McFxTarfEngine<RNG, S>::QuadraticProxyFunction::QuadraticProxyFunction(
     } else {
         extrapolationPoint2_ = -b2_ / (2.0 * a2_);
         flatExtrapolationType2_ =
-            (type_ == Option::Call ? 1.0 : -1.0) * (a2_ > 0.0 ? -1 : 1);
+            (type_ == Option::Call ? 1 : -1) * (a2_ > 0.0 ? -1 : 1);
     }
 }
 
@@ -549,20 +549,22 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 (criticalSize < minDataSegment || criticalSize < minRegPoints));
 
             // copy the data to the final vectors used for the regression
-            for (Size i = 0; i < xTmp.size(); ++i) {
+            for (Size ii = 0; ii < xTmp.size(); ++ii) {
                 if (xTmp[i].first <= cutoff) {
-                    xTmp1.push_back(xTmp[i].first);
-                    yTmp1.push_back(xTmp[i].second);
+                    xTmp1.push_back(xTmp[ii].first);
+                    yTmp1.push_back(xTmp[ii].second);
                 } else {
-                    xTmp2.push_back(xTmp[i].first);
-                    yTmp2.push_back(xTmp[i].second);
+                    xTmp2.push_back(xTmp[ii].first);
+                    yTmp2.push_back(xTmp[ii].second);
                 }
             }
 
             // determine lower cutoff (in terms of calls), below which we
             // extrapolate linear
             Real lowerCutoff =
-                xTmp[xTmp.size() * (isCall ? minLowerExtr : 1.0 - minLowerExtr)]
+                xTmp[static_cast<int>(xTmp.size() * (isCall
+                                                         ? minLowerExtr
+                                                         : 1.0 - minLowerExtr))]
                     .first;
             // determine the core (trusted) region
             Real coreRegionMin =
