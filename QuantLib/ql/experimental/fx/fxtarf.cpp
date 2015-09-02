@@ -41,7 +41,9 @@ FxTarf::FxTarf(const Schedule schedule, const boost::shared_ptr<FxIndex> &index,
                "FXTarf requires at least 2 schedule dates (" << schedule.size()
                                                              << ")");
 
+    registerWith(index);
     registerWith(accumulatedAmount);
+    registerWith(lastAmount);
     registerWith(Settings::instance().evaluationDate());
 }
 
@@ -80,7 +82,9 @@ Real FxTarf::lastAmount() const {
                .hasOccurred()) {
         ++i;
     }
-    return payout(index_->fixing(index_->fixingDate(schedule_.date(i - 1))));
+    return i > 1 ? payout(index_->fixing(
+                       index_->fixingDate(schedule_.date(i - 1))))
+                 : 0.0;
 }
 
 Real FxTarf::nakedPayout(const Real fixing, Real &accAmount) const {
