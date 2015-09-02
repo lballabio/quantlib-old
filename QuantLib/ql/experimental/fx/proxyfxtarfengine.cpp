@@ -36,7 +36,7 @@ void ProxyFxTarfEngine::calculate() const {
     Date today = Settings::instance().evaluationDate();
 
     // fill the exchange rate from the manager if not given in the engine
-    if(exchangeRate_.empty())
+    if(!exchangeRateSet_)
         exchangeRate_ = Handle<Quote>(boost::make_shared<SimpleQuote>(
             ExchangeRateManager::instance().lookup(
                 arguments_.index->sourceCurrency(),
