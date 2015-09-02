@@ -22,6 +22,8 @@
 #include <ql/math/interpolations/linearinterpolation.hpp>
 #include <ql/math/interpolations/bilinearinterpolation.hpp>
 #include <ql/math/interpolations/flatextrapolation2d.hpp>
+#include <ql/quotes/simplequote.hpp>
+#include <ql/currencies/exchangeratemanager.hpp>
 
 namespace QuantLib {
 
@@ -32,6 +34,13 @@ void ProxyFxTarfEngine::calculate() const {
 
     // determine the number of open fixings
     Date today = Settings::instance().evaluationDate();
+
+    // fill the exchange rate from the manager if not given in the engine
+    if(exchangeRate_.empty())
+        exchangeRate_ = Handle<Quote>(boost::make_shared<SimpleQuote>(
+            ExchangeRateManager::instance().lookup(
+                arguments_.index->sourceCurrency(),
+                arguments_.index->targetCurrency(), today).rate()));
 
     Size numberOpenFixings =
         std::distance(std::upper_bound(arguments_.openFixingDates.begin(),
