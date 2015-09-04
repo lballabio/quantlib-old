@@ -150,14 +150,14 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\build\vc120\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc120-mt-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibObjects-vc120-x64-mt-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc120-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibObjects-vc120-x64-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc120-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibObjects-vc120-x64-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc120-mt-s-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibObjects-vc120-x64-mt-s-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc120-mt-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">QuantLibObjects-vc120-x64-mt-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc120-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">QuantLibObjects-vc120-x64-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc120-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|x64'">QuantLibObjects-vc120-x64-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc120-mt-s-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|x64'">QuantLibObjects-vc120-x64-mt-s-1_7_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -556,8 +556,8 @@
     <ClCompile Include="qlo\serialization\create\create_abcd.cpp" />
     <ClCompile Include="qlo\serialization\create\create_accountingengines.cpp" />
     <ClCompile Include="qlo\serialization\create\create_alphaform.cpp" />
-    <ClCompile Include="qlo\serialization\create\create_basketlossmodels.cpp" />
     <ClCompile Include="qlo\serialization\create\create_assetswap.cpp" />
+    <ClCompile Include="qlo\serialization\create\create_basketlossmodels.cpp" />
     <ClCompile Include="qlo\serialization\create\create_bonds.cpp" />
     <ClCompile Include="qlo\serialization\create\create_browniangenerators.cpp" />
     <ClCompile Include="qlo\serialization\create\create_btp.cpp" />
@@ -853,8 +853,8 @@
     <ClInclude Include="qlo\serialization\create\create_accountingengines.hpp" />
     <ClInclude Include="qlo\serialization\create\create_all.hpp" />
     <ClInclude Include="qlo\serialization\create\create_alphaform.hpp" />
-    <ClInclude Include="qlo\serialization\create\create_basketlossmodels.hpp" />
     <ClInclude Include="qlo\serialization\create\create_assetswap.hpp" />
+    <ClInclude Include="qlo\serialization\create\create_basketlossmodels.hpp" />
     <ClInclude Include="qlo\serialization\create\create_bonds.hpp" />
     <ClInclude Include="qlo\serialization\create\create_browniangenerators.hpp" />
     <ClInclude Include="qlo\serialization\create\create_btp.hpp" />

@@ -23,6 +23,18 @@
 
 /*! \page history Version History
 
+<strong>Release 1.6.0 - August 2015</strong>
+
+FUNCTIONALITY
+
+- Maintenance release.
+
+REQUIRED PACKAGES
+
+- Boost version 1.34.1 or later
+- log4cxx version 0.10.0f4 (optional on linux)
+- gensrc version 1.6.0
+
 <strong>Release 1.5.0 - April 2015</strong>
 
 BUILD

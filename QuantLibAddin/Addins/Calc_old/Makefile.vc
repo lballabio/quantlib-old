@@ -10,7 +10,7 @@ OFFICE_PROGRAM_PATH=C:\Program Files\OpenOffice.org 2.4\program
 OFFICE_SDK_PATH=C:\Program Files\OpenOffice.org_2.4_SDK
 
 COMPONENT_NAME=QuantLibAddinCalc
-DLL_NAME=$(COMPONENT_NAME)-vc71-mt-1_6_0
+DLL_NAME=$(COMPONENT_NAME)-vc71-mt-1_7_0
 DLL_DIR=dll
 INT_DIR=build\vc71\ReleaseCRTDLL
 IDL_DIR="$(OFFICE_SDK_PATH)\idl"
