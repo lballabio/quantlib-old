@@ -70,6 +70,25 @@ class ProxyNonstandardSwaptionEngine : public NonstandardSwaption::engine {
     const Real stdDevs_;
     const bool includeTodaysExercise_;
 
+    // imply the model state from the given reference rate and period
+    struct StateHelper;
+    friend class StateHelper;
+    struct StateHelper {
+        StateHelper(Gaussian1dModel *model, const Real rate,
+                    const Real maturity, const Real referenceTime)
+            : model_(model), rate_(rate), maturity_(maturity),
+              referenceTime_(referenceTime) {}
+        const Real operator()(const Real y) const {
+            return -std::log(model_->zerobond(maturity_ + referenceTime_,
+                                              referenceTime_, y)) /
+                       maturity_ -
+                   rate_;
+        }
+        Gaussian1dModel *model_;
+        Real rate_, maturity_;
+        Real referenceTime_;
+    };
+
 }; // class ProxyNonstandardSwaptionEngine
 
 } // namespace QuantLib
