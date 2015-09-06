@@ -1,5 +1,15 @@
 
 EXTRA_DIST = \
+	Makefile.oo \
+	QuantLibAddinCalc.idl \
+	accountingengines.cpp \
+	accountingengines.hpp \
+	assetswap.cpp \
+	assetswap.hpp \
+	bonds.cpp \
+	bonds.hpp \
+	browniangenerators.cpp \
+	browniangenerators.hpp \
 	calcaddins.cpp \
 	calcaddins.hpp \
 	calcutils.cpp \
@@ -12,10 +22,23 @@ EXTRA_DIST = \
 	capletvolstructure.hpp \
 	conversions.cpp \
 	conversions.hpp \
+	correlation.cpp \
+	correlation.hpp \
+	couponvectors.cpp \
+	couponvectors.hpp \
+	credit.cpp \
 	credit_fix.cpp \
+	credit.hpp \
+	daycounter.cpp \
+	daycounter.hpp \
+	defaultbasket.cpp \
+	defaultbasket.hpp \
 	defaulttermstructures.cpp \
 	defaulttermstructures.hpp \
+	evolutiondescription.cpp \
+	evolutiondescription.hpp \
 	exercise.cpp \
+	exercise.hpp \
 	funcdef.cpp \
 	handles.cpp \
 	handles.hpp \
@@ -24,27 +47,55 @@ EXTRA_DIST = \
 	init.cpp \
 	init.hpp \
 	instruments.cpp \
+	instruments.hpp \
+	interpolation.cpp \
+	interpolation.hpp \
+	latentmodels.cpp \
+	latentmodels.hpp \
+	leg.cpp \
+	leg.hpp \
 	logging.cpp \
+	logging.hpp \
 	loop.hpp \
+	marketmodelevolvers.cpp \
+	marketmodelevolvers.hpp \
+	marketmodels.cpp \
+	marketmodels.hpp \
 	options.cpp \
 	options.hpp \
 	payoffs.cpp \
 	payoffs.hpp \
+	piecewiseyieldcurve.cpp \
 	piecewiseyieldcurve_fix.cpp \
+	piecewiseyieldcurve.hpp \
 	pricingengines.cpp \
 	pricingengines.hpp \
 	processes.cpp \
 	processes.hpp \
+	products.cpp \
+	products.hpp \
+	qladdin.cpp \
+	qladdin.hpp \
 	qldefs.hpp \
 	qlo_all.hpp \
 	quotes.cpp \
 	quotes.hpp \
+	randomsequencegenerator.cpp \
+	randomsequencegenerator.hpp \
+	rangeaccrual.cpp \
+	rangeaccrual.hpp \
 	ratehelpers.cpp \
 	ratehelpers.hpp \
 	schedule.cpp \
 	schedule.hpp \
+	sequencestatistics.cpp \
+	sequencestatistics.hpp \
+	serialization.cpp \
+	serialization.hpp \
 	settings.cpp \
 	settings.hpp \
+	shortratemodels.cpp \
+	shortratemodels.hpp \
 	swap.cpp \
 	swap.hpp \
 	swaption.cpp \
@@ -59,5 +110,7 @@ EXTRA_DIST = \
 	vanillaswap.cpp \
 	vanillaswap.hpp \
 	volatilities.cpp \
-	volatilities.hpp
+	volatilities.hpp \
+	volatility.cpp \
+	volatility.hpp
 
