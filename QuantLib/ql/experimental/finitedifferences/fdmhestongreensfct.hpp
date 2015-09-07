@@ -17,30 +17,36 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file fdmmesherintegral.hpp
-    \brief mesher based integral over target function.
+/*! \file fdmhestongreenfct.cpp
+    \brief Heston Fokker-Planck Green's function
 */
 
-#ifndef quantlib_fdm_mesher_integral_hpp
-#define quantlib_fdm_mesher_integral_hpp
+#ifndef quantlib_fdm_heston_greens_fct_hpp
+#define quantlib_fdm_heston_greens_fct_hpp
 
-#include <ql/methods/finitedifferences/meshers/fdmmeshercomposite.hpp>
-
-#include <boost/function.hpp>
+#include <ql/experimental/finitedifferences/fdmsquarerootfwdop.hpp>
 
 namespace QuantLib {
-    class FdmMesherIntegral {
-      public:
-        FdmMesherIntegral(
-            const boost::shared_ptr<FdmMesherComposite>& mesher,
-            const boost::function<Real(const Array&, const Array&)>&
-                integrator1d);
 
-        Real integrate(const Array& f) const;
+    class HestonProcess;
+    class FdmHestonGreensFct {
+      public:
+        enum Algorithm { ZeroCorrelation, Gaussian, SemiAnalytical };
+
+        FdmHestonGreensFct(
+            const boost::shared_ptr<FdmMesher>& mesher,
+            const boost::shared_ptr<HestonProcess>& process,
+            FdmSquareRootFwdOp::TransformationType trafoType_,
+            Real l0 = 1.0);
+
+        Disposable<Array> get(Time t, Algorithm algorithm) const;
 
       private:
-        const std::vector<boost::shared_ptr<Fdm1dMesher> > meshers_;
-        const boost::function<Real(const Array&, const Array&)>& integrator1d_;
+        const Real l0_;
+        const boost::shared_ptr<FdmMesher> mesher_;
+        const boost::shared_ptr<HestonProcess> process_;
+        const FdmSquareRootFwdOp::TransformationType trafoType_;
     };
 }
+
 #endif
