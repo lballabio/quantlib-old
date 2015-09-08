@@ -45,7 +45,7 @@ void FxTarfEngine::calculate() const {
     unsettledAmountNpv_ = 0.0;
     if (!arguments_.isLastAmountSettled) {
         unsettledAmountNpv_ =
-            arguments_.lastAmount *
+            arguments_.lastAmount * arguments_.sourceNominal *
             discount_->discount(arguments_.schedule.date(nextPaymentIndex));
     }
 
