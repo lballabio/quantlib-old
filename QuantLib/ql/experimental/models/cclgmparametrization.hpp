@@ -42,7 +42,7 @@ namespace detail {
 template <class Impl, class ImplFx, class ImplLgm>
 class CcLgmParametrization : public CuriouslyRecurringTemplate<Impl> {
   public:
-    //! constructor (with step size for numerical differentiation)
+    //! constructor
     CcLgmParametrization(
         const std::vector<boost::shared_ptr<
             detail::LgmFxParametrization<ImplFx> > > &fxParametrizations,
