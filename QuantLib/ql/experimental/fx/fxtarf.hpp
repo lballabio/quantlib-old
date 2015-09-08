@@ -30,6 +30,7 @@
 #include <ql/time/schedule.hpp>
 #include <ql/option.hpp>
 #include <ql/instruments/payoffs.hpp>
+#include <ql/utilities/disposable.hpp>
 
 namespace QuantLib {
 
@@ -92,10 +93,17 @@ class FxTarf : public Instrument, public ProxyInstrument {
         used to calculate the accumulated amount, but exactly this
         number is assumed to represent this amount. The last amount
         must then be fixed to the last fixed amount in order to
-        get consistent npvs between fixing and payment date.
+        get consistent npvs between fixing and payment date (to be
+        precise the last amount is only used between a fixing and
+        a payment date, otherwise it can be left empty).
+
         Note that the accumulatedAmount should always assume a full
         coupon (this is only used to check the target trigger and
         the coupon type none would lead to false results then).
+
+        Note that both the accumulatedAmount and lastAmount are given
+        in relative terms (i.e. they are multiplied with the source
+        nominal to get the actual amount).
     */
     FxTarf(const Schedule schedule, const boost::shared_ptr<FxIndex> &index,
            const Real sourceNominal,
@@ -121,6 +129,8 @@ class FxTarf : public Instrument, public ProxyInstrument {
     //@{
     Date startDate() const;
     Date maturityDate() const;
+    Disposable<std::vector<Date> > fixingDates() const;
+    const boost::shared_ptr<FxIndex> index() const;
 
     /*! this is the accumulated amount, but always assuming
         the coupon type full

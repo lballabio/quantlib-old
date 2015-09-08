@@ -70,6 +70,16 @@ std::pair<Real, bool> FxTarf::accumulatedAmountAndSettlement() const {
     return std::make_pair(acc, settled);
 }
 
+Disposable<std::vector<Date> > FxTarf::fixingDates() const {
+    std::vector<Date> tmp;
+    for (Size i = 1; i < schedule_.size(); ++i) {
+        tmp.push_back(index_->fixingDate(schedule_.date(i)));
+    }
+    return tmp;
+}
+
+const boost::shared_ptr<FxIndex> FxTarf::index() const { return index_; }
+
 Real FxTarf::lastAmount() const {
     if (!accumulatedAmount_.empty()) {
         if (lastAmount_.empty())
