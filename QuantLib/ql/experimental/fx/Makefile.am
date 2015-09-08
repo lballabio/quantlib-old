@@ -9,6 +9,7 @@ this_include_HEADERS = \
     fxindex.hpp \
     fxtarf.hpp \
     fxtarfengine.hpp \
+	fxtarf_helperquotes.hpp \
     mcfxtarfengine.hpp \
     proxyfxtarfengine.hpp \
     proxyinstrument.hpp
@@ -18,6 +19,7 @@ libFX_la_SOURCES = \
     deltavolquote.cpp \
     fxindex.cpp \
     fxtarf.cpp \
+	fxtarf_helperquotes.cpp \
     fxtarfengine.cpp \
     mcfxtarfengine.cpp \
     proxyfxtarfengine.cpp
