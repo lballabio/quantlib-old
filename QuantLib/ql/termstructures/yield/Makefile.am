@@ -13,6 +13,7 @@ this_include_HEADERS = \
     forwardcurve.hpp \
     forwardspreadedtermstructure.hpp \
     forwardstructure.hpp \
+	frozenyieldtermstructure.hpp \
     impliedtermstructure.hpp \
     nonlinearfittingmethods.hpp \
     oisratehelper.hpp \
@@ -29,6 +30,7 @@ libYieldTermStructures_la_SOURCES = \
     fittedbonddiscountcurve.cpp \
     flatforward.cpp \
     forwardstructure.cpp \
+	frozenyieldtermstructure.cpp \
     nonlinearfittingmethods.cpp \
     oisratehelper.cpp \
     ratehelpers.cpp \
