@@ -36,7 +36,8 @@ namespace QuantLib {
     If intra day discount factors are requested (via Time based
     inspectors) a loglinear interpolation between the daily values
     is applied. The reference date of the copy can be fixed or moving
-    with the evaluation date */
+    with the evaluation date, assuming constant zero yields or
+    rolling down the foward curve. */
 
 class FrozenYieldTermStructure : public YieldTermStructure {
   public:
