@@ -56,12 +56,13 @@ namespace QuantLib {
     class InverseCumulativeRsg {
       public:
         typedef Sample<std::vector<Real> > sample_type;
+        static const Size maxNumberOfThreads = 1;
         explicit InverseCumulativeRsg(const USG& uniformSequenceGenerator);
         InverseCumulativeRsg(const USG& uniformSequenceGenerator,
                              const IC& inverseCumulative);
         //! returns next sample from the inverse cumulative distribution
-        const sample_type& nextSequence() const;
-        const sample_type& lastSequence() const { return x_; }
+        const sample_type& nextSequence(unsigned int ignored = 0) const;
+        const sample_type& lastSequence(unsigned int ignored = 0) const { return x_; }
         Size dimension() const { return dimension_; }
       private:
         USG uniformSequenceGenerator_;
@@ -86,7 +87,7 @@ namespace QuantLib {
 
     template <class USG, class IC>
     inline const typename InverseCumulativeRsg<USG, IC>::sample_type&
-    InverseCumulativeRsg<USG, IC>::nextSequence() const {
+    InverseCumulativeRsg<USG, IC>::nextSequence(unsigned int ignored) const {
         typename USG::sample_type sample =
             uniformSequenceGenerator_.nextSequence();
         x_.weight = sample.weight;
