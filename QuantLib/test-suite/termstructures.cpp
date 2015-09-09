@@ -25,6 +25,7 @@
 #include <ql/termstructures/yield/impliedtermstructure.hpp>
 #include <ql/termstructures/yield/forwardspreadedtermstructure.hpp>
 #include <ql/termstructures/yield/zerospreadedtermstructure.hpp>
+#include <ql/termstructures/yield/frozenyieldtermstructure.hpp>
 #include <ql/time/calendars/target.hpp>
 #include <ql/time/calendars/nullcalendar.hpp>
 #include <ql/time/daycounters/actual360.hpp>
@@ -51,6 +52,7 @@ namespace {
         Natural settlementDays;
         boost::shared_ptr<YieldTermStructure> termStructure;
         boost::shared_ptr<YieldTermStructure> dummyTermStructure;
+        boost::shared_ptr<YieldTermStructure> floatingTermStructure;
 
         // cleanup
         SavedSettings backup;
@@ -111,6 +113,9 @@ namespace {
             dummyTermStructure = boost::shared_ptr<YieldTermStructure>(new
                 PiecewiseYieldCurve<Discount,LogLinear>(settlement,
                                                         instruments, Actual360()));
+            floatingTermStructure = boost::shared_ptr<YieldTermStructure>(
+                new PiecewiseYieldCurve<Discount, LogLinear>(
+                    settlementDays, calendar, instruments, Actual360()));
         }
     };
 
@@ -334,6 +339,25 @@ void TermStructureTest::testLinkToNullUnderlying() {
     underlying.linkTo(boost::shared_ptr<YieldTermStructure>());
 }
 
+void TermStructureTest::testFrozenYieldTermStructure() {
+    BOOST_TEST_MESSAGE("Testing frozen yield term structure");
+    CommonVars vars;
+
+    // link to fixed reference date termstructure, freeze reference date
+    FrozenYieldTermStructure y1(vars.termStructure);
+
+    BOOST_TEST_MESSAGE("ref date = " << y1.referenceDate() << " source = "
+                                     << vars.termStructure->referenceDate());
+    BOOST_TEST_MESSAGE("discount = "
+                       << y1.discount(Date(7, Jul, 2037)) << " source = "
+                       << vars.termStructure->discount(Date(7, Jul, 2037)));
+    BOOST_TEST_MESSAGE("discount = "
+                       << y1.discount(Date(7, Jul, 2087)) << " source = "
+                       << vars.termStructure->discount(Date(7, Jul, 2087)));
+
+    
+}
+
 test_suite* TermStructureTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("Term structure tests");
     suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testReferenceChange));
@@ -347,6 +371,8 @@ test_suite* TermStructureTest::suite() {
                          &TermStructureTest::testCreateWithNullUnderlying));
     suite->add(QUANTLIB_TEST_CASE(
                              &TermStructureTest::testLinkToNullUnderlying));
+    suite->add(QUANTLIB_TEST_CASE(
+                             &TermStructureTest::testFrozenYieldTermStructure));
     return suite;
 }
 
