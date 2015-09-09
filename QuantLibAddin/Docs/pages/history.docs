@@ -23,6 +23,23 @@
 
 /*! \page history Version History
 
+<strong>Release 1.6.0 - July 2015</strong>
+
+REQUIRED PACKAGES
+
+- %QuantLib version 1.6.0 or 1.6.1
+- ObjectHandler version 1.6.0
+- gensrc version 1.6.0
+
+BUILD
+
+- Support for the LibreOffice addin has been re-introduced (thanks to Lars
+  Callenbach)
+
+FUNCTIONALITY
+
+- 8 new functions / 1,080 in total
+
 <strong>Release 1.5.0 - April 2015</strong>
 
 REQUIRED PACKAGES

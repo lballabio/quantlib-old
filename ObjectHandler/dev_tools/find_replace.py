@@ -43,11 +43,11 @@ import shutil
 # ROOT_DIRS - The list of root folders from which
 # you want the find/replace to begin.
 ROOT_DIRS = (
-    #'C:/erik/ql/R01020x-branch/log4cxx',
-    'C:/Users/erik/Documents/repos/quantlib.v1.5.x/gensrc',
-    'C:/Users/erik/Documents/repos/quantlib.v1.5.x/ObjectHandler',
-    'C:/Users/erik/Documents/repos/quantlib.v1.5.x/QuantLibAddin',
-    'C:/Users/erik/Documents/repos/quantlib.v1.5.x/QuantLibXL'
+    '/media/windows/linux/repos/quantlib/log4cxx/src/main/include/log4cxx',
+    '/media/windows/linux/repos/quantlib/gensrc',
+    '/media/windows/linux/repos/quantlib/ObjectHandler',
+    '/media/windows/linux/repos/quantlib/QuantLibAddin',
+    '/media/windows/linux/repos/quantlib/QuantLibXL',
 )
 
 # CALLBACK FUNCTIONS - Called from regexes which require multiple passes
@@ -95,11 +95,12 @@ SUBSTITUTIONS = (
 #   (re.compile('abcDEFghi'), toLower),
 
 ##  Frequently used
-    (re.compile('1_5_0'), '1_6_0'),
-    (re.compile('1\.5\.0'), '1.6.0'),
-    (re.compile('0x010500'), '0x010600'),
-    (re.compile('R010501f0'), 'R010600f0'),
-    (re.compile('0\.10\.0f'), '0.10.0g'),
+    (re.compile('1_6_0'), '1_7_0'),
+    (re.compile('1\.6\.0'), '1.7.0'),
+    (re.compile('0x010600'), '0x010700'),
+    (re.compile('R010600f0'), 'R010700f0'),
+    (re.compile('0\.10\.0f4'), '0.10.0f5'),
+    (re.compile('0x001000f4'), '0x001000f5'),
 )
 
 # INCLUDE_FILES
@@ -168,7 +169,7 @@ IGNORE_DIRS = (
     re.compile('^html$'),
     re.compile('^Launcher$'),
     re.compile('^lib$'),
-    re.compile('^log4cxx$'),
+    #re.compile('^log4cxx$'),
     re.compile('^QuantLib$'),
     re.compile('^QuantLib-site$'),
     re.compile('^QuantLib-SWIG$'),

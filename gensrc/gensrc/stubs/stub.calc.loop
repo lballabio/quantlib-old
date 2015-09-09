@@ -4,10 +4,19 @@
         SEQSEQ(ANY) returnValue;
 
         %(functionName)sBind bindObject = 
-            boost::bind(
-                (%(functionSignature)s)
-                    &%(functionCodeName)s,%(objectName)s%(inputList)s);
-        ObjectHandler::loop
+            boost::bind(%(functionSignature)s
+                    &%(functionCodeName)s, %(inputList)s);
+                    
+        {
+            returnValue.realloc(%(inputParam)sLib.size());
+            for (unsigned int i=0; i<%(inputParam)sLib.size(); ++i) {
+                SEQ(ANY) s(1);
+                scalarToCalc(s[0], bindObject( %(inputParam)sLib[i] ) );
+                returnValue[i] = s;
+            }
+        }
+     	  
+        /* ObjectHandler::loop
             <%(functionName)sBind, %(inputType)s, %(returnType)s>
-            (bindObject, %(inputParam)s, returnValue);
+            (functionCall, bindObject, %(inputParam)sLib, returnValue); */
 

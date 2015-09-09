@@ -78,10 +78,10 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\vc100\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc100-mt-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc100-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc100-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc100-mt-s-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc100-mt-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc100-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc100-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc100-mt-s-1_7_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -293,7 +293,6 @@
     <ClCompile Include="qlo\randomsequencegenerator.cpp" />
     <ClCompile Include="qlo\asianoption.cpp" />
     <ClCompile Include="qlo\assetswap.cpp" />
-    <ClCompile Include="qlo\basketlossmodels.cpp" />
     <ClCompile Include="qlo\barrieroption.cpp" />
     <ClCompile Include="qlo\baseinstruments.cpp" />
     <ClCompile Include="qlo\bonds.cpp" />
@@ -317,7 +316,6 @@
     <ClCompile Include="qlo\conundrumpricer.cpp" />
     <ClCompile Include="qlo\couponvectors.cpp" />
     <ClCompile Include="qlo\flowanalysis.cpp" />
-    <ClCompile Include="qlo\latentmodels.cpp" />
     <ClCompile Include="qlo\leg.cpp" />
     <ClCompile Include="qlo\rangeaccrual.cpp" />
     <ClCompile Include="qlo\pricingengines.cpp" />
@@ -464,11 +462,13 @@
     <ClCompile Include="qlo\indexes\swap\euriborswap.cpp" />
     <ClCompile Include="qlo\indexes\swap\isdafixaswap.cpp" />
     <ClCompile Include="qlo\indexes\swap\liborswap.cpp" />
+    <ClCompile Include="qlo\basketlossmodels.cpp" />
     <ClCompile Include="qlo\cdsoption.cpp" />
     <ClCompile Include="qlo\credit.cpp" />
     <ClCompile Include="qlo\creditdefaultswap.cpp" />
     <ClCompile Include="qlo\defaultbasket.cpp" />
     <ClCompile Include="qlo\defaulttermstructures.cpp" />
+    <ClCompile Include="qlo\latentmodels.cpp" />
     <ClCompile Include="qlo\date.cpp" />
     <ClCompile Include="qlo\exercise.cpp" />
     <ClCompile Include="qlo\index.cpp" />
@@ -563,7 +563,6 @@
     <ClInclude Include="qlo\randomsequencegenerator.hpp" />
     <ClInclude Include="qlo\asianoption.hpp" />
     <ClInclude Include="qlo\assetswap.hpp" />
-    <ClInclude Include="qlo\basketlossmodels.hpp" />
     <ClInclude Include="qlo\barrieroption.hpp" />
     <ClInclude Include="qlo\baseinstruments.hpp" />
     <ClInclude Include="qlo\bonds.hpp" />
@@ -588,7 +587,6 @@
     <ClInclude Include="qlo\conundrumpricer.hpp" />
     <ClInclude Include="qlo\couponvectors.hpp" />
     <ClInclude Include="qlo\flowanalysis.hpp" />
-    <ClInclude Include="qlo\latentmodels.hpp" />
     <ClInclude Include="qlo\leg.hpp" />
     <ClInclude Include="qlo\rangeaccrual.hpp" />
     <ClInclude Include="qlo\pricingengines.hpp" />
@@ -764,11 +762,13 @@
     <ClInclude Include="qlo\indexes\swap\euriborswap.hpp" />
     <ClInclude Include="qlo\indexes\swap\isdafixaswap.hpp" />
     <ClInclude Include="qlo\indexes\swap\liborswap.hpp" />
+    <ClInclude Include="qlo\basketlossmodels.hpp" />
     <ClInclude Include="qlo\cdsoption.hpp" />
     <ClInclude Include="qlo\credit.hpp" />
     <ClInclude Include="qlo\creditdefaultswap.hpp" />
     <ClInclude Include="qlo\defaultbasket.hpp" />
     <ClInclude Include="qlo\defaulttermstructures.hpp" />
+    <ClInclude Include="qlo\latentmodels.hpp" />
     <ClInclude Include="qlo\auto_link.hpp" />
     <ClInclude Include="qlo\date.hpp" />
     <ClInclude Include="qlo\exercise.hpp" />

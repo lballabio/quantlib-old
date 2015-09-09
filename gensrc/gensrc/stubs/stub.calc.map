@@ -4,10 +4,10 @@
 #pragma warning(disable: 4800)
 #endif
 
-#include <Addins/Calc/%(prefix)saddin.hpp>
-#include <Addins/Calc/init.hpp>
+#include <qladdin.hpp>
+#include <init.hpp>
 
-%(addinClassName)s::%(addinClassName)s() throw () : m_refcount( 0 ) {
+%(addinClassName)s::%(addinClassName)s() throw ()  {
 
     QuantLibAddin::initializeAddin();
 

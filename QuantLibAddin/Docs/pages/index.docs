@@ -27,7 +27,9 @@
 
 %QuantLibAddin exports the functionality of the
 <a href="http://quantlib.org">QuantLib</a> C++ analytics library to a variety
-of end-user platforms including Microsoft Excel and OpenOffice.org Calc.
+of end-user platforms including Microsoft Excel and LibreOffice Calc.
+
+<div class="center"><img src="images/screenshot.png"></div>
 
 The Excel implementation of %QuantLibAddin is packaged for end users as the
 <a href="http://www.quantlibxl.org">QuantLibXL</a> project which provides
@@ -48,8 +50,6 @@ The %QuantLibAddin application comprises
 \li An interface configured in XML from which
     <a href="http://www.gensrc.org">gensrc</a>
     generates source code for Addins on supported platforms
-
-<div class="center"><img src="images/screenshot.jpg"></div>
 
 \section idx_features Features
 

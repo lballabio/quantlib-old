@@ -9,8 +9,8 @@ import argparse
 import re
 
 QLXL = "QuantLibXL"
-VERSION = "1.6.0"
-VERSION_ = "1_6_0"
+VERSION = "1.7.0"
+VERSION_ = "1_7_0"
 VC_VERSION = "vc120"
 QLXL_VERSION = QLXL + "-" + VERSION
 ROOT_DIR = QLXL_VERSION + "\\"
@@ -63,7 +63,7 @@ class Selector:
     def process(self):
         for root, dirs, files in os.walk(self.inputPath):
             root += "\\"
-            for d in dirs:
+            for d in reversed(dirs):
                 if self.excludeDir(d):
                     dirs.remove(d)
                     continue
