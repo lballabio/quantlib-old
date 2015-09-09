@@ -10,6 +10,7 @@
 #include <ql/termstructures/yield/forwardcurve.hpp>
 #include <ql/termstructures/yield/forwardspreadedtermstructure.hpp>
 #include <ql/termstructures/yield/forwardstructure.hpp>
+#include <ql/termstructures/yield/frozenyieldtermstructure.hpp>
 #include <ql/termstructures/yield/impliedtermstructure.hpp>
 #include <ql/termstructures/yield/nonlinearfittingmethods.hpp>
 #include <ql/termstructures/yield/oisratehelper.hpp>
