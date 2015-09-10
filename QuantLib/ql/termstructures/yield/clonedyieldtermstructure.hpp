@@ -43,8 +43,6 @@ namespace QuantLib {
     
     Warning: An instance of this class can produce a considerable
     memory footprint depending on the maxDate() of the source curve.
-    If it is (in the worst case) 31.12.2199 and size(Real) = 
-    size(Time) = 8 it is almost 1 MB per instance.
 */
 
 class ClonedYieldTermStructure : public YieldTermStructure {
