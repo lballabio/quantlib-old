@@ -36,7 +36,7 @@ class TermStructureTest {
     static void testZSpreadedObs();
     static void testCreateWithNullUnderlying();
     static void testLinkToNullUnderlying();
-    static void testFrozenYieldTermStructure();
+    static void testClonedYieldTermStructure();
     static boost::unit_test_framework::test_suite* suite();
 };
 

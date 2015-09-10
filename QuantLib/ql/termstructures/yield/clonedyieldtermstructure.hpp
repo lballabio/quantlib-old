@@ -17,8 +17,8 @@
  FOR A PARTICULAR PURPOSE.  See the license for more details.
 */
 
-/*! \file frozenyieldtermstructure.hpp
-    \brief yield term structure with freezed rates
+/*! \file clonedyieldtermstructure.hpp
+    \brief yield term structure that clones a source yield term structure
 */
 
 #ifndef quantlib_freezed_yts_hpp
@@ -32,14 +32,22 @@ namespace QuantLib {
 /*! This class reproduces the source yield term structure and freezes
     it's discount factors on a daily basis until the maximum date.
     Extrapolation beyond this date is done assuming a constant
-    instantaneous forward rate from the maximum date on.
+    instantaneous forward rate from the maximum date on (which is
+    equal to the constant instantaneous forward rate on the maximum
+    date, since we are using flat instantaenous forwards intraday).
     If intra day discount factors are requested (via Time based
     inspectors) a loglinear interpolation between the daily values
     is applied. The reference date of the copy can be fixed or moving
     with the evaluation date, assuming constant zero yields or
-    rolling down the foward curve. */
+    rolling down the foward curve.
+    
+    Warning: An instance of this class can produce a considerable
+    memory footprint depending on the maxDate() of the source curve.
+    If it is (in the worst case) 31.12.2199 and size(Real) = 
+    size(Time) = 8 it is almost 1 MB per instance.
+*/
 
-class FrozenYieldTermStructure : public YieldTermStructure {
+class ClonedYieldTermStructure : public YieldTermStructure {
   public:
     enum ReactionToTimeDecay {
         FixedReferenceDate,
@@ -47,9 +55,10 @@ class FrozenYieldTermStructure : public YieldTermStructure {
         ForwardForward
     };
 
-    FrozenYieldTermStructure(
+    ClonedYieldTermStructure(
         const boost::shared_ptr<YieldTermStructure> source,
-        const ReactionToTimeDecay reactionToTimeDecay = FixedReferenceDate);
+        const ReactionToTimeDecay reactionToTimeDecay = FixedReferenceDate,
+        const Calendar calendar = Calendar());
 
     //! Observer interface
     void update();
@@ -65,6 +74,7 @@ class FrozenYieldTermStructure : public YieldTermStructure {
   private:
     const ReactionToTimeDecay reactionToTimeDecay_;
     const Date originalEvalDate_, originalReferenceDate_, originalMaxDate_;
+    Natural impliedSettlementDays_;
     boost::shared_ptr<Interpolation> interpolation_;
     std::vector<Time> times_;
     std::vector<Real> discounts_;
@@ -75,9 +85,9 @@ class FrozenYieldTermStructure : public YieldTermStructure {
 
 // inline
 
-inline Date FrozenYieldTermStructure::maxDate() const { return maxDate_; }
+inline Date ClonedYieldTermStructure::maxDate() const { return maxDate_; }
 
-inline const Date &FrozenYieldTermStructure::referenceDate() const {
+inline const Date &ClonedYieldTermStructure::referenceDate() const {
     return referenceDate_;
 }
 

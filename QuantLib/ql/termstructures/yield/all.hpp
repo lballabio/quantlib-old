@@ -3,6 +3,7 @@
 
 #include <ql/termstructures/yield/bondhelpers.hpp>
 #include <ql/termstructures/yield/bootstraptraits.hpp>
+#include <ql/termstructures/yield/clonedyieldtermstructure.hpp>
 #include <ql/termstructures/yield/discountcurve.hpp>
 #include <ql/termstructures/yield/drifttermstructure.hpp>
 #include <ql/termstructures/yield/fittedbonddiscountcurve.hpp>
@@ -10,7 +11,6 @@
 #include <ql/termstructures/yield/forwardcurve.hpp>
 #include <ql/termstructures/yield/forwardspreadedtermstructure.hpp>
 #include <ql/termstructures/yield/forwardstructure.hpp>
-#include <ql/termstructures/yield/frozenyieldtermstructure.hpp>
 #include <ql/termstructures/yield/impliedtermstructure.hpp>
 #include <ql/termstructures/yield/nonlinearfittingmethods.hpp>
 #include <ql/termstructures/yield/oisratehelper.hpp>
