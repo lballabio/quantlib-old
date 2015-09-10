@@ -28,20 +28,21 @@
 
 namespace QuantLib {
 
-/*! \warning the gaussian 1d model originally used for pricing is reused
-  here, together with all curves possibly attached to the instrument
-  (the model curve, forwarding curves attached to the instrument's coupons,
-  the optional discounting curve of the original pricing engine).
-  Therefore these term structures must not use a floating reference date
-  nor should the curves be changed between the original pricing and the
-  proxy pricing here. Furthermore, the option adjusted spread from the
-  original pricing is reused here as well, its value can not be changed. */
+/*! Note that the option adjusted spread from the original pricing is reused here,
+    its value can not be changed.
+    The model's curve and the optional discounting curve from the original pricing
+    engine are reused here, so either you have to make sure they are not floating
+    w.r.t. to evalulation date or market quotes or you have to clone them before
+    setting up the original pricing model. Likewise the original pricing model
+    must not be recalibrated between the original pricing / proxy generation and
+    the proxy pricing. */
 
 class ProxyNonstandardSwaptionEngine : public NonstandardSwaption::engine {
 
-    /*! the reference rate and maturity are used to imply the original model's
+    /*! The reference rate and maturity are used to imply the original model's
         state; here the rate should be expressed as continuously compounded
-        w.r.t. the original model's day counter. */
+        w.r.t. the original model's day counter. The state is implied using
+        the model's termstructure. */
 
   public:
     ProxyNonstandardSwaptionEngine(
