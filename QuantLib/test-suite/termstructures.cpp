@@ -26,7 +26,7 @@
 #include <ql/termstructures/yield/impliedtermstructure.hpp>
 #include <ql/termstructures/yield/forwardspreadedtermstructure.hpp>
 #include <ql/termstructures/yield/zerospreadedtermstructure.hpp>
-#include <ql/termstructures/yield/clonedyieldtermstructure.hpp>
+#include <ql/experimental/yield/clonedyieldtermstructure.hpp>
 #include <ql/time/calendars/target.hpp>
 #include <ql/time/calendars/nullcalendar.hpp>
 #include <ql/time/daycounters/actual360.hpp>
@@ -592,17 +592,17 @@ void TermStructureTest::testClonedYieldTermStructure() {
 
 test_suite* TermStructureTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("Term structure tests");
-    // suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testReferenceChange));
-    // suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testImplied));
-    // suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testImpliedObs));
-    // suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testFSpreaded));
-    // suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testFSpreadedObs));
-    // suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testZSpreaded));
-    // suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testZSpreadedObs));
-    // suite->add(QUANTLIB_TEST_CASE(
-    //                      &TermStructureTest::testCreateWithNullUnderlying));
-    // suite->add(QUANTLIB_TEST_CASE(
-    //                          &TermStructureTest::testLinkToNullUnderlying));
+    suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testReferenceChange));
+    suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testImplied));
+    suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testImpliedObs));
+    suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testFSpreaded));
+    suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testFSpreadedObs));
+    suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testZSpreaded));
+    suite->add(QUANTLIB_TEST_CASE(&TermStructureTest::testZSpreadedObs));
+    suite->add(QUANTLIB_TEST_CASE(
+                         &TermStructureTest::testCreateWithNullUnderlying));
+    suite->add(QUANTLIB_TEST_CASE(
+                             &TermStructureTest::testLinkToNullUnderlying));
     suite->add(QUANTLIB_TEST_CASE(
                              &TermStructureTest::testClonedYieldTermStructure));
     return suite;
