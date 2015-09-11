@@ -26,9 +26,12 @@ namespace QuantLib {
 
 ClonedYieldTermStructure::ClonedYieldTermStructure(
     const boost::shared_ptr<YieldTermStructure> source,
-    const ReactionToTimeDecay reactionToTimeDecay, const Calendar calendar)
+    const ReactionToTimeDecay reactionToTimeDecay,
+    const Processing processing,
+    const Calendar calendar)
     : YieldTermStructure(source->dayCounter()),
       reactionToTimeDecay_(reactionToTimeDecay),
+      processing_(processing),
       originalEvalDate_(Settings::instance().evaluationDate()),
       originalReferenceDate_(Date(source->referenceDate())),
       originalMaxDate_(source->maxDate()) {
@@ -42,6 +45,10 @@ ClonedYieldTermStructure::ClonedYieldTermStructure(
     maxDate_ = originalMaxDate_;
     offset_ = 0.0;
     valid_ = true;
+
+    instFwdMax_ =
+        source->forwardRate(maxDate_, maxDate_, Actual365Fixed(), Continuous)
+            .rate();
 
     if (reactionToTimeDecay != FixedReferenceDate) {
         QL_REQUIRE(originalReferenceDate_ >= originalEvalDate_,
@@ -73,6 +80,14 @@ ClonedYieldTermStructure::ClonedYieldTermStructure(
                       +i);
         discounts_[i] = source->discount(d);
         times_[i] = timeFromReference(d);
+        if(processing == PositiveYieldsAndForwards) {
+            discounts_[i] = std::min(1.0, discounts_[i]);
+        }
+        if (processing == PositiveForwards ||
+            processing == PositiveYieldsAndForwards) {
+            if (i > 0)
+                discounts_[i] = std::min(discounts_[i - 1], discounts_[i]);
+        }
     }
 
     interpolation_ = boost::make_shared<LogLinearInterpolation>(
@@ -100,8 +115,7 @@ DiscountFactor ClonedYieldTermStructure::discountImpl(Time t) const {
 
     // flat fwd extrapolation
     DiscountFactor dMax = discounts_.back();
-    Rate instFwdMax = -interpolation_->derivative(tMax) / dMax;
-    return dMax * std::exp(-instFwdMax * (tEff - tMax));
+    return dMax * std::exp(-instFwdMax_ * (tEff - tMax));
 }
 
 void ClonedYieldTermStructure::update() {

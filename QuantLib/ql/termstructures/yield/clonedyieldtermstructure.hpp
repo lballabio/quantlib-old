@@ -33,14 +33,17 @@ namespace QuantLib {
     it's discount factors on a daily basis until the maximum date.
     Extrapolation beyond this date is done assuming a constant
     instantaneous forward rate from the maximum date on (which is
-    equal to the constant instantaneous forward rate on the maximum
-    date, since we are using flat instantaenous forwards intraday).
+    read from the source term structure).
     If intra day discount factors are requested (via Time based
     inspectors) a loglinear interpolation between the daily values
-    is applied. The reference date of the copy can be fixed or moving
+    is applied.
+    The reference date of the copy can be fixed or moving
     with the evaluation date, assuming constant zero yields or
     rolling down the foward curve.
-    
+    The input yields can be processed to ensure positive
+    instantaneous forwards. In addtion positive yields can be
+    ensured.
+
     Warning: An instance of this class can produce a considerable
     memory footprint depending on the maxDate() of the source curve.
 */
@@ -52,10 +55,16 @@ class ClonedYieldTermStructure : public YieldTermStructure {
         ConstantZeroYields,
         ForwardForward
     };
+    enum Processing {
+        None,
+        PositiveForwards,
+        PositiveYieldsAndForwards
+    };
 
     ClonedYieldTermStructure(
         const boost::shared_ptr<YieldTermStructure> source,
         const ReactionToTimeDecay reactionToTimeDecay = FixedReferenceDate,
+        const Processing processing = None,
         const Calendar calendar = Calendar());
 
     //! Observer interface
@@ -71,8 +80,10 @@ class ClonedYieldTermStructure : public YieldTermStructure {
 
   private:
     const ReactionToTimeDecay reactionToTimeDecay_;
+    const Processing processing_;
     const Date originalEvalDate_, originalReferenceDate_, originalMaxDate_;
     Natural impliedSettlementDays_;
+    Real instFwdMax_;
     boost::shared_ptr<Interpolation> interpolation_;
     std::vector<Time> times_;
     std::vector<Real> discounts_;
