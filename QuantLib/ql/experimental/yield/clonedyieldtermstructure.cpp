@@ -22,8 +22,6 @@
 
 #include <boost/make_shared.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 ClonedYieldTermStructure::ClonedYieldTermStructure(
@@ -97,10 +95,6 @@ ClonedYieldTermStructure::ClonedYieldTermStructure(
         registerWith(Settings::instance().evaluationDate());
     }
 
-    std::clog << "size discounts = " << discounts_.size() << " capacity "
-              << discounts_.capacity() << std::endl;
-    std::clog << "size times = " << times_.size() << " capacity "
-              << times_.capacity() << std::endl;
 }
 
 DiscountFactor ClonedYieldTermStructure::discountImpl(Time t) const {
