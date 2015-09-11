@@ -94,7 +94,6 @@ ClonedYieldTermStructure::ClonedYieldTermStructure(
     if (reactionToTimeDecay_ != FixedReferenceDate) {
         registerWith(Settings::instance().evaluationDate());
     }
-
 }
 
 DiscountFactor ClonedYieldTermStructure::discountImpl(Time t) const {
