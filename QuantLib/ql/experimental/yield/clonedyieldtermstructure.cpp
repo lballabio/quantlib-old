@@ -67,29 +67,25 @@ ClonedYieldTermStructure::ClonedYieldTermStructure(
         }
     }
 
-    discounts_.resize(originalMaxDate_.serialNumber() -
+    logDiscounts_.resize(originalMaxDate_.serialNumber() -
                       originalReferenceDate_.serialNumber() + 1);
-    times_.resize(discounts_.size());
+    times_.resize(logDiscounts_.size());
 
     for (BigInteger i = 0; i <= originalMaxDate_.serialNumber() -
                                     originalReferenceDate_.serialNumber();
          ++i) {
         Date d = Date(originalReferenceDate_.serialNumber() + i);
-        discounts_[i] = source->discount(d);
+        logDiscounts_[i] = std::log(source->discount(d));
         times_[i] = timeFromReference(d);
         if (processing == PositiveYieldsAndForwards) {
-            discounts_[i] = std::min(1.0, discounts_[i]);
+            logDiscounts_[i] = std::min(0.0, logDiscounts_[i]);
         }
         if (processing == PositiveForwards ||
             processing == PositiveYieldsAndForwards) {
             if (i > 0)
-                discounts_[i] = std::min(discounts_[i - 1], discounts_[i]);
+                logDiscounts_[i] = std::min(logDiscounts_[i - 1], logDiscounts_[i]);
         }
     }
-
-    interpolation_ = boost::make_shared<LogLinearInterpolation>(
-        times_.begin(), times_.end(), discounts_.begin());
-    interpolation_->update();
 
     if (reactionToTimeDecay_ != FixedReferenceDate) {
         registerWith(Settings::instance().evaluationDate());
@@ -106,12 +102,12 @@ DiscountFactor ClonedYieldTermStructure::discountImpl(Time t) const {
     Time tEff = t + offset_;
     if (tEff < tMax) {
         // also ok for offset_ = 0
-        return interpolation_->operator()(tEff) /
-               interpolation_->operator()(offset_);
+        return interpolate(tEff) /
+               interpolate(offset_);
     }
 
     // flat fwd extrapolation
-    DiscountFactor dMax = discounts_.back();
+    DiscountFactor dMax = std::exp(logDiscounts_.back());
     return dMax * std::exp(-instFwdMax_ * (tEff - tMax));
 }
 

@@ -75,6 +75,7 @@ class ClonedYieldTermStructure : public YieldTermStructure {
     DiscountFactor discountImpl(Time t) const;
 
   private:
+    const Real interpolate(const Time t) const;
     const ReactionToTimeDecay reactionToTimeDecay_;
     const Processing processing_;
     const Date originalEvalDate_, originalReferenceDate_, originalMaxDate_;
@@ -82,7 +83,7 @@ class ClonedYieldTermStructure : public YieldTermStructure {
     Real instFwdMax_;
     boost::shared_ptr<Interpolation> interpolation_;
     std::vector<Time> times_;
-    std::vector<Real> discounts_;
+    std::vector<Real> logDiscounts_;
     Date referenceDate_, maxDate_;
     Time offset_;
     bool valid_;
@@ -94,6 +95,21 @@ inline Date ClonedYieldTermStructure::maxDate() const { return maxDate_; }
 
 inline const Date &ClonedYieldTermStructure::referenceDate() const {
     return referenceDate_;
+}
+
+inline const Real ClonedYieldTermStructure::interpolate(const Real t) const {
+    // we assume that the input fulfills 0 <= t < tmax
+    // we do the interpolation by ourselves to avoid
+    // two more vectors in the interpolation object
+    // which would increase the memory footprint
+    std::vector<Real>::const_iterator i =
+        std::upper_bound(times_.begin(), times_.end(), t);
+    Size idx = i - times_.begin();
+    Real t0 = *(i - 1);
+    Real t1 = *i;
+    Real x0 = logDiscounts_[idx - 1];
+    Real x1 = logDiscounts_[idx];
+    return std::exp((x1 * (t - t0) + x0 * (t1 - t)) / (t1 - t0));
 }
 
 } // namespace QuantLib
