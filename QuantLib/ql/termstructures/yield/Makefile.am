@@ -6,7 +6,6 @@ this_include_HEADERS = \
     all.hpp \
     bondhelpers.hpp \
     bootstraptraits.hpp \
-	clonedyieldtermstructure.hpp \
     discountcurve.hpp \
     drifttermstructure.hpp \
     fittedbonddiscountcurve.hpp \
@@ -27,7 +26,6 @@ this_include_HEADERS = \
 
 libYieldTermStructures_la_SOURCES = \
     bondhelpers.cpp \
-	clonedyieldtermstructure.cpp \
     fittedbonddiscountcurve.cpp \
     flatforward.cpp \
     forwardstructure.cpp \

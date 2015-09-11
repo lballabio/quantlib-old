@@ -323,6 +323,7 @@ AC_CONFIG_FILES([
     ql/experimental/varianceoption/Makefile
     ql/experimental/volatility/Makefile
     ql/experimental/xva/Makefile
+    ql/experimental/yield/Makefile
     ql/indexes/Makefile
     ql/indexes/ibor/Makefile
     ql/indexes/inflation/Makefile
