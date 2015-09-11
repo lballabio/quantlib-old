@@ -343,6 +343,7 @@ void TermStructureTest::testLinkToNullUnderlying() {
 }
 
 void TermStructureTest::testClonedYieldTermStructure() {
+
     BOOST_TEST_MESSAGE("Testing cloned yield term structure");
 
     CommonVars vars;
@@ -372,6 +373,14 @@ void TermStructureTest::testClonedYieldTermStructure() {
                     << ") error is " << (calculated - expected));
     }
 
+    calculated = y1.discount(Date(7, Jul, 2100), true);
+    expected = vars.termStructure->discount(Date(7, Jul, 2100), true);
+    if (std::fabs(calculated - expected) > 1E-12) {
+        BOOST_ERROR("cloned yts (fixed) has different discount on 07-07-2100 ("
+                    << calculated << ") than source (" << expected
+                    << ") error is " << (calculated - expected));
+    }
+
     Settings::instance().evaluationDate() = shiftedToday;
 
     if (y1.referenceDate() != vars.termStructure->referenceDate()) {
@@ -387,9 +396,9 @@ void TermStructureTest::testClonedYieldTermStructure() {
 
     ClonedYieldTermStructure y2(vars.termStructure,
                                 ClonedYieldTermStructure::ConstantZeroYields,
-                                vars.calendar);
+                                ClonedYieldTermStructure::None, vars.calendar);
 
-    calculated = y2.discount(settlement+3000, true);
+    calculated = y2.discount(settlement + 3000, true);
     expected = vars.termStructure->discount(settlement + 3000, true);
     if (!close_enough(calculated, expected)) {
         BOOST_ERROR("cloned yts (float, constant zero yields) has different "
@@ -401,10 +410,12 @@ void TermStructureTest::testClonedYieldTermStructure() {
                     << (calculated - expected));
     }
 
-    if (y2.maxDate() != Date(14, Sep, 2045)) {
+    Date maxExp = vars.termStructure->maxDate();
+
+    if (y2.maxDate() != maxExp) {
         BOOST_ERROR(
             "cloned yts (float, constant zero yields) has wrong maxDate ("
-            << y2.maxDate() << "), expected 14-09-2045");
+            << y2.maxDate() << "), expected " << maxExp);
     }
 
     Settings::instance().evaluationDate() = shiftedToday;
@@ -421,11 +432,12 @@ void TermStructureTest::testClonedYieldTermStructure() {
                     << (calculated - expected));
     }
 
-    if (y2.maxDate() != Date(23, Dec, 2045)) {
+    if (y2.maxDate() != maxExp + (shiftedSettlement - settlement)) {
         BOOST_ERROR("cloned yts (float, constant zero yields) has wrong "
                     "maxDate after shift of evaluation date ("
                     << y2.maxDate()
-                    << "), expected 23-12-2045");
+                    << "), expected "
+                    << (maxExp + (shiftedSettlement - settlement)));
     }
 
     Settings::instance().evaluationDate() = today;
@@ -435,7 +447,7 @@ void TermStructureTest::testClonedYieldTermStructure() {
 
     ClonedYieldTermStructure y3(vars.termStructure,
                                 ClonedYieldTermStructure::ForwardForward,
-                                vars.calendar);
+                                ClonedYieldTermStructure::None, vars.calendar);
 
     expected = vars.termStructure->discount(settlement + 3000);
     calculated = y3.discount(settlement + 3000, true);
@@ -450,9 +462,9 @@ void TermStructureTest::testClonedYieldTermStructure() {
                     << (calculated - expected));
     }
 
-    if (y3.maxDate() != Date(14, Sep, 2045)) {
+    if (y3.maxDate() != maxExp) {
         BOOST_ERROR("cloned yts (float, forrward-forward) has wrong maxDate ("
-                    << y3.maxDate() << "), expected 14-09-2045");
+                    << y3.maxDate() << "), expected " << maxExp);
     }
 
     // we have to calculate the expected forward discount before
@@ -475,11 +487,12 @@ void TermStructureTest::testClonedYieldTermStructure() {
                     << (calculated - expected));
     }
 
-    if (y3.maxDate() != Date(14, Sep, 2045)) {
+    if (y3.maxDate() != maxExp) {
         BOOST_ERROR("cloned yts (float, forrward-forward) has wrong maxDate "
                     "after shift of evaluation date ("
                     << y3.maxDate()
-                    << "), expected 14-09-2045");
+                    << "), expected "
+                    << maxExp);
     }
 
     Settings::instance().evaluationDate() = today;
