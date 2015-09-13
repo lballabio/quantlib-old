@@ -184,6 +184,7 @@ QuantLib/Examples/Volaswap/Volaswap
 QuantLib/Examples/crosscurrencylgm
 QuantLib/Examples/fxtarf
 QuantLib/Examples/lgmswaption
+QuantLib/Examples/smiledyn
 QuantLib/Examples/timingadj
 QuantLib/test-suite/main.cpp
 QuantLib/test-suite/quantlib-test-suite
