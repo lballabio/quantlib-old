@@ -53,7 +53,7 @@ int main() {
         Real price2 =
             blackFormula(Option::Call, strikes[i], shiftedForward,
                          vols[std::max<Size>(i - 50,0)] * std::sqrt(expiryTime), 1.0, 0.0);
-        Real bpVol = vols[i-50] * forward;
+        Real bpVol = vols[std::max<Size>(i-50,0)] * forward;
         Real price3 = blackFormula(
             Option::Call, strikes[i], shiftedForward,
             bpVol / shiftedForward * std::sqrt(expiryTime), 1.0, 0.0);
@@ -71,7 +71,7 @@ int main() {
         Real price2b =
             blackFormula(Option::Call, strikes[i], shiftedForwardb,
                          vols[std::max<Size>(i - 100,0)] * std::sqrt(expiryTime), 1.0, 0.0);
-        Real bpVolb = vols[i-100] * forward;
+        Real bpVolb = vols[std::max<Size>(i-100,0)] * forward;
         Real price3b = blackFormula(
             Option::Call, strikes[i], shiftedForwardb,
             bpVolb / shiftedForwardb * std::sqrt(expiryTime), 1.0, 0.0);
