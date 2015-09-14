@@ -42,7 +42,7 @@ int main() {
 
     // 1 sticky strike
     // 2 sticky absolute moneyness
-    // 3 sticky bp vol
+    // 3 sticky bp vol (approx)
     // 4 model
     std::vector<Real> prices1, prices2, prices3, prices4;
     std::vector<Real> prices1b, prices2b, prices3b, prices4b;
@@ -53,7 +53,7 @@ int main() {
         Real price2 =
             blackFormula(Option::Call, strikes[i], shiftedForward,
                          vols[std::max<Size>(i - 50,0)] * std::sqrt(expiryTime), 1.0, 0.0);
-        Real bpVol = vols[i] * forward;
+        Real bpVol = vols[i-50] * forward;
         Real price3 = blackFormula(
             Option::Call, strikes[i], shiftedForward,
             bpVol / shiftedForward * std::sqrt(expiryTime), 1.0, 0.0);
@@ -71,7 +71,7 @@ int main() {
         Real price2b =
             blackFormula(Option::Call, strikes[i], shiftedForwardb,
                          vols[std::max<Size>(i - 100,0)] * std::sqrt(expiryTime), 1.0, 0.0);
-        Real bpVolb = vols[i] * forward;
+        Real bpVolb = vols[i-100] * forward;
         Real price3b = blackFormula(
             Option::Call, strikes[i], shiftedForwardb,
             bpVolb / shiftedForwardb * std::sqrt(expiryTime), 1.0, 0.0);
