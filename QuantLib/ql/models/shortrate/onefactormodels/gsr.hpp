@@ -19,10 +19,15 @@
 
 /*! \file gsr.hpp
     \brief GSR 1 factor model
+
     \bug when the reference date changes, the state processes have
     to be reconstructed, since they take the reference date as a 
     parameter to provide the time method (otherwise it wouldn't be
     necessary since the time array is referenced from the process)
+
+    \todo check if the class works properly if the term structure's
+    date (which is the reference date the model uses) moves after
+    the first step date.
 */
 
 #ifndef quantlib_gsr_hpp

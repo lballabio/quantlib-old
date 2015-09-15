@@ -36,6 +36,10 @@ namespace QuantLib {
         available here
         http://ssrn.com/abstract_id=2183721
         http://quantlib.org/slides/qlws13/caspers.pdf
+
+        \todo check if the class works properly if the term structure's
+        date moves; in particular if it moves after the first step
+        date
     */
 
     /*! The model requires a suitable input smile which means it should be
