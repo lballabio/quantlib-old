@@ -7,7 +7,7 @@
   <Frameworks>
     <Framework name="QuantLibXL" displayName="QuantLibXL" fileName="QuantLibXL">
       <Components>
-        <Component path=".\xll\QuantLibXL-vc120-mt-s-1_6_0.xll" />
+        <Component path=".\xll\QuantLibXL-vc120-mt-s-1_7_0.xll" />
         <Component path=".\framework\QuantLibXL.xla" />
       </Components>
       <StartupParameters>
