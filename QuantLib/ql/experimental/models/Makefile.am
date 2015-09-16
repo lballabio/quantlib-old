@@ -26,6 +26,8 @@ this_include_HEADERS = \
     longstaffschwartzproxypathpricer.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
     proxynonstandardswaptionengine.hpp \
+	qg1dlinearmodel.hpp \
+	qg1dlocalvolmodel.hpp \
     quadraticlfm.hpp \
     sbsmilesection.hpp \
     splinedensitysmilesection.hpp
@@ -47,6 +49,7 @@ libModels_la_SOURCES = \
     longstaffschwartzproxypathpricer.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
     proxynonstandardswaptionengine.cpp \
+	qg1dlinearmodel.cpp \
     quadraticlfm.cpp \
     sbsmilesection.cpp \
     splinedensitysmilesection.cpp
