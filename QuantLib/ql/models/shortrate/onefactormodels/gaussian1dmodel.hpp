@@ -23,6 +23,10 @@
     TODO as it turns out it is not optimal for all implementations to work
     with the normalized state variable y instead of the original x (e.g.
     in the monte carlo swaption engine or in the lgm model), revisit this
+
+    TODO check if registration with the evaluation date is needed, shouldn't
+    it be enough to register with the termstructure (as it is done in derived
+    classes)
 */
 
 // uncomment to enable NTL support (see below for more details and references)
