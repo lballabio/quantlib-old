@@ -18,6 +18,7 @@
 */
 
 #include <ql/experimental/models/qg1dlinearmodel.hpp>
+#include <ql/experimental/math/piecewiseintegral.hpp>
 
 namespace QuantLib {
 
@@ -47,6 +48,11 @@ void Qg1dLinearModel::initialize() {
     registerWith(termStructure());
     volsteptimesArray_ = Array(stepDates_.size());
     updateTimes();
+    updateIntKappa();
+    boost::shared_ptr<Integrator> baseIntegrator =
+        boost::make_shared<SimpsonIntegral>(1E-10, 100);
+    integrator_ = boost::make_shared<PiecewiseIntegral>(baseIntegrator,
+                                                        volsteptimes_, true);
 }
 
 void Qg1dLinearModel::updateTimes() const {
@@ -67,6 +73,16 @@ void Qg1dLinearModel::updateTimes() const {
     }
 }
 
+void Qg1dLinearModel::updateIntKappa() const {
+    Real sum = 0.0;
+    intKappa_.resize(volsteptimes_.size());
+    for (Size i = 0; i < volsteptimes_.size(); ++i) {
+        sum += kappa_[i] *
+               (volsteptimes_[i] - (i == 0 ? 0.0 : volsteptimes_[i - 1]));
+        intKappa_[i] = sum;
+    }
+}
+
 Real Qg1dLinearModel::g(const Real t, const Real x, const Real y) const {
     return lambda(t) * (alpha(t) + beta(t) * x) / h(t);
 }
@@ -78,5 +94,18 @@ Real Qg1dLinearModel::lambda(const Real t) const { PIECEWISEFCT(lambda_); }
 Real Qg1dLinearModel::alpha(const Real t) const { PIECEWISEFCT(alpha_); }
 
 Real Qg1dLinearModel::beta(const Real t) const { PIECEWISEFCT(beta_); }
+
+Real Qg1dLinearModel::h(const Real t) const {
+    if (t < 0.0)
+        return 0.0;
+    Size i = std::upper_bound(volsteptimes_.begin(), volsteptimes_.end(), t) -
+             volsteptimes_.begin();
+    Real tmp = 0.0;
+    if (i >= 1)
+        tmp += intKappa_[std::min(i - 1, intKappa_.size() - 1)];
+    tmp += kappa_[std::min(i, kappa_.size() - 1)] *
+           (t - (i == 0 ? 0.0 : volsteptimes_[i - 1]));
+    return std::exp(-tmp);
+}
 
 } // namespace QuantLib

@@ -51,6 +51,8 @@ class Qg1dLinearModel
     Real kappa(const Real t) const;
     Real g(const Real t, const Real x, const Real y) const;
 
+    Real h(const Real t) const;
+
     Real lambda(const Real t) const;
     Real alpha(const Real t) const;
     Real beta(const Real t) const;
@@ -59,6 +61,7 @@ class Qg1dLinearModel
 
   private:
     void updateTimes() const;
+    void updateIntKappa() const;
     void initialize();
 
     mutable std::vector<Real> volsteptimes_;
@@ -67,6 +70,7 @@ class Qg1dLinearModel
     const Handle<YieldTermStructure> yts_;
     const std::vector<Date> stepDates_;
     const std::vector<Real> lambda_, alpha_, beta_, kappa_;
+    mutable std::vector<Real> intKappa_;
 };
 
 } // namespace QuantLib

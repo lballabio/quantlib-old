@@ -46,7 +46,7 @@ class Qg1dLocalVolModel {
         dx = (y - \kappa x) dt + \sigma_f(t,t) dW
         dy = (\sigma_f(t,t)^2 - 2 \kappa y) dt
         x(0) = y(0) = 0 */
-    Qg1dLocalVolModel(const boost::shared_ptr<Integrator> integrator = NULL);
+    Qg1dLocalVolModel();
 
     virtual Real kappa(const Real t) const = 0;
     virtual Real g(const Real t, const Real x, const Real y) const = 0;
@@ -67,43 +67,32 @@ class Qg1dLocalVolModel {
     /*! sigma_f(t,t,0,0)^2*h(t)^{-2},
         precondition (not checked) is t > 0 */
     virtual Real sigma_r_0_0_h_sqr(const Real t) const;
-
-  private:
     boost::shared_ptr<Integrator> integrator_;
 };
 
 // inline
 
-Qg1dLocalVolModel::Qg1dLocalVolModel(
-    const boost::shared_ptr<Integrator> integrator)
-    : integrator_(integrator) {
-    if (integrator_ == NULL) {
-        // default integrator if none is given
-        integrator_ = boost::make_shared<SimpsonIntegral>(1E-10, 100);
-    }
+Qg1dLocalVolModel::Qg1dLocalVolModel() {
+    // default integrator, may be changed in derived classes
+    integrator_ = boost::make_shared<SimpsonIntegral>(1E-10, 100);
 }
 
-Real Qg1dLocalVolModel::h(const Real t) const {
-    return std::exp(integrator_->operator()(
+inline Real Qg1dLocalVolModel::h(const Real t) const {
+    return std::exp(-integrator_->operator()(
         boost::bind(&Qg1dLocalVolModel::kappa, this, _1), 0.0, t));
 }
 
-Real Qg1dLocalVolModel::G(const Real t, const Real T) const {
+inline Real Qg1dLocalVolModel::G(const Real t, const Real T) const {
     return integrator_->operator()(boost::bind(&Qg1dLocalVolModel::h, this, _1),
                                    t, T);
 }
 
-Real Qg1dLocalVolModel::sigma_f(const Real t, const Real T, const Real x,
-                                const Real y) const {
+inline Real Qg1dLocalVolModel::sigma_f(const Real t, const Real T, const Real x,
+                                       const Real y) const {
     return g(t, x, y) * h(T);
 }
 
-Real Qg1dLocalVolModel::sigma_r_0_0_h_sqr(const Real t) const {
-    Real tmp = sigma_f(t, t, 0.0, 0.0) / h(t);
-    return tmp * tmp;
-}
-
-Real Qg1dLocalVolModel::yApprox(const Real t) const {
+inline Real Qg1dLocalVolModel::yApprox(const Real t) const {
     if (t < 1E-10)
         return 0.0;
     Real tmp = h(t);
@@ -113,9 +102,15 @@ Real Qg1dLocalVolModel::yApprox(const Real t) const {
                0.0, t);
 }
 
-Real Qg1dLocalVolModel::zerobond(const Real T, const Real t, const Real x,
-                                 const Real y,
-                                 const Handle<YieldTermStructure> &yts) const {
+inline Real Qg1dLocalVolModel::sigma_r_0_0_h_sqr(const Real t) const {
+    Real tmp = sigma_f(t, t, 0.0, 0.0) / h(t);
+    return tmp * tmp;
+}
+
+inline Real
+Qg1dLocalVolModel::zerobond(const Real T, const Real t, const Real x,
+                            const Real y,
+                            const Handle<YieldTermStructure> &yts) const {
     Real tmp = G(t, T);
     return yts->discount(T) / yts->discount(t) *
            std::exp(-G(t, T) * x - 0.5 * tmp * tmp * y);
