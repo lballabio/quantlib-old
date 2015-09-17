@@ -20,7 +20,7 @@ int main() {
     for(Size i=1;i<10;++i) {
         stepDates.push_back(TARGET().advance(refDate,i*Years));
     }
-    
+
     std::vector<Real> lambda(10,1.0);
     std::vector<Real> alpha(10,1.0);
     std::vector<Real> beta(10,1.0);

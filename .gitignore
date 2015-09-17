@@ -186,6 +186,7 @@ QuantLib/Examples/fxtarf
 QuantLib/Examples/lgmswaption
 QuantLib/Examples/smiledyn
 QuantLib/Examples/timingadj
+QuantLib/Examples/qgmodel
 QuantLib/test-suite/main.cpp
 QuantLib/test-suite/quantlib-test-suite
 QuantLib/test-suite/quantlib-benchmark
