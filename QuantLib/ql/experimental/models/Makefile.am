@@ -50,6 +50,7 @@ libModels_la_SOURCES = \
     mcgaussian1dnonstandardswaptionengine.cpp \
     proxynonstandardswaptionengine.cpp \
 	qg1dlinearmodel.cpp \
+	qg1dlocalvolmodel.cpp \
     quadraticlfm.cpp \
     sbsmilesection.cpp \
     splinedensitysmilesection.cpp

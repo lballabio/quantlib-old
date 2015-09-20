@@ -29,6 +29,7 @@
 #include <ql/math/integrals/integral.hpp>
 #include <ql/math/integrals/simpsonintegral.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
+#include <ql/models/model.hpp>
 
 #include <boost/make_shared.hpp>
 #include <boost/function.hpp>
@@ -36,7 +37,7 @@
 
 namespace QuantLib {
 
-class Qg1dLocalVolModel {
+class Qg1dLocalVolModel : public TermStructureConsistentModel {
   public:
     /*! the model is specified by a function \kappa(t) and a function g(t,x,y),
         with \kappa(t) = -h'(t) / h(t), \sigma_f(t,T) = g(t)h(T), the HJM
@@ -46,7 +47,7 @@ class Qg1dLocalVolModel {
         dx = (y - \kappa x) dt + \sigma_f(t,t) dW
         dy = (\sigma_f(t,t)^2 - 2 \kappa y) dt
         x(0) = y(0) = 0 */
-    Qg1dLocalVolModel();
+    Qg1dLocalVolModel(const Handle<YieldTermStructure> &yts);
 
     virtual Real kappa(const Real t) const = 0;
     virtual Real g(const Real t, const Real x, const Real y) const = 0;
@@ -62,20 +63,48 @@ class Qg1dLocalVolModel {
     Real zerobond(const Real T, const Real t, const Real x, const Real y,
                   const Handle<YieldTermStructure> &yts) const;
 
+    /*! swap rate is calculated with forward = discount, no indexed coupons */
+    Real swapRate(const Real T0, const Real t,
+                  const std::vector<Real> &fixedTimes,
+                  const std::vector<Real> &taus, const Real x, const Real y,
+                  const Handle<YieldTermStructure> &yts) const;
+
+    Real dSwapRateDx(const Real T0, const Real t,
+                     const std::vector<Real> &fixedTimes,
+                     const std::vector<Real> &taus, const Real x, const Real y,
+                     const Handle<YieldTermStructure> &yts) const;
+
+    /*! date based variants, only the forwarding curve from the swap index
+        (if given) is used */
+    Real zerobond(const Date &maturiy, const Date &referenceDate, const Real x,
+                  const Real y, const Handle<YieldTermStructure> &yts);
+
+    Real swapRate(const Date &startDate, const Date &referenceDate,
+                  const boost::shared_ptr<SwapIndex>, const Period &index,
+                  const Real x) const;
+
+    Real dSwapRateDx(const Date &startDate, const Date &referenceDate,
+                     const boost::shared_ptr<SwapIndex>, const Period &index,
+                     const Real x) const;
+
   protected:
     virtual Real yApprox(const Real t) const;
+
     /*! sigma_f(t,t,0,0)^2*h(t)^{-2},
-        precondition (not checked) is t > 0 */
+            precondition (not checked) is t > 0 */
+
     virtual Real sigma_r_0_0_h_sqr(const Real t) const;
+
     boost::shared_ptr<Integrator> integrator_;
+
+  private:
+    void timesAndTaus(const Date &startDate,
+                      const boost::shared_ptr<SwapIndex> &index,
+                      const Period &tenor, const std::vector<Real> taus,
+                      const std::vector<Real> &times);
 };
 
 // inline
-
-Qg1dLocalVolModel::Qg1dLocalVolModel() {
-    // default integrator, may be changed in derived classes
-    integrator_ = boost::make_shared<SimpsonIntegral>(1E-10, 100);
-}
 
 inline Real Qg1dLocalVolModel::h(const Real t) const {
     return std::exp(-integrator_->operator()(
@@ -105,15 +134,6 @@ inline Real Qg1dLocalVolModel::yApprox(const Real t) const {
 inline Real Qg1dLocalVolModel::sigma_r_0_0_h_sqr(const Real t) const {
     Real tmp = sigma_f(t, t, 0.0, 0.0) / h(t);
     return tmp * tmp;
-}
-
-inline Real
-Qg1dLocalVolModel::zerobond(const Real T, const Real t, const Real x,
-                            const Real y,
-                            const Handle<YieldTermStructure> &yts) const {
-    Real tmp = G(t, T);
-    return yts->discount(T) / yts->discount(t) *
-           std::exp(-G(t, T) * x - 0.5 * tmp * tmp * y);
 }
 
 } // namespace QuantLib

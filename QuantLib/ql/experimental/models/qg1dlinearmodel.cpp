@@ -36,13 +36,11 @@ Qg1dLinearModel::Qg1dLinearModel(const Handle<YieldTermStructure> &yts,
                                  const std::vector<Real> &alpha,
                                  const std::vector<Real> &beta,
                                  const std::vector<Real> &kappa)
-    : TermStructureConsistentModel(yts), stepDates_(stepDates), lambda_(lambda),
+    : Qg1dLocalVolModel(yts), stepDates_(stepDates), lambda_(lambda),
       alpha_(alpha), beta_(beta), kappa_(kappa) {
     QL_REQUIRE(!yts.empty(), "yield term structure handle is empty");
     initialize();
 }
-
-void Qg1dLinearModel::update() { updateTimes(); }
 
 void Qg1dLinearModel::initialize() {
     registerWith(termStructure());
@@ -81,10 +79,6 @@ void Qg1dLinearModel::updateIntKappa() const {
                (volsteptimes_[i] - (i == 0 ? 0.0 : volsteptimes_[i - 1]));
         intKappa_[i] = sum;
     }
-}
-
-Real Qg1dLinearModel::g(const Real t, const Real x, const Real y) const {
-    return lambda(t) * (alpha(t) + beta(t) * x) / h(t);
 }
 
 Real Qg1dLinearModel::kappa(const Real t) const { PIECEWISEFCT(kappa_); }
