@@ -1,4 +1,3 @@
-
 <root>
 
   <DataTypes>
@@ -95,6 +94,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::FloatingRateCouponPricer</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::ForwardRateAgreement</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::FuturesRateHelper</DataType>
+    <DataType defaultSuperType='libraryClass'>QuantLib::FxSwapRateHelper</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::GeneralizedBlackScholesProcess</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::HistoricalForwardRatesAnalysis</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::HistoricalRatesAnalysis</DataType>
@@ -173,7 +173,7 @@
     <DataType defaultSuperType='libraryClass'>QuantLib::Issuer</DataType>
     <DataType defaultSuperType='libraryClass'>QuantLib::DefaultEventSet</DataType>
     <DataType defaultSuperType='enumeration'>QuantLib::Seniority</DataType>
-    
+
     <DataType defaultSuperType='libraryQuote'>QuantLib::FuturesConvAdjustmentQuote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::Quote</DataType>
     <DataType defaultSuperType='libraryQuote'>QuantLib::SimpleQuote</DataType>
