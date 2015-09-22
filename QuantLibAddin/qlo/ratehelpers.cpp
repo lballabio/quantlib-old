@@ -49,11 +49,11 @@ namespace QuantLibAddin {
     // into a string.  If the caller passed in a double instead of a
     // Rate object then the coerce below will fail in which case we
     // return an empty string.
-    std::string f(const ObjectHandler::property_t &p) {
+    string f(const ObjectHandler::property_t &p) {
         try {
             return convert2<string>(p);
         } catch(...) {
-            return std::string();
+            return string();
         }
     }
 
@@ -310,6 +310,33 @@ namespace QuantLibAddin {
         quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
+    FxSwapRateHelper::FxSwapRateHelper(
+        const shared_ptr<ValueObject>& properties,
+        const QuantLib::Handle<QuantLib::Quote>& fwdPoint,
+        const QuantLib::Handle<QuantLib::Quote>& spotFx,
+        const QuantLib::Period& tenor,
+        QuantLib::Natural fixingDays,
+        const QuantLib::Calendar& calendar,
+        QuantLib::BusinessDayConvention convention,
+        bool endOfMonth,
+        bool isFxBaseCurrencyCollateralCurrency,
+        const QuantLib::Handle<QuantLib::YieldTermStructure>& collateralCurve,
+        bool permanent)
+    : RateHelper(properties, permanent) {
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::FxSwapRateHelper(fwdPoint,
+                                       spotFx,
+                                       tenor,
+                                       fixingDays,
+                                       calendar,
+                                       convention,
+                                       endOfMonth,
+                                       isFxBaseCurrencyCollateralCurrency,
+                                       collateralCurve));
+        quoteName_ = f(properties->getSystemProperty("FwdPoint"));
+    }
+
+
     // helper class
     namespace {
 
@@ -537,7 +564,8 @@ namespace QuantLibAddin {
               public QuantLib::Visitor<QuantLib::OISRateHelper>,
               public QuantLib::Visitor<QuantLib::DatedOISRateHelper>,
               public QuantLib::Visitor<QuantLib::BMASwapRateHelper>,
-              public QuantLib::Visitor<QuantLib::FixedRateBondHelper> {
+              public QuantLib::Visitor<QuantLib::FixedRateBondHelper>,
+              public QuantLib::Visitor<QuantLib::FxSwapRateHelper> {
             QuantLib::Rate rate_;
           public:
             QuantLib::Rate rate() const { return rate_; }
@@ -570,6 +598,10 @@ namespace QuantLibAddin {
             void visit(QuantLib::FixedRateBondHelper& h) {
                 QL_FAIL("not implemented yet");
             }
+            void visit(QuantLib::FxSwapRateHelper& h) {
+                rate_ = h.quote()->value();
+            }
+
         };
 
     }
