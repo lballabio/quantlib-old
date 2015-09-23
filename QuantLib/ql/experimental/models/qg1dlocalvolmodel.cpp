@@ -19,6 +19,8 @@
 
 #include <ql/experimental/models/qg1dlocalvolmodel.hpp>
 
+#include <ql/instruments/vanillaswap.hpp>
+
 namespace QuantLib {
 
 Qg1dLocalVolModel::Qg1dLocalVolModel(const Handle<YieldTermStructure> &yts)
@@ -76,18 +78,18 @@ Real Qg1dLocalVolModel::zerobond(const Date &maturity,
                     yts);
 }
 
-Real Qg1dLocalVolModel::timesAndTaus(const Date &startDate,
+void Qg1dLocalVolModel::timesAndTaus(const Date &startDate,
                                      const boost::shared_ptr<SwapIndex> &index,
-                                     const Period &tenor,
-                                     const std::vector<Real> taus,
-                                     const std::vector<Real> &times) {
+                                     const Period &tenor, Real &T0,
+                                     std::vector<Real> &taus,
+                                     std::vector<Real> &times) const {
+    T0 = termStructure()->timeFromReference(startDate);
     std::vector<Date> dates =
         index->underlyingSwap(index->clone(tenor)->fixingDate(startDate))
             ->fixedSchedule()
             .dates();
     times.resize(dates.size() - 1);
     taus.resize(dates.size() - 1);
-    std::vector<Real> times(dates.size());
     for (Size i = 1; i < dates.size(); ++i) {
         times[i - 1] = termStructure()->timeFromReference(dates[i]);
         taus[i - 1] = index->dayCounter().yearFraction(dates[i - 1], dates[i]);
@@ -99,20 +101,21 @@ Real Qg1dLocalVolModel::swapRate(const Date &startDate,
                                  const boost::shared_ptr<SwapIndex> &index,
                                  const Period &tenor, const Real x,
                                  const Real y) const {
+    Real T0;
     std::vector<Real> taus, times;
-    return swapRate(termStructure()->timeFromReference(startDate),
-                    termStructure()->timeFromReference(referenceDate), times,
-                    taus, x, y, index->forwardingTermStructure());
+    timesAndTaus(startDate, index, tenor, T0, taus, times);
+    return swapRate(T0, termStructure()->timeFromReference(referenceDate),
+                    times, taus, x, y, index->forwardingTermStructure());
 }
 
 Real Qg1dLocalVolModel::dSwapRateDx(const Date &startDate,
                                     const Date &referenceDate,
                                     const boost::shared_ptr<SwapIndex> &index,
+                                    const Period &tenor,
                                     const Real x, const Real y) const {
+    Real T0;
     std::vector<Real> taus, times;
-    return swapRate(termStructure()->timeFromReference(startDate),
-                    termStructure()->timeFromReference(referenceDate), times,
-                    taus, x, y, index->forwardingTermStructure());
+    timesAndTaus(startDate, index, tenor, T0, taus, times);
     return dSwapRateDx(termStructure()->timeFromReference(startDate),
                        termStructure()->timeFromReference(referenceDate), times,
                        taus, x, y, index->forwardingTermStructure());
