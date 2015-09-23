@@ -2168,6 +2168,14 @@
 			Name="math"
 			>
 			<File
+				RelativePath=".\ql\math\abcdmathfunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\math\abcdmathfunction.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ql\math\all.hpp"
 				>
 			</File>
@@ -5321,6 +5329,14 @@
 			</File>
 			<File
 				RelativePath=".\ql\processes\gsrprocess.hpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\processes\gsrprocesscore.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\processes\gsrprocesscore.hpp"
 				>
 			</File>
 			<File
