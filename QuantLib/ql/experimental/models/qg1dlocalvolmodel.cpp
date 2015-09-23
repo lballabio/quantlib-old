@@ -64,8 +64,8 @@ Real Qg1dLocalVolModel::dSwapRateDx(
         sum += tmp * G(t, fixedTimes[i]);
     }
     Real Tn = fixedTimes.back();
-    Real z0 = zerobond(t, T0, x, y, yts);
-    Real zn = zerobond(t, Tn, x, y, yts);
+    Real z0 = zerobond(T0, t, x, y, yts);
+    Real zn = zerobond(Tn, t, x, y, yts);
     return (-G(t, T0) * z0 + G(t, Tn) * zn) / a + (z0 - zn) / (a * a) * sum;
 }
 
@@ -81,8 +81,8 @@ Real Qg1dLocalVolModel::zerobond(const Date &maturity,
 void Qg1dLocalVolModel::timesAndTaus(const Date &startDate,
                                      const boost::shared_ptr<SwapIndex> &index,
                                      const Period &tenor, Real &T0,
-                                     std::vector<Real> &taus,
-                                     std::vector<Real> &times) const {
+                                     std::vector<Real> &times,
+                                     std::vector<Real> &taus) const {
     T0 = termStructure()->timeFromReference(startDate);
     std::vector<Date> dates =
         index->underlyingSwap(index->clone(tenor)->fixingDate(startDate))
@@ -103,7 +103,7 @@ Real Qg1dLocalVolModel::swapRate(const Date &startDate,
                                  const Real y) const {
     Real T0;
     std::vector<Real> taus, times;
-    timesAndTaus(startDate, index, tenor, T0, taus, times);
+    timesAndTaus(startDate, index, tenor, T0, times, taus);
     return swapRate(T0, termStructure()->timeFromReference(referenceDate),
                     times, taus, x, y, index->forwardingTermStructure());
 }
@@ -115,7 +115,7 @@ Real Qg1dLocalVolModel::dSwapRateDx(const Date &startDate,
                                     const Real x, const Real y) const {
     Real T0;
     std::vector<Real> taus, times;
-    timesAndTaus(startDate, index, tenor, T0, taus, times);
+    timesAndTaus(startDate, index, tenor, T0, times, taus);
     return dSwapRateDx(termStructure()->timeFromReference(startDate),
                        termStructure()->timeFromReference(referenceDate), times,
                        taus, x, y, index->forwardingTermStructure());

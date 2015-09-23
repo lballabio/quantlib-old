@@ -66,7 +66,8 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
                          const Real y) const;
 
     Real zerobond(const Real T, const Real t, const Real x, const Real y,
-                  const Handle<YieldTermStructure> &yts) const;
+                  const Handle<YieldTermStructure> &yts =
+                      Handle<YieldTermStructure>()) const;
 
     /*! swap rate is calculated with forward = discount, no indexed coupons
         T0 is the start date of the swap, fixedTimes the payment times of
@@ -74,24 +75,28 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
     Real swapRate(const Real T0, const Real t,
                   const std::vector<Real> &fixedTimes,
                   const std::vector<Real> &taus, const Real x, const Real y,
-                  const Handle<YieldTermStructure> &yts) const;
+                  const Handle<YieldTermStructure> &yts =
+                      Handle<YieldTermStructure>()) const;
 
     Real dSwapRateDx(const Real T0, const Real t,
                      const std::vector<Real> &fixedTimes,
                      const std::vector<Real> &taus, const Real x, const Real y,
-                     const Handle<YieldTermStructure> &yts) const;
+                     const Handle<YieldTermStructure> &yts =
+                         Handle<YieldTermStructure>()) const;
 
     /*! local volatility using yApprox und sInvX (see Piterbarg, equation 13.19
         and what follows immediately after that), the same comments as for
         the swap rate approximation apply */
     Real phi(const Real t, const Real s, const Real T0,
              const std::vector<Real> &fixedTimes, const std::vector<Real> &taus,
-             const Handle<YieldTermStructure> &yts) const;
+             const Handle<YieldTermStructure> &yts =
+                 Handle<YieldTermStructure>()) const;
 
     /*! date based variants, only the forwarding curve from the swap index
         (if given) is used and no indexed coupons are used, see above */
     Real zerobond(const Date &maturiy, const Date &referenceDate, const Real x,
-                  const Real y, const Handle<YieldTermStructure> &yts);
+                  const Real y, const Handle<YieldTermStructure> &yts =
+                                    Handle<YieldTermStructure>());
 
     Real swapRate(const Date &startDate, const Date &referenceDate,
                   const boost::shared_ptr<SwapIndex> &index,
@@ -105,11 +110,12 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
       a given swap index */
     void timesAndTaus(const Date &startDate,
                       const boost::shared_ptr<SwapIndex> &index,
-                      const Period &tenor, Real &T0, std::vector<Real> &taus,
-                      std::vector<Real> &times) const;
+                      const Period &tenor, Real &T0, std::vector<Real> &times,
+                      std::vector<Real> &taus) const;
 
-  protected:
     virtual Real yApprox(const Real t) const;
+
+    //protected: // commented out just for testing ...
     /*! this is \overline{x(t)} in Piterbarg */
     // virtual Real xApprox(const Real t, const Real T0,
     //                      const std::vector<Real> &fixedTimes,
@@ -128,8 +134,7 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
                const std::vector<Real> &taus,
                const Handle<YieldTermStructure> &yts, const Real s) const;
 
-    /*! sigma_f(t,t,0,0)^2*h(t)^{-2},
-            precondition (not checked) is t > 0 */
+    /*! sigma_f(t,t,0,0)^2*h(t)^{-2}, precondition (not checked) is t > 0 */
     virtual Real sigma_r_0_0_h_sqr(const Real t) const;
 
     boost::shared_ptr<Integrator> integrator_;
