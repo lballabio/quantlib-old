@@ -1,7 +1,8 @@
 #include <iostream>
 #include <cmath>
 
-extern "C" void discount_ad_(double *zeroyield, double *dcf, double *df, double *ddf);
+extern "C" void discount_ad_(double *zeroyield, double *dcf, double *df,
+                             double *ddf);
 
 int main() {
 
@@ -15,7 +16,6 @@ int main() {
               << " should be: " << std::exp(-zeroyield * dcf) << std::endl;
 
     std::cout << "result2 = " << ddf
-              << " should be: " << -dcf * std::exp(-zeroyield * dcf) << std::endl;
-
-
+              << " should be: " << -dcf * std::exp(-zeroyield * dcf)
+              << std::endl;
 }
