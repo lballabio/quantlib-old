@@ -222,12 +222,12 @@ QuantLibXL/Docs/*.chm
 QuantLibXL/Docs/doxywarnings.txt
 
 #OpenAD files
-!QuantLibOAD/Makefile
+!QuantLibOAD/simplelib/Makefile
 OAD_INTRINSICS.*
 OAD_active.f90
 iaddr.c
 oad_active.mod
 oad_intrinsics.mod
 w2f__types.*
-QuantLibOAD/simplelib.pre.*
+QuantLibOAD/simplelib/simplelib.pre.*
 
