@@ -18,6 +18,7 @@
 */
 
 #include <ql/experimental/commodities/commoditycashflow.hpp>
+#include <ql/patterns/visitor.hpp>
 #include <iomanip>
 
 namespace QuantLib {
@@ -40,7 +41,7 @@ namespace QuantLib {
         Real totalDiscounted = 0;
         Real totalUndiscounted = 0;
         for (CommodityCashFlows::const_iterator i = cashFlows.begin();
-             i != cashFlows.end(); i++) {
+             i != cashFlows.end(); ++i) {
             //const boost::shared_ptr<CommodityCashFlow> cashFlow = *i;
             const boost::shared_ptr<CommodityCashFlow> cashFlow = i->second;
             totalDiscounted += cashFlow->discountedAmount().value();

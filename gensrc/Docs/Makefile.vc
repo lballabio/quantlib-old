@@ -11,7 +11,7 @@ BUILDFLAG=$(BUILD_DIR)\buildflag
 DOXYGEN=doxygen.exe
 DOXY_CONFIG=$(PROJECTNAME).doxy
 DOXY_CONFIG_TEMP=.$(DOXY_CONFIG)
-SCRIPT=..\..\ObjectHandler\dev_tools\preprocess_doxyfile.py
+SCRIPT=..\..\ObjectHandler\Docs\preprocess_doxyfile.py
 
 DEPENDENCIES = \
 	$(INPUTS) \

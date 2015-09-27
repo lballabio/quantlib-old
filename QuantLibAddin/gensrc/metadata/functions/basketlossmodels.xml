@@ -1,0 +1,396 @@
+<Category name='basketlossmodels'>
+  <description>QuantLib Credit Basket Loss Models</description>
+  <displayName>QuantLib Credit Basket Loss Models</displayName>
+  <xlFunctionWizardCategory>QuantLib - Credit</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>ql/experimental/credit/gaussianlhplossmodel.hpp</include>
+    <include>ql/experimental/credit/binomiallossmodel.hpp</include>
+    <include>ql/experimental/credit/inhomogeneouspooldef.hpp</include>
+    <include>ql/experimental/credit/correlationstructure.hpp</include>
+    <include>qlo/basketlossmodels.hpp</include>
+    <include>qlo/defaulttermstructures.hpp</include>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>ql/experimental/credit/gaussianlhplossmodel.hpp</include>
+    <include>ql/experimental/credit/binomiallossmodel.hpp</include>
+    <include>ql/experimental/credit/inhomogeneouspooldef.hpp</include>
+    <include>ql/experimental/credit/correlationstructure.hpp</include>
+    <include>qlo/basketlossmodels.hpp</include>
+    <include>qlo/defaulttermstructures.hpp</include>
+  </serializationIncludes>
+  <copyright>
+    Copyright (C) 2014 Jose Aparicio
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='qlGaussianLHPLossmodel'>
+      <libraryFunction>GaussianLHPLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Correlation'>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Gaussian model single correlation.</description>
+      </Parameter>
+      <Parameter name='RecoveyRates'>
+        <type>double</type>
+        <tensorRank>vector</tensorRank>
+        <description>Recovery rates of each live name in the portfolio.</description>
+      </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlIHGaussPoolLossModel'>
+      <libraryFunction>IHGaussPoolLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Correlation'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Model single correlation.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+          <Parameter name='NumBuckets'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of distribution loss buckets.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlIHStudentPoolLossModel'>
+      <libraryFunction>IHStudentPoolLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Correlation'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Model single correlation.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+          <Parameter name='Ttraits'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>T orders on each factor.</description>
+          </Parameter>
+          <Parameter name='NumBuckets'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of distribution loss buckets.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+    
+    <Constructor name='qlGBinomialLossmodel'>
+      <libraryFunction>GaussianBinomialLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlTBinomialLossmodel'>
+      <libraryFunction>TBinomialLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+          <Parameter name='Ttraits'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>T orders on each factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlBaseCorrelationLossModel'>
+      <libraryFunction>BaseCorrelationLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='BaseModel' exampleValue='GLHP, GBINOMKR, TBINOMKR, INHOM'>
+            <type>string</type>
+            <tensorRank>scalar</tensorRank>
+            <description>The base algorithm on which the EL is to be computed at different correlations.</description>
+          </Parameter>
+          <Parameter name='BaseCorrelationSurface'>
+            <!--   <type>QuantLibAddin::BaseCorrelationTermStructure</type> -->
+            <type>QuantLib::CorrelationTermStructure</type>
+            <!--
+            <superType>libToHandle</superType>
+            -->
+            <!--<superType>objectClass</superType>-->
+
+            <superType>libraryClass</superType>
+            <superType>libraryTermStructure</superType>
+
+
+            <tensorRank>scalar</tensorRank>
+            <description>Base correlation surface.</description>
+          </Parameter>
+          <Parameter name='Recoveries'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Quoted recoveries for each name in the model.</description>
+          </Parameter>
+          <Parameter name='InitiTraits'>
+            <type>QuantLib::Real</type>
+            <tensorRank>vector</tensorRank>
+            <description>Copula initialization traits are defined in terms of this vector.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Constructor name='qlGMCLossModel'>
+      <libraryFunction>GaussianRandomDefaultLM</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+          <Parameter name='NumSimulations'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MC simulations.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Constructor name='qlGRandomRRMCLossModel'>
+      <libraryFunction>GaussianRandomLossLM</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+          <Parameter name='ModelA'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Recovery deviation parameter.</description>
+          </Parameter>
+          <Parameter name='NumSimulations'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MC simulations.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlTMCLossModel'>
+      <libraryFunction>TRandomDefaultLM</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+          <Parameter name='Ttraits'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>T orders on each factor.</description>
+          </Parameter>
+          <Parameter name='NumSimulations'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MC simulations.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlTRandomRRMCLossModel'>
+      <libraryFunction>TRandomLossLM</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+          <Parameter name='Ttraits'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>T orders on each factor.</description>
+          </Parameter>
+          <Parameter name='ModelA'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Recovery deviation parameter.</description>
+          </Parameter>
+          <Parameter name='NumSimulations'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>MC simulations.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlGSaddlePointLossmodel'>
+      <libraryFunction>SaddlePointLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlTSaddlePointLossmodel'>
+      <libraryFunction>TSaddlePointLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+          <Parameter name='Ttraits'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>T orders on each factor.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Constructor name='qlGRecursiveLossmodel'>
+      <libraryFunction>RecursiveGaussLossModel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' calcInWizard='false' />
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+          <Parameter name='RecoveyRates'>
+            <type>double</type>
+            <tensorRank>vector</tensorRank>
+            <description>Recovery rates of each live name in the portfolio.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+  
+  </Functions>
+
+  
+</Category>

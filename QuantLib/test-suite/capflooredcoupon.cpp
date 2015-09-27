@@ -118,8 +118,8 @@ namespace {
 
         Leg makeCapFlooredLeg(const Date& startDate,
                               Integer length,
-                              const std::vector<Rate> caps,
-                              const std::vector<Rate> floors,
+                              const std::vector<Rate>& caps,
+                              const std::vector<Rate>& floors,
                               Volatility volatility,
                               const Rate gearing = 1.0,
                               const Rate spread = 0.0) {
@@ -186,19 +186,6 @@ namespace {
             return result;
         }
     };
-
-    std::string typeToString(CapFloor::Type type) {
-        switch (type) {
-          case CapFloor::Cap:
-            return "cap";
-          case CapFloor::Floor:
-            return "floor";
-          case CapFloor::Collar:
-            return "collar";
-          default:
-            QL_FAIL("unknown cap/floor type");
-        }
-    }
 
 }
 

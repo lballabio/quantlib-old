@@ -3,6 +3,8 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
 	all.hpp \
+	discreteintegrals.hpp \
+	filonintegral.hpp \
 	gausslobattointegral.hpp \
 	gaussianorthogonalpolynomial.hpp \
 	gaussianquadratures.hpp \
@@ -10,9 +12,12 @@ this_include_HEADERS = \
 	kronrodintegral.hpp \
 	segmentintegral.hpp \
 	simpsonintegral.hpp \
-	trapezoidintegral.hpp
+	trapezoidintegral.hpp \
+	twodimensionalintegral.hpp
 
 libIntegrals_la_SOURCES = \
+	discreteintegrals.cpp \
+	filonintegral.cpp \
 	gausslobattointegral.cpp \
 	gaussianorthogonalpolynomial.cpp \
 	gaussianquadratures.cpp \

@@ -26,6 +26,7 @@
 #include <ql/math/solvers1d/brent.hpp>
 #include <ql/math/solvers1d/newtonsafe.hpp>
 #include <ql/cashflows/couponpricer.hpp>
+#include <ql/patterns/visitor.hpp>
 #include <ql/quotes/simplequote.hpp>
 #include <ql/termstructures/yield/zerospreadedtermstructure.hpp>
 
@@ -457,7 +458,8 @@ namespace QuantLib {
         Real totalNPV = 0.0;
         for (Size i=0; i<leg.size(); ++i) {
             if (!leg[i]->hasOccurred(settlementDate,
-                                     includeSettlementDateFlows))
+                                     includeSettlementDateFlows) &&
+                !leg[i]->tradingExCoupon(settlementDate))
                 totalNPV += leg[i]->amount() *
                             discountCurve.discount(leg[i]->date());
         }
@@ -482,7 +484,8 @@ namespace QuantLib {
         BPSCalculator calc(discountCurve);
         for (Size i=0; i<leg.size(); ++i) {
             if (!leg[i]->hasOccurred(settlementDate,
-                                     includeSettlementDateFlows))
+                                     includeSettlementDateFlows) &&
+                !leg[i]->tradingExCoupon(settlementDate))
                 leg[i]->accept(calc);
         }
         return basisPoint_*calc.bps()/discountCurve.discount(npvDate);
@@ -502,19 +505,22 @@ namespace QuantLib {
             return;
         }
 
-        BPSCalculator calc(discountCurve);
         for (Size i=0; i<leg.size(); ++i) {
             CashFlow& cf = *leg[i];
             if (!cf.hasOccurred(settlementDate,
-                                includeSettlementDateFlows)) {
-                npv += cf.amount() *
-                       discountCurve.discount(cf.date());
-                cf.accept(calc);
+                                includeSettlementDateFlows) &&
+                !cf.tradingExCoupon(settlementDate)) {
+                boost::shared_ptr<Coupon> cp =
+                    boost::dynamic_pointer_cast<Coupon>(leg[i]);
+                Real df = discountCurve.discount(cf.date());
+                npv += cf.amount() * df;
+                if(cp != NULL)
+                    bps += cp->nominal() * cp->accrualPeriod() * df;
             }
         }
         DiscountFactor d = discountCurve.discount(npvDate);
         npv /= d;
-        bps = basisPoint_ * calc.bps() / d;
+        bps = basisPoint_ * bps / d;
     }
 
     Rate CashFlows::atmRate(const Leg& leg,
@@ -535,7 +541,8 @@ namespace QuantLib {
         for (Size i=0; i<leg.size(); ++i) {
             CashFlow& cf = *leg[i];
             if (!cf.hasOccurred(settlementDate,
-                                includeSettlementDateFlows)) {
+                                includeSettlementDateFlows) &&
+                !cf.tradingExCoupon(settlementDate)) {
                 npv += cf.amount() *
                        discountCurve.discount(cf.date());
                 cf.accept(calc);
@@ -598,6 +605,10 @@ namespace QuantLib {
                     continue;
 
                 Real c = leg[i]->amount();
+                if (leg[i]->tradingExCoupon(settlementDate)) {
+                    c = 0.0;
+                }
+
                 Date couponDate = leg[i]->date();
                 shared_ptr<Coupon> coupon =
                     boost::dynamic_pointer_cast<Coupon>(leg[i]);
@@ -657,6 +668,10 @@ namespace QuantLib {
                     continue;
 
                 Real c = leg[i]->amount();
+                if (leg[i]->tradingExCoupon(settlementDate)) {
+                    c = 0.0;
+                }
+
                 Date couponDate = leg[i]->date();
                 shared_ptr<Coupon> coupon =
                     boost::dynamic_pointer_cast<Coupon>(leg[i]);
@@ -770,7 +785,8 @@ namespace QuantLib {
                         signChanges = 0;
                 for (Size i = 0; i < leg_.size(); ++i) {
                     if (!leg_[i]->hasOccurred(settlementDate_,
-                                              includeSettlementDateFlows_)) {
+                                              includeSettlementDateFlows_) &&
+                        !leg_[i]->tradingExCoupon(settlementDate_)) {
                         Integer thisSign = sign(leg_[i]->amount());
                         if (lastSign * thisSign < 0) // sign change
                             signChanges++;
@@ -842,6 +858,10 @@ namespace QuantLib {
 
             Date couponDate = leg[i]->date();
             Real amount = leg[i]->amount();
+            if (leg[i]->tradingExCoupon(settlementDate)) {
+                amount = 0.0;
+            }
+
             shared_ptr<Coupon> coupon =
                 boost::dynamic_pointer_cast<Coupon>(leg[i]);
             if (coupon) {
@@ -1016,6 +1036,10 @@ namespace QuantLib {
                 continue;
             
             Real c = leg[i]->amount();
+            if (leg[i]->tradingExCoupon(settlementDate)) {
+                c = 0.0;
+            }
+
             Date couponDate = leg[i]->date();
             shared_ptr<Coupon> coupon =
                 boost::dynamic_pointer_cast<Coupon>(leg[i]);

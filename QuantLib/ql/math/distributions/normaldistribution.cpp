@@ -23,6 +23,17 @@
 #include <ql/math/distributions/normaldistribution.hpp>
 #include <ql/math/comparison.hpp>
 
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#endif
+
+#include <boost/math/distributions/normal.hpp>
+
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic pop
+#endif
+
 namespace QuantLib {
 
     Real CumulativeNormalDistribution::operator()(Real z) const {
@@ -166,4 +177,21 @@ namespace QuantLib {
         return average_ + result*sigma_;
     }
 
+    MaddockInverseCumulativeNormal::MaddockInverseCumulativeNormal(
+        Real average, Real sigma)
+    : average_(average), sigma_(sigma) {}
+
+    Real MaddockInverseCumulativeNormal::operator()(Real x) const {
+        return boost::math::quantile(
+            boost::math::normal_distribution<Real>(average_, sigma_), x);
+    }
+
+    MaddockCumulativeNormal::MaddockCumulativeNormal(
+        Real average, Real sigma)
+    : average_(average), sigma_(sigma) {}
+
+    Real MaddockCumulativeNormal::operator()(Real x) const {
+        return boost::math::cdf(
+            boost::math::normal_distribution<Real>(average_, sigma_), x);
+    }
 }

@@ -175,6 +175,28 @@ using QuantLib::ForwardFlat;
 using QuantLib::Linear;
 using QuantLib::LogLinear;
 using QuantLib::Cubic;
+
+class MonotonicCubic : public Cubic {
+  public:
+    MonotonicCubic()
+    : Cubic(QuantLib::CubicInterpolation::Spline, true,
+            QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+            QuantLib::CubicInterpolation::SecondDerivative, 0.0) {}
+};
+
+class LogCubic : QuantLib::LogCubic {
+  public:
+    LogCubic()
+    : QuantLib::LogCubic(QuantLib::CubicInterpolation::Kruger) {}
+};
+
+class MonotonicLogCubic : public QuantLib::LogCubic {
+  public:
+    MonotonicLogCubic()
+    : QuantLib::LogCubic(QuantLib::CubicInterpolation::Spline, true,
+                         QuantLib::CubicInterpolation::SecondDerivative, 0.0,
+                         QuantLib::CubicInterpolation::SecondDerivative, 0.0) {}
+};
 %}
 
 struct BackwardFlat {};
@@ -182,6 +204,9 @@ struct ForwardFlat {};
 struct Linear {};
 struct LogLinear {};
 struct Cubic {};
+struct MonotonicCubic {};
+struct LogCubic {};
+struct MonotonicLogCubic {};
 
 
 #endif

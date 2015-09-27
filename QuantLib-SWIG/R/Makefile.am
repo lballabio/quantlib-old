@@ -25,12 +25,12 @@ clean-local:
 	rm -rf $(BUILT_SOURCES) ../$(QUANTLIB_R_ROOT).Rcheck \
            src/symbols.rds src/$(QUANTLIB_R_ROOT).o src/$(QUANTLIB_R_ROOT).so
 
+endif
+endif
+
 $(BUILT_SOURCES): ../SWIG/*.i
 	$(SWIG) -r -c++ -o src/$(QUANTLIB_R_ROOT).cpp ../SWIG/quantlib.i
 	mv src/$(QUANTLIB_R_ROOT).R R/
-
-endif
-endif
 
 dist-hook:
 	mkdir -p $(distdir)/demo

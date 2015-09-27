@@ -12,13 +12,10 @@ CDS_LDADD = ../../ql/libQuantLib.la
 
 EXTRA_DIST = \
     CDS.dev \
-    CDS_vc7.vcproj \
     CDS_vc8.vcproj \
     CDS_vc9.vcproj \
-    CDS_vc10.vcxproj \
-    CDS_vc10.vcxproj.filters \
-    CDS_vc11.vcxproj \
-    CDS_vc11.vcxproj.filters \
+    CDS.vcxproj \
+    CDS.vcxproj.filters \
     ReadMe.txt
 
 .PHONY: examples check-examples

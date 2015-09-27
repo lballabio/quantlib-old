@@ -1,7 +1,7 @@
 
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
- Copyright (C) 2003, 2004 StatPro Italia srl
+ Copyright (C) 2003, 2004, 2014 StatPro Italia srl
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -96,7 +96,6 @@ class ImpliedTermStructurePtr: public boost::shared_ptr<YieldTermStructure> {
     }
 };
 
-
 // spreaded term structures
 
 %{
@@ -133,6 +132,36 @@ class ForwardSpreadedTermStructurePtr
         }
     }
 };
+
+%{
+using QuantLib::InterpolatedPiecewiseZeroSpreadedTermStructure;
+%}
+
+%define export_piecewise_zero_spreaded_term_structure(Name,Interpolator)
+
+%fragment("Name","header") {
+typedef boost::shared_ptr<YieldTermStructure> Name##Ptr;
+}
+%fragment("Name");
+
+%rename(Name) Name##Ptr;
+class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
+  public:
+    %extend {
+        Name##Ptr(
+                const Handle<YieldTermStructure>& curveHandle,
+                const std::vector< Handle<Quote> >& spreadHandles,
+                const std::vector<Date>& dates) {
+            return new Name##Ptr(
+                new InterpolatedPiecewiseZeroSpreadedTermStructure<Interpolator>(
+                          curveHandle,spreadHandles,dates));
+        }
+    }
+};
+
+%enddef
+
+export_piecewise_zero_spreaded_term_structure(SpreadedLinearZeroInterpolatedTermStructure,Linear);
 
 
 // flat forward curve

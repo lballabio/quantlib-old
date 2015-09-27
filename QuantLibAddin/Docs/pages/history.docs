@@ -23,6 +23,71 @@
 
 /*! \page history Version History
 
+<strong>Release 1.6.0 - July 2015</strong>
+
+REQUIRED PACKAGES
+
+- %QuantLib version 1.6.0 or 1.6.1
+- ObjectHandler version 1.6.0
+- gensrc version 1.6.0
+
+BUILD
+
+- Support for the LibreOffice addin has been re-introduced (thanks to Lars
+  Callenbach)
+
+FUNCTIONALITY
+
+- 8 new functions / 1,080 in total
+
+<strong>Release 1.5.0 - April 2015</strong>
+
+REQUIRED PACKAGES
+
+- %QuantLib version 1.5.0
+- ObjectHandler version 1.5.0
+- gensrc version 1.5.0
+
+BUILD
+
+- Introduce support for VC12 (Visual Studio 2013)
+- Modified the VC make files for gensrc to make the invocation of Python more
+  explicit (thanks to Francois Botha).
+
+FUNCTIONALITY
+
+- 55 new functions / 1072 in total
+- Additional Credit functionality exported from %QuantLib to %QuantLibAddin.
+  Thanks to Jose Aparicio.
+- Bug fix.  In the past, if you called function qlSimpleQuoteSetValue() with an
+  invalid value, the call failed.  This led to bugs, if you opened a
+  spreadsheet with stale rates, a quote could be set with an input that was
+  numerically valid but out of date.  Then if the live value was #NA, the update
+  failed, leaving the quote with an old stale value.  Now, if you call
+  qlSimpleQuoteSetValue() with an invalid input such as #NA, the quote object is
+  invalidated.
+
+<strong>Release 1.4.0 - June 2014</strong>
+
+REQUIRED PACKAGES
+
+- %QuantLib version 1.4.0
+- ObjectHandler version 1.4.0
+- gensrc version 1.4.0
+
+FUNCTIONALITY
+
+- 2 new functions / 1017 in total
+- Support for 64-bit (thanks to Richard Gould)
+- Prevent potential crash in constructor of FixedRateBondHelper (thanks to
+  Francois Botha)
+- Added additional clones of Calendars to correspond to the output from
+  QuantLib::Calendar::name(). This allows us in Excel to ask a calendar for its
+  name and then recreate the same calendar based on that string.
+- Function %qlRateHelperSelection() now works for anonymous objects thanks to a
+  bug fix in ObjectHandler.
+- Fixed bug which could cause interpolation code to crash
+
 <strong>Release 1.2.0 - July 2012</strong>
 
 REQUIRED PACKAGES
@@ -101,7 +166,8 @@ BUILD
   and ObjectHandler, the paths are now specified with mandatory arguments to
   the configure script:
 \verbatim
-./configure --with-gensrc=/path/to/gensrc --with-oh=/path/to/ObjectHandler
+./configure --with-gensrc=/path/to/gensrc
+    --with-oh=/path/to/ObjectHandler
 \endverbatim
 
 DOCUMENTATION

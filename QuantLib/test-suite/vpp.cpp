@@ -52,8 +52,6 @@
 #include <ql/methods/finitedifferences/meshers/fdmsimpleprocess1dmesher.hpp>
 #include <ql/methods/finitedifferences/utilities/fdminnervaluecalculator.hpp>
 #include <ql/experimental/finitedifferences/fdmspreadpayoffinnervalue.hpp>
-
-#include <boost/lambda/lambda.hpp>
 #include <deque>
 
 using namespace QuantLib;
@@ -77,12 +75,22 @@ namespace {
             new ExtOUWithJumpsProcess(ouProcess, x0[1], beta,
                                       jumpIntensity, eta));
     }
+
+    class linear {
+        Real alpha, beta;
+      public:
+        linear(Real alpha, Real beta) : alpha(alpha), beta(beta) {}
+        Real operator()(Real x) const {
+            return alpha + beta*x;
+        }
+    };
+
 }
 
 
 void VPPTest::testGemanRoncoroniProcess() {
 
-    BOOST_TEST_MESSAGE("Testing Geman Roncoroni process...");
+    BOOST_TEST_MESSAGE("Testing Geman-Roncoroni process...");
 
     /* Example induced by H. Geman, A. Roncoroni,
        "Understanding the Fine Structure of Electricity Prices",
@@ -129,7 +137,7 @@ void VPPTest::testGemanRoncoroniProcess() {
     const Real alphaG    = 1.0;
     const Real x0G       = 1.1;
 
-    boost::function<Real (Real)> f = alphaG + betaG*boost::lambda::_1;
+    boost::function<Real (Real)> f = linear(alphaG, betaG);
 
     boost::shared_ptr<StochasticProcess1D> eouProcess(
         new ExtendedOrnsteinUhlenbeckProcess(speed, vol, x0G, f,
@@ -207,7 +215,7 @@ void VPPTest::testGemanRoncoroniProcess() {
 
 void VPPTest::testSimpleExtOUStorageEngine() {
 
-    BOOST_TEST_MESSAGE("Testing Simple Storage option based on ext. OU model...");
+    BOOST_TEST_MESSAGE("Testing simple-storage option based on ext. OU model...");
 
     SavedSettings backup;
 
@@ -255,7 +263,7 @@ void VPPTest::testSimpleExtOUStorageEngine() {
 
 void VPPTest::testKlugeExtOUSpreadOption() {
 
-    BOOST_TEST_MESSAGE("Testing Simple Kluge ext-Ornstein-Uhlenbeck spread option...");
+    BOOST_TEST_MESSAGE("Testing simple Kluge ext-Ornstein-Uhlenbeck spread option...");
 
     SavedSettings backup;
 
@@ -278,7 +286,7 @@ void VPPTest::testKlugeExtOUSpreadOption() {
 
     boost::shared_ptr<ExtOUWithJumpsProcess>
                                            klugeProcess = createKlugeProcess();
-    boost::function<Real (Real)> f = alphaG + betaG*boost::lambda::_1;
+    boost::function<Real (Real)> f = linear(alphaG, betaG);
 
     boost::shared_ptr<ExtendedOrnsteinUhlenbeckProcess> extOUProcess(
         new ExtendedOrnsteinUhlenbeckProcess(speed, vol, x0G, f,

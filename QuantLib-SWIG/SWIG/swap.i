@@ -49,6 +49,9 @@ class SwapPtr : public boost::shared_ptr<Instrument> {
         Date maturityDate() {
             return boost::dynamic_pointer_cast<Swap>(*self)->maturityDate();
         }
+        const Leg & leg(Size i){
+            return boost::dynamic_pointer_cast<Swap>(*self)->leg(i);
+        }
     }
 };
 
@@ -148,7 +151,9 @@ typedef boost::shared_ptr<Instrument> AssetSwapPtr;
 
 %rename(AssetSwap) AssetSwapPtr;
 class AssetSwapPtr : public SwapPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") AssetSwapPtr;
+    #endif
   public:
     %extend {
         AssetSwapPtr(bool payFixedRate,

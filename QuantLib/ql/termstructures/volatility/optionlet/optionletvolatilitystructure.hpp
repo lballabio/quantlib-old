@@ -42,15 +42,6 @@ namespace QuantLib {
             constructors.
         */
         //@{
-#ifndef QL_DISABLE_DEPRECATED
-        /*! \warning term structures initialized by means of this
-                     constructor must manage their own reference date
-                     by overriding the referenceDate() method.
-        */
-        OptionletVolatilityStructure(const Calendar& cal,
-                                     BusinessDayConvention bdc = Following,
-                                     const DayCounter& dc = DayCounter());
-#endif
         //! default constructor
         /*! \warning term structures initialized by means of this
                      constructor must manage their own reference date
@@ -114,8 +105,8 @@ namespace QuantLib {
         //! implements the actual smile calculation in derived classes
         virtual boost::shared_ptr<SmileSection> smileSectionImpl(
                                                     Time optionTime) const = 0;
-        Volatility volatilityImpl(const Date& optionDate,
-                                  Rate strike) const;
+        virtual Volatility volatilityImpl(const Date& optionDate,
+                                          Rate strike) const;
         //! implements the actual volatility calculation in derived classes
         virtual Volatility volatilityImpl(Time optionTime,
                                           Rate strike) const = 0;

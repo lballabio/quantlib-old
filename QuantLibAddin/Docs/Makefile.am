@@ -1,9 +1,13 @@
 
 EXTRA_DIST = \
-    docs-QuantLibAddin_vc7.vcproj \
     docs-QuantLibAddin_vc8.vcproj \
     docs-QuantLibAddin_vc9.vcproj \
     docs-QuantLibAddin_vc10.vcxproj \
+    docs-QuantLibAddin_vc10.vcxproj.filters \
+    docs-QuantLibAddin_vc11.vcxproj \
+    docs-QuantLibAddin_vc11.vcxproj.filters \
+    docs-QuantLibAddin_vc12.vcxproj \
+    docs-QuantLibAddin_vc12.vcxproj.filters \
     Makefile.vc \
     quantlibaddin.doxy \
     qla_footer.html \
@@ -27,7 +31,7 @@ OH_DIR := @oh_dir@
 DOXYGEN_CONFIG := $(PROJECTNAME).doxy
 DOXYGEN_CONFIG_TEMP := .$(DOXYGEN_CONFIG)
 DOXYGEN_CUSTOM := doxygen.css tabs.css ql.css $(PROJECTINITIALS)_footer.html $(PROJECTINITIALS)_header.html $(PROJECTINITIALS)_headeronline.html 
-SCRIPT := $(OH_DIR)/dev_tools/preprocess_doxyfile.py
+SCRIPT := $(OH_DIR)/Docs/preprocess_doxyfile.py
 
 %.gz: %
 	rm -f $@

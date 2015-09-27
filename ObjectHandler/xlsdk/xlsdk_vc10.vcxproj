@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug (static runtime)|Win32">
@@ -63,12 +63,20 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">..\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">..\build\vc100\xlsdk\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">..\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">..\build\vc100\xlsdk\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\build\vc100\xlsdk\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</EmbedManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\lib\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\build\vc100\xlsdk\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">xlsdk-vc100-mt</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">xlsdk-vc100-mt-gd</TargetName>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">xlsdk-vc100-mt-sgd</TargetName>
@@ -80,16 +88,16 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BOOST_LIB_DIAGNOSTIC;NDEBUG;_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BOOST_LIB_DIAGNOSTIC;NDEBUG;_LIB;WIN32;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc100\xlsdk\Release (static runtime)/xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc100\xlsdk\Release (static runtime)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc100\xlsdk\Release (static runtime)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc100\xlsdk\Release (static runtime)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc100\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc100\xlsdk\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc100\xlsdk\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc100\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -113,18 +121,18 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;WIN32;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc100\xlsdk\Debug (static runtime)\xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc100\xlsdk\Debug (static runtime)\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc100\xlsdk\Debug (static runtime)\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc100\xlsdk\Debug (static runtime)\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc100\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc100\xlsdk\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc100\xlsdk\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc100\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
@@ -146,16 +154,16 @@
       <Optimization>MaxSpeed</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BOOST_LIB_DIAGNOSTIC;NDEBUG;_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BOOST_LIB_DIAGNOSTIC;NDEBUG;_LIB;WIN32;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc100\xlsdk\Release\xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc100\xlsdk\Release\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc100\xlsdk\Release\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc100\xlsdk\Release\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc100\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc100\xlsdk\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc100\xlsdk\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc100\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -179,18 +187,18 @@
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;_LIB;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;WIN32;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PrecompiledHeaderOutputFile>..\build\vc100\xlsdk\Debug\xlsdk.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>..\build\vc100\xlsdk\Debug\</AssemblerListingLocation>
-      <ObjectFileName>..\build\vc100\xlsdk\Debug\</ObjectFileName>
-      <ProgramDataBaseFileName>..\build\vc100\xlsdk\Debug\</ProgramDataBaseFileName>
+      <PrecompiledHeaderOutputFile>..\build\vc100\xlsdk\$(Configuration)/xlsdk.pch</PrecompiledHeaderOutputFile>
+      <AssemblerListingLocation>..\build\vc100\xlsdk\$(Configuration)\</AssemblerListingLocation>
+      <ObjectFileName>..\build\vc100\xlsdk\$(Configuration)\</ObjectFileName>
+      <ProgramDataBaseFileName>..\build\vc100\xlsdk\$(Configuration)\</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>

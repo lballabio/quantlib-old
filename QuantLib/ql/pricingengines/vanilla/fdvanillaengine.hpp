@@ -68,7 +68,6 @@ namespace QuantLib {
         boost::shared_ptr<GeneralizedBlackScholesProcess> process_;
         Size timeSteps_, gridPoints_;
         bool timeDependent_;
-        mutable Real requiredGridValue_;
         mutable Date exerciseDate_;
         mutable boost::shared_ptr<Payoff> payoff_;
         mutable TridiagonalOperator finiteDifferenceOperator_;
@@ -80,8 +79,6 @@ namespace QuantLib {
       protected:
         void ensureStrikeInGrid() const;
       private:
-        // temporaries
-        mutable Real gridLogSpacing_;
         Size safeGridPoints(Size gridPoints,
                             Time residualTime) const;
         static const Real safetyZoneFactor_;
@@ -98,6 +95,7 @@ namespace QuantLib {
             this->registerWith(process);
         }
       private:
+        using base::calculate;
         void calculate() const {
             base::setupArguments(&(this->arguments_));
             base::calculate(&(this->results_));

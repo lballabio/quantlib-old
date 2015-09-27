@@ -19,6 +19,8 @@
 */
 
 #include <ql/cashflow.hpp>
+#include <ql/settings.hpp>
+#include <ql/patterns/visitor.hpp>
 
 namespace QuantLib {
 
@@ -44,6 +46,18 @@ namespace QuantLib {
                 includeRefDate = *includeToday;
         }
         return Event::hasOccurred(refDate, includeRefDate);
+    }
+
+    bool CashFlow::tradingExCoupon(const Date& refDate) const {
+
+        Date ecd = exCouponDate();
+        if (ecd == Date())
+            return false;
+
+        Date ref =
+            refDate != Date() ? refDate : Settings::instance().evaluationDate();
+
+        return ecd <= ref;
     }
 
     void CashFlow::accept(AcyclicVisitor& v) {

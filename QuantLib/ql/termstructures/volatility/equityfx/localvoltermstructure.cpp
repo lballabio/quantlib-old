@@ -21,13 +21,6 @@
 
 namespace QuantLib {
 
-#ifndef QL_DISABLE_DEPRECATED
-    LocalVolTermStructure::LocalVolTermStructure(const Calendar& cal,
-                                                 BusinessDayConvention bdc,
-                                                 const DayCounter& dc)
-    : VolatilityTermStructure(cal, bdc, dc) {}
-#endif
-
     LocalVolTermStructure::LocalVolTermStructure(BusinessDayConvention bdc,
                                                  const DayCounter& dc)
     : VolatilityTermStructure(bdc, dc) {}

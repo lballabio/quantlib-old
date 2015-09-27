@@ -1,0 +1,24 @@
+
+/* overrides for mobile screens */
+@media all and (max-width: 796px) {
+
+#content {
+    clear: both;
+    width: 95%;
+    margin-right: 1em;
+}
+
+#menu {
+    display: none;
+}
+
+#menuafter {
+    display: inline;
+    float: none;
+    width: 100%;
+    margin: 0;
+    padding-right: 1em;
+    line-height: 140%;
+}
+
+}

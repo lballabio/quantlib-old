@@ -12,13 +12,10 @@ FRA_LDADD = ../../ql/libQuantLib.la
 
 EXTRA_DIST = \
     FRA.dev \
-    FRA_vc7.vcproj \
     FRA_vc8.vcproj \
     FRA_vc9.vcproj \
-    FRA_vc10.vcxproj \
-    FRA_vc10.vcxproj.filters \
-    FRA_vc11.vcxproj \
-    FRA_vc11.vcxproj.filters \
+    FRA.vcxproj \
+    FRA.vcxproj.filters \
     ReadMe.txt
 
 .PHONY: examples check-examples

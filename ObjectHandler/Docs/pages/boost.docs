@@ -21,53 +21,10 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page boost Installing Boost On Windows
+/*! \page boost Installing Boost
 
-The main Boost website <a href="http://www.boost.org">http://www.boost.org</a>
-includes instructions for downloading Boost and building the package from
-source code.  However it's easier to use the installer from the following link
-on the Boost Consulting website:
-<a href="http://www.boostpro.com/download/">http://www.boostpro.com/download/</a>
-
-The installer prompts you to select the variants you require.  The choice
-depends on the project configurations you intend to use:
-
-<table border="1">
-<tr><td><b>Project Configuration</b></td><td><b>Boost Variant</b></td></tr>
-<tr><td>Release</td><td>Multithread</td></tr>
-<tr><td>Release (static runtime)</td><td>Multithread, static runtime</td></tr>
-<tr><td>Debug</td><td>Multithread Debug</td></tr>
-<tr><td>Debug (static runtime)</td><td>Multithread Debug, static runtime</td></tr>
-</table>
-
-Often you just want configuration \c Release (static runtime) / Boost variant <tt>Multithread,
-static runtime</tt>.  If you will have multiple XLLs linked together
-dynamically at runtime then you need configuration <tt>Release</tt>,
-Boost variant <tt>Multithread</tt>.  The Boost variants \c SingleThread
-and \c DLL are never required for this project.  If disk space is not a
-concern, just select everything.
-
-<img src="images/boost_installer.jpg">
-
-The next dialog asks you which components you need, retain the default setting
-which is to install everything.  Finish the installation.
-
-Configure VC with the location of the Boost header and lib files.
-
-\li <b>VC9 and earlier</b>: Go to <tt>Tools | Options | Projects and Solutions | VC++ Directories</tt>
-\li <b>VC10</b>: Under Property Manager, select the project and configuration you want to change, and right click on Microsoft.Cpp.Win32.user:
-
-<img src="images/boost_VC10_path.jpg">
-
-Select <tt>Include files</tt> and specify the path to the top level directory
-containing the Boost header files <tt>C:\\Program Files\\boost\\boost_1_35_0</tt>:
-
-<img src="images/boost_include_path.jpg">
-
-Select <tt>Library files</tt> and specify the path to the top level directory
-containing the Boost lib files <tt>C:\\Program Files\\boost\\boost_1_35_0\\lib</tt>:
-
-<img src="images/boost_lib_path.jpg">
+This page is no longer maintained.  For instructions on installing Boost,
+please consult the Boost documentation.
 
 */
 

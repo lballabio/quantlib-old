@@ -68,13 +68,22 @@ namespace ObjectHandler {
         OH_FAIL("Attempt to reference uninitialized RepositoryXL object");
     }
 
+    void RepositoryXL::clear() {
+        objectMap_.clear();
+        errorMessageMap_.clear();
+        callingRanges_.clear();
+    }
+
     string RepositoryXL::storeObject(
         const string &objectIDRaw,
         const shared_ptr<Object> &object,
-        bool overwrite) {
+        bool overwrite,
+        boost::shared_ptr<ValueObject> valueObject) {
 
             shared_ptr<CallingRange> callingRange = getCallingRange();
             string objectID = callingRange->initializeID(objectIDRaw);
+            if (objectIDRaw.empty() && valueObject)
+                valueObject->setProperty("OBJECTID", objectID);
 
             shared_ptr<ObjectWrapperXL> objectWrapperXL;
             ObjectMap::const_iterator result = objectMap_.find(objectID);

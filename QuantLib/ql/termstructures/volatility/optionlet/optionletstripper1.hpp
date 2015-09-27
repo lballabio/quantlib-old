@@ -42,13 +42,15 @@ namespace QuantLib {
     */
     class OptionletStripper1 : public OptionletStripper {
       public:
-        OptionletStripper1(const boost::shared_ptr<CapFloorTermVolSurface>&,
-                           const boost::shared_ptr<IborIndex>& index,
+        OptionletStripper1(const boost::shared_ptr<CapFloorTermVolSurface> &,
+                           const boost::shared_ptr<IborIndex> &index,
                            Rate switchStrikes = Null<Rate>(),
-                           Real accuracy = 1.0e-6,
-                           Natural maxIter = 100,
-                           const Handle<YieldTermStructure>& discount =
-                                                Handle<YieldTermStructure>());
+                           Real accuracy = 1.0e-6, Natural maxIter = 100,
+                           const Handle<YieldTermStructure> &discount =
+                               Handle<YieldTermStructure>(),
+                           VolatilityType type = ShiftedLognormal,
+                           Real displacement = 0.0,
+                           bool dontThrow = false);
 
         const Matrix& capFloorPrices() const;
         const Matrix& capFloorVolatilities() const;
@@ -71,6 +73,7 @@ namespace QuantLib {
         mutable Rate switchStrike_;
         Real accuracy_;
         Natural maxIter_;
+        bool dontThrow_;
     };
 
 }

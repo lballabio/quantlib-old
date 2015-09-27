@@ -26,8 +26,24 @@
 
 #include <ql/types.hpp>
 #include <boost/shared_ptr.hpp>
+#if defined(QL_PATCH_MSVC)
+    #pragma managed(push, off)
+#endif
 #include <boost/noncopyable.hpp>
+#if defined(QL_PATCH_MSVC)
+    #pragma managed(pop)
+#endif
 #include <map>
+
+#if (_MANAGED == 1) || (_M_CEE == 1)
+// One of the Visual C++ /clr modes. In this case, the global instance
+// map must be declared as a static data member of the class.
+#define QL_MANAGED 1
+#else
+// Every other configuration. The map can be declared as a static
+// variable inside the creation method.
+#define QL_MANAGED 0
+#endif
 
 namespace QuantLib {
 
@@ -36,11 +52,8 @@ namespace QuantLib {
     Integer sessionId();
     #endif
 
-    // this is required on VC++ (with a slightly different syntax depending
-    // on the compiler version) when CLR support is enabled
-    #if defined(QL_PATCH_MSVC71)
-        #pragma unmanaged
-    #elif defined(QL_PATCH_MSVC)
+    // this is required on VC++ when CLR support is enabled
+    #if defined(QL_PATCH_MSVC)
         #pragma managed(push, off)
     #endif
 
@@ -64,6 +77,10 @@ namespace QuantLib {
     */
     template <class T>
     class Singleton : private boost::noncopyable {
+    #if (QL_MANAGED == 1)
+      private:
+        static std::map<Integer, boost::shared_ptr<T> > instances_;
+    #endif
       public:
         //! access to the unique instance
         static T& instance();
@@ -71,11 +88,19 @@ namespace QuantLib {
         Singleton() {}
     };
 
+    #if (QL_MANAGED == 1)
+    // static member definition
+    template <class T>
+    std::map<Integer, boost::shared_ptr<T> > Singleton<T>::instances_;
+    #endif
+
     // template definitions
 
     template <class T>
     T& Singleton<T>::instance() {
+        #if (QL_MANAGED == 0)
         static std::map<Integer, boost::shared_ptr<T> > instances_;
+        #endif
         #if defined(QL_ENABLE_SESSIONS)
         Integer id = sessionId();
         #else
@@ -88,13 +113,12 @@ namespace QuantLib {
     }
 
     // reverts the change above
-    #if defined(QL_PATCH_MSVC71)
-        #pragma managed
-    #elif defined(QL_PATCH_MSVC)
+    #if defined(QL_PATCH_MSVC)
         #pragma managed(pop)
     #endif
 
 }
 
+#undef QL_MANAGED
 
 #endif

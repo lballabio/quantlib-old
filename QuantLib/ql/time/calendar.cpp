@@ -4,6 +4,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
  Copyright (C) 2004 Jeff Yu
+ Copyright (C) 2014 Paolo Mazzocchi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -50,12 +51,19 @@ namespace QuantLib {
             return d;
 
         Date d1 = d;
-        if (c == Following || c == ModifiedFollowing) {
+        if (c == Following || c == ModifiedFollowing 
+            || c == HalfMonthModifiedFollowing) {
             while (isHoliday(d1))
                 d1++;
-            if (c == ModifiedFollowing) {
+            if (c == ModifiedFollowing 
+                || c == HalfMonthModifiedFollowing) {
                 if (d1.month() != d.month()) {
-                    return adjust(d,Preceding);
+                    return adjust(d, Preceding);
+                }
+                if (c == HalfMonthModifiedFollowing) {
+                    if (d.dayOfMonth() <= 15 && d1.dayOfMonth() > 15) {
+                        return adjust(d, Preceding);
+                    }
                 }
             }
         } else if (c == Preceding || c == ModifiedPreceding) {
@@ -64,6 +72,17 @@ namespace QuantLib {
             if (c == ModifiedPreceding && d1.month() != d.month()) {
                 return adjust(d,Following);
             }
+        } else if (c == Nearest) {
+            Date d2 = d;
+            while (isHoliday(d1) && isHoliday(d2))
+            {
+                d1++;
+                d2--;
+            }
+            if (isHoliday(d1))
+                return d2;
+            else
+                return d1;
         } else {
             QL_FAIL("unknown business-day convention");
         }

@@ -1,0 +1,256 @@
+<Category name='latentmodels'>
+  <description>QuantLib Credit Latent Models</description>
+  <displayName>QuantLib Credit Latent Models</displayName>
+  <xlFunctionWizardCategory>QuantLib - Credit</xlFunctionWizardCategory>
+  <addinIncludes>
+    <include>ql/experimental/credit/defaultprobabilitylatentmodel.hpp</include>
+
+    <include>qlo/defaultbasket.hpp</include>
+    <include>qlo/credit.hpp</include>
+    <include>qlo/latentmodels.hpp</include>
+  </addinIncludes>
+  <serializationIncludes>
+    <include>ql/experimental/credit/basket.hpp</include>
+    
+    <include>qlo/defaultbasket.hpp</include>
+    <include>qlo/credit.hpp</include>
+    <include>qlo/latentmodels.hpp</include>
+  </serializationIncludes>
+  <copyright>
+    Copyright (C) 2014 Jose Aparicio
+  </copyright>
+
+  <Functions>
+
+    <Constructor name='qlGaussianDefaultProbLM'>
+      <libraryFunction>GaussianDefProbLM</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Basket'>
+            <type>QuantLib::Basket</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Defaultable positions basket.</description>
+          </Parameter>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Member name='qlGaussianLMDefaultCorrel' type='QuantLib::GaussianDefProbLM' >
+      <description>Default probability correlation.</description>
+      <libraryFunction>defaultCorrelation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+        <Parameter name='CorrelationDate' default='QuantLib::Date()'>
+          <type>QuantLib::Date</type>
+          <tensorRank>scalar</tensorRank>
+          <description>Correlation date.</description>
+        </Parameter>
+          <Parameter name='NameindexA'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>First name index</description>
+          </Parameter>
+          <Parameter name='NameindexB'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Second name index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Correlation</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlGaussianLMAssetCorrel' type='QuantLib::GaussianDefProbLM' >
+      <description>Default probability correlation.</description>
+      <libraryFunction>latentVariableCorrel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='NameindexA'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>First name index</description>
+          </Parameter>
+          <Parameter name='NameindexB'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Second name index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Correlation</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlGaussianLMProbNHits' type='QuantLib::GaussianDefProbLM' >
+      <description>Probability of having a given number of defaults or more.</description>
+      <libraryFunction>probAtLeastNEvents</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='NumDefaults'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of defaults</description>
+          </Parameter>
+          <Parameter name='ProbabilityDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Target date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Probability</description>
+      </ReturnValue>
+    </Member>
+
+
+    <!--T version, no common ancestor-->
+
+    <Constructor name='qlTDefaultProbLM'>
+      <libraryFunction>TDefProbLM</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='Torders'>
+            <type>QuantLib::Integer</type>
+            <tensorRank>vector</tensorRank>
+            <description>Orders of the StudentT variates.</description>
+          </Parameter>
+          <Parameter name='Basket'>
+            <type>QuantLib::Basket</type>
+            <superType>libraryClass</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>Defaultable positions basket.</description>
+          </Parameter>
+          <Parameter name='Factors'>
+            <type>double</type>
+            <tensorRank>matrix</tensorRank>
+            <description>Systemic model factors.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+
+    <Member name='qlTLMDefaultCorrel' type='QuantLib::TDefProbLM' >
+      <description>Default probability correlation.</description>
+      <libraryFunction>defaultCorrelation</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='CorrelationDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Correlation date.</description>
+          </Parameter>
+          <Parameter name='NameindexA'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>First name index</description>
+          </Parameter>
+          <Parameter name='NameindexB'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Second name index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Correlation</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTLMAssetCorrel' type='QuantLib::TDefProbLM' >
+      <description>Default probability correlation.</description>
+      <libraryFunction>latentVariableCorrel</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='NameindexA'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>First name index</description>
+          </Parameter>
+          <Parameter name='NameindexB'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Second name index</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Correlation</description>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlTLMProbNHits' type='QuantLib::TDefProbLM' >
+      <description>Probability of having a given number of defaults or more.</description>
+      <libraryFunction>probAtLeastNEvents</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='NumDefaults'>
+            <type>QuantLib::Size</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Number of defaults</description>
+          </Parameter>
+          <Parameter name='ProbabilityDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Target date.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+        <description>Probability</description>
+      </ReturnValue>
+    </Member>
+
+
+  </Functions>
+
+</Category>

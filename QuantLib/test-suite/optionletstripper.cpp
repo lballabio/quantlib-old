@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2008 Ferdinando Ametrano
  Copyright (C) 2007, 2008 Laurent Hoffmann
+ Copyright (C) 2015 Michael von den Driesch
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -65,15 +66,12 @@ namespace {
 
         CommonVars() {
             accuracy = 1.0e-6;
-            tolerance = 2.5e-5;
+            tolerance = 2.5e-8;
         }
 
         void setTermStructure() {
 
             calendar = TARGET();
-            Date today = calendar.adjust(Date::todaysDate());
-            Settings::instance().evaluationDate() = today;
-
             dayCounter = Actual365Fixed();
 
             Rate flatFwdRate = 0.04;
@@ -251,9 +249,11 @@ void OptionletStripperTest::testFlatTermVolatilityStripping1() {
 
     BOOST_TEST_MESSAGE(
         "Testing forward/forward vol stripping from flat term vol "
-        "surface using optionletstripper1...");
+        "surface using OptionletStripper1 class...");
 
     CommonVars vars;
+    Settings::instance().evaluationDate() = Date(28, October, 2013);
+
     vars.setFlatTermVolSurface();
 
     shared_ptr<IborIndex> iborIndex(new Euribor6M(vars.yieldTermStructure));
@@ -310,9 +310,11 @@ void OptionletStripperTest::testTermVolatilityStripping1() {
 
     BOOST_TEST_MESSAGE(
         "Testing forward/forward vol stripping from non-flat term "
-        "vol surface using optionletstripper1...");
+        "vol surface using OptionletStripper1 class...");
 
     CommonVars vars;
+    Settings::instance().evaluationDate() = Date(28, October, 2013);
+
     vars.setCapFloorTermVolSurface();
 
     shared_ptr<IborIndex> iborIndex(new Euribor6M(vars.yieldTermStructure));
@@ -371,9 +373,11 @@ void OptionletStripperTest::testFlatTermVolatilityStripping2() {
 
   BOOST_TEST_MESSAGE(
         "Testing forward/forward vol stripping from flat term vol "
-        "surface using optionletstripper2...");
+        "surface using OptionletStripper2 class...");
 
   CommonVars vars;
+  Settings::instance().evaluationDate() = Date::todaysDate();
+
   vars.setFlatTermVolCurve();
   vars.setFlatTermVolSurface();
 
@@ -436,9 +440,10 @@ void OptionletStripperTest::testTermVolatilityStripping2() {
 
   BOOST_TEST_MESSAGE(
         "Testing forward/forward vol stripping from non-flat term vol "
-        "surface using optionletstripper2...");
+        "surface using OptionletStripper2 class...");
 
   CommonVars vars;
+  Settings::instance().evaluationDate() = Date::todaysDate();
 
   vars.setCapFloorTermVolCurve();
   vars.setCapFloorTermVolSurface();

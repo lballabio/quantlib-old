@@ -123,7 +123,7 @@ void SwingOptionTest::testExtendedOrnsteinUhlenbeckProcess() {
 
 void SwingOptionTest::testFdmExponentialJump1dMesher() {
 
-    BOOST_TEST_MESSAGE("Testing finite difference mesher for the Kluge model ...");
+    BOOST_TEST_MESSAGE("Testing finite difference mesher for the Kluge model...");
 
     SavedSettings backup;
 
@@ -173,7 +173,7 @@ void SwingOptionTest::testFdmExponentialJump1dMesher() {
 
 void SwingOptionTest::testExtOUJumpVanillaEngine() {
 
-    BOOST_TEST_MESSAGE("Testing finite difference pricer for the Kluge model ...");
+    BOOST_TEST_MESSAGE("Testing finite difference pricer for the Kluge model...");
 
     SavedSettings backup;
 
@@ -232,9 +232,29 @@ void SwingOptionTest::testExtOUJumpVanillaEngine() {
     }
 }
 
+namespace {
+    class VanillaForwardPayoff : public StrikedTypePayoff {
+      public:
+        VanillaForwardPayoff(Option::Type type, Real strike)
+          : StrikedTypePayoff(type, strike) {}
+
+        std::string name() const { return "ForwardTypePayoff";}
+        Real operator()(Real price) const {
+            switch (type_) {
+              case Option::Call:
+                return price-strike_;
+              case Option::Put:
+                return strike_-price;
+              default:
+                QL_FAIL("unknown/illegal option type");
+            }
+        }
+    };
+}
+
 void SwingOptionTest::testFdBSSwingOption() {
 
-    BOOST_TEST_MESSAGE("Testing Black-Scholes Vanilla Swing option pricing ...");
+    BOOST_TEST_MESSAGE("Testing Black-Scholes vanilla swing option pricing...");
 
     SavedSettings backup;
 
@@ -243,8 +263,11 @@ void SwingOptionTest::testFdBSSwingOption() {
     DayCounter dayCounter = ActualActual();
     Date maturityDate = settlementDate + Period(12, Months);
 
+    Real strike = 30;
     boost::shared_ptr<StrikedTypePayoff> payoff(
-                                     new PlainVanillaPayoff(Option::Put, 30));
+        new PlainVanillaPayoff(Option::Put, strike));
+    boost::shared_ptr<StrikedTypePayoff> forward(
+        new VanillaForwardPayoff(Option::Put, strike));
 
     std::vector<Date> exerciseDates(1, settlementDate+Period(1, Months));
     while (exerciseDates.back() < maturityDate) {
@@ -274,8 +297,8 @@ void SwingOptionTest::testFdBSSwingOption() {
     for (Size i=0; i < exerciseDates.size(); ++i) {
         const Size exerciseRights = i+1;
         
-        VanillaSwingOption swingOption(payoff, swingExercise,
-                                       exerciseRights, exerciseRights);
+        VanillaSwingOption swingOption(forward, swingExercise,
+        		                       0, exerciseRights);
         swingOption.setPricingEngine(engine);
         const Real swingOptionPrice = swingOption.NPV();
 
@@ -308,7 +331,7 @@ void SwingOptionTest::testFdBSSwingOption() {
 
 void SwingOptionTest::testExtOUJumpSwingOption() {
 
-    BOOST_TEST_MESSAGE("Testing Simple Swing option pricing for Kluge model...");
+    BOOST_TEST_MESSAGE("Testing simple swing option pricing for Kluge model...");
 
     SavedSettings backup;
 
@@ -317,8 +340,11 @@ void SwingOptionTest::testExtOUJumpSwingOption() {
     DayCounter dayCounter = ActualActual();
     Date maturityDate = settlementDate + Period(12, Months);
 
+    Real strike = 30;
     boost::shared_ptr<StrikedTypePayoff> payoff(
-                                     new PlainVanillaPayoff(Option::Put, 30));
+        new PlainVanillaPayoff(Option::Put, strike));
+    boost::shared_ptr<StrikedTypePayoff> forward(
+        new VanillaForwardPayoff(Option::Put, strike));
 
     std::vector<Date> exerciseDates(1, settlementDate+Period(1, Months));
     while (exerciseDates.back() < maturityDate) {
@@ -366,8 +392,8 @@ void SwingOptionTest::testExtOUJumpSwingOption() {
     for (Size i=0; i < exerciseDates.size(); ++i) {
         const Size exerciseRights = i+1;
 
-        VanillaSwingOption swingOption(payoff, swingExercise,
-                                       exerciseRights, exerciseRights);
+        VanillaSwingOption swingOption(forward, swingExercise,
+                                       0, exerciseRights);
         swingOption.setPricingEngine(swingEngine);
         const Real swingOptionPrice = swingOption.NPV();
 
@@ -412,7 +438,7 @@ void SwingOptionTest::testExtOUJumpSwingOption() {
 
             Real npCashFlows
                 = std::accumulate(exerciseValues.begin(),
-                                  exerciseValues.begin()+exerciseRights, 0.0);
+                                  exerciseValues.begin()+exerciseRights, Real(0.0));
             npv.add(npCashFlows);
         }
 

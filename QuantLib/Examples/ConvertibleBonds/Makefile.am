@@ -12,13 +12,10 @@ ConvertibleBonds_LDADD = ../../ql/libQuantLib.la
 
 EXTRA_DIST = \
     ConvertibleBonds.dev \
-    ConvertibleBonds_vc7.vcproj \
     ConvertibleBonds_vc8.vcproj \
     ConvertibleBonds_vc9.vcproj \
-    ConvertibleBonds_vc10.vcxproj \
-    ConvertibleBonds_vc10.vcxproj.filters \
-    ConvertibleBonds_vc11.vcxproj \
-    ConvertibleBonds_vc11.vcxproj.filters \
+    ConvertibleBonds.vcxproj \
+    ConvertibleBonds.vcxproj.filters \
     ReadMe.txt
 
 .PHONY: examples check-examples

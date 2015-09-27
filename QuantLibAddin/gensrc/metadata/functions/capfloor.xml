@@ -22,7 +22,7 @@
     <include>ql/indexes/iborindex.hpp</include>
   </addinIncludes>
   <copyright>
-    Copyright (C) 2006, 2007, 2008, 2011 Ferdinando Ametrano
+    Copyright (C) 2006, 2007, 2008, 2011, 2014 Ferdinando Ametrano
     Copyright (C) 2005 Aurelien Chanudet
   </copyright>
   <Functions>
@@ -167,6 +167,21 @@
             <type>QuantLib::Natural</type>
             <tensorRank>scalar</tensorRank>
             <description>solver max iterations.</description>
+          </Parameter>
+          <Parameter name='MinVol' default='1.0e-7'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Minimum volatility, no lower solution.</description>
+          </Parameter>
+          <Parameter name='MaxVol' default='4.0'>
+            <type>QuantLib::Volatility</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Maximum volatility, no higher solution.</description>
+          </Parameter>
+          <Parameter name='Displacement' default='0.0'>
+            <type>QuantLib::Real</type>
+            <tensorRank>scalar</tensorRank>
+            <description>displacement in a displaced diffusion model.</description>
           </Parameter>
         </Parameters>
       </ParameterList>

@@ -10,6 +10,7 @@ include_HEADERS = \
     create_all.hpp \
     create_alphaform.hpp \
     create_assetswap.hpp \
+    create_basketlossmodels.hpp \
     create_bonds.hpp \
     create_browniangenerators.hpp \
     create_btp.hpp \
@@ -22,6 +23,7 @@ include_HEADERS = \
     create_credit.hpp \
     create_ctsmmcapletcalibration.hpp \
     create_curvestate.hpp \
+    create_defaultbasket.hpp \
     create_defaulttermstructures.hpp \
     create_driftcalculators.hpp \
     create_evolutiondescription.hpp \
@@ -29,6 +31,7 @@ include_HEADERS = \
     create_forwardrateagreement.hpp \
     create_index.hpp \
     create_interpolation.hpp \
+    create_latentmodels.hpp \
     create_leg.hpp \
     create_marketmodelevolvers.hpp \
     create_marketmodels.hpp \
@@ -64,6 +67,7 @@ libCreate_la_SOURCES = \
     create_accountingengines.cpp \
     create_alphaform.cpp \
     create_assetswap.cpp \
+    create_basketlossmodels.cpp \
     create_bonds.cpp \
     create_browniangenerators.cpp \
     create_btp.cpp \
@@ -76,6 +80,7 @@ libCreate_la_SOURCES = \
     create_credit.cpp \
     create_ctsmmcapletcalibration.cpp \
     create_curvestate.cpp \
+    create_defaultbasket.cpp \
     create_defaulttermstructures.cpp \
     create_driftcalculators.cpp \
     create_evolutiondescription.cpp \
@@ -83,6 +88,7 @@ libCreate_la_SOURCES = \
     create_forwardrateagreement.cpp \
     create_index.cpp \
     create_interpolation.cpp \
+    create_latentmodels.cpp \
     create_leg.cpp \
     create_marketmodelevolvers.cpp \
     create_marketmodels.cpp \

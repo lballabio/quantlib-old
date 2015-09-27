@@ -224,12 +224,6 @@ namespace QuantLib {
         };
 
 
-        Real fGamma(Real gamma, Real A, Real B) {
-            Real beta = gamma * (1 - A) - B;
-            return 3*A*(1 - gamma*gamma) - 1 + 3*gamma*gamma + 2*beta*beta - 4*beta*gamma;
-        }
-
-
         // Initial guess based on fitting ACF - initial guess for
         // fitting acf is a moment matching estimates for mean(r2),
         // acf(0), and acf(1).
@@ -423,7 +417,7 @@ namespace QuantLib {
         Array acf(maxLag+1);
         std::vector<Volatility> tmp(r2.size());
         std::transform (r2.begin(), r2.end(), tmp.begin(),
-                        std::bind2nd(std::minus<double>(), mean_r2));
+                        std::bind2nd(std::minus<Real>(), mean_r2));
         autocovariances (tmp.begin(), tmp.end(), acf.begin(), maxLag);
         QL_REQUIRE (acf[0] > 0, "Data series is constant");
 
@@ -472,7 +466,7 @@ namespace QuantLib {
                 opt1[1] = alpha;
                 opt1[2] = beta;
                 opt1[0] = omega;
-                double fCost = QL_MAX_REAL;
+                Real fCost = QL_MAX_REAL;
                 if (constraints.test(opt1) && (fCost = cost.value(opt1)) < fCost1)
                     fCost1 = fCost;
             } catch (const std::exception &) {
@@ -485,7 +479,7 @@ namespace QuantLib {
                 opt2[1] = alpha;
                 opt2[2] = beta;
                 opt2[0] = omega;
-                double fCost = QL_MAX_REAL;
+                Real fCost = QL_MAX_REAL;
                 if (constraints.test(opt2) && (fCost = cost.value(opt2)) < fCost2)
                     fCost2 = fCost;
             } catch (const std::exception &) {
@@ -525,7 +519,7 @@ namespace QuantLib {
                const Array &initGuess, Real &alpha, Real &beta, Real &omega) {
         std::vector<Volatility> tmp(r2.size());
         std::transform (r2.begin(), r2.end(), tmp.begin(),
-                        std::bind2nd(std::minus<double>(), mean_r2));
+                        std::bind2nd(std::minus<Real>(), mean_r2));
         return calibrate_r2(tmp, method, endCriteria, initGuess,
                             alpha, beta, omega);
     }
@@ -558,7 +552,7 @@ namespace QuantLib {
                const Array &initGuess, Real &alpha, Real &beta, Real &omega) {
         std::vector<Volatility> tmp(r2.size());
         std::transform (r2.begin(), r2.end(), tmp.begin(),
-                        std::bind2nd(std::minus<double>(), mean_r2));
+                        std::bind2nd(std::minus<Real>(), mean_r2));
         return calibrate_r2(tmp, method, constraints, endCriteria,
                             initGuess, alpha, beta, omega);
     }

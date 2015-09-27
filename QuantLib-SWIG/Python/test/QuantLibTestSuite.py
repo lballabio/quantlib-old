@@ -32,7 +32,7 @@ from assetswap import AssetSwapTest
 
 def test():
     import QuantLib
-    print 'testing QuantLib', QuantLib.__version__
+    print('testing QuantLib ' +  QuantLib.__version__)
 
     suite = unittest.TestSuite()
 

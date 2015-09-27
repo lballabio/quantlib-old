@@ -2,6 +2,7 @@
  Copyright (C) 2004, 2005, 2006, 2007 StatPro Italia srl
  Copyright (C) 2009 Joseph Malicki
  Copyright (C) 2011 Lluis Pujol Bajador
+ Copyright (C) 2014 Simon Mazzucca
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,6 +27,9 @@
 %include cashflows.i
 %include interestrate.i
 %include indexes.i
+%include callability.i
+%include inflation.i
+%include shortratemodels.i
 
 %{
 using QuantLib::Bond;
@@ -87,8 +91,8 @@ class BondPtr : public boost::shared_ptr<Instrument> {
             return boost::dynamic_pointer_cast<Bond>(*self)
                 ->settlementDays();
         }
-        Date settlementDate() {
-            return boost::dynamic_pointer_cast<Bond>(*self)->settlementDate();
+        Date settlementDate(Date d = Date()) {
+            return boost::dynamic_pointer_cast<Bond>(*self)->settlementDate(d);
         }
         Date startDate() const {
             return boost::dynamic_pointer_cast<Bond>(*self)->startDate();
@@ -204,7 +208,9 @@ class BondPtr : public boost::shared_ptr<Instrument> {
 
 %rename(ZeroCouponBond) ZeroCouponBondPtr;
 class ZeroCouponBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") ZeroCouponBondPtr;
+    #endif
   public:
     %extend {
         ZeroCouponBondPtr(
@@ -226,7 +232,9 @@ class ZeroCouponBondPtr : public BondPtr {
 
 %rename(FixedRateBond) FixedRateBondPtr;
 class FixedRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") FixedRateBondPtr;
+    #endif
   public:
     %extend {
         FixedRateBondPtr(
@@ -237,12 +245,19 @@ class FixedRateBondPtr : public BondPtr {
                 const DayCounter& paymentDayCounter,
                 BusinessDayConvention paymentConvention = QuantLib::Following,
                 Real redemption = 100.0,
-                Date issueDate = Date()) {
+                Date issueDate = Date(),
+                const Calendar& paymentCalendar = Calendar(),
+                const Period& exCouponPeriod = Period(),
+                const Calendar& exCouponCalendar = Calendar(),
+                BusinessDayConvention exCouponConvention = Unadjusted,
+                bool exCouponEndOfMonth = false) {
             return new FixedRateBondPtr(
                 new FixedRateBond(settlementDays, faceAmount,
                                   schedule, coupons, paymentDayCounter,
                                   paymentConvention, redemption,
-                                  issueDate));
+                                  issueDate, paymentCalendar,
+                                  exCouponPeriod, exCouponCalendar,
+                                  exCouponConvention, exCouponEndOfMonth));
         }
         Frequency frequency() const {
             return boost::dynamic_pointer_cast<FixedRateBond>(*self)
@@ -257,23 +272,26 @@ class FixedRateBondPtr : public BondPtr {
 
 %rename(FloatingRateBond) FloatingRateBondPtr;
 class FloatingRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") FloatingRateBondPtr;
+    #endif
   public:
     %extend {
-        FloatingRateBondPtr(Size settlementDays,
-                            Real faceAmount,
-                            const Schedule& schedule,
-                            const IborIndexPtr& index,
-                            const DayCounter& paymentDayCounter,
-                            BusinessDayConvention paymentConvention,
-                            Size fixingDays,
-                            const std::vector<Real>& gearings,
-                            const std::vector<Spread>& spreads,
-                            const std::vector<Rate>& caps,
-                            const std::vector<Rate>& floors,
-                            bool inArrears,
-                            Real redemption,
-                            const Date& issueDate) {
+        FloatingRateBondPtr(
+            Size settlementDays,
+            Real faceAmount,
+            const Schedule& schedule,
+            const IborIndexPtr& index,
+            const DayCounter& paymentDayCounter,
+            BusinessDayConvention paymentConvention = Following,
+            Size fixingDays = Null<Size>(),
+            const std::vector<Real>& gearings = std::vector<Real>(),
+            const std::vector<Spread>& spreads = std::vector<Spread>(),
+            const std::vector<Rate>& caps = std::vector<Rate>(),
+            const std::vector<Rate>& floors = std::vector<Rate>(),
+            bool inArrears = false,
+            Real redemption = 100.0,
+            const Date& issueDate = Date()) {
             boost::shared_ptr<IborIndex> libor =
                 boost::dynamic_pointer_cast<IborIndex>(index);
             return new FloatingRateBondPtr(
@@ -303,7 +321,9 @@ typedef boost::shared_ptr<Instrument> CmsRateBondPtr;
 
 %rename(CmsRateBond) CmsRateBondPtr;
 class CmsRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") CmsRateBondPtr;
+    #endif
   public:
     %extend {
         CmsRateBondPtr(Size settlementDays,
@@ -350,6 +370,109 @@ class DiscountingBondEnginePtr : public boost::shared_ptr<PricingEngine> {
                             const Handle<YieldTermStructure>& discountCurve) {
             return new DiscountingBondEnginePtr(
                                     new DiscountingBondEngine(discountCurve));
+        }
+    }
+};
+
+
+%{
+using QuantLib::CallableFixedRateBond;
+using QuantLib::TreeCallableFixedRateBondEngine;
+typedef boost::shared_ptr<Instrument> CallableFixedRateBondPtr;
+typedef boost::shared_ptr<PricingEngine> TreeCallableFixedRateBondEnginePtr;
+%}
+
+%rename(CallableFixedRateBond) CallableFixedRateBondPtr;
+class CallableFixedRateBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
+    %feature("kwargs") CallableFixedRateBondPtr;
+    #endif
+  public:
+    %extend {
+        CallableFixedRateBondPtr(
+                Integer settlementDays,
+                Real faceAmount,
+                const Schedule &schedule,
+                const std::vector<Rate>& coupons,
+                const DayCounter& accrualDayCounter,
+                BusinessDayConvention paymentConvention,
+                Real redemption,
+                Date issueDate,
+                const CallabilitySchedule &putCallSchedule) {
+            return new CallableFixedRateBondPtr(
+                new CallableFixedRateBond(settlementDays, faceAmount,
+                                          schedule, coupons, accrualDayCounter,
+                                          paymentConvention, redemption,
+                                          issueDate, putCallSchedule));
+        }
+    }
+};
+
+%rename(TreeCallableFixedRateBondEngine) TreeCallableFixedRateBondEnginePtr;
+class TreeCallableFixedRateBondEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        TreeCallableFixedRateBondEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         Size timeSteps,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
+            return new TreeCallableFixedRateBondEnginePtr(
+                new TreeCallableFixedRateBondEngine(model, timeSteps,
+                                                    termStructure));
+        }
+        TreeCallableFixedRateBondEnginePtr(
+                         const boost::shared_ptr<ShortRateModel>& model,
+                         const TimeGrid& grid,
+                         const Handle<YieldTermStructure>& termStructure =
+                                                Handle<YieldTermStructure>()) {
+            return new TreeCallableFixedRateBondEnginePtr(
+                new TreeCallableFixedRateBondEngine(model, grid,
+                                                    termStructure));
+        }
+    }
+};
+
+%{
+using QuantLib::CPIBond;
+typedef boost::shared_ptr<Instrument> CPIBondPtr;
+%}
+
+%rename(CPIBond) CPIBondPtr;
+class CPIBondPtr : public BondPtr {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
+    %feature("kwargs") CPIBondPtr;
+    #endif
+  public:
+    %extend {
+        CPIBondPtr(
+                Natural settlementDays,
+                Real faceAmount,
+                bool growthOnly,
+                Real baseCPI,
+                const Period& observationLag,
+                const ZeroInflationIndexPtr& cpiIndex,
+                CPI::InterpolationType observationInterpolation,
+                const Schedule& schedule,
+                const std::vector<Rate>& coupons,
+                const DayCounter& accrualDayCounter,
+                BusinessDayConvention paymentConvention = ModifiedFollowing,
+                const Date& issueDate = Date(),
+                const Calendar& paymentCalendar = Calendar(),
+                const Period& exCouponPeriod = Period(),
+                const Calendar& exCouponCalendar = Calendar(),
+                BusinessDayConvention exCouponConvention = Unadjusted,
+                bool exCouponEndOfMonth = false) {
+            boost::shared_ptr<ZeroInflationIndex> zeroIndex =
+                boost::dynamic_pointer_cast<ZeroInflationIndex>(cpiIndex);
+            return new CPIBondPtr(
+                new CPIBond(settlementDays, faceAmount, growthOnly, baseCPI,
+                            observationLag, zeroIndex, observationInterpolation,
+                            schedule, coupons, accrualDayCounter,
+                            paymentConvention, issueDate, paymentCalendar,
+                            exCouponPeriod, exCouponCalendar,
+                            exCouponConvention, exCouponEndOfMonth));
         }
     }
 };

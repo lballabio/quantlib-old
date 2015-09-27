@@ -1,165 +1,276 @@
-commit 2540ab4959abfbe7b60b5c58605b2d84390d913c
+commit 1012c22065bc7bc929cd312b5665af914ef248d8
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Sat, 22 Jun 2013 18:24:25 +0200
+Date:   Tue, 28 Jul 2015 18:39:16 +0200
 
-    Compatibility with latest SWIG versions.
+    Update VS projects and solutions to work with x64 target.
     
-    We were using a wrong construct into an %extend directive that
-    was accepted by SWIG up to release 2.0.8, but was rejected in
-    the latest versions.
+    Thanks to Grant Bartel.
 
-commit 07266e4a09fdb15e9b423f895e25e7e0bb7c3b60
+ QuantLib-SWIG/CSharp/QuantLib_vc10.sln             | 48 ++++++++--------
+ QuantLib-SWIG/CSharp/QuantLib_vc11.sln             | 48 ++++++++--------
+ QuantLib-SWIG/CSharp/QuantLib_vc12.sln             | 50 ++++++++---------
+ QuantLib-SWIG/CSharp/QuantLib_vc14.sln             | 50 ++++++++---------
+ QuantLib-SWIG/CSharp/cpp/QuantLibWrapper.vcxproj   |  4 +-
+ QuantLib-SWIG/CSharp/csharp/NQuantLib.csproj       | 50 ++++++++++++++++-
+ .../CSharp/examples/BermudanSwaption.csproj        | 65 ++++++++++++++++++----
+ QuantLib-SWIG/CSharp/examples/EquityOption.csproj  | 65 ++++++++++++++++++----
+ 8 files changed, 257 insertions(+), 123 deletions(-)
+
+commit 4e34799eb4587de6f9f908080fb3009cb7495126
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Sat, 22 Jun 2013 17:50:55 +0200
+Date:   Wed, 15 Jul 2015 12:05:56 +0200
 
-    Changed test results according to changes in the C++ library.
+    Update changelog and news.
+
+ QuantLib-SWIG/ChangeLog.txt | 48 +++++++++++++++++++++++++++++++++++++++++++++
+ QuantLib-SWIG/News.txt      | 14 ++++---------
+ 2 files changed, 52 insertions(+), 10 deletions(-)
+
+commit dde6aab53c24dd4053e0fe74a6609a0535bad2ff
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 7 Jul 2015 15:18:03 +0200
+
+    Add support for VC++ 2015 (VC14).
     
-    The corresponding behavior was modified in revision c1423128.
+    We had tried to support the next version, but we had assumed that
+    the version number would be 13.  Microsoft decided it's 14 instead.
 
-commit 71946938fc77e9570b0560d8c35bb16b29007feb
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Sun, 16 Jun 2013 16:27:00 -0500
+ QuantLib-SWIG/CSharp/Makefile.am       |  1 +
+ QuantLib-SWIG/CSharp/QuantLib.props    |  5 +++
+ QuantLib-SWIG/CSharp/QuantLib_vc14.sln | 77 ++++++++++++++++++++++++++++++++++
+ 3 files changed, 83 insertions(+)
 
-    expanded european-option example
+commit a36a54ff7b0e8ea41cada5cc3f43f81c05c83783
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Tue, 23 Jun 2015 11:37:53 +0200
+
+    Bump version number up to 1.6.1.
+
+ QuantLib-SWIG/Guile/setup.scm    | 2 +-
+ QuantLib-SWIG/MzScheme/setup.scm | 2 +-
+ QuantLib-SWIG/Perl/Makefile.PL   | 2 +-
+ QuantLib-SWIG/Python/setup.py    | 2 +-
+ QuantLib-SWIG/R/DESCRIPTION      | 2 +-
+ QuantLib-SWIG/Ruby/setup.rb      | 2 +-
+ QuantLib-SWIG/SWIG/ql.i          | 2 +-
+ QuantLib-SWIG/configure.ac       | 2 +-
+ 8 files changed, 8 insertions(+), 8 deletions(-)
+
+commit d8fb96f759a78f9930fb0d4288ec36068b5e3b76
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 8 Jun 2015 15:42:10 +0200
+
+    Update changelog.
+
+ QuantLib-SWIG/ChangeLog.txt | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit fe43575a9858afcb9a154698c5ad5ecdb370e3f3
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 4 Jun 2015 13:29:40 +0200
+
+    Update changes and contributors.
+
+ QuantLib-SWIG/ChangeLog.txt | 527 +++++++++++---------------------------------
+ QuantLib-SWIG/News.txt      |  40 +---
+ 2 files changed, 136 insertions(+), 431 deletions(-)
+
+commit e2c59e9cb1ae284630a0a20a54cfcf5e9dbdfc66
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 1 Jun 2015 13:32:19 +0200
+
+    Update VC# projects.
+
+ QuantLib-SWIG/CSharp/csharp/NQuantLib.csproj     | 12 ++++++++++++
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc8.csproj | 12 ++++++++++++
+ QuantLib-SWIG/CSharp/csharp/NQuantLib_vc9.csproj | 12 ++++++++++++
+ 3 files changed, 36 insertions(+)
+
+commit 1d5d7bb349dcbefe8189a56796dc3910a5ceac7c
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 18 May 2015 15:07:01 +0200
+
+    Port changes from generated file to source.
+
+ QuantLib-SWIG/Python/setup.py.in | 26 ++++++++++++++++++--------
+ 1 file changed, 18 insertions(+), 8 deletions(-)
+
+commit c47bcc5b8d352558778dcb16b128074da1424b6d
+Merge: dc7eb82 2c26437
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 18 May 2015 14:12:52 +0200
+
+    Merge pull request #181.
+
+commit 2c264378935d72716d5fd11bb2da91456eeb52c8
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 18 May 2015 12:49:22 +0200
+
+    Export new MOEX calendar.
+
+ QuantLib-SWIG/SWIG/calendars.i | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+commit b0dc6eacea16a2a0a3d6f93e1945f9706cc80dc1
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 11 May 2015 12:08:18 +0200
+
+    Add a few missing currencies.
     
-    now matches the more extensive Python example
-
-commit 082357dd62fc0cbd99065060a918fbcd3083f70c
-Author: Dirk Eddelbuettel <edd@debian.org>
-Date:   Sat, 15 Jun 2013 16:32:33 -0500
-
-    QuantLib SWIG bonds example for R
+    Thanks to Lucy King for the info.
     
-    Modeled after bonds.py which it replicates
+    Closes #223.
 
-commit 3248d216d33b963a4c8ba96588a62106d09c0661
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Fri, 14 Jun 2013 17:39:41 +0200
+ QuantLib-SWIG/SWIG/currencies.i | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-    Bug fix for R example.
-
-commit 0c3ca1c0f45c369e22730129e49ff34fc47a92d3
+commit 331bec6c9081d9139f91c14e11ae86b02bdbe828
+Merge: 0c3cb8f 1f87ada
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 13 Jun 2013 15:08:21 +0200
+Date:   Fri, 8 May 2015 18:05:59 +0200
 
-    Updated VC# projects.
+    Merge pull request #232.
 
-commit 12b40582927538b247f52e161d9b63f39bb45903
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Tue, 4 Jun 2013 20:24:30 +0000
-
-    some improvements for the R Bates volatility surface example (thanks to Dirk Eddelbuettel)
-
-commit d86493309f179da8de0ee1967d48f8caf8720d11
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Thu, 9 May 2013 11:08:29 +0000
-
-    added Bates implied volatility surface example for R
-
-commit b518800fd38d34ad52e97461965f2e798daa898e
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Thu, 9 May 2013 10:03:55 +0000
-
-    added Bates implied volatility surface example for R
-
-commit 8fe68e950dd2a8667b0223a02443d0e04e2f1dcb
+commit 0c3cb8f055637453a510695d6afc84b9d5ccf09e
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 4 Mar 2013 17:30:11 +0000
+Date:   Wed, 6 May 2015 10:06:27 +0200
 
-    Fixed %rename directives for Scheme dialects.
+    Build wrappers even when R is not enabled.
 
-commit 3c9d59a539877c2d956f8ae995375469e326ff41
+ QuantLib-SWIG/R/Makefile.am | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+commit 1f87ada2941e871128b934680fed81cb077d461b
+Author: Matthias Groncki <matthias.groncki@outlook.com>
+Date:   Fri, 1 May 2015 15:00:09 +0200
+
+    Extend the setup script to determinate the python version and target machine on windows.
+
+ QuantLib-SWIG/Python/setup.py | 26 ++++++++++++++++++--------
+ 1 file changed, 18 insertions(+), 8 deletions(-)
+
+commit fced794527ba5d3953f5ff2a6cd06b047bbfca21
+Author: Matthias Groncki <matthias@groncki.de>
+Date:   Wed, 29 Apr 2015 23:08:16 +0200
+
+    Add swap leg inspectors to swig file
+
+ QuantLib-SWIG/SWIG/swap.i | 3 +++
+ 1 file changed, 3 insertions(+)
+
+commit 223268698f3d40704f1af78e1015d05f79d980cf
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 4 Mar 2013 14:06:27 +0000
+Date:   Tue, 14 Apr 2015 14:59:27 +0200
 
-    Overloaded operators for date algebra and comparisons in C#.
+    Change version number in setup scripts via configure.
     
-    Thanks to Simon Shakeshaft.
-
-commit d935818df973e65901a54b5fa0b24285fabe74c0
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 4 Mar 2013 14:06:10 +0000
-
-    Exported BondFunctions class (thanks to Simon Shakeshaft).
-
-commit c582367ee3ff6b9d45c29bca32e2b5271534e904
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Mon, 4 Mar 2013 14:04:55 +0000
-
-    Exported a couple of functions to SWIG (thanks to Sergio Villar de María).
-
-commit cb3032a78fde4635c109f708f3bb3aa2ab0e42a5
-Author: Joseph Wang <drjoe@users.sf.net>
-Date:   Fri, 21 Dec 2012 02:01:21 +0000
-
-    fix R definition for nullOrInt / nullOrDouble
-
-commit 4a2d8cf99436eb18bffe17676c7e205fffa2d446
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:39:34 +0000
-
-    Added possibility to manually disable build for specific modules.
-
-commit de5a104662f7718676c3012689fd30f440b8a70b
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:38:24 +0000
-
-    Cleaned up warnings.
-
-commit 9731fe57b536ce74416b904af422e54435fb5b80
-Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:38:06 +0000
-
-    Added FRA interface and Java example.
+    This reduces the number of places in which the version number needs
+    to be updated.
     
-    Thanks to Tawanda Gwena and Francis Duffy.
+    The generated scripts are still kept in version control so that
+    they can be used on platform not using autotools (like the all.hpp
+    headers in the C++ library).
 
-commit e99ce4c430ae2c689b4aba919fb627de9ecdfbdb
+ QuantLib-SWIG/Guile/setup.scm.in    | 134 ++++++++++++++++++++
+ QuantLib-SWIG/MzScheme/setup.scm.in | 181 +++++++++++++++++++++++++++
+ QuantLib-SWIG/Perl/Makefile.PL.in   |  10 ++
+ QuantLib-SWIG/Python/setup.py.in    | 242 ++++++++++++++++++++++++++++++++++++
+ QuantLib-SWIG/R/DESCRIPTION.in      |  11 ++
+ QuantLib-SWIG/Ruby/setup.rb.in      | 174 ++++++++++++++++++++++++++
+ QuantLib-SWIG/configure.ac          |   6 +
+ 7 files changed, 758 insertions(+)
+
+commit 833819790960fb1b035bd8f31290668fe7f67adb
+Author: Cheng Li <scrappedprince.li@gmail.com>
+Date:   Mon, 13 Apr 2015 11:09:31 +0800
+
+    Added missing return statements
+
+ QuantLib-SWIG/SWIG/stochasticprocess.i | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 323fb518cc224ac148ea559ee00555257149f90b
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:37:41 +0000
+Date:   Thu, 9 Apr 2015 15:01:15 +0200
 
-    Reworked check rule for Makefile.
-    
-    This will make it easier to add further examples.
+    Rename cast function.
 
-commit 748dae3902bc17a01d868337abe25e6e379a8679
+ QuantLib-SWIG/SWIG/stochasticprocess.i | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+commit 77042487ed398f941dd62336758d31785e454686
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 29 Nov 2012 14:37:22 +0000
+Date:   Thu, 9 Apr 2015 15:00:46 +0200
 
-    Removed incorrect compilation option.
+    Actually return values from added methods.
 
-commit e440add963ccf7dd38c0ad3238fbaa481667e8a6
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Sun, 25 Mar 2012 00:32:34 +0000
+ QuantLib-SWIG/SWIG/stochasticprocess.i | 67 +++++++++++++++++-----------------
+ 1 file changed, 33 insertions(+), 34 deletions(-)
 
-    added Scala version of a Heston Vanilla Option Monte-Carlo example
+commit e5f7fa2f85d7e0ff0f4cd6caf78f5a1fa153f5b4
+Author: Matthias Groncki <matthias.groncki@outlook.com>
+Date:   Fri, 3 Apr 2015 11:10:48 +0200
 
-commit 9f0a54e1a91b0f82113121f08c1758d8950aa106
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Sun, 25 Mar 2012 00:26:25 +0000
+    Extend Swig Interface for stochasticProcess and added GSR Process
 
-    added Scala version of a Heston Vanilla Option Monte-Carlo example
+ QuantLib-SWIG/SWIG/gaussian1dmodel.i   |  2 +-
+ QuantLib-SWIG/SWIG/stochasticprocess.i | 75 +++++++++++++++++++++++++++++++++-
+ 2 files changed, 75 insertions(+), 2 deletions(-)
 
-commit 142b00b6ee8295167b8c64737dd449ddcb088d56
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Mon, 19 Mar 2012 21:55:49 +0000
+commit 832d4f40809c33d67a06202df74a2373642d0c60
+Author: Matthias Groncki <matthias@groncki.de>
+Date:   Thu, 19 Mar 2015 21:20:48 +0100
 
-    added HestonModelHelper and calibration example in Scala
+    Add new SWIG interface for the Gaussian1DModel, GSR and Gaussian1dSwaptionEngine
 
-commit 303b169ba21f054068327715d87a7d4964923337
-Author: Klaus Spanderen <klaus@spanderen.de>
-Date:   Sun, 18 Mar 2012 21:40:22 +0000
+ QuantLib-SWIG/SWIG/gaussian1dmodel.i | 172 +++++++++++++++++++++++++++++++++++
+ QuantLib-SWIG/SWIG/ql.i              |   3 +-
+ 2 files changed, 174 insertions(+), 1 deletion(-)
 
-    changed indent
-
-commit b03fdd0f240108f10757d8ec64e490d71fd43e82
+commit 361d466557e07000c67fa7b709d226b1fc5250ef
+Merge: 2db83b5 485c533
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Thu, 8 Mar 2012 07:57:18 +0000
+Date:   Tue, 10 Feb 2015 12:26:33 +0100
 
-    Increased version number to 1.3.
+    Merge changes from v1.5.x branch.
 
-commit d1e6a3bca55197f6899f903207cf021892e3576a
+commit 485c533364b2d0dceb0ab0de6937facb9fd48ed7
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
-Date:   Wed, 7 Mar 2012 08:28:41 +0000
+Date:   Tue, 10 Feb 2015 12:19:40 +0100
 
-    Merged R01020x-branch/QuantLib-SWIG
+    Bumped version number to 1.5.1.
+
+ QuantLib-SWIG/Guile/setup.scm    | 2 +-
+ QuantLib-SWIG/MzScheme/setup.scm | 2 +-
+ QuantLib-SWIG/Perl/Makefile.PL   | 2 +-
+ QuantLib-SWIG/Python/setup.py    | 2 +-
+ QuantLib-SWIG/R/DESCRIPTION      | 2 +-
+ QuantLib-SWIG/Ruby/setup.rb      | 2 +-
+ QuantLib-SWIG/SWIG/ql.i          | 2 +-
+ QuantLib-SWIG/configure.ac       | 2 +-
+ 8 files changed, 8 insertions(+), 8 deletions(-)
+
+commit 6f646631b481a7a6e0257af19e0252869d291604
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Mon, 9 Feb 2015 17:56:59 +0100
+
+    Bumped version number to 1.6.
+
+ QuantLib-SWIG/Guile/setup.scm    | 2 +-
+ QuantLib-SWIG/MzScheme/setup.scm | 2 +-
+ QuantLib-SWIG/Perl/Makefile.PL   | 2 +-
+ QuantLib-SWIG/Python/setup.py    | 2 +-
+ QuantLib-SWIG/R/DESCRIPTION      | 2 +-
+ QuantLib-SWIG/Ruby/setup.rb      | 2 +-
+ QuantLib-SWIG/SWIG/ql.i          | 2 +-
+ QuantLib-SWIG/configure.ac       | 2 +-
+ 8 files changed, 8 insertions(+), 8 deletions(-)
+
+commit 365ecc9cfda09b202e2e1805a031f11883f8ac30
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 6 Feb 2015 16:33:29 +0100
+
+    Update list of copyrights
+
+ QuantLib-SWIG/LICENSE.TXT | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)

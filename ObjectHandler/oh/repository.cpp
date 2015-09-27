@@ -61,7 +61,8 @@ namespace ObjectHandler {
     // TODO: implement Scott Meyers' "Effective STL" item 24
     string Repository::storeObject(const string &objectID,
                                    const shared_ptr<Object> &object,
-                                   bool overwrite) {
+                                   bool overwrite,
+                                   boost::shared_ptr<ValueObject>) {
         OH_REQUIRE(overwrite || !objectExists(objectID),
                    "Cannot store object with ID '" << objectID <<
                    "' because an object with that ID already exists");

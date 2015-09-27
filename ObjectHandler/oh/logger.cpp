@@ -20,8 +20,11 @@
 #if defined(HAVE_CONFIG_H)     // Dynamically created by configure
     #include <oh/config.hpp>
 #endif
-#include <oh/logger.hpp>
 #include <oh/ohdefines.hpp>
+
+#ifdef OH_INCLUDE_LOG4CXX
+
+#include <oh/logger.hpp>
 #include <oh/exception.hpp>
 #include <log4cxx/helpers/exception.h>
 /* Use BOOST_MSVC instead of _MSC_VER since some other vendors (Metrowerks,
@@ -243,3 +246,6 @@ namespace ObjectHandler {
 
 
 }
+
+#endif
+

@@ -1,0 +1,4 @@
+# Eric's cheat sheet for running configure
+#./configure --no-create --no-recursion
+#./configure
+DOXYGEN=/home/erik/doxygen-1.8.7/bin/doxygen ./configure

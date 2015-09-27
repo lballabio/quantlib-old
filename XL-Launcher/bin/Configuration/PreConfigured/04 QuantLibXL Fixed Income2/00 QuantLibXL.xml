@@ -1,0 +1,43 @@
+<Framework name="QuantLibXL" displayName="New QLXL Curve Framework">
+  <StartupParameters>
+    <GroupBox text="Settings">
+      <KeyValuePair name="Environment" value="Fixed Income2" />
+      <KeyValuePair name="Root Path" value="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\" />
+      <CheckBox text="Set Evaluation Date" checked="False" enabled="True" />
+      <DateTimePicker label="Evaluation Date" value="1/17/2014" enabled="True" />
+      <ComboBox label="Default Currency" selectedItem="HKD" enabled="True">
+        <Items>
+          <Item>EUR</Item>
+          <Item>GBP</Item>
+          <Item>HKD</Item>
+          <Item>USD</Item>
+        </Items>
+      </ComboBox>
+      <CheckBox text="Open Main Checks" checked="True" enabled="True" />
+      <CheckBox text="Open Contributor" checked="True" enabled="True" />
+    </GroupBox>
+    <GroupBox text="Curves">
+      <CheckBox text="Bootstrap Yield Curves" checked="True" enabled="True" />
+    </GroupBox>
+    <GroupBox text="RealTime Data">
+      <ComboBox label="Real Time Feed" selectedItem="Reuters" enabled="True">
+        <Items>
+          <Item>Reuters</Item>
+          <Item>Bloomberg</Item>
+        </Items>
+      </ComboBox>
+      <ComboBox label="Market Data" selectedItem="Static" enabled="True">
+        <Items>
+          <Item>Live</Item>
+          <Item>Static</Item>
+        </Items>
+      </ComboBox>
+    </GroupBox>
+  </StartupParameters>
+  <Components>
+    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\xll\ObjectHandler-xll-vc90-mt-1_4_0.xll" />
+    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\xll\QuantLibXLDynamic-vc90-mt-1_4_0.xll" />
+    <Component path="X:\WorkGroup\IMI_Workbooks\Production\QuantLibXL-1.4.0\framework\QuantLibXL.xla" />
+  </Components>
+  <EnvironmentVariables />
+</Framework>

@@ -126,6 +126,7 @@ namespace {
             engine = boost::shared_ptr<PricingEngine>(
                  new BinomialVanillaEngine<CoxRossRubinstein>(stochProcess,
                                                               binomialSteps));
+            break;
           case EQP:
             engine = boost::shared_ptr<PricingEngine>(
                  new BinomialVanillaEngine<AdditiveEQPBinomialTree>(
@@ -183,39 +184,6 @@ namespace {
             new EuropeanOption(payoff, exercise));
         option->setPricingEngine(engine);
         return option;
-    }
-
-    std::string engineTypeToString(EngineType type) {
-        switch (type) {
-          case Analytic:
-            return "analytic";
-          case JR:
-            return "Jarrow-Rudd";
-          case CRR:
-            return "Cox-Ross-Rubinstein";
-          case EQP:
-            return "EQP";
-          case TGEO:
-            return "Trigeorgis";
-          case TIAN:
-            return "Tian";
-          case LR:
-            return "LeisenReimer";
-          case JOSHI:
-            return "Joshi";
-          case FiniteDifferences:
-            return "FiniteDifferences";
-          case Integral:
-            return "Integral";
-          case PseudoMonteCarlo:
-            return "MonteCarlo";
-          case QuasiMonteCarlo:
-            return "Quasi-MonteCarlo";
-          case FFT:
-            return "FFT";
-          default:
-            QL_FAIL("unknown engine type");
-        }
     }
 
     Integer timeToDays(Time t) {

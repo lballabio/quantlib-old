@@ -21,7 +21,7 @@
  The members of the QuantLib Group are listed in the QuantLib License
 */
 
-/*! \page extend_enum_tutorial Expose QuantLib Enumerations to QuantLibXL
+/*! \page extend_enum_tutorial Expose %QuantLib Enumerations to QuantLibXL
 
 <div align="center"><small>&copy; 2011 Andrew Downes</small></div>
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
@@ -167,9 +167,9 @@ the above example we write:
 
 \section extend2_enum_flag 4 The Constructor Flag
 
-As mentioned, for all %QuantLib enumerated types that you wish to
-expose to Excel the <constructor> tag should remain set to true. This
-associates the string “ENUM_VALUE_1” in Excel with the QuantLib type
+As mentioned, for all %QuantLib enumerated types that you wish to expose to
+Excel the <constructor> tag should remain set to true. This associates the
+string <tt>ENUM_VALUE_1</tt> in Excel with the QuantLib type
 
 \verbatim
 QuantLib::NewEnumeration(QuantLib::ENUM_VALUE_1)
@@ -177,17 +177,17 @@ QuantLib::NewEnumeration(QuantLib::ENUM_VALUE_1)
 
 However, you may wish to associate a string in Excel directly with a
 %QuantLib class. An example of this is given by currency inputs to
-functions, which can be written simply as (for example) “AUD”, rather
-than going through the process of constructing an Australian dollar
-currency class.
+functions, which can be written simply as (for example) <tt>AUD</tt>, rather
+than going through the process of constructing an Australian dollar currency
+class.
 
-To achieve a similar result, set the <constructor> tag to false. In the
-above example, this would associate the string “ENUM_VALUE_1” in Excel
-with the %QuantLib type QuantLib::ENUM_VALUE_1 – the string in the
-<string> tag is replaced directly with the type in the value tag.
-Hence, as in the currency example, if you wanted the string AUD to
-give an AUDCurrency class, we would set the <constructor> tag to
-false, set the <string> tag to AUD and the value tag to QuantLib::AUDCurrency().
+To achieve a similar result, set the <constructor> tag to false. In the above
+example, this would associate the string <tt>ENUM_VALUE_1</tt> in Excel with
+the %QuantLib type QuantLib::ENUM_VALUE_1 - the string in the <string> tag is
+replaced directly with the type in the value tag.  Hence, as in the currency
+example, if you wanted the string AUD to give an AUDCurrency class, we would
+set the <constructor> tag to false, set the <string> tag to AUD and the value
+tag to QuantLib::AUDCurrency().
 
 <div align="center"><small><a href="tutorials.html">back to tutorials index</a></small></div>
 

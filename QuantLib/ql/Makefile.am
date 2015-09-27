@@ -21,6 +21,7 @@ AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 
 this_includedir=${includedir}/${subdir}
 this_include_HEADERS = \
+	ad.hpp \
 	auto_link.hpp \
 	cashflow.hpp \
 	compounding.hpp \
@@ -48,6 +49,7 @@ this_include_HEADERS = \
 	qldefines.hpp \
 	quantlib.hpp \
 	quote.hpp \
+	rebatedexercise.hpp \
 	settings.hpp \
 	stochasticprocess.hpp \
 	termstructure.hpp \
@@ -70,6 +72,7 @@ libQuantLib_la_SOURCES = \
     money.cpp \
     position.cpp \
     prices.cpp \
+	rebatedexercise.cpp \
     settings.cpp \
 	stochasticprocess.cpp \
 	termstructure.cpp \
@@ -112,7 +115,7 @@ quantlib.hpp: Makefile.am
 	echo "#  include <ql/auto_link.hpp>" >> $@
 	echo "#endif" >> $@
 	echo >> $@
-	for i in $(filter-out auto_link.hpp config.hpp quantlib.hpp \
+	for i in $(filter-out ad.hpp auto_link.hpp config.hpp quantlib.hpp \
                           qldefines.hpp mathconstants.hpp version.hpp, \
 	           $(this_include_HEADERS)); do \
 		echo "#include <${subdir}/$$i>" >> $@; \

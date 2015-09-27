@@ -48,7 +48,8 @@ void operToOper(OPER *xTarget, const OPER *xSource) {
         return;
     } else if (xSource->xltype == xltypeBool) {
         xTarget->xltype = xltypeBool;
-        xTarget->val.boolean = xSource->val.boolean;
+        //xTarget->val.boolean = xSource->val.boolean;
+        xTarget->val.xbool = xSource->val.xbool;
         return;
     } else if (xSource->xltype == xltypeErr) {
         xTarget->xltype = xltypeErr;
@@ -411,13 +412,15 @@ undocumented Excel bug.
 
 XLL_DEC XLOPER *ohRangeRetrieveError(XLOPER *xRange) {
     try {
-        XLOPER xTemp;
+        ObjectHandler::Xloper xTemp;
         Excel(xlCoerce, &xTemp, 1, xRange);
         static XLOPER xRet;
-        if (xTemp.xltype & xltypeErr)
+        if (xTemp->xltype & xltypeErr) {
             Excel(xlUDF, &xRet, 2, TempStrNoSize("\x13""ohRetrieveErrorImpl"), xRange);
-        else
+            xRet.xltype |= xlbitXLFree;
+        } else {
             ObjectHandler::scalarToOper(std::string(), xRet);
+        }
         return &xRet;
     } catch (...) {
         return 0;
@@ -434,4 +437,16 @@ XLL_DEC char *ohRetrieveErrorImpl(XLOPER *xRange) {
     } catch (...) {
         return 0;
     }
+}
+
+// The amount of space left on the stack.  Excel returns this value into an unsigned short.
+// Usually the amount of available stack space exceeds USHRT_MAX (65535).  So normally this
+// function always returns 65535.
+XLL_DEC long *ohStack() {
+    static long returnValue;
+    XLOPER xRes;
+    Excel4(xlStack, &xRes, 0);
+    xRes.xltype = xltypeNum;
+    returnValue = static_cast<unsigned short>(xRes.val.w);
+    return &returnValue;
 }

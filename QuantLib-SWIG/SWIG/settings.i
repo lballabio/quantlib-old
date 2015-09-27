@@ -49,8 +49,8 @@ class Settings {
             self->evaluationDate() = d;
         }
 
-        void includeReferenceDateCashFlows(bool b) {
-            self->includeReferenceDateCashFlows() = b;
+        void includeReferenceDateEvents(bool b) {
+            self->includeReferenceDateEvents() = b;
         }
         void includeTodaysCashFlows(bool b) {
             self->includeTodaysCashFlows() = b;
@@ -59,7 +59,8 @@ class Settings {
     #if defined(SWIGPYTHON)
     %pythoncode %{
     evaluationDate = property(getEvaluationDate,setEvaluationDate,None)
-    includeReferenceDateCashFlows = property(None,includeReferenceDateCashFlows,None)
+    includeReferenceDateCashFlows = property(None,includeReferenceDateEvents,None)
+    includeReferenceDateEvents = property(None,includeReferenceDateEvents,None)
     includeTodaysCashFlows = property(None,includeTodaysCashFlows,None)
     %}
     #endif

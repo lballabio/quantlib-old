@@ -1,11 +1,9 @@
-<!--
- $Id$
--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
 <!--#include virtual="qlmeta.inc"-->
 <meta name="description" content="QuantLib Enhancement Proposals">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
 <title>QuantLib Enhancement Proposals</title>
 
 <style type="text/css">
@@ -16,7 +14,7 @@
 <div id="container">
 <!--#include virtual="header.inc"-->
 <div id="menu">
-<!--#include virtual="devmenu.inc"-->
+<!--#include virtual="usermenu.inc"-->
 </div>
 <div id="content">
 
@@ -125,6 +123,10 @@ RelinkableHandle</a></td>
 </tr>
 </table>
 
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
 </div>
 
 <div class="footer">

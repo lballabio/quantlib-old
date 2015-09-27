@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2007, 2008 Ferdinando Ametrano
+ Copyright (C) 2007, 2008, 2014 Ferdinando Ametrano
  Copyright (C) 2007 Giorgio Facchinetti
 
  This file is part of QuantLib, a free-software/open-source library
@@ -35,7 +35,19 @@ namespace QuantLib {
       delivery_(Settlement::Physical),
       optionTenor_(optionTenor),
       optionConvention_(ModifiedFollowing),
-      strike_(strike) {}
+      fixingDate_(Null<Date>()),
+      strike_(strike),
+      underlyingType_(VanillaSwap::Payer) {}
+
+    MakeSwaption::MakeSwaption(const boost::shared_ptr<SwapIndex>& swapIndex,
+                               const Date& fixingDate,
+                               Rate strike)
+    : swapIndex_(swapIndex),
+      delivery_(Settlement::Physical),
+      optionConvention_(ModifiedFollowing),
+      fixingDate_(fixingDate),
+      strike_(strike),
+      underlyingType_(VanillaSwap::Payer) {}
 
     MakeSwaption::operator Swaption() const {
         boost::shared_ptr<Swaption> swaption = *this;
@@ -44,10 +56,14 @@ namespace QuantLib {
 
     MakeSwaption::operator boost::shared_ptr<Swaption>() const {
 
-        const Date& evaluationDate = Settings::instance().evaluationDate();
         const Calendar& fixingCalendar = swapIndex_->fixingCalendar();
-        fixingDate_ = fixingCalendar.advance(evaluationDate, optionTenor_,
-                                             optionConvention_);
+        Date refDate = Settings::instance().evaluationDate();
+        // if the evaluation date is not a business day
+        // then move to the next business day
+        refDate = fixingCalendar.adjust(refDate);
+        if (fixingDate_ == Null<Date>())
+            fixingDate_ = fixingCalendar.advance(refDate, optionTenor_,
+                                                 optionConvention_);
         if (exerciseDate_ == Null<Date>()) {
             exercise_ = boost::shared_ptr<Exercise>(new
                 EuropeanExercise(fixingDate_));
@@ -81,8 +97,10 @@ namespace QuantLib {
             .withEffectiveDate(swapIndex_->valueDate(fixingDate_))
             .withFixedLegCalendar(swapIndex_->fixingCalendar())
             .withFixedLegDayCount(swapIndex_->dayCounter())
+            .withFixedLegTenor(swapIndex_->fixedLegTenor())
             .withFixedLegConvention(bdc)
-            .withFixedLegTerminationDateConvention(bdc);
+            .withFixedLegTerminationDateConvention(bdc)
+            .withType(underlyingType_);
 
         boost::shared_ptr<Swaption> swaption(new
             Swaption(underlyingSwap_, exercise_, delivery_));
@@ -103,6 +121,11 @@ namespace QuantLib {
 
     MakeSwaption& MakeSwaption::withExerciseDate(const Date& date) {
         exerciseDate_ = date;
+        return *this;
+    }
+
+    MakeSwaption& MakeSwaption::withUnderlyingType(const VanillaSwap::Type type) {
+        underlyingType_ = type;
         return *this;
     }
 

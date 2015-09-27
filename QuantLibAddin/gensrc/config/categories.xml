@@ -6,6 +6,7 @@
     <categoryName>accountingengines</categoryName>
     <categoryName>assetswap</categoryName>
     <categoryName>alphaform</categoryName>
+    <categoryName>basketlossmodels</categoryName>
     <categoryName>browniangenerators</categoryName>
     <categoryName>bonds</categoryName>
     <categoryName>btp</categoryName>
@@ -20,6 +21,7 @@
     <categoryName>curvestate</categoryName>
     <categoryName>date</categoryName>
     <categoryName>daycounter</categoryName>
+    <categoryName>defaultbasket</categoryName>
     <categoryName>defaulttermstructures</categoryName>
     <categoryName>driftcalculators</categoryName>
     <categoryName>exercise</categoryName>
@@ -29,6 +31,7 @@
     <categoryName>index</categoryName>
     <categoryName>instruments</categoryName>
     <categoryName>interpolation</categoryName>
+    <categoryName>latentmodels</categoryName>
     <categoryName>leg</categoryName>
     <categoryName>marketmodels</categoryName>
     <categoryName>marketmodelevolvers</categoryName>

@@ -8,6 +8,7 @@ SUBDIRS = \
     oh \
     ohxl \
     xlsdk \
+    xlsdk/x64 \
     Examples/ExampleObjects/Enumerations \
     Examples/ExampleObjects/Library \
     Examples/ExampleObjects/Objects \
@@ -26,14 +27,19 @@ EXTRA_DIST = \
     LICENSE.TXT \
     NEWS.txt \
     ObjectHandler.nsi \
-    ObjectHandler_vc7.sln \
     ObjectHandler_vc8.sln \
     ObjectHandler_vc9.sln \
     ObjectHandler_vc10.sln \
-    ohlib_vc7.vcproj \
+    ObjectHandler_vc11.sln \
+    ObjectHandler_vc12.sln \
     ohlib_vc8.vcproj \
     ohlib_vc9.vcproj \
     ohlib_vc10.vcxproj \
+    ohlib_vc10.vcxproj.filters \
+    ohlib_vc11.vcxproj \
+    ohlib_vc11.vcxproj.filters \
+    ohlib_vc12.vcxproj \
+    ohlib_vc12.vcxproj.filters \
     README.txt \
     TODO.txt
 

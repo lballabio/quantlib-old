@@ -22,14 +22,6 @@
 
 namespace QuantLib {
 
-#ifndef QL_DISABLE_DEPRECATED
-    OptionletVolatilityStructure::OptionletVolatilityStructure(
-                                                    const Calendar& cal,
-                                                    BusinessDayConvention bdc,
-                                                    const DayCounter& dc)
-    : VolatilityTermStructure(cal, bdc, dc) {}
-#endif
-
     OptionletVolatilityStructure::OptionletVolatilityStructure(
                                                     BusinessDayConvention bdc,
                                                     const DayCounter& dc)

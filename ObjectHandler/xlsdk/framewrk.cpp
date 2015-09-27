@@ -95,7 +95,36 @@ void FreeAllTempMemory(void)
 }
 
 void Excel(int xlfn, LPXLOPER pxResult, int count, ...) {
-    int xlret = Excel4v(xlfn, pxResult, count, (LPXLOPER FAR *)(&count+1));
+
+    //int xlret = Excel4v(xlfn, pxResult, count, (LPXLOPER FAR *)(&count+1));
+
+    int ver = XLCallVer();
+
+    va_list ppxArgs;
+
+    LPXLOPER px;
+    int i;
+
+    va_start(ppxArgs, count);
+
+    for (i = 0; i<count; i++)
+    {
+        px = va_arg(ppxArgs, LPXLOPER);
+
+        if (px == NULL)
+        {
+            FreeAllTempMemory();
+            return;
+        }
+    }
+
+    va_end(ppxArgs);
+
+
+    va_start(ppxArgs, count);
+    int xlret = Excel4v(xlfn, pxResult, count, (LPXLOPER *)ppxArgs);
+    va_end(ppxArgs);
+
     FreeAllTempMemory();
 
     if (xlret != xlretSuccess) {
@@ -288,7 +317,8 @@ LPXLOPER TempBool(int b)
     //}
 
     lpx->xltype = xltypeBool;
-    lpx->val.boolean = b?1:0;
+    //lpx->val.boolean = b?1:0;
+    lpx->val.xbool = b?1:0;
 
     return lpx;
 }

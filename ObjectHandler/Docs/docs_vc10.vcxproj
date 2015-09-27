@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="All|Win32">
@@ -74,6 +74,11 @@
     <None Include="oh_headeronline.html" />
     <None Include="ql.css" />
     <None Include="tabs.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gensrc\ohgensrc_vc10.vcxproj">
+      <Project>{88be5568-6e55-41c5-a251-670fafb44336}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

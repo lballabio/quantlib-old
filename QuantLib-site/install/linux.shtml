@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="/qlmeta.inc"-->
+<meta name="author" content="Jack Harvard">
+<meta name="copyright" content=
+"Jack Harvard (c) 2010">
+<meta name="description" content="QuantLib Installation on Linux">
+<link rel="stylesheet" href="/styles/nosplash.css" type="text/css">
+<title>QuantLib installation on Linux</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="/header.inc"-->
+<div id="menu">
+<!--#include virtual="/usermenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center">QuantLib installation on Linux</h1>
+<h4 class="center">Luigi Ballabio</h4>
+
+<h2>Boost Installation</h2>
+
+<p>If you don't require a particular Boost version, the path of least
+resistance is to install the one packaged for your distribution; for
+instance, on Ubuntu you would execute:</p>
+<pre>
+  sudo apt-get install libboost-all-dev
+</pre>
+<p>while on Fedora the above would be:</p>
+<pre>
+  sudo yum install boost-devel
+</pre>
+
+<p>Using a packaged distribution has the additional upside of
+installing Boost in a default location where the compiler can find
+it. If you can, go for it and skip the rest of this section.</p>
+
+<p>If, instead, you want a particular version of Boost, or if you
+don't have administrative rights on your machine, you'll have to
+compile Boost yourself. Instructions for that are available on the
+Boost site
+at <a href="http://www.boost.org/more/getting_started/index.html">http://www.boost.org/more/getting_started/index.html</a>. In
+this case, you might end up with a Boost installation in a
+non-standard location; take a note of it, as you'll need it later.</p>
+
+<h2>QuantLib Installation</h2>
+
+<h3>Installation from a released version</h3>
+
+<p>You can download released QuantLib versions from the SourceForge download page 
+at <a href="http://sourceforge.net/projects/quantlib/files/">http://sourceforge.net/projects/quantlib/files/</a>.</p>
+<p>Once you have the tarball, extract it by executing:</p>
+<pre>
+tar xzf QuantLib-1.4.1.tar.gz
+</pre>
+<p>(1.4.1 is the most recent version at the time of this writing; you
+might have downloaded another one.) This creates a
+folder <code>QuantLib-1.4.1</code>; enter it and configure QuantLib by
+executing:</p>
+<pre>
+  cd QuantLib-1.4.1
+  ./configure
+</pre>
+
+<p>The above step is customizable, if you want: run</p>
+<pre>
+  ./configure --help
+</pre>
+<p>to obtain a list of the configuration options. In particular,
+the <code>--prefix</code> option can be used to install QuantLib in a
+location other than the default (<code>/usr/local</code>).</p>
+
+<p>This is also the step where you might have to
+tell <code>configure</code> about the location of your Boost
+installation, if that's not a standard one. If, for instance, you
+installed the Boost headers in <code>/home/foo/include</code>
+and the libraries in <code>/home/foo/lib</code>, execute:</p>
+<pre>
+  ./configure --with-boost-include=/home/foo/include --with-boost-lib=/home/foo/lib
+</pre>
+<p>to setup the build correctly. Finally,</p>
+<pre>
+  make
+</pre>
+<p>builds the library and</p>
+<pre>
+  sudo make install
+</pre>
+<p>installs it (if you specified a location with <code>--prefix</code> that doesn't need admin permissions, you won't need to use <code>sudo</code> before <code>make install</code>).</p>
+
+<p>Once you're done, you can try to compile and run an example to check your
+installation. If you installed everything in the default location, you
+can simply execute:</p>
+<pre>
+  cd Examples/BermudanSwaption
+  g++ BermudanSwaption.cpp -o BermudanSwaption -lQuantLib
+  ./BermudanSwaption
+</pre>
+<p>Otherwise, you'll have to specify the location of your Boost and
+QuantLib installations with corresponding <code>-I</code>
+and <code>-L</code> flags; for instance, the middle step above would be:</p>
+<pre>
+  g++ BermudanSwaption.cpp -I/home/foo/include -o BermudanSwaption -L/home/foo/lib -lQuantLib
+</pre>
+<p>if you ran <code>./configure</code> with prefix <code>/home/foo</code>.</p>
+
+<h3>Installation from a git repository</h3>
+
+<p>If you want to compile from a checkout of a git repository (such as
+the official one
+at <a href="https://github.com/lballabio/quantlib">https://github.com/lballabio/quantlib</a>,
+or a fork of it that you might have created) you'll need an additional
+step at the beginning of the process. Before running
+the <code>./configure</code> script, you'll have to create it by
+executing</p>
+<pre>
+  ./autogen.sh
+</pre>
+<p>To do this, you'll need automake, autoconf and libtool. Again,
+they're packaged for most Linux distributions; on Ubuntu, you would
+get them by running</p>
+<pre>
+  sudo apt-get install automake autoconf libtool
+</pre>
+<p>After the execution of <code>./autogen.sh</code>, the installation proceeds
+as in the previous section.</p>
+</div>
+
+<div class="footer">
+<!--#include virtual="/footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>

@@ -10,6 +10,7 @@ noinst_HEADERS = \
     serialization_all.hpp \
     serialization_alphaform.hpp \
     serialization_assetswap.hpp \
+    serialization_basketlossmodels.hpp \
     serialization_bonds.hpp \
     serialization_browniangenerators.hpp \
     serialization_btp.hpp \
@@ -22,6 +23,7 @@ noinst_HEADERS = \
     serialization_credit.hpp \
     serialization_ctsmmcapletcalibration.hpp \
     serialization_curvestate.hpp \
+    serialization_defaultbasket.hpp \
     serialization_defaulttermstructures.hpp \
     serialization_driftcalculators.hpp \
     serialization_evolutiondescription.hpp \
@@ -29,6 +31,7 @@ noinst_HEADERS = \
     serialization_forwardrateagreement.hpp \
     serialization_index.hpp \
     serialization_interpolation.hpp \
+    serialization_latentmodels.hpp \
     serialization_leg.hpp \
     serialization_marketmodelevolvers.hpp \
     serialization_marketmodels.hpp \
@@ -66,6 +69,7 @@ libRegister_la_SOURCES = \
     serialization_accountingengines.cpp \
     serialization_alphaform.cpp \
     serialization_assetswap.cpp \
+    serialization_basketlossmodels.cpp \
     serialization_bonds.cpp \
     serialization_browniangenerators.cpp \
     serialization_btp.cpp \
@@ -78,6 +82,7 @@ libRegister_la_SOURCES = \
     serialization_credit.cpp \
     serialization_ctsmmcapletcalibration.cpp \
     serialization_curvestate.cpp \
+    serialization_defaultbasket.cpp \
     serialization_defaulttermstructures.cpp \
     serialization_driftcalculators.cpp \
     serialization_evolutiondescription.cpp \
@@ -85,6 +90,7 @@ libRegister_la_SOURCES = \
     serialization_forwardrateagreement.cpp \
     serialization_index.cpp \
     serialization_interpolation.cpp \
+    serialization_latentmodels.cpp \
     serialization_leg.cpp \
     serialization_marketmodelevolvers.cpp \
     serialization_marketmodels.cpp \

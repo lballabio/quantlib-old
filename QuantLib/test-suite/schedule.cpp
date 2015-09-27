@@ -22,6 +22,7 @@
 #include <ql/time/schedule.hpp>
 #include <ql/time/calendars/target.hpp>
 #include <ql/time/calendars/japan.hpp>
+#include <ql/time/calendars/unitedstates.hpp>
 
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
@@ -138,13 +139,151 @@ void ScheduleTest::testDatesPastEndDateWithEomAdjustment() {
     check_dates(s, expected);
 }
 
+void ScheduleTest::testForwardDatesWithEomAdjustment() {
+    BOOST_TEST_MESSAGE(
+        "Testing that the last date is not adjusted for EOM when "
+        "termination date convention is unadjusted...");
+
+    Schedule s =
+        MakeSchedule().from(Date(31,August,1996))
+                      .to(Date(15,September,1997))
+                      .withCalendar(UnitedStates(UnitedStates::GovernmentBond))
+                      .withTenor(6*Months)
+                      .withConvention(Unadjusted)
+                      .withTerminationDateConvention(Unadjusted)
+                      .forwards()
+                      .endOfMonth();
+
+    std::vector<Date> expected(4);
+    expected[0] = Date(31,August,1996);
+    expected[1] = Date(28,February,1997);
+    expected[2] = Date(31,August,1997);
+    expected[3] = Date(15,September,1997);
+
+    check_dates(s, expected);
+}
+
+void ScheduleTest::testBackwardDatesWithEomAdjustment() {
+    BOOST_TEST_MESSAGE(
+        "Testing that the first date is not adjusted for EOM "
+        "going backward when termination date convention is unadjusted...");
+
+    Schedule s =
+        MakeSchedule().from(Date(22,August,1996))
+                      .to(Date(31,August,1997))
+                      .withCalendar(UnitedStates(UnitedStates::GovernmentBond))
+                      .withTenor(6*Months)
+                      .withConvention(Unadjusted)
+                      .withTerminationDateConvention(Unadjusted)
+                      .backwards()
+                      .endOfMonth();
+
+    std::vector<Date> expected(4);
+    expected[0] = Date(22,August,1996);
+    expected[1] = Date(31,August,1996);
+    expected[2] = Date(28,February,1997);
+    expected[3] = Date(31,August,1997);
+
+    check_dates(s, expected);
+}
+
+void ScheduleTest::testDoubleFirstDateWithEomAdjustment() {
+    BOOST_TEST_MESSAGE(
+        "Testing that the first date is not duplicated due to "
+        "EOM convention when going backwards...");
+
+    Schedule s =
+        MakeSchedule().from(Date(22,August,1996))
+                      .to(Date(31,August,1997))
+                      .withCalendar(UnitedStates(UnitedStates::GovernmentBond))
+                      .withTenor(6*Months)
+                      .withConvention(Following)
+                      .withTerminationDateConvention(Following)
+                      .backwards()
+                      .endOfMonth();
+
+    std::vector<Date> expected(3);
+    expected[0] = Date(30,August,1996);
+    expected[1] = Date(28,February,1997);
+    expected[2] = Date(29,August,1997);
+
+    check_dates(s, expected);
+}
+
+void ScheduleTest::testDateConstructor() {
+    BOOST_TEST_MESSAGE("Testing the constructor taking a vector of dates and "
+                       "possibly additional meta information...");
+
+    std::vector<Date> dates;
+    dates.push_back(Date(16, May, 2015));
+    dates.push_back(Date(18, May, 2015));
+    dates.push_back(Date(18, May, 2016));
+    dates.push_back(Date(31, December, 2017));
+
+    // schedule without any additional information
+    Schedule schedule1(dates);
+    if (schedule1.size() != dates.size())
+        BOOST_ERROR("schedule1 has size " << schedule1.size() << ", expected "
+                                          << dates.size());
+    for (Size i = 0; i < dates.size(); ++i)
+        if (schedule1[i] != dates[i])
+            BOOST_ERROR("schedule1 has " << schedule1[i] << " at position " << i
+                                         << ", expected " << dates[i]);
+    if (schedule1.calendar() != NullCalendar())
+        BOOST_ERROR("schedule1 has calendar " << schedule1.calendar().name()
+                                              << ", expected null calendar");
+    if (schedule1.businessDayConvention() != Unadjusted)
+        BOOST_ERROR("schedule1 has convention "
+                    << schedule1.businessDayConvention()
+                    << ", expected unadjusted");
+
+    // schedule with metadata
+    std::vector<bool> regular;
+    regular.push_back(false);
+    regular.push_back(true);
+    regular.push_back(false);
+    Schedule schedule2(dates, TARGET(), Following, ModifiedPreceding, 1 * Years,
+                       DateGeneration::Backward, true, regular);
+    for (Size i = 1; i < dates.size(); ++i)
+        if (schedule2.isRegular(i) != regular[i - 1])
+            BOOST_ERROR("schedule2 has a "
+                        << (schedule2.isRegular(i) ? "regular" : "irregular")
+                        << " period at position " << i << ", expected "
+                        << (regular[i - 1] ? "regular" : "irregular"));
+    if (schedule2.calendar() != TARGET())
+        BOOST_ERROR("schedule1 has calendar " << schedule2.calendar().name()
+                                              << ", expected TARGET");
+    if (schedule2.businessDayConvention() != Following)
+        BOOST_ERROR("schedule2 has convention "
+                    << schedule2.businessDayConvention()
+                    << ", expected Following");
+    if (schedule2.terminationDateBusinessDayConvention() != ModifiedPreceding)
+        BOOST_ERROR("schedule2 has convention "
+                    << schedule2.terminationDateBusinessDayConvention()
+                    << ", expected Modified Preceding");
+    if (schedule2.tenor() != 1 * Years)
+        BOOST_ERROR("schedule2 has tenor " << schedule2.tenor()
+                                           << ", expected 1Y");
+    if (schedule2.rule() != DateGeneration::Backward)
+        BOOST_ERROR("schedule2 has rule " << schedule2.rule()
+                                          << ", expected Backward");
+    if (schedule2.endOfMonth() != true)
+        BOOST_ERROR("schedule2 has end of month flag false, expected true");
+}
 
 test_suite* ScheduleTest::suite() {
     test_suite* suite = BOOST_TEST_SUITE("Schedule tests");
     suite->add(QUANTLIB_TEST_CASE(&ScheduleTest::testDailySchedule));
     suite->add(QUANTLIB_TEST_CASE(&ScheduleTest::testEndDateWithEomAdjustment));
     suite->add(QUANTLIB_TEST_CASE(
-                       &ScheduleTest::testDatesPastEndDateWithEomAdjustment));
+        &ScheduleTest::testDatesPastEndDateWithEomAdjustment));
+    suite->add(QUANTLIB_TEST_CASE(
+        &ScheduleTest::testForwardDatesWithEomAdjustment));
+    suite->add(QUANTLIB_TEST_CASE(
+        &ScheduleTest::testBackwardDatesWithEomAdjustment));
+    suite->add(QUANTLIB_TEST_CASE(
+        &ScheduleTest::testDoubleFirstDateWithEomAdjustment));
+    suite->add(QUANTLIB_TEST_CASE(&ScheduleTest::testDateConstructor));
     return suite;
 }
 

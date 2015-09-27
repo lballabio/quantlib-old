@@ -36,6 +36,9 @@
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
 
+using std::pow;
+using std::cos;
+
 namespace {
 
     struct NamedOptimizationMethod;
@@ -53,7 +56,7 @@ namespace {
       public:
         OneDimensionalPolynomialDegreeN(const Array& coefficients)
         : coefficients_(coefficients),
-          polynomialDegree_(coefficients.size()-1),odd(true) {}
+          polynomialDegree_(coefficients.size()-1) {}
 
         Real value(const Array& x) const {
             QL_REQUIRE(x.size()==1,"independent variable must be 1 dimensional");
@@ -73,7 +76,6 @@ namespace {
       private:
         const Array coefficients_;
         const Size polynomialDegree_;
-        mutable bool odd;
     };
 
 
@@ -106,6 +108,7 @@ namespace {
 
     enum OptimizationMethodType {simplex,
                                  levenbergMarquardt,
+                                 levenbergMarquardt2,
                                  conjugateGradient,
                                  steepestDescent,
                                  bfgs};
@@ -116,6 +119,8 @@ namespace {
             return "Simplex";
           case levenbergMarquardt:
             return "Levenberg Marquardt";
+          case levenbergMarquardt2:
+            return "Levenberg Marquardt (cost function's jacbobian)";
           case conjugateGradient:
             return "Conjugate Gradient";
           case steepestDescent:
@@ -148,6 +153,12 @@ namespace {
                 new LevenbergMarquardt(levenbergMarquardtEpsfcn,
                                        levenbergMarquardtXtol,
                                        levenbergMarquardtGtol));
+          case levenbergMarquardt2:
+            return boost::shared_ptr<OptimizationMethod>(
+                new LevenbergMarquardt(levenbergMarquardtEpsfcn,
+                                       levenbergMarquardtXtol,
+                                       levenbergMarquardtGtol,
+                                       true));
           case conjugateGradient:
             return boost::shared_ptr<OptimizationMethod>(new ConjugateGradient);
           case steepestDescent:
@@ -223,7 +234,8 @@ namespace {
                             gradientNormEpsilons_.back())));
         // Set optimization methods for optimizer
         OptimizationMethodType optimizationMethodTypes[] = {
-            simplex, levenbergMarquardt, conjugateGradient, bfgs//, steepestDescent
+            simplex, levenbergMarquardt, levenbergMarquardt2, conjugateGradient,
+            bfgs //, steepestDescent
         };
         Real simplexLambda = 0.1;                   // characteristic search length for simplex
         Real levenbergMarquardtEpsfcn = 1.0e-8;     // parameters specific for Levenberg-Marquardt
@@ -376,7 +388,7 @@ namespace {
         Real value(const Array& x) const {
             Real fx = 0.0;
             for (Size i=0; i<x.size(); ++i) {
-                fx += floor(x[i])*floor(x[i]);
+                fx += std::floor(x[i])*std::floor(x[i]);
             }
             return fx;
         }

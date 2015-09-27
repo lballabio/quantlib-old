@@ -64,9 +64,6 @@ namespace QuantLib {
         //! modeling uncertainty as definied in Numerical Recipes
         const Array& error()          const { return err_;}
 
-#ifndef QL_DISABLE_DEPRECATED
-        const Array& a() const     { return a_;  }
-#endif
         Size size() const { return residuals_.size(); }
 
         Size dim() const { return a_.size(); }

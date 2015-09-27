@@ -47,7 +47,7 @@ namespace QuantLibAddin {
         boost::shared_ptr<ObjectTo> &out) {
 
         out = boost::dynamic_pointer_cast<ObjectTo>(in);
-        return out;
+        return bool(out);
     }
 
     template <class ObjectFrom, class LibraryFrom, class ObjectTo>

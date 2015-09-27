@@ -47,6 +47,9 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
 
+using std::fabs;
+using std::sqrt;
+
 #define BEGIN(x) (x+0)
 #define END(x) (x+LENGTH(x))
 
@@ -145,7 +148,7 @@ namespace {
     }
 
     const boost::shared_ptr<SequenceStatisticsInc> simulate(
-        const std::vector<Real> todaysDiscounts,
+        const std::vector<Real>& todaysDiscounts,
         const boost::shared_ptr<MarketModelEvolver>& evolver,
         const MarketModelMultiProduct& product)
     {
@@ -360,7 +363,7 @@ void SwapForwardMappingsTest::testForwardCoterminalMappings() {
             lmmCurveState.coterminalSwapAnnuity(i,i) *
             todaysDiscounts[i]).value();
         if (fabs(expectedSwaption-results[i]) > 0.0001)
-            BOOST_TEST_MESSAGE(
+            BOOST_ERROR(
             "expected\t" << expectedSwaption <<
             "\tLMM\t" << results[i]
         << "\tstdev:\t" << errors[i] <<

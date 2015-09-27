@@ -5,32 +5,51 @@
   <RuleGroup name='functionDeclaration' indent='2' delimiter=',&#10;'>
     <Wrap>&#10;%s</Wrap>
     <Rules>
-        <Rule default='true'>%(indent)sconst ANY &amp;%(name)s</Rule>
         <Rule loop='true'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar' ignore='True' nativeType='bool'>%(indent)sconst sal_Int32 %(name)s</Rule>
+        <Rule default='true' tensorRank='scalar'>%(indent)sconst ANY &amp;%(name)s</Rule>
+        <Rule tensorRank='scalar'>%(indent)sconst ANY &amp;%(name)s</Rule>
+        <Rule tensorRank='vector'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
+        <Rule tensorRank='matrix'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
+        
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)sconst ANY &amp;%(name)s</Rule>
-        <Rule tensorRank='scalar' nativeType='long'>%(indent)ssal_Int32 %(name)s</Rule>
-        <Rule tensorRank='scalar' nativeType='bool'>%(indent)ssal_Int32 %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='long'>%(indent)sconst sal_Int32 %(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>%(indent)sconst sal_Int32 %(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)sconst STRING &amp;%(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)sconst ANY &amp;%(name)s</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(nativeType)s %(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Date'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Natural'>%(indent)sconst SEQSEQ(sal_Int32) &amp;%(name)s</Rule>        
         <Rule type='QuantLib::Date'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
         <Rule nativeType='long'>%(indent)sconst SEQSEQ(sal_Int32) &amp;%(name)s</Rule>
         <Rule nativeType='bool'>%(indent)sconst SEQSEQ(sal_Int32) &amp;%(name)s</Rule>
         <Rule nativeType='string'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
         <Rule nativeType='any'>%(indent)sconst SEQSEQ(ANY) &amp;%(name)s</Rule>
         <Rule>%(indent)sconst SEQSEQ(%(nativeType)s) &amp;%(name)s</Rule>
+        <Rule loop='true' tensorRank='vector' type='QuantLib::Real'>%(indent)sconst SEQSEQ(double) &amp;%(name)s</Rule>        
     </Rules>
   </RuleGroup>
 
   <RuleGroup name='returnTypeIDL'>
     <Wrap>&#10;%s</Wrap>
     <Rules>
+        <Rule>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+
+        <Rule>sequence&lt;sequence&lt;%(nativeType)s&gt; &gt;</Rule>
+        <Rule loop='true'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
         <Rule tensorRank='scalar' nativeType='void'>long</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>long</Rule>
         <Rule tensorRank='scalar'>%(nativeType)s</Rule>
+        <Rule tensorRank='vector' nativeType='double'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Time'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Spread'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Rate'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Volatility'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Real'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Matrix'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
+        <Rule tensorRank='matrix' nativeType='double'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
         <Rule nativeType='void'>sequence&lt;sequence&lt;long&gt; &gt;</Rule>
         <Rule nativeType='bool'>sequence&lt;sequence&lt;long&gt; &gt;</Rule>
-        <Rule loop='true'>sequence&lt;sequence&lt;any&gt; &gt;</Rule>
         <Rule>sequence&lt;sequence&lt;%(nativeType)s&gt; &gt;</Rule>
     </Rules>
   </RuleGroup>
@@ -38,7 +57,9 @@
   <RuleGroup name='ruleIDL' indent='6' delimiter=',&#10;'>
     <Wrap>&#10;%s</Wrap>
     <Rules>
-        <Rule default='true'>%(indent)s[in] any %(name)s</Rule>
+        <Rule tensorRank='scalar' ignore='True' nativeType='bool'>%(indent)s[in] long %(name)s</Rule>
+        <Rule default='true' tensorRank='scalar'>%(indent)s[in] any %(name)s</Rule>
+        <Rule tensorRank='scalar'>%(indent)s[in] any %(name)s</Rule>
         <Rule loop='true'>%(indent)s[in] sequence&lt;sequence&lt;any&gt; &gt; %(name)s</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s[in] long %(name)s</Rule>
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)s[in] any %(name)s</Rule>
@@ -46,6 +67,7 @@
         <Rule type='QuantLib::Date'>%(indent)s[in] sequence&lt;sequence&lt;any&gt; &gt; %(name)s</Rule>
         <Rule nativeType='bool'>%(indent)s[in] sequence&lt;sequence&lt;long&gt; &gt; %(name)s</Rule>
         <Rule nativeType='string'>%(indent)s[in] sequence&lt;sequence&lt;any&gt; &gt; %(name)s</Rule>
+        <Rule>%(indent)s[in] sequence&lt;sequence&lt;any&gt; &gt; %(name)s</Rule>
         <Rule>%(indent)s[in] sequence&lt;sequence&lt;%(nativeType)s&gt; &gt; %(name)s</Rule>
     </Rules>
   </RuleGroup>
@@ -54,16 +76,20 @@
     <Wrap codeID='wrap1'/>
     <Rules>
         <Rule loop='true'/>
-        <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code71b'/>
-        <Rule tensorRank='scalar' default='true' codeID='code72'/>
+        <Rule tensorRank='scalar' default='true' nativeType='string' codeID='code71bdef'/>
+        <Rule tensorRank='scalar' default='true' nativeType='double' codeID='code72def'/>
+        <!--Rule tensorRank='scalar' default='true' codeID='code72def'/-->
         <Rule tensorRank='scalar' type='QuantLib::Date' codeID='code71c'/>
-        <Rule tensorRank='scalar' nativeType='string' codeID='code71a'/>
+        <Rule tensorRank='scalar' nativeType='string' codeID='code71b'/>
+        <Rule tensorRank='scalar' codeID='code72'/>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)sbool %(name)sCpp = static_cast&lt;bool&gt;(%(name)s);&#10;</Rule>
         <Rule tensorRank='vector' type='QuantLib::Date' codeID='code73b'/>
         <Rule tensorRank='vector' type='QuantLib::Period' codeID='code73b'/>
         <Rule tensorRank='vector' type='QuantLib::Quote' codeID='code73b'/>
+        <Rule tensorRank='vector' type='QuantLibAddin::Bond' codeID='code73b'/>
         <Rule tensorRank='vector' nativeType='double' codeID='code74'/>
         <Rule tensorRank='vector' nativeType='long' codeID='code74'/>
+        <Rule tensorRank='vector' nativeType='bool' codeID='code74'/>
         <Rule tensorRank='vector' nativeType='string' codeID='code73'/>
         <Rule tensorRank='matrix' nativeType='double' codeID='code75'/>
     </Rules>
@@ -74,16 +100,20 @@
     <Rules>
         <!--Rule type='QuantLib::Natural'/-->
 	<!--Rule type='QuantLib::Size'/-->
+        <!--Rule tensorRank='scalar' default='true' superType='libraryType' codeID='code96def'/-->
+        <Rule tensorRank='scalar' default='true' type='QuantLib::Date' codeID='code96defdate'/>
+        <Rule tensorRank='scalar' default='true' type='QuantLib::Period' codeID='code96defperiod'/>
         <Rule tensorRank='scalar' superType='libraryType' codeID='code96'/>
+        <Rule tensorRank='vector' superType='libraryClass' type='QuantLib::ZeroCouponInflationSwapHelper' codeID='codeCalc37b'/>        
         <Rule tensorRank='vector' superType='libraryClass' codeID='code37b'/>
         <Rule tensorRank='vector' superType='libToHandle' type='QuantLib::Quote' codeID='codeCalc218'/>
         <Rule tensorRank='vector' type='QuantLib::Array' superType='libraryType' codeID='code77'/>
         <Rule tensorRank='vector' type='QuantLib::Matrix' superType='libraryType' codeID='code77'/>
+        <!--Rule tensorRank='vector' nativeType='string' codeID='code78'/-->
         <Rule tensorRank='vector' superType='libraryType' codeID='code76'/>
-        <Rule tensorRank='vector' nativeType='string' codeID='code78'/>
-        <Rule tensorRank='vector' nativeType='long' codeID='code79'/>
-        <Rule tensorRank='vector' nativeType='bool' codeID='code79'/>
-        <Rule tensorRank='vector' loop='true'/>
+        <!--Rule tensorRank='vector' nativeType='long' codeID='code79'/-->
+        <!--Rule tensorRank='vector' nativeType='bool' codeID='code79'/-->
+        <!--Rule tensorRank='vector' loop='true'/-->
         <!--Rule tensorRank='vector' superType='libraryType' codeID='code133'/-->
         <Rule tensorRank='matrix' superType='libraryType' codeID='code94'/>
     </Rules>
@@ -109,10 +139,16 @@
     <Rules>
         <Rule tensorRank='scalar' superType='objectClass' codeID='code95'/>
         <Rule tensorRank='scalar' superType='libToHandle' codeID='code93a'/>
+        <Rule tensorRank='scalar' type='QuantLib::G2' codeID='code81Calc'/>
+        <Rule tensorRank='scalar' type='QuantLib::HullWhite' codeID='code81Calc'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code80'/>
         <Rule tensorRank='scalar' superType='libraryClass' codeID='code81'/>
         <Rule tensorRank='scalar' superType='libraryQuote' codeID='codeCalc45c'/>
+        <Rule tensorRank='scalar' superType='objectQuote' codeID='codeCalc45c'/>
         <Rule tensorRank='scalar' superType='libraryTermStructure' codeID='codeCalc46'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatistics' codeID='codeCalc49'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' type='QuantLib::SequenceStatisticsInc' codeID='codeCalc49'/>
+        <Rule tensorRank='scalar' superType='underlyingClass' codeID='codeCalc48'/>
     </Rules>
   </RuleGroup>
 
@@ -121,8 +157,8 @@
     <Rules>
         <Rule tensorRank='scalar' type='QuantLib::Date'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
-        <Rule tensorRank='scalar' nativeType='long'>%(indent)s%(name)s</Rule>
-        <Rule tensorRank='scalar' nativeType='double'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar' nativeType='long'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' nativeType='double'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='any'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)sCpp</Rule>
@@ -147,11 +183,12 @@
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' nativeType='string'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
-        <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
+        <Rule tensorRank='scalar'>%(indent)s%(name)sCpp</Rule>
         <Rule superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
         <Rule objectReference='true'>%(indent)s%(nameConverted)s</Rule>
         <Rule tensorRank='vector' superType='libraryType'>%(indent)s%(nameConverted)s</Rule>
         <Rule tensorRank='vector'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='matrix' nativeType='double'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='matrix'>%(indent)s%(nameConverted)s</Rule>
     </Rules>
   </RuleGroup>
@@ -159,13 +196,34 @@
   <RuleGroup name='functionReturnType'>
     <Wrap>&#10;%s</Wrap>
     <Rules>
+        <Rule>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='scalar'>ANY</Rule>
+        <Rule tensorRank='vector'>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='matrix'>SEQSEQ(ANY)</Rule>
+
+        <Rule tensorRank='scalar' nativeType='void'>ANY</Rule>
+        <Rule tensorRank='scalar' nativeType='long'>ANY</Rule>
+        <Rule tensorRank='scalar' nativeType='bool'>ANY</Rule>
+        <Rule tensorRank='scalar' nativeType='string'>ANY</Rule>
         <Rule tensorRank='scalar' nativeType='void'>sal_Int32</Rule>
         <Rule tensorRank='scalar' nativeType='long'>sal_Int32</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>sal_Int32</Rule>
         <Rule tensorRank='scalar' nativeType='string'>STRING</Rule>
         <Rule tensorRank='scalar' nativeType='any'>ANY</Rule>
         <Rule tensorRank='scalar'>%(nativeType)s</Rule>
+        <Rule tensorRank='vector' nativeType='double'>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Time'>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Spread'>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Rate'>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Volatility'>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='vector' type='QuantLib::Real'>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='matrix' type='QuantLib::Matrix'>SEQSEQ(ANY)</Rule>
+        <Rule tensorRank='matrix' nativeType='double'>SEQSEQ(ANY)</Rule>
         <Rule loop='true'>SEQSEQ(ANY)</Rule>
+        <Rule nativeType='void'>SEQSEQ(ANY)</Rule>
+        <Rule nativeType='long'>SEQSEQ(ANY)</Rule>
+        <Rule nativeType='bool'>SEQSEQ(ANY)</Rule>
+        <Rule nativeType='string'>SEQSEQ(ANY)</Rule>
         <Rule nativeType='void'>SEQSEQ(sal_Int32)</Rule>
         <Rule nativeType='long'>SEQSEQ(sal_Int32)</Rule>
         <Rule nativeType='bool'>SEQSEQ(sal_Int32)</Rule>
@@ -177,6 +235,14 @@
   <RuleGroup name='convertReturnType' indent='2'>
     <Wrap codeID='wrap6'/>
     <Rules>
+        <Rule tensorRank='scalar' nativeType='void' codeID='code86anyvoid'/>
+        <Rule tensorRank='scalar' codeID='code86any'/>
+        <Rule tensorRank='vector' codeID='code85any'/>
+        <Rule tensorRank='matrix' codeID='code90'/>
+
+        <Rule codeID='code92'/>
+        <Rule tensorRank='scalar' type='QuantLib::InterestRate' codeID='code86a'/>
+        <Rule tensorRank='scalar' type='QuantLib::Period' codeID='code86a'/>
         <Rule tensorRank='scalar' superType='libraryType' codeID='code86'/>
         <Rule tensorRank='scalar' nativeType='void'>%(indent)sreturn 1;&#10;</Rule>
         <Rule tensorRank='scalar' nativeType='long'>%(indent)sreturn returnValue;&#10;</Rule>
@@ -185,6 +251,16 @@
         <Rule tensorRank='scalar' nativeType='string' codeID='code84'/>
         <Rule tensorRank='scalar' nativeType='any' codeID='code85'/>
         <Rule tensorRank='scalar' codeID='code87'/>
+        <Rule tensorRank='vector' type='QuantLib::Date' codeID='code85a'/>
+        <Rule tensorRank='vector' type='QuantLib::Size' codeID='code85a'/>
+        <Rule tensorRank='vector' nativeType='double' codeID='code85b'/>
+        <Rule tensorRank='vector' type='QuantLib::Time' codeID='code85b'/>
+        <Rule tensorRank='vector' type='QuantLib::Rate' codeID='code85b'/>
+        <Rule tensorRank='vector' type='QuantLib::Spread' codeID='code85b'/>
+        <Rule tensorRank='vector' type='QuantLib::Real' codeID='code85b'/>
+        <Rule tensorRank='vector' type='QuantLib::Volatility' codeID='code85b'/>
+        <Rule tensorRank='matrix' type='QuantLib::Matrix' codeID='code90'/>
+        <Rule tensorRank='matrix' nativeType='double' codeID='code90'/>
         <Rule superType='libraryType' codeID='code91'/>
         <Rule nativeType='void' codeID='code88'/>
         <Rule nativeType='long' codeID='code88'/>
@@ -217,21 +293,25 @@
         <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Array'>%(type)s returnValue = </Rule>
         <Rule tensorRank='matrix' superType='libraryType' type='QuantLib::Matrix'>%(type)s returnValue = </Rule>
         <Rule tensorRank='matrix' superType='libraryType'>std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt; returnValue = </Rule>
+        <Rule tensorRank='matrix' nativeType='any' codeID='codeCalc53'/>
         <Rule tensorRank='matrix'>std::vector&lt;std::vector&lt;%(nativeType)s&gt; &gt; returnValue = </Rule>
     </Rules>
   </RuleGroup>
 
-  <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true' checkSkipFirst='true'>
+  <RuleGroup name='loopInputs' indent='4' delimiter=',&#10;' checkParameterIgnore='true'>
     <Wrap>&#10;%s</Wrap>
     <Rules>
-        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
         <Rule tensorRank='scalar' superType='libraryType'>%(indent)s%(name)sLib</Rule>
         <Rule tensorRank='scalar' superType='enumeration'>%(indent)s%(name)sEnum</Rule>
         <Rule tensorRank='scalar' nativeType='bool'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' default='true'>%(indent)s%(name)sCpp</Rule>
+        <Rule tensorRank='scalar' superType='objectClass'>%(indent)s%(name)sObjPtr</Rule>
+        <Rule tensorRank='scalar' objectReference='true'>%(indent)s%(name)sLibObjPtr</Rule>
         <Rule tensorRank='scalar'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='vector' loop='true'>%(indent)s_1</Rule>
         <Rule tensorRank='vector'>%(indent)s%(name)s</Rule>
         <Rule tensorRank='matrix'>%(indent)s%(name)s</Rule>
+        <Rule>%(indent)s%(name)sXXX</Rule>
     </Rules>
   </RuleGroup>
 
@@ -246,6 +326,12 @@
   <RuleGroup name='loopReturnType'>
     <Wrap/>
     <Rules>
+        <Rule superType='libraryType'>%(type)s</Rule>
+        <Rule superType='QuantLib::Real'>SEQSEQ(Any)</Rule>
+        <Rule objectReference='true'>%(type)s</Rule>
+        <Rule nativeType='string'>std::string</Rule>
+        <Rule nativeType='any'>ObjectHandler::property_t</Rule>
+        <Rule>%(nativeType)s</Rule>
         <Rule superType='libraryType'>%(type)s</Rule>
         <Rule superType='enumeration'>%(type)s</Rule>
         <Rule nativeType='string'>STRING</Rule>

@@ -4,8 +4,8 @@
 #include <ql/experimental/amortizingbonds/all.hpp>
 #include <ql/experimental/barrieroption/all.hpp>
 #include <ql/experimental/callablebonds/all.hpp>
+#include <ql/experimental/catbonds/all.hpp>
 #include <ql/experimental/commodities/all.hpp>
-#include <ql/experimental/compoundoption/all.hpp>
 #include <ql/experimental/convertiblebonds/all.hpp>
 #include <ql/experimental/coupons/all.hpp>
 #include <ql/experimental/credit/all.hpp>
@@ -16,10 +16,10 @@
 #include <ql/experimental/lattices/all.hpp>
 #include <ql/experimental/math/all.hpp>
 #include <ql/experimental/mcbasket/all.hpp>
-#include <ql/experimental/models/all.hpp>
 #include <ql/experimental/processes/all.hpp>
 #include <ql/experimental/risk/all.hpp>
 #include <ql/experimental/shortrate/all.hpp>
+#include <ql/experimental/swaptions/all.hpp>
 #include <ql/experimental/variancegamma/all.hpp>
 #include <ql/experimental/varianceoption/all.hpp>
 #include <ql/experimental/volatility/all.hpp>

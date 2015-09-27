@@ -127,9 +127,9 @@ namespace QuantLib {
             // than 1.15e-9.  One iteration of Halley's rational method (third
             // order) gives full machine precision.
             // #define REFINE_TO_FULL_MACHINE_PRECISION_USING_HALLEYS_METHOD
-            #ifdef  REFINE_TO_FULL_MACHINE_PRECISION_USING_HALLEYS_METHOD
+            #ifdef REFINE_TO_FULL_MACHINE_PRECISION_USING_HALLEYS_METHOD
             // error (f_(z) - x) divided by the cumulative's derivative
-            r = (f_(z) - x) * M_SQRT2 * M_SQRTPI * exp(0.5 * z*z);
+            const Real r = (f_(z) - x) * M_SQRT2 * M_SQRTPI * exp(0.5 * z*z);
             //  Halley's method
             z -= r/(1+0.5*z*r);
             #endif
@@ -223,6 +223,41 @@ namespace QuantLib {
         static const Real c6_;
         static const Real c7_;
         static const Real c8_;
+    };
+
+    //! Maddock's Inverse cumulative normal distribution class
+    /*! Given x between zero and one as
+        the integral value of a gaussian normal distribution
+        this class provides the value y such that
+        formula here ...
+
+        From the boost documentation:
+         These functions use a rational approximation devised by
+         John Maddock to calculate an initial approximation to the
+         result that is accurate to ~10^-19, then only if that has
+         insufficient accuracy compared to the epsilon for type double,
+         do we clean up the result using Halley iteration.
+    */
+    class MaddockInverseCumulativeNormal
+    : public std::unary_function<Real,Real> {
+      public:
+        MaddockInverseCumulativeNormal(Real average = 0.0,
+                                       Real sigma   = 1.0);
+        Real operator()(Real x) const;
+
+      private:
+        const Real average_, sigma_;
+    };
+
+    //! Maddock's cumulative normal distribution class
+    class MaddockCumulativeNormal : public std::unary_function<Real,Real> {
+      public:
+        MaddockCumulativeNormal(Real average = 0.0,
+                                       Real sigma   = 1.0);
+        Real operator()(Real x) const;
+
+      private:
+        const Real average_, sigma_;
     };
 
 

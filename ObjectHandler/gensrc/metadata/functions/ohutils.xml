@@ -346,6 +346,20 @@
       </ReturnValue>
     </Procedure>
 
+    <Procedure name='ohStack'>
+      <description>Returns the amount of stack space left available to the XLL.  This function returns the number 65535 when the stack size exceeds 64K.</description>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel' implementation='manual'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>long</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Procedure>
+
   </Functions>
 
 </Category>

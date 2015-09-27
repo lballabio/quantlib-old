@@ -94,14 +94,6 @@ namespace QuantLib {
         */
         bool& includeReferenceDateEvents();
         bool includeReferenceDateEvents() const;
-#ifndef QL_DISABLE_DEPRECATED
-        bool& includeReferenceDateCashFlows() {
-            return includeReferenceDateEvents();
-        }
-        bool includeReferenceDateCashFlows() const {
-            return includeReferenceDateEvents();
-        }
-#endif
 
         /*! If set, this flag specifies whether or not CashFlows
             occurring on today's date should enter the NPV.  When the

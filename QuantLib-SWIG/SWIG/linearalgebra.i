@@ -283,10 +283,10 @@ bool extractArray(PyObject* source, Array* target) {
 #elif defined(SWIGRUBY)
 %typemap(in) Array (Array* v) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
-        Size size = RARRAY($input)->len;
+        Size size = RARRAY_LEN($input);
         $1 = Array(size);
         for (Size i=0; i<size; i++) {
-            VALUE o = RARRAY($input)->ptr[i];
+            VALUE o = RARRAY_PTR($input)[i];
             if (TYPE(o) == T_FLOAT)
                 (($1_type &)$1)[i] = NUM2DBL(o);
             else if (FIXNUM_P(o))
@@ -304,11 +304,11 @@ bool extractArray(PyObject* source, Array* target) {
 %typemap(in) const Array& (Array temp),
              const Array* (Array temp) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
-        Size size = RARRAY($input)->len;
+        Size size = RARRAY_LEN($input);
         temp = Array(size);
         $1 = &temp;
         for (Size i=0; i<size; i++) {
-            VALUE o = RARRAY($input)->ptr[i];
+            VALUE o = RARRAY_PTR($input)[i];
             if (TYPE(o) == T_FLOAT)
                 temp[i] = NUM2DBL(o);
             else if (FIXNUM_P(o))
@@ -355,11 +355,11 @@ bool extractArray(PyObject* source, Array* target) {
 %typemap(in) Matrix (Matrix* m) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size rows, cols;
-        rows = RARRAY($input)->len;
+        rows = RARRAY_LEN($input);
         if (rows > 0) {
-            VALUE o = RARRAY($input)->ptr[0];
+            VALUE o = RARRAY_PTR($input)[0];
             if (rb_obj_is_kind_of(o,rb_cArray)) {
-                cols = RARRAY(o)->len;
+                cols = RARRAY_LEN(o);
             } else {
                 rb_raise(rb_eTypeError,
                          "wrong argument type (expected Matrix)");
@@ -369,14 +369,14 @@ bool extractArray(PyObject* source, Array* target) {
         }
         $1 = Matrix(rows,cols);
         for (Size i=0; i<rows; i++) {
-            VALUE o = RARRAY($input)->ptr[i];
+            VALUE o = RARRAY_PTR($input)[i];
             if (rb_obj_is_kind_of(o,rb_cArray)) {
-                if (Size(RARRAY(o)->len) != cols) {
+                if (Size(RARRAY_LEN(o)) != cols) {
                     rb_raise(rb_eTypeError,
                              "Matrix must have equal-length rows");
                 }
                 for (Size j=0; j<cols; j++) {
-                    VALUE x = RARRAY(o)->ptr[j];
+                    VALUE x = RARRAY_PTR(o)[j];
                     if (SWIG_FLOAT_P(x))
                         $1[i][j] = SWIG_NUM2DBL(x);
                     else
@@ -397,11 +397,11 @@ bool extractArray(PyObject* source, Array* target) {
              const Matrix* (Matrix temp) {
     if (rb_obj_is_kind_of($input,rb_cArray)) {
         Size rows, cols;
-        rows = RARRAY($input)->len;
+        rows = RARRAY_LEN($input);
         if (rows > 0) {
-            VALUE o = RARRAY($input)->ptr[0];
+            VALUE o = RARRAY_PTR($input)[0];
             if (rb_obj_is_kind_of(o,rb_cArray)) {
-                cols = RARRAY(o)->len;
+                cols = RARRAY_LEN(o);
             } else {
                 rb_raise(rb_eTypeError,
                          "wrong argument type (expected Matrix)");
@@ -412,14 +412,14 @@ bool extractArray(PyObject* source, Array* target) {
         temp = Matrix(rows,cols);
         $1 = &temp;
         for (Size i=0; i<rows; i++) {
-            VALUE o = RARRAY($input)->ptr[i];
+            VALUE o = RARRAY_PTR($input)[i];
             if (rb_obj_is_kind_of(o,rb_cArray)) {
-                if (Size(RARRAY(o)->len) != cols) {
+                if (Size(RARRAY_LEN(o)) != cols) {
                     rb_raise(rb_eTypeError,
                              "Matrix must have equal-length rows");
                 }
                 for (Size j=0; j<cols; j++) {
-                    VALUE x = RARRAY(o)->ptr[j];
+                    VALUE x = RARRAY_PTR(o)[j];
                     if (SWIG_FLOAT_P(x))
                         temp[i][j] = SWIG_NUM2DBL(x);
                     else

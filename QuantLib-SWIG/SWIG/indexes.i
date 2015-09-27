@@ -158,7 +158,9 @@ class InterestRateIndexPtr : public boost::shared_ptr<Index> {
 // IborIndex indexes
 %{
 using QuantLib::IborIndex;
+using QuantLib::OvernightIndex;
 typedef boost::shared_ptr<Index> IborIndexPtr;
+typedef boost::shared_ptr<Index> OvernightIndexPtr;
 %}
 
 %rename(IborIndex) IborIndexPtr;
@@ -202,6 +204,25 @@ class IborIndexPtr : public InterestRateIndexPtr {
     }
 };
 
+%rename(OvernightIndex) OvernightIndexPtr;
+class OvernightIndexPtr : public IborIndexPtr {
+  public:
+    %extend {
+        OvernightIndexPtr(const std::string& familyName,
+                          Integer settlementDays,
+                          const Currency& currency,
+                          const Calendar& calendar,
+                          const DayCounter& dayCounter,
+                          const Handle<YieldTermStructure>& h =
+                                    Handle<YieldTermStructure>()) {
+            return new OvernightIndexPtr(
+                new OvernightIndex(familyName, settlementDays,
+                                   currency, calendar,
+                                   dayCounter, h));
+        }
+    }
+};
+
 %define export_xibor_instance(Name)
 %{
 using QuantLib::Name;
@@ -227,6 +248,23 @@ typedef boost::shared_ptr<Index> Name##Ptr;
 %}
 %rename(Name) Name##Ptr;
 class Name##Ptr : public Base##Ptr {
+  public:
+    %extend {
+      Name##Ptr(const Handle<YieldTermStructure>& h =
+                                    Handle<YieldTermStructure>()) {
+          return new Name##Ptr(new Name(h));
+      }
+    }
+};
+%enddef
+
+%define export_overnight_instance(Name)
+%{
+using QuantLib::Name;
+typedef boost::shared_ptr<Index> Name##Ptr;
+%}
+%rename(Name) Name##Ptr;
+class Name##Ptr : public OvernightIndexPtr {
   public:
     %extend {
       Name##Ptr(const Handle<YieldTermStructure>& h =
@@ -413,6 +451,10 @@ export_xibor_instance(Tibor);
 export_xibor_instance(TRLibor);
 export_xibor_instance(USDLibor);
 export_xibor_instance(Zibor);
+
+export_overnight_instance(Eonia);
+export_overnight_instance(Sonia);
+export_overnight_instance(FedFunds);
 
 export_swap_instance(EuriborSwapIsdaFixA);
 export_swap_instance(EuriborSwapIsdaFixB);

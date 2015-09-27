@@ -43,15 +43,6 @@ namespace QuantLib {
             constructors.
         */
         //@{
-#ifndef QL_DISABLE_DEPRECATED
-        /*! \warning term structures initialized by means of this
-                     constructor must manage their own reference date
-                     by overriding the referenceDate() method.
-        */
-        SwaptionVolatilityStructure(const Calendar& calendar,
-                                    BusinessDayConvention bdc,
-                                    const DayCounter& dc = DayCounter());
-#endif
         /*! \warning term structures initialized by means of this
                      constructor must manage their own reference date
                      by overriding the referenceDate() method.
@@ -165,6 +156,12 @@ namespace QuantLib {
         virtual const Period& maxSwapTenor() const = 0;
         //! the largest swapLength for which the term structure can return vols
         Time maxSwapLength() const;
+        //@}
+        //@{
+        //! shift size for displaced lognormal volatility
+        virtual Real shift(Time optionTime, Time swapLength) const {
+            return 0.0;
+        }
         //@}
         //! implements the conversion between swap tenor and swap (time) length
         Time swapLength(const Period& swapTenor) const;

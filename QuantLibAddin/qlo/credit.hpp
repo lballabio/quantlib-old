@@ -2,6 +2,7 @@
 
 /*
  Copyright (C) 2010 Roland Lichters
+ Copyright (C) 2014 Jose Aparicio
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -26,6 +27,7 @@
 #include <qlo/defaulttermstructures.hpp>
 #include <qlo/schedule.hpp>
 #include <qlo/pricingengines.hpp>
+#include <qlo/quote.hpp>
 
 #include <ql/handle.hpp>
 #include <ql/time/daycounter.hpp>
@@ -34,31 +36,77 @@
 #include <ql/types.hpp>
 #include <ql/instruments/creditdefaultswap.hpp>
 #include <ql/termstructures/credit/defaultprobabilityhelpers.hpp>
+#include <ql/currency.hpp>
+#include <ql/experimental/credit/issuer.hpp>
+#include <ql/experimental/credit/recoveryratequote.hpp>
 
 namespace QuantLib {
     class Quote;
     class Date;
+    class Basket;
 }
 
 namespace QuantLibAddin {
 
-    class CreditDefaultSwap : public Instrument {
+	/*!
+		\todo Default term structures should be associated to their seniority 
+		        and recovery and passed as a vector of TS.
+	*/
+    class Issuer
+        : public ObjectHandler::LibraryObject<QuantLib::Issuer> {
     public:
-        CreditDefaultSwap(
-              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-              QuantLib::Protection::Side side,
-              QuantLib::Real notional,
-              QuantLib::Rate upfront,
-              QuantLib::Rate spread,
-              const boost::shared_ptr<QuantLib::Schedule>& schedule,
-              QuantLib::BusinessDayConvention paymentConvention,
-              const QuantLib::DayCounter& dayCounter,
-              bool settlesAccrual,
-              bool paysAtDefaultTime,
-              const QuantLib::Date& protectionStart,
-              const QuantLib::Date& upfrontDate,
-              bool permanent);
+        Issuer(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const boost::shared_ptr<QuantLib::DefaultProbabilityTermStructure>& dfts,
+            const boost::shared_ptr<QuantLib::DefaultEventSet>& evtSet,
+            bool permanent
+            );
     };
+
+    class DefaultEventSet
+        : public ObjectHandler::LibraryObject<QuantLib::DefaultEventSet> {
+    public:
+        DefaultEventSet(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const std::string& eventType,
+            const QuantLib::Date& eventDate,
+            const QuantLib::Currency& cur,
+            QuantLib::Seniority sen,
+            const QuantLib::Date& settleDate,
+            QuantLib::Real settledRecovery,
+            bool permanent
+        );
+    };
+
+    // To do, implement a Seniority inspector in credit.xml
+    class RecoveryRateQuote : public Quote {
+      public:
+        RecoveryRateQuote(const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+                    QuantLib::Seniority sen,
+                    QuantLib::Real value,
+                    bool permanent);
+        QuantLib::Real setValue(QuantLib::Real value);
+    private:
+        boost::shared_ptr<QuantLib::RecoveryRateQuote> recoveryQuote_;
+    };
+
+    //class CreditDefaultSwap : public Instrument {
+    //public:
+    //    CreditDefaultSwap(
+    //          const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+    //          QuantLib::Protection::Side side,
+    //          QuantLib::Real notional,
+    //          QuantLib::Rate upfront,
+    //          QuantLib::Rate spread,
+    //          const boost::shared_ptr<QuantLib::Schedule>& schedule,
+    //          QuantLib::BusinessDayConvention paymentConvention,
+    //          const QuantLib::DayCounter& dayCounter,
+    //          bool settlesAccrual,
+    //          bool paysAtDefaultTime,
+    //          const QuantLib::Date& protectionStart,
+    //          const QuantLib::Date& upfrontDate,
+    //          bool permanent);
+    //};
 
     class MidPointCdsEngine : public PricingEngine {
       public:
@@ -132,16 +180,22 @@ namespace QuantLibAddin {
     };
 
     // Bootstrapped piecewise flat hazard rate curve 
-    // traits = hazard rates, interpolator = backward flat
-    class PiecewiseFlatHazardRateCurve : public DefaultProbabilityTermStructure {
+    // traits = hazard rates
+    // To do: add a Registry Manager factory once the number of options in 
+    //   the combination of interpolation traits and algorithm grows.
+    class PiecewiseHazardRateCurve : public DefaultProbabilityTermStructure {
       public:
-        PiecewiseFlatHazardRateCurve(
+        PiecewiseHazardRateCurve(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
-            const QuantLib::Date& referenceDate,
             const std::vector<boost::shared_ptr<QuantLib::DefaultProbabilityHelper> >& helpers,
             const QuantLib::DayCounter& dayCounter,
+            const QuantLib::Calendar& calendar,
+            const std::string& interpolator,
             QuantLib::Real accuracy,
             bool permanent);
+
+        const std::vector<QuantLib::Date>& dates() const;
+        const std::vector<QuantLib::Real>& data() const;
         /*
         const std::vector<QuantLib::Time>& times() const;
         const std::vector<QuantLib::Date>& dates() const;
@@ -197,6 +251,78 @@ namespace QuantLibAddin {
             InterpolatedYieldCurve::Interpolator interpolator) const;
         */
     };
+
+    class RiskyFixedBond : public Instrument {
+    public:
+        RiskyFixedBond(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            std::string name,
+            QuantLib::Currency ccy,
+            QuantLib::Real recoveryRate,
+            QuantLib::Handle<QuantLib::DefaultProbabilityTermStructure> 
+                defaultTS,
+            const boost::shared_ptr<QuantLib::Schedule>&  schedule,
+            QuantLib::Real rate,
+            QuantLib::DayCounter dayCounter,
+            QuantLib::BusinessDayConvention paymentConvention,
+            QuantLib::Real notionals,
+            QuantLib::Handle<QuantLib::YieldTermStructure> yieldTS,
+            QuantLib::Date npvDate,
+            bool permanent);
+    };
+
+
+
+    class SyntheticCDO : public Instrument {
+    public:
+        SyntheticCDO(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              const boost::shared_ptr<QuantLib::Basket>& bskt,
+              QuantLib::Protection::Side side,
+              const boost::shared_ptr<QuantLib::Schedule>& schedule,
+              QuantLib::Rate upfront,
+              QuantLib::Rate spread,
+              const QuantLib::DayCounter& dayCounter,
+              QuantLib::BusinessDayConvention paymentConvention,
+              bool permanent);
+    };
+
+
+    class MidPointCDOEngine : public PricingEngine {
+      public:
+        MidPointCDOEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            bool permanent);
+    };
+
+    class NthToDefault : public Instrument {
+    public:
+        NthToDefault(
+              const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+              const boost::shared_ptr<QuantLib::Basket>& bskt,
+              QuantLib::Size order,
+              QuantLib::Protection::Side side,
+              const boost::shared_ptr<QuantLib::Schedule>& schedule,
+              QuantLib::Rate upfront,
+              QuantLib::Rate spread,
+              const QuantLib::DayCounter& dayCounter,
+              QuantLib::Real notional,
+              bool paysAccrual,
+              bool permanent);
+    };
+
+
+    class IntegralNtdEngine : public PricingEngine {
+      public:
+        IntegralNtdEngine(
+            const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+            const QuantLib::Period& step,
+            const QuantLib::Handle<QuantLib::YieldTermStructure>&,
+            bool permanent);
+    };
+
+
 
 }
 

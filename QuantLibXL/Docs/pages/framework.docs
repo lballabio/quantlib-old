@@ -1,6 +1,6 @@
 
 /*
- Copyright (C) 2007 Eric Ehlers
+ Copyright (C) 2007, 2008, 2009, 2010, 2011, 2012 Eric Ehlers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -18,65 +18,195 @@
 
 /*! \page framework Framework
 
-\section fw_overview Overview
-
 The QuantLibXL Framework is an application layer written in Excel VBA which
 wraps the QuantLibXL Addin with additional functionality in support of market
 data feeds, creation of instruments, etc.
 
-\section fw_prerequisites Prerequisites
+<dl>
+<dt>\ref fw_overview</dt>
+<dd><dl>
+<dt>\ref fw_installation</dt>
+<dt>\ref fw_startup</dt>
+<dt>\ref fw_ui</dt>
+</dl></dd>
+<dt>\ref fw_code</dt>
+<dd><dl>
+<dt>\ref fw_code_main</dt>
+<dt>\ref fw_code_errors</dt>
+<dt>\ref fw_code_utils</dt>
+<dt>\ref fw_code_config</dt>
+<dt>\ref fw_code_loader</dt>
+<dt>\ref fw_code_events</dt>
+<dt>\ref fw_code_keyboard</dt>
+<dt>\ref fw_code_shortcut</dt>
+<dt>\ref fw_code_menu</dt>
+<dt>\ref fw_code_cell_menu</dt>
+<dt>\ref fw_code_xml</dt>
+</dl></dd>
+</dl>
 
-The Framework has been developed and tested under Excel 2002.  Limited testing
-under Excel 2003 has not highlighted any problems.  The application hasn't been
-tested under versions of Excel prior to 2002 nor on Excel 2007.
+\section fw_overview 1 Overview
 
-\section fw_installation Installation
+\subsection fw_installation 1.1 Installation
 
-Installation of the QuantLibXL Framework appears as an option for the installer
-as described in the standard \ref installation document.
+The application only works under 32-bit Excel.  Under 64-bit Excel, the XLL
+works, but the VBA code does not.
 
-\section fw_startup Startup
+Here is the link to the zip file for 32-bit Excel:
 
-To load the Framework into Excel, double click on file
-QuantLibXL\\framework\\QuantLibXL.xla.
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.7.0/QuantLibXL-1.7.0-RateCurveFramework.zip">QuantLibXL-1.7.0-RateCurveFramework.zip</a>.
 
-Bootstrap the yield curve by invoking menu item QuantLibXL / Actions / Bootstrap
-QuantLib Yield Curve.
+We have packaged up a build for 64-bit Excel, and it is configured to load the
+64-bit XLL, but as mentioned the VBA code does not work under 64-bit Excel so
+this build is broken.  If you would like to help fix it then please send mail
+to quantlib-users@lists.sf.net.
 
-<div class="center"><img src="images/framework_bootstrap.jpg"></div>
+<a href="http://sourceforge.net/projects/quantlib/files/QuantLibXL/1.7.0/QuantLibXL-1.7.0-x64-RateCurveFramework.zip">QuantLibXL-1.7.0-x64-RateCurveFramework.zip</a>.
 
-Additional market data may need to be initialized depending upon the
-instruments to be priced.  In directory QuantLibXL\\Workbooks, spreadsheets
-ControlPanel.xls and MainChecks.xls can be used to get an overview of available
-market data and to perform global functions such as rolling the evaluation
-date.
+Download the zip file to your hard drive and uncompress it.
 
-The Framework automatically detects if market data feeds from Reuters are
-available and if so these are used for live updates of market data.  If not the
-market data is taken from cells updated manually.
+\subsection fw_startup 1.2 Startup
 
-Template instrument workbooks are found in directory
-QuantLibXL\\Workbooks\\InterestRateDerivatives.
+The installation provides a large selection of DOS batch files for launching
+the application.  For each supported currency, two batch files are provided,
+one for a live data feed (if you have Reuters installed on your machine) and
+another which loads a static snapshot of market data.  Choose the desired batch
+file, e.g. <b><tt>session_file.EUR-s-static.bat</tt></b>, and double-click it.
 
-\section fw_rightclick Right Click Menu
+Excel should start up and load the Framework application, which should then
+initialize the chosen market data environment.  After a few moments you should
+see the main checks workbook:
+
+<div class="center"><img src="images/framework_fixed_income.png"></div>
+
+The market environment is now initialized with over 2,000 data objects loaded
+(rates, indexes, curves, ...)  You can now create pricing worksheets which
+define instruments that price against this data.
+
+\subsection fw_ui 1.3 User Interface
+
+The Framework menu appears on the ribbon under the Add-Ins tab.
+
+<div class="center"><img src="images/framework_menu.png"></div>
+
+The menu is context sensitive.  The first item in the menu displays the
+functions supported for the active workbook.  If no workbook is active, or if
+the active workbook does not belong to the Framework, then the menu placeholder
+[Workbook] appears grayed out as in the image above.
+
+Similarly the second item in the menu is the function configured for the active
+worksheet, if any, otherwise the word [Worksheet] grayed out.
+
+The third item in the menu displays the functionality relating to whatever
+Addin is currently loaded.
 
 Right clicking in a cell brings up a QuantLibXL menu.
 
-<div class="center"><img src="images/framework_menu.jpg"></div>
+<div class="center"><img src="images/framework_right_click_menu.png"></div>
 
-If a QuantLib function returns \#NUM then menu option "Display Error" returns the
-associated error message.  (The error message may also be found in the log file,
-or by calling ohRetrieveError() on the relevant cell).
+Similar to the main menu bar, the contents of the right click menu may change
+depending on which workbook, worksheet, or range is active, or which addins are
+loaded.
 
-The right click menu provides additional functions to create/remove various drop
-down menus in the chosen cell and to reformat the cell.
+\section fw_code 2 Code
 
-\section fw_alternate Alternate Framework
+QuantLibXL.xla resides in the framework directory and all of the other Excel VBA
+code resides in xla files in the addin subdirectory.
 
-An alternate implementation of the QuantLibXL VBA Framework is under
-development, this build is at an experimental stage.  More information may be
-found at <tt>QuantLibXL\\framework2\\ReadMe.txt</tt>.  The two projects may be
-merged at some point.
+A comment block is provided for every addin (xla) file in the ThisWorkbook
+module.
+
+Every addin is given a project name in the format qlxlXxx.  Naming every project
+with the qlxl prefix causes the addins to appear together in the project window
+in the Excel VBA editor.
+
+\subsection fw_code_main 2.1 QuantLibXL.xla
+
+QuantLibXL.xla is the entry point for the application.  The Workbook_Open event
+loads some additional modules which are essential for minimum functionality:
+Errors.xla, Utilities.xla, Configuration.xla, Loader.xla
+
+\subsection fw_code_errors 2.2 Errors.xla
+
+Errors.xla provides a central implementation for all error handling for the
+application.  Errors.xla implements three functions in support of error
+handling:
+
+raiseError: To be called at the point where an error is detected.
+
+propagateError: May be called at an intermediate frame in the stack - above
+where the error is detected and below where it is handled.  Appends additional
+information to the error.
+
+displayError: Displays the error message to the user.  All entry points into the
+Excel VBA code must be wrapped in On Error Goto / Catch, and the Catch must call
+displayError.
+
+\subsection fw_code_utils 2.3 Utilities.xla
+
+Implements various utility functions for the application, including access to
+the file system, processing for ranges/sheets/books, etc.
+
+\subsection fw_code_config 2.4 Configuration.xla
+
+Configuration.xla implements a global singleton object which encapsulates
+various information related to the running instance of the Framework
+application.  The configuration object is accessed via wrapper function Config,
+e.g:
+
+Debug.Print "root dir = " & Config().rootDirectory
+
+\subsection fw_code_loader 2.5 Loader.xla
+
+Loader.xla implements a facility for loading components required by a given
+instance of the Framework.  A component can comprise any item which may be
+loaded or utilitzed from Excel, e.g. worksheets, addins (VBA, C++, etc), DLLs.
+
+The loader allows dependencies between components to be defined.  When a request
+is made to load a given component, the loader checks whether that component's
+prerequisites are present and loads them if not.
+
+The environments recognized by the loader are configured in workbook
+QuantLibXL\framework\config\Loader.xls.  Loader.xla imports Loader.xls at
+startup.
+
+To load a given environment, call loadEnvironment("xxx") where xxx is a column
+in Loader.xls.
+
+\subsection fw_code_events 2.6 Events.xla
+
+Events.xla implements an event listener which intercepts various Excel events,
+such as the activation of a workbook.  These event handlers are used to call
+various Framework functionality, such as recreating menu items in response to a
+change in context.
+
+\subsection fw_code_keyboard 2.7 Keyboard.xla
+
+Keyboard.xla implements a few keyboard shortcuts for the application.
+
+\subsection fw_code_shortcut 2.8 Shortcut.xla
+
+Shortcut.xla is a small utility addin which can be used to create a shortcut
+(icon, link) for the Framework application.  For example, after installing the
+Framework to a network drive, you can use Shortcut.xla to generate a .lnk file
+that anyone can use to invoke the application from the server.
+
+\subsection fw_code_menu 2.9 Menu.xla
+
+Menu.xla creates the QuantLibXL menu on the main Excel toolbar.
+
+\subsection fw_code_cell_menu 2.10 CellMenu.xla
+
+CellMenu.xla creates the QuantLibXL entry on the menu which appears when the
+user right clicks on a cell or range.
+
+\subsection fw_code_xml 2.11 Serialization.xla
+
+Serialization.xla implements support for serialization.  This implementation
+relies on the fact that the QuantLibAddin C++ layer implements
+boost::serialization for all of the classes in the QuantLib library.
+Serialization.xla can be used to export/import a hierarchy of objects from/to a
+workbook.
 
 */
 

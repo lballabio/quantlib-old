@@ -57,11 +57,7 @@
 #define QL_TEST_START_TIMING
 #endif
 
-#if BOOST_VERSION < 103500
-#define QUANTLIB_TEST_CASE(f) BOOST_TEST_CASE(f)
-#else
 #define QUANTLIB_TEST_CASE(f) BOOST_TEST_CASE(QuantLib::detail::quantlib_test_case(f))
-#endif
 
 namespace QuantLib {
 
@@ -161,7 +157,7 @@ namespace QuantLib {
         std::transform(begin,end,begin,f2.begin(),
                        std::multiplies<Real>());
         // numeric integral of f^2
-        Real I = h * (std::accumulate(f2.begin(),f2.end(),0.0)
+        Real I = h * (std::accumulate(f2.begin(),f2.end(),Real(0.0))
                       - 0.5*f2.front() - 0.5*f2.back());
         return std::sqrt(I);
     }

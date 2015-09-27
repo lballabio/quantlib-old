@@ -23,15 +23,19 @@
 #include <ohxl/convert_oper.hpp>
 
 DLL_API void freeOper(XLOPER *px) {
-    if (px->xltype & xltypeStr && px->val.str)
-        delete [] px->val.str;
-    else if (px->xltype & xltypeMulti && px->val.array.lparray) {
+    if ((px->xltype == (xltypeStr | xlbitDLLFree))              // If this is a string allocated by the DLL
+        && px->val.str) {                                       // .And if the pointer is not null...
+        delete [] px->val.str;                                  // ..Then delete the pointer and return.
+    } else if ((px->xltype == (xltypeMulti | xlbitDLLFree))     // If this is an array allocated by the DLL
+        && px->val.array.lparray) {                             // .And if the pointer is not null...
         int size = px->val.array.rows * px->val.array.columns;
-        for (int i=0; i<size; ++i)
-            if (px->val.array.lparray[i].xltype & xltypeStr
-            &&  px->val.array.lparray[i].val.str)
-                delete [] px->val.array.lparray[i].val.str;
-        delete [] px->val.array.lparray;
+        for (int i=0; i<size; ++i) {                            // ..Then iterate through the array...
+            if (px->val.array.lparray[i].xltype & xltypeStr     // ...If this element is a string...
+                &&  px->val.array.lparray[i].val.str) {         // ....And if the pointer is not null...
+                delete [] px->val.array.lparray[i].val.str;     // .....Then delete the string...
+            }
+        }
+        delete [] px->val.array.lparray;                        // ..Now delete the array and return.
     }
 }
 
@@ -49,6 +53,6 @@ DLL_API bool isList(const OPER *xValue) {
 DLL_API void splitOper(const OPER *xFrom, OPER *xTo) {
     std::string text = ObjectHandler::ConvertOper(*xFrom);
     std::vector<std::string> vec = ObjectHandler::split(text, ",;", false);
-    ObjectHandler::vectorToOper(vec, *xTo, false);
+    ObjectHandler::vectorToOper(vec, *xTo);
 }
 

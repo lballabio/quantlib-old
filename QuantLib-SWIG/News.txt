@@ -1,17 +1,6 @@
 
-Release 1.3 - July 2013
-Notable changes since release 1.2:
-- in sync with QuantLib 1.3;
-- migrated to SWIG 2.0.10;
-- added FRA interface and Java example (thanks to Tawanda Gwena and
-  Francis Duffy);
-- added possibility to manually disable build for specific modules;
-- exported a couple of CashFlows functions (thanks to Sergio Villar de María);
-- exported BondFunctions class (thanks to Simon Shakeshaft);
-- overloaded operators for date algebra and comparisons in C# (thanks
-  to Simon Shakeshaft);
-- added Bates implied volatility surface example for R (thanks to
-  Klaus Spanderen and Dirk Eddelbuettel);
-- added bonds example for R (thanks to Dirk Eddelbuettel);
-- expanded european-option example for R (thanks to Dirk Eddelbuettel).
+Release 1.6.1 - July 2015
+Changes since release 1.6:
+- added support for Visual Studio 2015.
+- added support for x86 target in C# projects (thanks to Grant Bartel).
 

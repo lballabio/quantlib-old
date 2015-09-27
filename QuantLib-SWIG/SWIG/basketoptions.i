@@ -101,7 +101,9 @@ typedef boost::shared_ptr<PricingEngine> MCEuropeanBasketEnginePtr;
 
 %rename(MCEuropeanBasketEngine) MCEuropeanBasketEnginePtr;
 class MCEuropeanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCEuropeanBasketEnginePtr;
+    #endif
   public:
     %extend {
         MCEuropeanBasketEnginePtr(const StochasticProcessArrayPtr& process,
@@ -153,7 +155,9 @@ typedef boost::shared_ptr<PricingEngine> MCAmericanBasketEnginePtr;
 
 %rename(MCAmericanBasketEngine) MCAmericanBasketEnginePtr;
 class MCAmericanBasketEnginePtr : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCAmericanBasketEnginePtr;
+    #endif
   public:
     %extend {
         MCAmericanBasketEnginePtr(const StochasticProcessArrayPtr& process,
@@ -249,7 +253,9 @@ class EverestOptionPtr : public MultiAssetOptionPtr {
 
 %rename(MCEverestEngine) MCEverestEnginePtr;
 class MCEverestEnginePtr : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCEverestEnginePtr;
+    #endif
   public:
     %extend {
         MCEverestEnginePtr(const StochasticProcessArrayPtr& process,
@@ -316,7 +322,9 @@ class HimalayaOptionPtr : public MultiAssetOptionPtr {
 
 %rename(MCHimalayaEngine) MCHimalayaEnginePtr;
 class MCHimalayaEnginePtr : public boost::shared_ptr<PricingEngine> {
+    #if !defined(SWIGJAVA) && !defined(SWIGCSHARP)
     %feature("kwargs") MCHimalayaEnginePtr;
+    #endif
   public:
     %extend {
         MCHimalayaEnginePtr(const StochasticProcessArrayPtr& process,

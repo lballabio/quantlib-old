@@ -235,12 +235,13 @@ class BondFunctions {
                         Frequency frequency,
                         Duration::Type type = Duration::Modified,
                         Date settlementDate = Date()) {
-            return QuantLib::BondFunctions::yield(
+            return QuantLib::BondFunctions::duration(
                         *(boost::dynamic_pointer_cast<Bond>(bond)),
                         yield,
                         dayCounter,
                         compounding,
                         frequency,
+                        type,
                         settlementDate);
         }
         static Real convexity(const BondPtr& bond,

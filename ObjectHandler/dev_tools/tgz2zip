@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# 'tgz2zip ObjectHandler 1.4.0' converts ObjectHandler-1.4.0.tar.gz into ObjectHandler-1.4.0.zip,
+#  removing the version number from the name of the zipped directory,
+#  and converting Unix end-of-line to DOS in the process.
+
+FNAME=$1
+VER=$2
+FULL=$FNAME-$VER
+
+tar xfz $FULL.tar.gz
+mv $FULL $FNAME
+find $FNAME -name '*.[hc]pp' -o -name '*.[hc]' \
+     -o -name '*.xhtml' -o -name '*.html' -o -name '*.htm' -o -name '*.css' \
+     -o -name '*.docs' -o -name '*.doxy' -o -name '*.qbk' \
+     -o -name '*.el' -o -name '*.cmake' \
+     -o -name '*.ipp' -o -name '*.jam' -o -name '*.tpp' \
+     -o -iname '*.txt' -o -name '*.tex' -o -name '*.dtd' \
+     -o -name '*.xml' -o -name 'stub.*' -o -name '*.rst' \
+     -o -name '*.i' -o -name '*.py' -o -name '*.rb' -o -name '*.R' \
+     -o -iname '*.pl' -o -name '*.scm' -o -name '*.ss' \
+     -o -name '*.cs' -o -name '*.java' -o -name '*.nsi' \
+     -o -name '*.tpp' -o -name '*.Makefile' -o -name '*.README' \
+     -o -name '*.configure' \
+ | xargs todos -o -p
+zip -q -9 -r $FULL.zip $FNAME
+rm -rf $FNAME
+

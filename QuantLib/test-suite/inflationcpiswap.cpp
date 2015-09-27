@@ -45,6 +45,7 @@ using namespace boost::unit_test_framework;
 
 #include <iostream>
 
+using std::fabs;
 
 namespace {
     struct Datum {
@@ -108,10 +109,10 @@ namespace {
         IndexHistoryCleaner cleaner;
 
         // setup
-        CommonVars() {
+        CommonVars()
+        : nominals(1,1000000) {
 
             // option variables
-            nominals = std::vector<Real>(1,1000000);  // 1M
             frequency = Annual;
             // usual setup
             volatility = 0.01;
@@ -253,13 +254,8 @@ namespace {
             // make sure that the index has the latest zero inflation term structure
             hcpi.linkTo(pCPIts);
         }
-
-
     };
 
-    bool checkAbsError(Real x1, Real x2, Real tolerance){
-        return std::fabs(x1 - x2) < tolerance;
-    }
 }
 
 

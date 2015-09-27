@@ -135,6 +135,7 @@ DLLEXPORT int xlAutoClose() {
 
         AccountExample::unregisterEnumeratedTypes();
         unregisterOhFunctions(xDll);
+        ObjectHandler::RepositoryXL::instance().clear();
 
         Excel(xlFree, 0, 1, &xDll);
         return 1;

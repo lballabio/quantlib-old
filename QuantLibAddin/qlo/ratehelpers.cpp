@@ -1,11 +1,12 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2006, 2007, 2008, 2009, 2012 Ferdinando Ametrano
+ Copyright (C) 2006, 2007, 2008, 2009, 2012, 2015 Ferdinando Ametrano
  Copyright (C) 2006, 2007 Marco Bianchetti
  Copyright (C) 2005 Aurelien Chanudet
  Copyright (C) 2005, 2006, 2007 Eric Ehlers
  Copyright (C) 2005 Plamen Neykov
+ Copyright (C) 2015 Maddalena Zanzi
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -32,7 +33,6 @@
 #include <ql/termstructures/yield/ratehelpers.hpp>
 #include <ql/termstructures/yield/bondhelpers.hpp>
 #include <ql/termstructures/yield/oisratehelper.hpp>
-#include <ql/time/imm.hpp>
 
 #include <oh/repository.hpp>
 
@@ -44,6 +44,19 @@ using std::string;
 
 namespace QuantLibAddin {
 
+    // Within each of the RateHelper classes we want to remember the ID
+    // of the associated Rate object.  So below we coerce that input
+    // into a string.  If the caller passed in a double instead of a
+    // Rate object then the coerce below will fail in which case we
+    // return an empty string.
+    string f(const ObjectHandler::property_t &p) {
+        try {
+            return convert2<string>(p);
+        } catch(...) {
+            return string();
+        }
+    }
+
     DepositRateHelper::DepositRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
@@ -52,6 +65,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::DepositRateHelper(rate, iborIndex));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     DepositRateHelper::DepositRateHelper(
@@ -73,24 +87,28 @@ namespace QuantLibAddin {
                                         convention,
                                         endOfMonth,
                                         dayCounter));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     FuturesRateHelper::FuturesRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            const QuantLib::Date& immDate,
+            QuantLib::Futures::Type type,
+            const QuantLib::Date& date,
             const shared_ptr<QuantLib::IborIndex>& iborIndex,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
             bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
-            QuantLib::FuturesRateHelper(price, immDate, iborIndex, convAdj));
+            QuantLib::FuturesRateHelper(price, date, iborIndex,convAdj,type));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FuturesRateHelper::FuturesRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            const QuantLib::Date& immDate,
+            QuantLib::Futures::Type type,
+            const QuantLib::Date& date,
             QuantLib::Natural lengthInMonths,
             const QuantLib::Calendar& calendar,
             QuantLib::BusinessDayConvention convention,
@@ -101,19 +119,22 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price,
-                                        immDate,
+                                        date,
                                         lengthInMonths,
                                         calendar,
                                         convention,
                                         endOfMonth,
                                         dayCounter,
-                                        convAdj));
+                                        convAdj,
+                                        type));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FuturesRateHelper::FuturesRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& price,
-            const QuantLib::Date& immDate,
+            QuantLib::Futures::Type type,
+            const QuantLib::Date& date,
             const QuantLib::Date& endDate,
             const QuantLib::DayCounter& dayCounter,
             const QuantLib::Handle<QuantLib::Quote>& convAdj,
@@ -121,10 +142,12 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FuturesRateHelper(price,
-                                        immDate,
+                                        date,
                                         endDate,
                                         dayCounter,
-                                        convAdj));
+                                        convAdj,
+                                        type));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     SwapRateHelper::SwapRateHelper(
@@ -140,11 +163,13 @@ namespace QuantLibAddin {
             QuantLib::SwapRateHelper(rate,
                                      swapIndex,
                                      spread, forwardStart, discount));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     SwapRateHelper::SwapRateHelper(
             const shared_ptr<ValueObject>& properties,
             const QuantLib::Handle<QuantLib::Quote>& rate,
+            QuantLib::Natural settlementDays,
             const QuantLib::Period& p,
             const QuantLib::Calendar& cal,
             const QuantLib::Frequency& fixFreq,
@@ -159,7 +184,8 @@ namespace QuantLibAddin {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::SwapRateHelper(rate,
                                      p, cal, fixFreq, fixConv, fixDC, ibor,
-                                     spread, forwardStart, discount));
+                                     spread, forwardStart, discount, settlementDays));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     FraRateHelper::FraRateHelper(
@@ -171,6 +197,7 @@ namespace QuantLibAddin {
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
             QuantLib::FraRateHelper(rate, periodToStart, iborIndex));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     FraRateHelper::FraRateHelper(
@@ -194,6 +221,7 @@ namespace QuantLibAddin {
                                     convention,
                                     endOfMonth,
                                     dayCounter));
+        quoteName_ = f(properties->getSystemProperty("Rate"));
     }
 
     OISRateHelper::OISRateHelper(
@@ -210,6 +238,7 @@ namespace QuantLibAddin {
                                     tenor,
                                     fixedRate,
                                     overnightIndex));
+        quoteName_ = f(properties->getSystemProperty("FixedRate"));
     }
 
     DatedOISRateHelper::DatedOISRateHelper(
@@ -225,21 +254,24 @@ namespace QuantLibAddin {
             QuantLib::DatedOISRateHelper(startDate, endDate,
                                          fixedRate,
                                          overnightIndex));
+        quoteName_ = f(properties->getSystemProperty("FixedRate"));
     }
 
     BondHelper::BondHelper(
             const shared_ptr<ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
+            const QuantLib::Handle<QuantLib::Quote>& price,
             const shared_ptr<QuantLib::Bond>& bond,
+            const bool useCleanPrice,
             bool permanent)
     : RateHelper(properties, permanent) {
         libraryObject_ = shared_ptr<QuantLib::BondHelper>(new
-            QuantLib::BondHelper(cleanPrice, bond));
+            QuantLib::BondHelper(price, bond, useCleanPrice));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
 
     FixedRateBondHelper::FixedRateBondHelper(
             const shared_ptr<ValueObject>& properties,
-            const QuantLib::Handle<QuantLib::Quote>& cleanPrice,
+            const QuantLib::Handle<QuantLib::Quote>& price,
             QuantLib::Natural settlementDays,
             QuantLib::Real faceAmount,
             const shared_ptr<QuantLib::Schedule>& schedule,
@@ -248,10 +280,19 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention paymentConvention,
             QuantLib::Real redemption,
             const QuantLib::Date& issueDate,
+            const QuantLib::Calendar& paymentCalendar,
+            const QuantLib::Period& exCouponPeriod,
+            const QuantLib::Calendar& exCouponCalendar,
+            const QuantLib::BusinessDayConvention exCouponConvention,
+            bool exCouponEndOfMonth,
+            const bool useCleanPrice,
             bool permanent)
-    : BondHelper(properties, cleanPrice, shared_ptr<QuantLib::Bond>(), permanent) {
+    : BondHelper(properties, price, shared_ptr<QuantLib::Bond>(new
+        QuantLib::FixedRateBond(settlementDays, faceAmount, *schedule,
+                      coupons, paymentDayCounter, paymentConvention,
+                      redemption, issueDate)), useCleanPrice, permanent) {
         libraryObject_ = shared_ptr<QuantLib::FixedRateBondHelper>(new
-            QuantLib::FixedRateBondHelper(cleanPrice,
+            QuantLib::FixedRateBondHelper(price,
                                           settlementDays,
                                           faceAmount,
                                           *schedule,
@@ -259,14 +300,48 @@ namespace QuantLibAddin {
                                           paymentDayCounter,
                                           paymentConvention,
                                           redemption,
-                                          issueDate));
+                                          issueDate,
+                                          paymentCalendar,
+                                          exCouponPeriod,
+                                          exCouponCalendar,
+                                          exCouponConvention,
+                                          exCouponEndOfMonth,
+                                          useCleanPrice));
+        quoteName_ = f(properties->getSystemProperty("Price"));
     }
+
+    FxSwapRateHelper::FxSwapRateHelper(
+        const shared_ptr<ValueObject>& properties,
+        const QuantLib::Handle<QuantLib::Quote>& fwdPoint,
+        const QuantLib::Handle<QuantLib::Quote>& spotFx,
+        const QuantLib::Period& tenor,
+        QuantLib::Natural fixingDays,
+        const QuantLib::Calendar& calendar,
+        QuantLib::BusinessDayConvention convention,
+        bool endOfMonth,
+        bool isFxBaseCurrencyCollateralCurrency,
+        const QuantLib::Handle<QuantLib::YieldTermStructure>& collateralCurve,
+        bool permanent)
+    : RateHelper(properties, permanent) {
+        libraryObject_ = shared_ptr<QuantLib::RateHelper>(new
+            QuantLib::FxSwapRateHelper(fwdPoint,
+                                       spotFx,
+                                       tenor,
+                                       fixingDays,
+                                       calendar,
+                                       convention,
+                                       endOfMonth,
+                                       isFxBaseCurrencyCollateralCurrency,
+                                       collateralCurve));
+        quoteName_ = f(properties->getSystemProperty("FwdPoint"));
+    }
+
 
     // helper class
     namespace {
 
         struct RateHelperItem {
-            bool isImmFutures;
+            bool isMainFutures;
             bool isSerialFutures;
             bool isDepo;
             string objectID;
@@ -274,7 +349,7 @@ namespace QuantLibAddin {
             QuantLib::Date earliestDate;
             QuantLib::Date latestDate;
             QuantLib::Natural minDist;
-            RateHelperItem(bool isImmFutures_inp,
+            RateHelperItem(bool isMainFutures_inp,
                            bool isSerialFutures_inp,
                            bool isDepo_inp,
                            const string& objectID_inp,
@@ -282,7 +357,7 @@ namespace QuantLibAddin {
                            const QuantLib::Date& earliestDate_inp,
                            const QuantLib::Date& latestDate_inp,
                            QuantLib::Natural minDist_inp)
-            : isImmFutures(isImmFutures_inp), isSerialFutures(isSerialFutures_inp),
+            : isMainFutures(isMainFutures_inp), isSerialFutures(isSerialFutures_inp),
               isDepo(isDepo_inp), objectID(objectID_inp),
               priority(priority_inp),
               earliestDate(earliestDate_inp), latestDate(latestDate_inp),
@@ -314,7 +389,7 @@ namespace QuantLibAddin {
     std::vector<string> qlRateHelperSelection(
         const std::vector<shared_ptr<QuantLibAddin::RateHelper> >& qlarhs,
         const std::vector<QuantLib::Natural>& priority,
-        QuantLib::Natural nImmFutures,
+        QuantLib::Natural nMainFutures,
         QuantLib::Natural nSerialFutures,
         QuantLib::Natural frontFuturesRollingDays,
         RateHelper::DepoInclusionCriteria depoInclusionCriteria,
@@ -340,14 +415,14 @@ namespace QuantLibAddin {
             qlarh->getLibraryObject(qlrh);
             string qlarh_id = convert2<string>(
                 qlarh->propertyValue("OBJECTID"));
-            bool isFutures = dynamic_pointer_cast<FuturesRateHelper>(qlarh);
-            bool isImmFutures = false, isSerialFutures = false;
+            bool isFutures = bool(dynamic_pointer_cast<FuturesRateHelper>(qlarh));
+            bool isMainFutures = false, isSerialFutures = false;
             if (isFutures) {
-                isImmFutures = QuantLib::IMM::isIMMdate(qlrh->earliestDate());
-                isSerialFutures = !isImmFutures;
+                isMainFutures = (qlrh->earliestDate().month() % 3 == 0);
+                isSerialFutures = !isMainFutures;
             }
-            bool isDepo = dynamic_pointer_cast<DepositRateHelper>(qlarh);
-            rhsAll.push_back(RateHelperItem(isImmFutures,
+            bool isDepo = bool(dynamic_pointer_cast<DepositRateHelper>(qlarh));
+            rhsAll.push_back(RateHelperItem(isMainFutures,
                                             isSerialFutures,
                                             isDepo,
                                             qlarh_id,
@@ -362,8 +437,8 @@ namespace QuantLibAddin {
         std::sort(rhsAll.begin(), rhsAll.end(), RateHelperPrioritySorter());
 
         // Select input rate helpers according to:
-        // expiration, maximum number of allowed Imm and Serial Futures, Depo/Futures priorities
-        QuantLib::Natural immFuturesCounter = 0;
+        // expiration, maximum number of allowed Main Cycle and Serial Futures, Depo/Futures priorities
+        QuantLib::Natural mainFuturesCounter = 0;
         QuantLib::Natural serialFuturesCounter = 0;
         QuantLib::Date evalDate = QuantLib::Settings::instance().evaluationDate();
         std::vector<RateHelperItem> rhs, rhsDepo;
@@ -371,10 +446,10 @@ namespace QuantLibAddin {
         // Look for the front Futures, if any
         bool thereAreFutures = false;
         QuantLib::Date frontFuturesEarliestDate, frontFuturesLatestDate;
-        if (nImmFutures>0 || nSerialFutures>0) {
+        if (nMainFutures>0 || nSerialFutures>0) {
             QuantLib::Size j=0;
             while (j<nInstruments) {
-                if (nImmFutures>0 && rhsAll[j].isImmFutures &&
+                if (nMainFutures>0 && rhsAll[j].isMainFutures &&
                         (rhsAll[j].earliestDate-frontFuturesRollingDays >= evalDate)) {
                     thereAreFutures = true;
                     frontFuturesEarliestDate = rhsAll[j].earliestDate;
@@ -439,10 +514,10 @@ namespace QuantLibAddin {
                         ++serialFuturesCounter;
                         rhs.push_back(rhsAll[i]);
                     }
-                } else if (rhsAll[i].isImmFutures) {       // Check IMM Futures conditions
-                    if (immFuturesCounter<nImmFutures &&
+                } else if (rhsAll[i].isMainFutures) {       // Check Main Cycle Futures conditions
+                    if (mainFuturesCounter<nMainFutures &&
                            (rhsAll[i].earliestDate-frontFuturesRollingDays >= evalDate)) {
-                        ++immFuturesCounter;
+                        ++mainFuturesCounter;
                         rhs.push_back(rhsAll[i]);
                     }
                 } else {                                // No conditions for other instruments
@@ -489,7 +564,8 @@ namespace QuantLibAddin {
               public QuantLib::Visitor<QuantLib::OISRateHelper>,
               public QuantLib::Visitor<QuantLib::DatedOISRateHelper>,
               public QuantLib::Visitor<QuantLib::BMASwapRateHelper>,
-              public QuantLib::Visitor<QuantLib::FixedRateBondHelper> {
+              public QuantLib::Visitor<QuantLib::FixedRateBondHelper>,
+              public QuantLib::Visitor<QuantLib::FxSwapRateHelper> {
             QuantLib::Rate rate_;
           public:
             QuantLib::Rate rate() const { return rate_; }
@@ -502,9 +578,9 @@ namespace QuantLibAddin {
             void visit(QuantLib::FuturesRateHelper& h) {
                 QuantLib::Rate futureRate = 1.0 - h.quote()->value()/100.0;
                 QuantLib::Rate convAdj = h.convexityAdjustment();
-                QL_ENSURE(convAdj >= 0.0,
-                          "Negative (" << convAdj <<
-                          ") futures convexity adjustment");
+                // Convexity, as FRA/futures adjustment, has been used in the
+                // past to take into account futures margining vs FRA.
+                // Therefore, there's no requirement for it to be non-negative.
                 rate_ = futureRate - convAdj;
             }
             void visit(QuantLib::SwapRateHelper& h) {
@@ -522,6 +598,10 @@ namespace QuantLibAddin {
             void visit(QuantLib::FixedRateBondHelper& h) {
                 QL_FAIL("not implemented yet");
             }
+            void visit(QuantLib::FxSwapRateHelper& h) {
+                rate_ = h.quote()->value();
+            }
+
         };
 
     }

@@ -4,10 +4,14 @@ AM_LDFLAGS = -release $(PACKAGE_VERSION)
 includedir = $(prefix)/include/qlo/Addins/Cpp
 
 EXTRA_DIST = \
-	AddinCpp_vc7.vcproj \
     AddinCpp_vc8.vcproj \
     AddinCpp_vc9.vcproj \
-    AddinCpp_vc10.vcxproj
+    AddinCpp_vc10.vcxproj \
+    AddinCpp_vc10.vcxproj.filters \
+    AddinCpp_vc11.vcxproj \
+    AddinCpp_vc11.vcxproj.filters \
+    AddinCpp_vc12.vcxproj \
+    AddinCpp_vc12.vcxproj.filters
 
 if BUILD_CPP
 lib_LTLIBRARIES = libQuantLibAddinCpp.la
@@ -23,6 +27,7 @@ include_HEADERS = \
     addincpp.hpp \
     alphaform.hpp \
     assetswap.hpp \
+    basketlossmodels.hpp \
     bonds.hpp \
     browniangenerators.hpp \
     btp.hpp \
@@ -87,6 +92,7 @@ libQuantLibAddinCpp_la_SOURCES = \
     accountingengines.cpp \
     alphaform.cpp \
     assetswap.cpp \
+    basketlossmodels.cpp \
     bonds.cpp \
     browniangenerators.cpp \
     btp.cpp \
@@ -146,4 +152,7 @@ endif
 
 libQuantLibAddinCpp_la_LIBADD = \
     ../../qlo/libQuantLibAddin.la
+
+libQuantLibAddinCpp_la_LDFLAGS = \
+-lQuantLib -lObjectHandler -lboost_filesystem -lboost_serialization -lboost_system -lboost_regex
 

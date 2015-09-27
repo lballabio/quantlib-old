@@ -44,15 +44,6 @@ namespace QuantLib {
             constructors.
         */
         //@{
-#ifndef QL_DISABLE_DEPRECATED
-        /*! \warning term structures initialized by means of this
-                     constructor must manage their own reference date
-                     by overriding the referenceDate() method.
-        */
-        BlackVolTermStructure(const Calendar& cal,
-                              BusinessDayConvention bdc = Following,
-                              const DayCounter& dc = DayCounter());
-#endif
         //! default constructor
         /*! \warning term structures initialized by means of this
                      constructor must manage their own reference date
@@ -129,8 +120,6 @@ namespace QuantLib {
         //! Black volatility calculation
         virtual Volatility blackVolImpl(Time t, Real strike) const = 0;
         //@}
-      private:
-        static const Time dT;
     };
 
     //! Black-volatility term structure
@@ -147,15 +136,6 @@ namespace QuantLib {
             constructors.
         */
         //@{
-#ifndef QL_DISABLE_DEPRECATED
-        /*! \warning term structures initialized by means of this
-                     constructor must manage their own reference date
-                     by overriding the referenceDate() method.
-        */
-        BlackVolatilityTermStructure(const Calendar& cal,
-                                     BusinessDayConvention bdc = Following,
-                                     const DayCounter& dc = DayCounter());
-#endif
         //! default constructor
         /*! \warning term structures initialized by means of this
                      constructor must manage their own reference date
@@ -201,15 +181,6 @@ namespace QuantLib {
             constructors.
         */
         //@{
-#ifndef QL_DISABLE_DEPRECATED
-        /*! \warning term structures initialized by means of this
-                     constructor must manage their own reference date
-                     by overriding the referenceDate() method.
-        */
-        BlackVarianceTermStructure(const Calendar& cal,
-                                   BusinessDayConvention bdc = Following,
-                                   const DayCounter& dc = DayCounter());
-#endif
         //! default constructor
         /*! \warning term structures initialized by means of this
                      constructor must manage their own reference date

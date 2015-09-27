@@ -119,6 +119,9 @@ FOR A PARTICULAR PURPOSE.  See the license for more details.
 using namespace QuantLib;
 using namespace boost::unit_test_framework;
 
+using std::fabs;
+using std::sqrt;
+
 #define BEGIN(x) (x+0)
 #define END(x) (x+LENGTH(x))
 
@@ -4366,7 +4369,7 @@ void MarketModelTest::testAbcdVolatilityIntegration() {
                     Real numerical = SI(abcd2,xMin,xMax);
                     Real analytical = instVol->covariance(xMin,xMax,T1,T2);
                     if (std::abs(analytical-numerical)>precision) {
-                        BOOST_TEST_MESSAGE("     T1=" << T1 << "," <<
+                        BOOST_ERROR("     T1=" << T1 << "," <<
                             "T2=" << T2 << ",\t\t" <<
                             "xMin=" << xMin << "," <<
                             "xMax=" << xMax << ",\t\t" <<
@@ -4376,7 +4379,7 @@ void MarketModelTest::testAbcdVolatilityIntegration() {
                     if (T1==T2) {
                         Real variance = instVol->variance(xMin,xMax,T1);
                         if (std::abs(analytical-variance)>1e-14) {
-                            BOOST_FAIL("     T1=" << T1 << "," <<
+                            BOOST_ERROR("     T1=" << T1 << "," <<
                                 "T2=" << T2 << ",\t\t" <<
                                 "xMin=" << xMin << "," <<
                                 "xMax=" << xMax << ",\t\t" <<
@@ -4750,7 +4753,7 @@ void MarketModelTest::testIsInSubset() {
 
     // Performance test for isInSubset function (temporary)
 
-    BOOST_TEST_MESSAGE("Testing isInSubset...");
+    BOOST_TEST_MESSAGE("Testing isInSubset function...");
 
     setup();
 
@@ -4773,20 +4776,20 @@ void MarketModelTest::testIsInSubset() {
 void MarketModelTest::testAbcdDegenerateCases() {
     BOOST_TEST_MESSAGE("Testing abcd degenerate cases...");
 
-    AbcdFunction f1(0.0,0.0,0.0,1.0);
-    AbcdFunction f2(1.0,0.0,0.0,0.0);
+    AbcdFunction f1(0.0,0.0,1.0E-15,1.0);
+    AbcdFunction f2(1.0,0.0,1.0E-50,0.0);
 
     Real cov1 = f1.covariance(0.0,1.0,1.0,1.0);
-    if (std::fabs(cov1-1.0) > 1.0E-14
+    if (std::fabs(cov1 - 1.0) > 1E-14
         || boost::math::isnan(cov1) || boost::math::isinf(cov1))
-        BOOST_FAIL("(a,b,c,d)=(0,0,0,1): true covariance is 1.0, "
-                   << "actual value is " << cov1);
+        BOOST_FAIL("(a,b,c,d)=(0,0,0,1): true covariance should be 1.0, "
+        << "error is " << std::fabs(cov1 - 1.0));
 
     Real cov2 = f2.covariance(0.0,1.0,1.0,1.0);
-    if (std::fabs(cov2-1.0) > 1.0E-14
+    if (std::fabs(cov2 - 1.0) > 1E-14
         || boost::math::isnan(cov2) || boost::math::isinf(cov2))
-        BOOST_FAIL("(a,b,c,d)=(1,0,0,0): true covariance is 1.0, "
-                   << "actual value is " << cov2);
+        BOOST_FAIL("(a,b,c,d)=(1,0,0,0): true covariance should be 1.0, "
+        << "error is " << std::fabs(cov2 - 1.0));
 }
 
 void MarketModelTest::testCovariance() {
@@ -4846,7 +4849,7 @@ void MarketModelTest::testCovariance() {
                 break;
               case 1:
                 model = boost::shared_ptr<MarketModel>(
-                                 new AbcdVol(1.0,0.0,0.0,0.0,ks,
+                                 new AbcdVol(1.0,0.0,1.0E-50,0.0,ks,
                                              corr,evolution,n-1,rates,displ));
                 break;
               default:

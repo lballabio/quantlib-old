@@ -68,14 +68,21 @@ namespace ObjectHandler {
     //    return operToVectorImpl<T, Create<T> >(xVector, paramName);
     //}
 
+    struct X {
+        OPER o;
+        X() { o.xltype = 0; }
+        ~X() {
+            if (o.xltype)
+                freeOper(&o);
+        }
+    };
+
     //! Convert a value of type ConvertOper to a vector.
     template <class T>
     std::vector<T> operToVectorImpl(
         const ConvertOper &xVector, 
         const std::string &paramName) {
 
-        OPER xSplit;            // Must be freed manually
-        bool xllToFree = false;
         try {
 
             if (xVector.missing()) return std::vector<T>();
@@ -83,14 +90,14 @@ namespace ObjectHandler {
             OH_REQUIRE(!xVector.error(), "input value has type=error");
 
             const OPER *xMulti;
-            Xloper xCoerce;      // Freed automatically
+            Xloper xCoerce;     // Freed automatically
+            X xSplit;           // Freed automatically
 
             if (xVector->xltype == xltypeMulti) {
                 xMulti = xVector.get();
             } else if (xVector->xltype == xltypeStr) {
-                splitOper(xVector.get(), &xSplit);
-                xMulti = &xSplit;
-                xllToFree = true;
+                splitOper(xVector.get(), &xSplit.o);
+                xMulti = &xSplit.o;
             } else {
                 Excel(xlCoerce, &xCoerce, 2, xVector.get(), TempInt(xltypeMulti));
                 xMulti = &xCoerce;
@@ -102,11 +109,8 @@ namespace ObjectHandler {
                 ret.push_back(convert2<T>(ConvertOper(xMulti->val.array.lparray[i])));
             }
 
-            if (xllToFree) freeOper(&xSplit);
-
             return ret;
         } catch (const std::exception &e) {
-            if (xllToFree) freeOper(&xSplit);
             OH_FAIL("operToVectorImpl: error converting parameter '" << paramName 
                 << "' to type '" << typeid(T).name() << "' : " << e.what());
         }

@@ -108,6 +108,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\functions\basketlossmodels.xml"
+				>
+			</File>
+			<File
 				RelativePath="metadata\functions\bonds.xml"
 				>
 			</File>
@@ -152,6 +156,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\metadata\functions\defaultbasket.xml"
+				>
+			</File>
+			<File
 				RelativePath=".\metadata\functions\defaulttermstructures.xml"
 				>
 			</File>
@@ -177,6 +185,10 @@
 			</File>
 			<File
 				RelativePath="metadata\functions\interpolation.xml"
+				>
+			</File>
+			<File
+				RelativePath=".\metadata\functions\latentmodels.xml"
 				>
 			</File>
 			<File

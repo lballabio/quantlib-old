@@ -1,6 +1,3 @@
-<!--
- $Id$
--->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
@@ -9,6 +6,7 @@
 <meta name="copyright" content=
 "Ferdinando Ametrano (c) 2000, 2001, 2002, 2003">
 <meta name="description" content="QuantLib extensions">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
 <title>QuantLib in other languages</title>
 </head>
 <body>
@@ -27,14 +25,16 @@ GNU R and Objective Caml are also available; feedback is welcome.<br>
 Compilation of the Java module on Windows is performed by means of <a
 href="http://www.skwash.com/">sKWash</a>. A guide to the process can
 be found <a
-href="http://users.telenet.be/johan.witters/website/skwash.com/get/get3.html">here</a>.
-A guide to the compilation of the Java module on Linux is available <a
-href="http://puppetmastertrading.com/blog/2008/06/14/using-quantlib-from-java/">here</a>.<br>
+href="http://users.telenet.be/johan.witters/website/skwash.com/get/get3.html">here</a>.<br>
 
 <p><a href="http://quantlibaddin.org">QuantLibAddin</a> exports a
 procedural interface to a number of platforms including Microsoft
 Excel (see the <a href="http://quantlibxl.org">QuantLibXL</a> site)
 and OpenOffice.org Calc.</p>
+
+<p><a href="http://www.deriscope.com/index.html">Deriscope</a> is
+another project that aims at exporting QuantLib functionality to
+Excel.</p>
 
 <p>GNU R support is provided by means of <a href=
 "http://dirk.eddelbuettel.com/code/rquantlib.html">RQuantLib</a> by
@@ -51,6 +51,16 @@ at a 100% Java port. At this time, it provides about 65% of QuantLib
 <p>An alternative set of Python wrappers is provided in
 the <a href="https://github.com/enthought/pyql">PyQL</a> project by
 Didrik Pinte and Patrick Henaff.</p>
+
+<p><a href="https://code.google.com/p/qldds/">QLDDS</a> is a project
+that allows the functionality of the QuantLibAddin for C++ to be
+distributed via OpenDDS across multiple computers running different
+operating systems.</p>
+
+<p>QuantLib was integrated
+into <a href="http://www.ceemple.com/">Ceemple</a>, a solution
+enabling rapid C++ based technical computing via an optimizing
+Just-In-Time compiler.</p>
 
 <p>Other projects aim at ports in a functional language.
 <a href="http://sourceforge.net/projects/quanthas/">QuantHas</a>
@@ -80,6 +90,9 @@ the <a href="http://www.dsource.org/projects/quantlibd/">QuantLibD</a>
 project is a port of QuantLib in the D programming language.  The
 project is looking for developers.</p>
 
+</div>
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
 </div>
 
 <div class="footer">

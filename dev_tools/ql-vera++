@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# execute this script from the root QuantLib directory
+
+find ./ql -name '*.[hc]pp' | sort | vera++ -R L002 -R T001 -R T017 -R T018
