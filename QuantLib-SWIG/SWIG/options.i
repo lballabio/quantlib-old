@@ -1154,6 +1154,7 @@ using QuantLib::DiscretizedDermanKaniBarrierOption;
 typedef boost::shared_ptr<PricingEngine> BinomialBarrierEnginePtr;
 %}
 
+#if defined(SWIGPYTHON)
 %feature("docstring") BinomialBarrierEnginePtr "Binomial Engine for barrier options.
 Features different binomial models, selected by the type parameters.
 Uses Boyle-Lau adjustment for optimize steps and Derman-Kani optimization to speed
@@ -1173,7 +1174,7 @@ Il max_steps is 0 (default value), max_steps is calculated by capping it to
 5*steps when Boyle-Lau would need more than 1000 steps.
 If max_steps is specified, it would limit binomial steps to this value.
 "
-
+#endif
 %rename(BinomialBarrierEngine) BinomialBarrierEnginePtr;
 class BinomialBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
@@ -1788,7 +1789,9 @@ using QuantLib::AnalyticDoubleBarrierEngine;
 typedef boost::shared_ptr<PricingEngine> AnalyticDoubleBarrierEnginePtr;
 %}
 
+#if defined(SWIGPYTHON)
 %feature("docstring") AnalyticDoubleBarrierEnginePtr "Double barrier engine implementing Ikeda-Kunitomo series."
+#endif
 %rename(AnalyticDoubleBarrierEngine) AnalyticDoubleBarrierEnginePtr;
 class AnalyticDoubleBarrierEnginePtr
     : public boost::shared_ptr<PricingEngine> {
@@ -1841,6 +1844,7 @@ IsObservable(Handle<DeltaVolQuote>);
 %template(RelinkableDeltaVolQuoteHandle)
 RelinkableHandle<DeltaVolQuote>;
 
+#if defined(SWIGPYTHON)
 %feature("docstring") VannaVolgaDoubleBarrierEnginePtr "
 Vanna-Volga engine for double barrier options.
 Supports different double barrier engines, selected by the type parameters.
@@ -1848,6 +1852,7 @@ Type values:
     ik or analytic:  Ikeda-Kunitomo standard engine (default)
     wo:              Wulin-Yong engine
 "
+#endif
 %rename(VannaVolgaDoubleBarrierEngine) VannaVolgaDoubleBarrierEnginePtr;
 class VannaVolgaDoubleBarrierEnginePtr
     : public boost::shared_ptr<PricingEngine> {
@@ -1911,6 +1916,7 @@ using QuantLib::DiscretizedDermanKaniDoubleBarrierOption;
 typedef boost::shared_ptr<PricingEngine> BinomialDoubleBarrierEnginePtr;
 %}
 
+#if defined(SWIGPYTHON)
 %feature("docstring") BinomialDoubleBarrierEnginePtr "Binomial Engine for double barrier options.
 Features different binomial models, selected by the type parameters.
 Uses Derman-Kani optimization to speed up convergence.
@@ -1923,7 +1929,7 @@ Type values:
     lr  or leisenreimer              Leisen-Reimer model
     j4  or joshi4:                   Joshi 4th (smoothed) model
 "
-
+#endif
 %rename(BinomialDoubleBarrierEngine) BinomialDoubleBarrierEnginePtr;
 class BinomialDoubleBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
