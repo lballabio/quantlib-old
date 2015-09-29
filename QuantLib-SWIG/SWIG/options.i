@@ -1877,6 +1877,8 @@ class VannaVolgaDoubleBarrierEnginePtr
                                         atmVol, vol25Put, vol25Call, spotFX, 
                                         domesticTS, foreignTS, adaptVanDelta, 
                                         bsPriceWithSmile, series));
+            else
+                QL_FAIL("unknown binomial engine type: "+s);
         }
     }
 };
