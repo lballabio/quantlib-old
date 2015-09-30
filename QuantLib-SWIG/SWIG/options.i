@@ -5,6 +5,7 @@
  Copyright (C) 2005 Dominic Thuillier
  Copyright (C) 2008 Tito Ingargiola
  Copyright (C) 2010, 2012 Klaus Spanderen
+ Copyright (C) 2015 Thema Consulting SA
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -47,6 +48,10 @@ class Option {
 
 struct Barrier {
     enum Type { DownIn, UpIn, DownOut, UpOut };
+};
+
+struct DoubleBarrier {
+    enum Type { KnockIn, KnockOut, KIKO, KOKI };
 };
 
 // payoff
@@ -356,22 +361,22 @@ class HestonModelPtr : public boost::shared_ptr<CalibratedModel> {
 
             return new HestonModelPtr(new HestonModel(hProcess));
         }
-		Real theta() const {
-			return boost::dynamic_pointer_cast<HestonModel>(*self)->theta();
-		}
-		Real kappa() const {
-			return boost::dynamic_pointer_cast<HestonModel>(*self)->kappa();
-		}
-		Real sigma() const {
-			return boost::dynamic_pointer_cast<HestonModel>(*self)->sigma();
-		}
-		Real rho() const {
-			return boost::dynamic_pointer_cast<HestonModel>(*self)->rho();
-		}
-		Real v0() const {
-			return boost::dynamic_pointer_cast<HestonModel>(*self)->v0();
-		}
-	}
+        Real theta() const {
+            return boost::dynamic_pointer_cast<HestonModel>(*self)->theta();
+        }
+        Real kappa() const {
+            return boost::dynamic_pointer_cast<HestonModel>(*self)->kappa();
+        }
+        Real sigma() const {
+            return boost::dynamic_pointer_cast<HestonModel>(*self)->sigma();
+        }
+        Real rho() const {
+            return boost::dynamic_pointer_cast<HestonModel>(*self)->rho();
+        }
+        Real v0() const {
+            return boost::dynamic_pointer_cast<HestonModel>(*self)->v0();
+        }
+    }
 };
 
 %{
@@ -384,24 +389,24 @@ class AnalyticHestonEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         AnalyticHestonEnginePtr(const HestonModelPtr& model, 
-								Size integrationOrder = 144) {
+                                Size integrationOrder = 144) {
             boost::shared_ptr<HestonModel> hModel =
                  boost::dynamic_pointer_cast<HestonModel>(model);
             QL_REQUIRE(hModel, "Heston model required");
 
             return new AnalyticHestonEnginePtr(
-				new AnalyticHestonEngine(hModel, integrationOrder));
+                new AnalyticHestonEngine(hModel, integrationOrder));
         }
 
         AnalyticHestonEnginePtr(const HestonModelPtr& model, 
-								Real relTolerance,
-								Size maxEvaluations) {
+                                Real relTolerance,
+                                Size maxEvaluations) {
             boost::shared_ptr<HestonModel> hModel =
                  boost::dynamic_pointer_cast<HestonModel>(model);
             QL_REQUIRE(hModel, "Heston model required");
 
             return new AnalyticHestonEnginePtr(
-				new AnalyticHestonEngine(hModel, relTolerance,maxEvaluations));
+                new AnalyticHestonEngine(hModel, relTolerance,maxEvaluations));
         }
     }
 };
@@ -428,15 +433,15 @@ class BatesModelPtr : public HestonModelPtr {
 
             return new BatesModelPtr(new BatesModel(bProcess));
         }
-		Real nu() const {
-			return boost::dynamic_pointer_cast<BatesModel>(*self)->nu();
-		}
-		Real delta() const {
-			return boost::dynamic_pointer_cast<BatesModel>(*self)->delta();
-		}
-		Real lambda() const {
-			return boost::dynamic_pointer_cast<BatesModel>(*self)->lambda();
-		}
+        Real nu() const {
+            return boost::dynamic_pointer_cast<BatesModel>(*self)->nu();
+        }
+        Real delta() const {
+            return boost::dynamic_pointer_cast<BatesModel>(*self)->delta();
+        }
+        Real lambda() const {
+            return boost::dynamic_pointer_cast<BatesModel>(*self)->lambda();
+        }
     }
 };
 
@@ -451,24 +456,24 @@ class BatesEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         BatesEnginePtr(const BatesModelPtr& model, 
-					   Size integrationOrder = 144) {
+                       Size integrationOrder = 144) {
             boost::shared_ptr<BatesModel> bModel =
                  boost::dynamic_pointer_cast<BatesModel>(model);
             QL_REQUIRE(bModel, "Bates model required");
 
             return new BatesEnginePtr(
-				new BatesEngine(bModel, integrationOrder));
+                new BatesEngine(bModel, integrationOrder));
         }
 
         BatesEnginePtr(const BatesModelPtr& model, 
-					   Real relTolerance,
-					   Size maxEvaluations) {
+                       Real relTolerance,
+                       Size maxEvaluations) {
             boost::shared_ptr<BatesModel> bModel =
                  boost::dynamic_pointer_cast<BatesModel>(model);
             QL_REQUIRE(bModel, "Bates model required");
 
             return new BatesEnginePtr(
-				new BatesEngine(bModel, relTolerance,maxEvaluations));
+                new BatesEngine(bModel, relTolerance,maxEvaluations));
         }
     }
 };
@@ -715,8 +720,8 @@ class ContinuousArithmeticAsianLevyEnginePtr : public boost::shared_ptr<PricingE
   public:
     %extend {
         ContinuousArithmeticAsianLevyEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
-											   const Handle<Quote>& runningAverage,
-											   const Date& startDate) {
+                                               const Handle<Quote>& runningAverage,
+                                               const Date& startDate) {
             boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
                  boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
                                                                      process);
@@ -737,7 +742,7 @@ class FdBlackScholesAsianEnginePtr : public boost::shared_ptr<PricingEngine> {
   public:
     %extend {
         FdBlackScholesAsianEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
-									 Size tGrid, Size xGrid, Size aGrid) {
+                                     Size tGrid, Size xGrid, Size aGrid) {
             boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
                  boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
                                                                      process);
@@ -838,6 +843,27 @@ class AnalyticDigitalAmericanEnginePtr
     }
 };
 
+%{
+using QuantLib::AnalyticDigitalAmericanKOEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticDigitalAmericanKOEnginePtr;
+%}
+
+%rename(AnalyticDigitalAmericanKOEngine) AnalyticDigitalAmericanKOEnginePtr;
+class AnalyticDigitalAmericanKOEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticDigitalAmericanKOEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticDigitalAmericanKOEnginePtr(
+                                new AnalyticDigitalAmericanKOEngine(bsProcess));
+        }
+    }
+};
 
 // Dividend option
 
@@ -1095,6 +1121,111 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
                                                            seed));
             else
                 QL_FAIL("unknown Monte Carlo engine type: "+s);
+        }
+    }
+};
+
+%{
+using QuantLib::AnalyticBinaryBarrierEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticBinaryBarrierEnginePtr;
+%}
+
+%rename(AnalyticBinaryBarrierEngine) AnalyticBinaryBarrierEnginePtr;
+class AnalyticBinaryBarrierEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticBinaryBarrierEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticBinaryBarrierEnginePtr(
+                                        new AnalyticBinaryBarrierEngine(bsProcess));
+        }
+    }
+};
+
+
+%{
+using QuantLib::BinomialBarrierEngine;
+using QuantLib::DiscretizedDermanKaniBarrierOption;
+typedef boost::shared_ptr<PricingEngine> BinomialBarrierEnginePtr;
+%}
+
+#if defined(SWIGPYTHON)
+%feature("docstring") BinomialBarrierEnginePtr "Binomial Engine for barrier options.
+Features different binomial models, selected by the type parameters.
+Uses Boyle-Lau adjustment for optimize steps and Derman-Kani optimization to speed
+up convergence.
+Type values:
+    crr or coxrossrubinstein:        Cox-Ross-Rubinstein model
+    jr  or jarrowrudd:               Jarrow-Rudd model
+    eqp or additiveeqpbinomialtree:  Additive EQP model
+    trigeorgis:                      Trigeorgis model
+    tian:                            Tian model
+    lr  or leisenreimer              Leisen-Reimer model
+    j4  or joshi4:                   Joshi 4th (smoothed) model
+
+Boyle-Lau adjustment is controlled by parameter max_steps.
+If max_steps is equal to steps Boyle-Lau is disabled.
+Il max_steps is 0 (default value), max_steps is calculated by capping it to 
+5*steps when Boyle-Lau would need more than 1000 steps.
+If max_steps is specified, it would limit binomial steps to this value.
+"
+#endif
+%rename(BinomialBarrierEngine) BinomialBarrierEnginePtr;
+class BinomialBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        BinomialBarrierEnginePtr(
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             const std::string& type,
+                             Size steps,
+                             Size max_steps = 0) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            std::string s = boost::algorithm::to_lower_copy(type);
+            if (s == "crr" || s == "coxrossrubinstein")
+                return new BinomialBarrierEnginePtr(
+                    new BinomialBarrierEngine<CoxRossRubinstein,
+                                          DiscretizedDermanKaniBarrierOption>(
+                                                  bsProcess,steps,max_steps));
+            else if (s == "jr" || s == "jarrowrudd")
+                return new BinomialBarrierEnginePtr(
+                    new BinomialBarrierEngine<JarrowRudd,
+                                          DiscretizedDermanKaniBarrierOption>(
+                                                  bsProcess,steps,max_steps));
+            else if (s == "eqp" || s == "additiveeqpbinomialtree")
+                return new BinomialBarrierEnginePtr(
+                    new BinomialBarrierEngine<AdditiveEQPBinomialTree,
+                                          DiscretizedDermanKaniBarrierOption>(
+                                                  bsProcess,steps,max_steps));
+            else if (s == "trigeorgis")
+                return new BinomialBarrierEnginePtr(
+                    new BinomialBarrierEngine<Trigeorgis,
+                                          DiscretizedDermanKaniBarrierOption>(
+                                                  bsProcess,steps,max_steps));
+            else if (s == "tian")
+                return new BinomialBarrierEnginePtr(
+                    new BinomialBarrierEngine<Tian,
+                                          DiscretizedDermanKaniBarrierOption>(
+                                                  bsProcess,steps,max_steps));
+            else if (s == "lr" || s == "leisenreimer")
+                return new BinomialBarrierEnginePtr(
+                    new BinomialBarrierEngine<LeisenReimer,
+                                          DiscretizedDermanKaniBarrierOption>(
+                                                  bsProcess,steps,max_steps));
+            else if (s == "j4" || s == "joshi4")
+                return new BinomialBarrierEnginePtr(
+                    new BinomialBarrierEngine<Joshi4,
+                                          DiscretizedDermanKaniBarrierOption>(
+                                                  bsProcess,steps,max_steps));
+            else
+                QL_FAIL("unknown binomial barrier engine type: "+s);
         }
     }
 };
@@ -1541,7 +1672,7 @@ class VarianceGammaEnginePtr
     %extend {
         VarianceGammaEnginePtr(const VarianceGammaProcessPtr& process) {
             boost::shared_ptr<VarianceGammaProcess> vgProcess =
-				boost::dynamic_pointer_cast<VarianceGammaProcess>(process);
+                boost::dynamic_pointer_cast<VarianceGammaProcess>(process);
             QL_REQUIRE(vgProcess, "Variance-Gamma process required");
             return new VarianceGammaEnginePtr(new VarianceGammaEngine(vgProcess));
         }
@@ -1561,16 +1692,296 @@ class FFTVarianceGammaEnginePtr
     %extend {
         FFTVarianceGammaEnginePtr(const VarianceGammaProcessPtr& process, Real logStrikeSpacing = 0.001) {
             boost::shared_ptr<VarianceGammaProcess> vgProcess =
-				boost::dynamic_pointer_cast<VarianceGammaProcess>(process);
+                boost::dynamic_pointer_cast<VarianceGammaProcess>(process);
             QL_REQUIRE(vgProcess, "Variance Gamma process required");
             return new FFTVarianceGammaEnginePtr(new FFTVarianceGammaEngine(vgProcess, logStrikeSpacing));
         }
         void precalculate(const std::vector<boost::shared_ptr<Instrument> >& optionList)
         {
-			boost::dynamic_pointer_cast<FFTVarianceGammaEngine>(*self)->precalculate(optionList);
+            boost::dynamic_pointer_cast<FFTVarianceGammaEngine>(*self)->precalculate(optionList);
         }
     }
 };
 
+// Double barrier options
+%{
+using QuantLib::DoubleBarrierOption;
+using QuantLib::DoubleBarrier;
+%}
+
+%{
+using QuantLib::DoubleBarrierOption;
+typedef boost::shared_ptr<Instrument> DoubleBarrierOptionPtr;
+%}
+
+%rename(DoubleBarrierOption) DoubleBarrierOptionPtr;
+class DoubleBarrierOptionPtr : public boost::shared_ptr<Instrument> {
+    #if defined(SWIGMZSCHEME) || defined(SWIGGUILE)
+    %rename("dividend-rho")       dividendRho;
+    %rename("implied-volatility") impliedVolatility;
+    #endif
+  public:
+    %extend {
+        DoubleBarrierOptionPtr(
+                   DoubleBarrier::Type barrierType,
+                   Real barrier_lo,
+                   Real barrier_hi,
+                   Real rebate,
+                   const boost::shared_ptr<Payoff>& payoff,
+                   const boost::shared_ptr<Exercise>& exercise) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "wrong payoff given");
+            return new DoubleBarrierOptionPtr(
+                               new DoubleBarrierOption(barrierType, barrier_lo, 
+                                                 barrier_hi, rebate,
+                                                 stPayoff,exercise));
+        }
+    }
+};
+
+add_greeks_to(DoubleBarrierOption);
+
+// QuantoVanillaOption
+
+%{
+using QuantLib::QuantoDoubleBarrierOption;
+typedef boost::shared_ptr<Instrument> QuantoDoubleBarrierOptionPtr;
+%}
+
+%rename(QuantoDoubleBarrierOption) QuantoDoubleBarrierOptionPtr;
+class QuantoDoubleBarrierOptionPtr : public DoubleBarrierOptionPtr {
+  public:
+    %extend {
+        QuantoDoubleBarrierOptionPtr(
+                DoubleBarrier::Type barrierType,
+                Real barrier_lo,
+                Real barrier_hi,
+                Real rebate,
+                const boost::shared_ptr<Payoff>& payoff,
+                const boost::shared_ptr<Exercise>& exercise) {
+            boost::shared_ptr<StrikedTypePayoff> stPayoff =
+                 boost::dynamic_pointer_cast<StrikedTypePayoff>(payoff);
+            QL_REQUIRE(stPayoff, "wrong payoff given");
+            return new QuantoDoubleBarrierOptionPtr(
+                         new QuantoDoubleBarrierOption(barrierType, barrier_lo, 
+                                      barrier_hi, rebate, stPayoff, exercise));
+        }
+        Real qvega() {
+            return boost::dynamic_pointer_cast<QuantoDoubleBarrierOption>(*self)
+                ->qvega();
+        }
+        Real qrho() {
+            return boost::dynamic_pointer_cast<QuantoDoubleBarrierOption>(*self)
+                ->qrho();
+        }
+        Real qlambda() {
+            return boost::dynamic_pointer_cast<QuantoDoubleBarrierOption>(*self)
+                ->qlambda();
+        }
+    }
+};
+
+// Double Barrier engines
+
+%{
+using QuantLib::AnalyticDoubleBarrierEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticDoubleBarrierEnginePtr;
+%}
+
+#if defined(SWIGPYTHON)
+%feature("docstring") AnalyticDoubleBarrierEnginePtr "Double barrier engine implementing Ikeda-Kunitomo series."
+#endif
+%rename(AnalyticDoubleBarrierEngine) AnalyticDoubleBarrierEnginePtr;
+class AnalyticDoubleBarrierEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticDoubleBarrierEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process,
+                           int series = 5) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticDoubleBarrierEnginePtr(
+                            new AnalyticDoubleBarrierEngine(bsProcess, series));
+        }
+    }
+};
+
+%{
+using QuantLib::WulinYongDoubleBarrierEngine;
+typedef boost::shared_ptr<PricingEngine> WulinYongDoubleBarrierEnginePtr;
+%}
+
+%rename(WulinYongDoubleBarrierEngine) WulinYongDoubleBarrierEnginePtr;
+class WulinYongDoubleBarrierEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        WulinYongDoubleBarrierEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process,
+                           int series = 5) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new WulinYongDoubleBarrierEnginePtr(
+                            new WulinYongDoubleBarrierEngine(bsProcess, series));
+        }
+    }
+};
+
+%{
+using QuantLib::VannaVolgaDoubleBarrierEngine;
+using QuantLib::DeltaVolQuote;
+typedef boost::shared_ptr<PricingEngine> VannaVolgaDoubleBarrierEnginePtr;
+%}
+
+%template(DeltaVolQuoteHandle) Handle<DeltaVolQuote>;
+IsObservable(Handle<DeltaVolQuote>);
+%template(RelinkableDeltaVolQuoteHandle)
+RelinkableHandle<DeltaVolQuote>;
+
+#if defined(SWIGPYTHON)
+%feature("docstring") VannaVolgaDoubleBarrierEnginePtr "
+Vanna-Volga engine for double barrier options.
+Supports different double barrier engines, selected by the type parameters.
+Type values:
+    ik or analytic:  Ikeda-Kunitomo standard engine (default)
+    wo:              Wulin-Yong engine
+"
+#endif
+%rename(VannaVolgaDoubleBarrierEngine) VannaVolgaDoubleBarrierEnginePtr;
+class VannaVolgaDoubleBarrierEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        VannaVolgaDoubleBarrierEnginePtr(
+                           const Handle<DeltaVolQuote> atmVol,
+                           const Handle<DeltaVolQuote> vol25Put,
+                           const Handle<DeltaVolQuote> vol25Call,
+                           const Handle<Quote> spotFX,
+                           const Handle<YieldTermStructure> domesticTS,
+                           const Handle<YieldTermStructure> foreignTS,
+                           const std::string& type = "ik",
+                           const bool adaptVanDelta = false,
+                           const Real bsPriceWithSmile = 0.0,
+                           int series = 5) {
+            std::string s = boost::algorithm::to_lower_copy(type);
+            if (s == "ik" || s == "analytic")
+                return new VannaVolgaDoubleBarrierEnginePtr(
+                   new VannaVolgaDoubleBarrierEngine<AnalyticDoubleBarrierEngine>(
+                                        atmVol, vol25Put, vol25Call, spotFX, 
+                                        domesticTS, foreignTS, adaptVanDelta, 
+                                        bsPriceWithSmile, series));
+            else if (s == "wo")
+                return new VannaVolgaDoubleBarrierEnginePtr(
+                   new VannaVolgaDoubleBarrierEngine<WulinYongDoubleBarrierEngine>(
+                                        atmVol, vol25Put, vol25Call, spotFX, 
+                                        domesticTS, foreignTS, adaptVanDelta, 
+                                        bsPriceWithSmile, series));
+            else
+                QL_FAIL("unknown binomial engine type: "+s);
+        }
+    }
+};
+
+%{
+using QuantLib::AnalyticDoubleBarrierBinaryEngine;
+typedef boost::shared_ptr<PricingEngine> AnalyticDoubleBarrierBinaryEnginePtr;
+%}
+
+%rename(AnalyticDoubleBarrierBinaryEngine) AnalyticDoubleBarrierBinaryEnginePtr;
+class AnalyticDoubleBarrierBinaryEnginePtr
+    : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        AnalyticDoubleBarrierBinaryEnginePtr(
+                           const GeneralizedBlackScholesProcessPtr& process) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new AnalyticDoubleBarrierBinaryEnginePtr(
+                            new AnalyticDoubleBarrierBinaryEngine(bsProcess));
+        }
+    }
+};
+
+%{
+using QuantLib::BinomialDoubleBarrierEngine;
+using QuantLib::DiscretizedDermanKaniDoubleBarrierOption;
+typedef boost::shared_ptr<PricingEngine> BinomialDoubleBarrierEnginePtr;
+%}
+
+#if defined(SWIGPYTHON)
+%feature("docstring") BinomialDoubleBarrierEnginePtr "Binomial Engine for double barrier options.
+Features different binomial models, selected by the type parameters.
+Uses Derman-Kani optimization to speed up convergence.
+Type values:
+    crr or coxrossrubinstein:        Cox-Ross-Rubinstein model
+    jr  or jarrowrudd:               Jarrow-Rudd model
+    eqp or additiveeqpbinomialtree:  Additive EQP model
+    trigeorgis:                      Trigeorgis model
+    tian:                            Tian model
+    lr  or leisenreimer              Leisen-Reimer model
+    j4  or joshi4:                   Joshi 4th (smoothed) model
+"
+#endif
+%rename(BinomialDoubleBarrierEngine) BinomialDoubleBarrierEnginePtr;
+class BinomialDoubleBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        BinomialDoubleBarrierEnginePtr(
+                             const GeneralizedBlackScholesProcessPtr& process,
+                             const std::string& type,
+                             Size steps) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            std::string s = boost::algorithm::to_lower_copy(type);
+            if (s == "crr" || s == "coxrossrubinstein")
+                return new BinomialDoubleBarrierEnginePtr(
+                    new BinomialDoubleBarrierEngine<CoxRossRubinstein,
+                                     DiscretizedDermanKaniDoubleBarrierOption>(
+                                                  bsProcess,steps));
+            else if (s == "jr" || s == "jarrowrudd")
+                return new BinomialDoubleBarrierEnginePtr(
+                    new BinomialDoubleBarrierEngine<JarrowRudd,
+                                     DiscretizedDermanKaniDoubleBarrierOption>(
+                                                  bsProcess,steps));
+            else if (s == "eqp" || s == "additiveeqpbinomialtree")
+                return new BinomialDoubleBarrierEnginePtr(
+                    new BinomialDoubleBarrierEngine<AdditiveEQPBinomialTree,
+                                     DiscretizedDermanKaniDoubleBarrierOption>(
+                                                  bsProcess,steps));
+            else if (s == "trigeorgis")
+                return new BinomialDoubleBarrierEnginePtr(
+                    new BinomialDoubleBarrierEngine<Trigeorgis,
+                                     DiscretizedDermanKaniDoubleBarrierOption>(
+                                                  bsProcess,steps));
+            else if (s == "tian")
+                return new BinomialDoubleBarrierEnginePtr(
+                    new BinomialDoubleBarrierEngine<Tian,
+                                     DiscretizedDermanKaniDoubleBarrierOption>(
+                                                  bsProcess,steps));
+            else if (s == "lr" || s == "leisenreimer")
+                return new BinomialDoubleBarrierEnginePtr(
+                    new BinomialDoubleBarrierEngine<LeisenReimer,
+                                     DiscretizedDermanKaniDoubleBarrierOption>(
+                                                  bsProcess,steps));
+            else if (s == "j4" || s == "joshi4")
+                return new BinomialDoubleBarrierEnginePtr(
+                    new BinomialDoubleBarrierEngine<Joshi4,
+                                     DiscretizedDermanKaniDoubleBarrierOption>(
+                                                  bsProcess,steps));
+            else
+                QL_FAIL("unknown binomial double barrier engine type: "+s);
+        }
+    }
+};
 
 #endif
