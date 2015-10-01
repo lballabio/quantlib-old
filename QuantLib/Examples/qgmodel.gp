@@ -9,3 +9,8 @@ plot 'qgmodel.dat' u 1:($3-$4) w l title 'error h'
 plot 'qgmodel.dat' u 1:5 w l title 'G(full)'
 plot 'qgmodel.dat' u 1:6 w l title 'G(analytisch)'
 plot 'qgmodel.dat' u 1:($5-$6) w l title 'error G'
+
+# local vol surface
+set xrange [*:*]
+set yrange [*:*]
+splot 'localvol.txt' u 1:2:3 w l
