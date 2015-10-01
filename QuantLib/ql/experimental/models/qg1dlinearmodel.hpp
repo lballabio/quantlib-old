@@ -49,8 +49,9 @@ class Qg1dLinearModel
     Real kappa(const Real t) const;
     Real g(const Real t, const Real x, const Real y) const;
 
-    /* overwrite default implementation by more efficient one */
+    /* overwrite default implementations by more efficient ones */
     Real h(const Real t) const;
+    Real sigma_f(const Real t, const Real T, const Real x, const Real y) const;
 
     /* additional inspectors */
     Real lambda(const Real t) const;
@@ -80,6 +81,11 @@ inline void Qg1dLinearModel::update() { updateTimes(); }
 
 inline Real Qg1dLinearModel::g(const Real t, const Real x, const Real y) const {
     return lambda(t) * (alpha(t) + beta(t) * x) / h(t);
+}
+
+inline Real Qg1dLinearModel::sigma_f(const Real t, const Real T, const Real x,
+                                     const Real y) const {
+    return lambda(t) * (alpha(t) + beta(t) * x);
 }
 
 } // namespace QuantLib

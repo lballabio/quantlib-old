@@ -21,6 +21,8 @@
 
 #include <ql/instruments/vanillaswap.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
 Qg1dLocalVolModel::Qg1dLocalVolModel(const Handle<YieldTermStructure> &yts)
@@ -44,38 +46,60 @@ Real Qg1dLocalVolModel::swapRate(const Real T0, const Real t,
                                  const std::vector<Real> &taus, const Real x,
                                  const Real y,
                                  const Handle<YieldTermStructure> &yts) const {
-    Real a = 0.0;
-    for (Size i = 0; i < fixedTimes.size(); ++i) {
-        a += taus[i] * zerobond(fixedTimes[i], t, x, y, yts);
-    }
-    return (zerobond(T0, t, x, y, yts) -
-            zerobond(fixedTimes.back(), t, x, y, yts)) /
-           a;
+    Real result0, result1, result2;
+    swapRate_d0_d1_d2(T0, t, fixedTimes, taus, x, y, yts, result0, result1,
+                      result2, true, false, false);
+    return result0;
 }
 
 Real Qg1dLocalVolModel::dSwapRateDx(
     const Real T0, const Real t, const std::vector<Real> &fixedTimes,
     const std::vector<Real> &taus, const Real x, const Real y,
     const Handle<YieldTermStructure> &yts) const {
-    Real a = 0.0, sum = 0.0;
-    for (Size i = 0; i < fixedTimes.size(); ++i) {
-        Real tmp = taus[i] * zerobond(fixedTimes[i], t, x, y, yts);
-        a += tmp;
-        sum += tmp * G(t, fixedTimes[i]);
-    }
-    Real Tn = fixedTimes.back();
-    Real z0 = zerobond(T0, t, x, y, yts);
-    Real zn = zerobond(Tn, t, x, y, yts);
-    return (-G(t, T0) * z0 + G(t, Tn) * zn) / a + (z0 - zn) / (a * a) * sum;
+    Real result0, result1, result2;
+    swapRate_d0_d1_d2(T0, t, fixedTimes, taus, x, y, yts, result0, result1,
+                      result2, false, true, false);
+    return result1;
 }
 
-Real Qg1dLocalVolModel::zerobond(const Date &maturity,
-                                 const Date &referenceDate, const Real x,
-                                 const Real y,
-                                 const Handle<YieldTermStructure> &yts) {
-    return zerobond(termStructure()->timeFromReference(maturity),
-                    termStructure()->timeFromReference(referenceDate), x, y,
-                    yts);
+Real Qg1dLocalVolModel::d2SwapRateDx2(
+    const Real T0, const Real t, const std::vector<Real> &fixedTimes,
+    const std::vector<Real> &taus, const Real x, const Real y,
+    const Handle<YieldTermStructure> &yts) const {
+    Real result0, result1, result2;
+    swapRate_d0_d1_d2(T0, t, fixedTimes, taus, x, y, yts, result0, result1,
+                      result2, false, false, true);
+    return result2;
+}
+
+Real Qg1dLocalVolModel::xApprox(const Real t, const Real T0,
+                                const std::vector<Real> &fixedTimes,
+                                const std::vector<Real> &taus,
+                                const Handle<YieldTermStructure> &yts) const {
+    Real s0, tmp1, tmp2;
+    swapRate_d0_d1_d2(T0, 0.0, fixedTimes, taus, 0.0, 0.0, yts, s0, tmp1, tmp2,
+                      true, false, false);
+    Real x0 = sInvX(0.0, T0, fixedTimes, taus, yts, s0);
+    Real y0 = yApprox(t);
+    Real result0, dSdx, result2;
+    swapRate_d0_d1_d2(T0, t, fixedTimes, taus, x0, y0, yts, result0, dSdx,
+                      result2, false, true, false);
+    Real d2XdS2 = -1.0 / (dSdx * dSdx);
+    Real varS = varSApprox(t, T0, fixedTimes, taus, yts);
+    return d2XdS2 * varS;
+}
+
+Real Qg1dLocalVolModel::xi(const Real t, const Real T0,
+                           const std::vector<Real> &fixedTimes,
+                           const std::vector<Real> &taus,
+                           const Handle<YieldTermStructure> &yts,
+                           const Real s) const {
+    Real x = xApprox(t, T0, fixedTimes, taus, yts);
+    Real y = yApprox(t);
+    Real d0, d1, d2;
+    swapRate_d0_d1_d2(T0, t, fixedTimes, taus, x, y, yts, d0, d1, d2, true,
+                      true, true);
+    return -d1 + std::sqrt(d1 * d1 - 2.0 * d2 * d0) / d2 + x;
 }
 
 void Qg1dLocalVolModel::timesAndTaus(const Date &startDate,
@@ -96,6 +120,55 @@ void Qg1dLocalVolModel::timesAndTaus(const Date &startDate,
     }
 }
 
+void Qg1dLocalVolModel::swapRate_d0_d1_d2(
+    const Real T0, const Real t, const std::vector<Real> &fixedTimes,
+    const std::vector<Real> &taus, const Real x, const Real y,
+    const Handle<YieldTermStructure> &yts,
+    Real &result_d0, Real &result_d1, Real &result_d2, const bool compute_d0,
+    const bool compute_d1, const bool compute_d2) const {
+
+    Real a = 0.0, sum = 0.0, sum2 = 0.0;
+
+    for (Size i = 0; i < fixedTimes.size(); ++i) {
+        Real tmp = taus[i] * zerobond(fixedTimes[i], t, x, y, yts);
+        a += tmp;
+        if (compute_d1 || compute_d2) {
+            Real g = G(t, fixedTimes[i]);
+            sum += tmp * g;
+            if (compute_d2)
+                sum2 += tmp * g * g;
+        }
+    }
+    Real Tn = fixedTimes.back();
+    Real z0 = zerobond(T0, t, x, y, yts);
+    Real zn = zerobond(Tn, t, x, y, yts);
+    Real g0 = 0.0, gn = 0.0; // avoid maybe-uninitialized warnings
+    if (compute_d2 || compute_d1) {
+        g0 = G(t, T0);
+        gn = G(t, Tn);
+    }
+    if (compute_d0 || compute_d2)
+        result_d0 = (z0 - zn) / a;
+    if (compute_d1 || compute_d2)
+        result_d1 = (-g0 * z0 + gn * zn) / a + (z0 - zn) / (a * a) * sum;
+    if (compute_d2)
+        result_d2 =
+            ((g0 * g0 * z0 - gn * gn * zn) * a + (gn * zn - g0 * z0) * sum +
+             (result_d1 * sum - result_d0 * sum2) * a + result_d0 * sum * sum) /
+            (a * a);
+}
+
+// date based methods
+
+Real Qg1dLocalVolModel::zerobond(const Date &maturity,
+                                 const Date &referenceDate, const Real x,
+                                 const Real y,
+                                 const Handle<YieldTermStructure> &yts) {
+    return zerobond(termStructure()->timeFromReference(maturity),
+                    termStructure()->timeFromReference(referenceDate), x, y,
+                    yts);
+}
+
 Real Qg1dLocalVolModel::swapRate(const Date &startDate,
                                  const Date &referenceDate,
                                  const boost::shared_ptr<SwapIndex> &index,
@@ -111,14 +184,27 @@ Real Qg1dLocalVolModel::swapRate(const Date &startDate,
 Real Qg1dLocalVolModel::dSwapRateDx(const Date &startDate,
                                     const Date &referenceDate,
                                     const boost::shared_ptr<SwapIndex> &index,
-                                    const Period &tenor,
-                                    const Real x, const Real y) const {
+                                    const Period &tenor, const Real x,
+                                    const Real y) const {
     Real T0;
     std::vector<Real> taus, times;
     timesAndTaus(startDate, index, tenor, T0, times, taus);
     return dSwapRateDx(termStructure()->timeFromReference(startDate),
                        termStructure()->timeFromReference(referenceDate), times,
                        taus, x, y, index->forwardingTermStructure());
+}
+
+Real Qg1dLocalVolModel::d2SwapRateDx2(const Date &startDate,
+                                      const Date &referenceDate,
+                                      const boost::shared_ptr<SwapIndex> &index,
+                                      const Period &tenor, const Real x,
+                                      const Real y) const {
+    Real T0;
+    std::vector<Real> taus, times;
+    timesAndTaus(startDate, index, tenor, T0, times, taus);
+    return d2SwapRateDx2(termStructure()->timeFromReference(startDate),
+                         termStructure()->timeFromReference(referenceDate),
+                         times, taus, x, y, index->forwardingTermStructure());
 }
 
 } // namespace QuantLib

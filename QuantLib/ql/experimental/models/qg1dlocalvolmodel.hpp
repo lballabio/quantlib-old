@@ -37,6 +37,8 @@
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
 
+#include <iostream>
+
 namespace QuantLib {
 
 class Qg1dLocalVolModel : public TermStructureConsistentModel {
@@ -84,13 +86,20 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
                      const Handle<YieldTermStructure> &yts =
                          Handle<YieldTermStructure>()) const;
 
-    /*! local volatility using yApprox und sInvX (see Piterbarg, equation 13.19
-        and what follows immediately after that), the same comments as for
-        the swap rate approximation apply */
-    Real phi(const Real t, const Real s, const Real T0,
-             const std::vector<Real> &fixedTimes, const std::vector<Real> &taus,
-             const Handle<YieldTermStructure> &yts =
-                 Handle<YieldTermStructure>()) const;
+    Real d2SwapRateDx2(const Real T0, const Real t,
+                       const std::vector<Real> &fixedTimes,
+                       const std::vector<Real> &taus, const Real x,
+                       const Real y, const Handle<YieldTermStructure> &yts =
+                                         Handle<YieldTermStructure>()) const;
+
+    /*! local volatility using yApprox and sInvX (see Piterbarg, equation 13.19
+        and what follows immediately after that), if numericalInversion is true,
+        otherwise xi is used (Piterbarg, prop 13.1.8) */
+    Real
+    phi(const Real t, const Real s, const Real T0,
+        const std::vector<Real> &fixedTimes, const std::vector<Real> &taus,
+        const Handle<YieldTermStructure> &yts = Handle<YieldTermStructure>(),
+        bool numericalInversion = false) const;
 
     /*! date based variants, only the forwarding curve from the swap index
         (if given) is used and no indexed coupons are used, see above */
@@ -106,6 +115,10 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
                      const boost::shared_ptr<SwapIndex> &index,
                      const Period &tenor, const Real x, const Real y) const;
 
+    Real d2SwapRateDx2(const Date &startDate, const Date &referenceDate,
+                       const boost::shared_ptr<SwapIndex> &index,
+                       const Period &tenor, const Real x, const Real y) const;
+
     /*! utilitiy function that fills T0, tau and a times vector based on
       a given swap index */
     void timesAndTaus(const Date &startDate,
@@ -115,18 +128,18 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
 
     virtual Real yApprox(const Real t) const;
 
-    //protected: // commented out just for testing ...
     /*! this is \overline{x(t)} in Piterbarg */
-    // virtual Real xApprox(const Real t, const Real T0,
-    //                      const std::vector<Real> &fixedTimes,
-    //                      const std::vector<Real> &taus,
-    //                      const Handle<YieldTermStructure> &yts) const;
-    /*! approximate inversion of s with y = yApprox fixed */
-    // virtual Real xi(const Real t, const Real T0,
-    //                 const std::vector<Real> &fixedTimes,
-    //                 const std::vector<Real> &taus,
-    //                 const Handle<YieldTermStructure> &yts, const Real s)
-    //                 const;
+    virtual Real xApprox(const Real t, const Real T0,
+                         const std::vector<Real> &fixedTimes,
+                         const std::vector<Real> &taus,
+                         const Handle<YieldTermStructure> &yts) const;
+
+    /*! approximate inversion of s in the sense of
+        13.28 in Piterbarg */
+    virtual Real xi(const Real t, const Real T0,
+                    const std::vector<Real> &fixedTimes,
+                    const std::vector<Real> &taus,
+                    const Handle<YieldTermStructure> &yts, const Real s) const;
 
     /*! numerical inversion of s with y = yApprox fixed,
         i.e. this is X(t,s) in Piterbarg's notation */
@@ -134,8 +147,33 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
                const std::vector<Real> &taus,
                const Handle<YieldTermStructure> &yts, const Real s) const;
 
+    /*! Var(S(T)) approximation like in Piterbarg, remark 13.1.7 */
+    Real varSApprox(const Real T, const Real T0,
+                    const std::vector<Real> &fixedTimes,
+                    const std::vector<Real> &taus,
+                    const Handle<YieldTermStructure> &yts) const;
+
+  protected:
+    /*! compute swap rate, the first and second derivative w.r.t. x
+        (since they share a lot of intermediate results this is more
+        efficient than computing each single number) */
+    void swapRate_d0_d1_d2(const Real T0, const Real t,
+                           const std::vector<Real> &fixedTimes,
+                           const std::vector<Real> &taus, const Real x,
+                           const Real y, const Handle<YieldTermStructure> &yts,
+                           Real &result_d0, Real &result_d1, Real &result_d2,
+                           const bool compute_d0, const bool compute_d1,
+                           const bool compute_d2) const;
+
     /*! sigma_f(t,t,0,0)^2*h(t)^{-2}, precondition (not checked) is t > 0 */
     virtual Real sigma_r_0_0_h_sqr(const Real t) const;
+
+    /*! sigma_f(t,t,0.0)^2*dS/dx(s,0,0)^2 */
+    virtual Real
+    sigma_r_0_0_dSdx_sqr(const Real T0, const Real t,
+                         const std::vector<Real> &fixedTimes,
+                         const std::vector<Real> &taus,
+                         const Handle<YieldTermStructure> &yts) const;
 
     boost::shared_ptr<Integrator> integrator_;
 
@@ -179,14 +217,26 @@ inline Real Qg1dLocalVolModel::sigma_r_0_0_h_sqr(const Real t) const {
     return tmp * tmp;
 }
 
-inline Real
-Qg1dLocalVolModel::phi(const Real t, const Real s, const Real T0,
-                       const std::vector<Real> &fixedTimes,
-                       const std::vector<Real> &taus,
-                       const Handle<YieldTermStructure> &yts) const {
-    Real x = sInvX(t, T0, fixedTimes, taus, yts, s);
+inline Real Qg1dLocalVolModel::sigma_r_0_0_dSdx_sqr(
+    const Real T0, const Real t, const std::vector<Real> &fixedTimes,
+    const std::vector<Real> &taus,
+    const Handle<YieldTermStructure> &yts) const {
+    Real tmp = sigma_f(t, t, 0.0, 0.0) *
+               dSwapRateDx(T0, t, fixedTimes, taus, 0.0, 0.0, yts);
+    return tmp * tmp;
+}
+
+inline Real Qg1dLocalVolModel::phi(const Real t, const Real s, const Real T0,
+                                   const std::vector<Real> &fixedTimes,
+                                   const std::vector<Real> &taus,
+                                   const Handle<YieldTermStructure> &yts,
+                                   bool numericalInversion) const {
+    Real x = numericalInversion ? sInvX(t, T0, fixedTimes, taus, yts, s)
+                                : xi(t, T0, fixedTimes, taus, yts, s);
     Real y = yApprox(t);
-    return dSwapRateDx(T0, t, fixedTimes, taus, x, y, yts);
+    Real tmp =
+        dSwapRateDx(T0, t, fixedTimes, taus, x, y, yts) * sigma_f(t, t, x, y);
+    return tmp;
 }
 
 inline Real Qg1dLocalVolModel::sInvX_helper(
@@ -207,6 +257,17 @@ inline Real Qg1dLocalVolModel::sInvX(const Real t, const Real T0,
         boost::bind(&Qg1dLocalVolModel::sInvX_helper, this, t, T0, fixedTimes,
                     taus, yts, s, _1);
     return b.solve(f, 1E-7, 0.0, 0.01);
+}
+
+inline Real
+Qg1dLocalVolModel::varSApprox(const Real T, const Real T0,
+                              const std::vector<Real> &fixedTimes,
+                              const std::vector<Real> &taus,
+                              const Handle<YieldTermStructure> &yts) const {
+    return integrator_->operator()(
+        boost::bind(&Qg1dLocalVolModel::sigma_r_0_0_dSdx_sqr, this, T0, _1,
+                    fixedTimes, taus, yts),
+        0.0, T);
 }
 
 } // namespace QuantLib

@@ -25,7 +25,7 @@ namespace QuantLib {
 #define PIECEWISEFCT(Y)                                                        \
     if (t < 0.0)                                                               \
         return 0.0;                                                            \
-    return kappa_[std::min<Size>(                                              \
+    return Y[std::min<Size>(                                                   \
         std::upper_bound(volsteptimes_.begin(), volsteptimes_.end(), t) -      \
             volsteptimes_.begin(),                                             \
         Y.size() - 1)];
