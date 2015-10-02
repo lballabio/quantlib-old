@@ -27,9 +27,8 @@
 
 #include <ql/handle.hpp>
 #include <ql/indexes/swapindex.hpp>
-#include <ql/math/integrals/integral.hpp>
-#include <ql/math/integrals/simpsonintegral.hpp>
 #include <ql/math/solvers1d/brent.hpp>
+#include <ql/math/integrals/integral.hpp>
 #include <ql/models/model.hpp>
 #include <ql/termstructures/yieldtermstructure.hpp>
 
