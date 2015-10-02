@@ -16,7 +16,9 @@ int main() {
     Handle<YieldTermStructure> yts(
         boost::make_shared<FlatForward>(0, TARGET(), 0.03, Actual365Fixed()));
 
-    // steps
+    // ===========================
+    // model parameters
+    // ===========================
 
     std::vector<Date> stepDates;
 
@@ -98,15 +100,15 @@ int main() {
     }
 
     // std::cout << "x( 0.0104 ) = "
-    //           << model.sInvX(10.0, 10.0, times, taus,
+    //           << model.sInvX(T0, T0, times, taus,
     //                          Handle<YieldTermStructure>(), 0.0104)
     //           << std::endl;
     // std::cout << "x( 0.0304 ) = "
-    //           << model.sInvX(10.0, 10.0, times, taus,
+    //           << model.sInvX(T0, T0, times, taus,
     //                          Handle<YieldTermStructure>(), 0.0304)
     //           << std::endl;
     // std::cout << "x( 0.0504 ) = "
-    //           << model.sInvX(10.0, 10.0, times, taus,
+    //           << model.sInvX(T0, T0, times, taus,
     //                          Handle<YieldTermStructure>(), 0.0504)
     //           << std::endl;
 
@@ -114,83 +116,83 @@ int main() {
     // test swap rate derivative
     // ===========================
 
-    std::cout << "dS/dx ( -0.02 ) = "
-              << model.dSwapRateDx(startDate, startDate, index, 10 * Years,
-                                   -0.02, y)
-              << " fd = "
-              << (model.swapRate(startDate, startDate, index, 10 * Years,
-                                 -0.02 + 0.0001, y) -
-                  model.swapRate(startDate, startDate, index, 10 * Years,
-                  -0.02,
-                                 y)) /
-                     0.0001
-              << std::endl;
-    std::cout << "dS/dx ( 0.00 ) = "
-              << model.dSwapRateDx(startDate, startDate, index, 10 * Years,
-                                   0.00, y)
-              << " fd = "
-              << (model.swapRate(startDate, startDate, index, 10 * Years,
-                                 0.0 + 0.0001, y) -
-                  model.swapRate(startDate, startDate, index, 10 * Years,
-                  0.0,
-                                 y)) /
-                     0.0001
-              << std::endl;
-    std::cout << "dS/dx ( +0.02 ) = "
-              << model.dSwapRateDx(startDate, startDate, index, 10 * Years,
-                                   0.02, y)
-              << " fd = "
-              << (model.swapRate(startDate, startDate, index, 10 * Years,
-                                 0.02 + 0.0001, y) -
-                  model.swapRate(startDate, startDate, index, 10 * Years,
-                  0.02,
-                                 y)) /
-                     0.0001
-              << std::endl;
+    // std::cout << "dS/dx ( -0.02 ) = "
+    //           << model.dSwapRateDx(startDate, startDate, index, 10 * Years,
+    //                                -0.02, y)
+    //           << " fd = "
+    //           << (model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              -0.02 + 0.0001, y) -
+    //               model.swapRate(startDate, startDate, index, 10 * Years,
+    //               -0.02,
+    //                              y)) /
+    //                  0.0001
+    //           << std::endl;
+    // std::cout << "dS/dx ( 0.00 ) = "
+    //           << model.dSwapRateDx(startDate, startDate, index, 10 * Years,
+    //                                0.00, y)
+    //           << " fd = "
+    //           << (model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              0.0 + 0.0001, y) -
+    //               model.swapRate(startDate, startDate, index, 10 * Years,
+    //               0.0,
+    //                              y)) /
+    //                  0.0001
+    //           << std::endl;
+    // std::cout << "dS/dx ( +0.02 ) = "
+    //           << model.dSwapRateDx(startDate, startDate, index, 10 * Years,
+    //                                0.02, y)
+    //           << " fd = "
+    //           << (model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              0.02 + 0.0001, y) -
+    //               model.swapRate(startDate, startDate, index, 10 * Years,
+    //               0.02,
+    //                              y)) /
+    //                  0.0001
+    //           << std::endl;
 
     // =================================
     // test swap rate second derivative
     // =================================
 
-    std::cout << "d^2S/dx^2 ( -0.02 ) = "
-              << model.d2SwapRateDx2(startDate, startDate, index, 10 * Years,
-                                     -0.02, y)
-              << " fd = "
-              << (model.swapRate(startDate, startDate, index, 10 * Years,
-                                 -0.02 + 0.0001, y) -
-                  2.0 *
-                      model.swapRate(startDate, startDate, index, 10 * Years,
-                                     -0.02, y) +
-                  model.swapRate(startDate, startDate, index, 10 * Years,
-                                 -0.02 - 0.0001, y)) /
-                     1E-8
-              << std::endl;
-    std::cout << "d^2S/dx^2 ( 0.00 ) = "
-              << model.d2SwapRateDx2(startDate, startDate, index, 10 * Years,
-                                     0.00, y)
-              << " fd = "
-              << (model.swapRate(startDate, startDate, index, 10 * Years,
-                                 0.00 + 0.0001, y) -
-                  2.0 *
-                      model.swapRate(startDate, startDate, index, 10 * Years,
-                                     0.00, y) +
-                  model.swapRate(startDate, startDate, index, 10 * Years,
-                                 0.00 - 0.0001, y)) /
-                     1E-8
-              << std::endl;
-    std::cout << "d^2S/dx^2 ( +0.02 ) = "
-              << model.d2SwapRateDx2(startDate, startDate, index, 10 * Years,
-                                     0.02, y)
-              << " fd = "
-              << (model.swapRate(startDate, startDate, index, 10 * Years,
-                                 0.02 + 0.0001, y) -
-                  2.0 *
-                      model.swapRate(startDate, startDate, index, 10 * Years,
-                                     0.02, y) +
-                  model.swapRate(startDate, startDate, index, 10 * Years,
-                                 0.02 - 0.0001, y)) /
-                     1E-8
-              << std::endl;
+    // std::cout << "d^2S/dx^2 ( -0.02 ) = "
+    //           << model.d2SwapRateDx2(startDate, startDate, index, 10 * Years,
+    //                                  -0.02, y)
+    //           << " fd = "
+    //           << (model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              -0.02 + 0.0001, y) -
+    //               2.0 *
+    //                   model.swapRate(startDate, startDate, index, 10 * Years,
+    //                                  -0.02, y) +
+    //               model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              -0.02 - 0.0001, y)) /
+    //                  1E-8
+    //           << std::endl;
+    // std::cout << "d^2S/dx^2 ( 0.00 ) = "
+    //           << model.d2SwapRateDx2(startDate, startDate, index, 10 * Years,
+    //                                  0.00, y)
+    //           << " fd = "
+    //           << (model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              0.00 + 0.0001, y) -
+    //               2.0 *
+    //                   model.swapRate(startDate, startDate, index, 10 * Years,
+    //                                  0.00, y) +
+    //               model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              0.00 - 0.0001, y)) /
+    //                  1E-8
+    //           << std::endl;
+    // std::cout << "d^2S/dx^2 ( +0.02 ) = "
+    //           << model.d2SwapRateDx2(startDate, startDate, index, 10 * Years,
+    //                                  0.02, y)
+    //           << " fd = "
+    //           << (model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              0.02 + 0.0001, y) -
+    //               2.0 *
+    //                   model.swapRate(startDate, startDate, index, 10 * Years,
+    //                                  0.02, y) +
+    //               model.swapRate(startDate, startDate, index, 10 * Years,
+    //                              0.02 - 0.0001, y)) /
+    //                  1E-8
+    //           << std::endl;
 
     // =======================================================
     // test (numerical, approximated) local vol for swap rate
@@ -202,15 +204,48 @@ int main() {
         t = static_cast<Real>(i) * T0 / 100.0;
         for (Size j = 0; j < 100; ++j) {
             s = static_cast<Real>(j) / 100.0 * 0.20 - 0.10;
-            // std::cout << t << " " << s << " "
-            //           << model.phi(t, s, T0, times, taus,
-            //                        Handle<YieldTermStructure>(), true)
-            //           << " "
-            //           << model.phi(t, s, T0, times, taus,
-            //                        Handle<YieldTermStructure>(), false)
-            //           << std::endl;
+            std::cout << t << " " << s << " "
+                      << model.phi(t, s, T0, times, taus,
+                                   Handle<YieldTermStructure>(), true)
+                      << " "
+                      << model.phi(t, s, T0, times, taus,
+                                   Handle<YieldTermStructure>(), false)
+                      << std::endl;
         }
-        // std::cout << std::endl;
+        std::cout << std::endl;
+    }
+
+    // ====================================================
+    // test vectorized approximated local vol for swap rate
+    // ====================================================
+
+    // t = 0.0;
+    // std::vector<Real> svec(100);
+    // for(Size i=0;i<100;++i)
+    //     svec[i] = -0.10 + static_cast<Real>(i)*0.20/100;
+    // for (Size i = 0; i < 100; ++i) {
+    //     t = static_cast<Real>(i) * T0 / 100.0;
+    //     std::vector<Real> localVol = model.phi(t,svec,T0,times,taus);
+    //     for (Size j = 0; j < 100; ++j) {
+    //         std::cout << t << " " << svec[j] << " " << localVol[j] << std::endl;
+    //     }
+    //     std::cout << std::endl;
+    // }
+
+    // =======================================================
+    // test xi vs numerical inversion
+    // =======================================================
+
+    s = -0.10;
+    while (s <= 0.10) {
+        // std::cout << s << " "
+        //           << model.sInvX(T0, T0, times, taus,
+        //                          Handle<YieldTermStructure>(), s)
+        //           << " "
+        //           << model.xi(T0, T0, times, taus, Handle<YieldTermStructure>(),
+        //                       s)
+        //           << std::endl;
+        s += 0.01;
     }
 
     return 0;
