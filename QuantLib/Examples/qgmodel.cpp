@@ -200,10 +200,10 @@ int main() {
 
     t = 0.0;
     Real s = -0.10;
-    for (Size i = 0; i < 100; ++i) {
-        t = static_cast<Real>(i) * T0 / 100.0;
-        for (Size j = 0; j < 100; ++j) {
-            s = static_cast<Real>(j) / 100.0 * 0.20 - 0.10;
+    for (Size i = 0; i < 10; ++i) {
+        t = static_cast<Real>(i) * T0 / 10.0;
+        for (Size j = 0; j < 10; ++j) {
+            s = static_cast<Real>(j) / 10.0 * 0.20 - 0.10;
             std::cout << t << " " << s << " "
                       << model.phi(t, s, T0, times, taus,
                                    Handle<YieldTermStructure>(), true)
