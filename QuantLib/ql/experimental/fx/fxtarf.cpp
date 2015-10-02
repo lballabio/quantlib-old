@@ -48,6 +48,8 @@ FxTarf::FxTarf(const Schedule schedule, const boost::shared_ptr<FxIndex> &index,
 }
 
 bool FxTarf::isExpired() const {
+    if (detail::simple_event(schedule_.dates().back()).hasOccurred())
+        return true;
     if (!accumulatedAmount_.empty())
         return accumulatedAmount_->value() >= target_;
     else {
