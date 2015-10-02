@@ -21,8 +21,6 @@
 
 #include <ql/instruments/vanillaswap.hpp>
 
-#include <iostream>
-
 namespace QuantLib {
 
 Qg1dLocalVolModel::Qg1dLocalVolModel(const Handle<YieldTermStructure> &yts)
@@ -89,17 +87,56 @@ Real Qg1dLocalVolModel::xApprox(const Real t, const Real T0,
     return d2XdS2 * varS;
 }
 
-Real Qg1dLocalVolModel::xi(const Real t, const Real T0,
-                           const std::vector<Real> &fixedTimes,
-                           const std::vector<Real> &taus,
-                           const Handle<YieldTermStructure> &yts,
-                           const Real s) const {
+Disposable<std::vector<Real> > Qg1dLocalVolModel::xi(
+    const Real t, const Real T0, const std::vector<Real> &fixedTimes,
+    const std::vector<Real> &taus, const Handle<YieldTermStructure> &yts,
+    const std::vector<Real> &s) const {
     Real x = xApprox(t, T0, fixedTimes, taus, yts);
     Real y = yApprox(t);
     Real d0, d1, d2;
     swapRate_d0_d1_d2(T0, t, fixedTimes, taus, x, y, yts, d0, d1, d2, true,
                       true, true);
-    return -d1 + std::sqrt(d1 * d1 - 2.0 * d2 * d0) / d2 + x;
+    std::vector<Real> tmp(s.size());
+    for (Size i = 0; i < tmp.size(); ++i)
+        tmp[i] = (-d1 + std::sqrt(d1 * d1 - 2.0 * d2 * (d0 - s[i]))) / d2 + x;
+    return tmp;
+}
+
+Real Qg1dLocalVolModel::xi(const Real t, const Real T0,
+                           const std::vector<Real> &fixedTimes,
+                           const std::vector<Real> &taus,
+                           const Handle<YieldTermStructure> &yts,
+                           const Real s) const {
+    std::vector<Real> tmp(1, s);
+    return xi(t, T0, fixedTimes, taus, yts, tmp)[0];
+}
+
+Disposable<std::vector<Real> > Qg1dLocalVolModel::phi(
+    const Real t, const std::vector<Real> &s, const Real T0,
+    const std::vector<Real> &fixedTimes, const std::vector<Real> &taus,
+    const Handle<YieldTermStructure> &yts, bool numericalInversion) const {
+    std::vector<Real> x(s.size());
+    if (numericalInversion) {
+        for (Size i = 0; i < x.size(); ++i)
+            x[i] = sInvX(t, T0, fixedTimes, taus, yts, s[i]);
+    } else {
+        x = xi(t, T0, fixedTimes, taus, yts, s);
+    }
+    Real y = yApprox(t);
+    std::vector<Real> tmp(x.size());
+    for (Size i = 0; i < tmp.size(); ++i)
+        tmp[i] = dSwapRateDx(T0, t, fixedTimes, taus, x[i], y, yts) *
+                 sigma_f(t, t, x[i], y);
+    return tmp;
+}
+
+Real Qg1dLocalVolModel::phi(const Real t, const Real s, const Real T0,
+                            const std::vector<Real> &fixedTimes,
+                            const std::vector<Real> &taus,
+                            const Handle<YieldTermStructure> &yts,
+                            bool numericalInversion) const {
+    std::vector<Real> tmp(1, s);
+    return phi(t, tmp, T0, fixedTimes, taus, yts, numericalInversion)[0];
 }
 
 void Qg1dLocalVolModel::timesAndTaus(const Date &startDate,
@@ -123,9 +160,9 @@ void Qg1dLocalVolModel::timesAndTaus(const Date &startDate,
 void Qg1dLocalVolModel::swapRate_d0_d1_d2(
     const Real T0, const Real t, const std::vector<Real> &fixedTimes,
     const std::vector<Real> &taus, const Real x, const Real y,
-    const Handle<YieldTermStructure> &yts,
-    Real &result_d0, Real &result_d1, Real &result_d2, const bool compute_d0,
-    const bool compute_d1, const bool compute_d2) const {
+    const Handle<YieldTermStructure> &yts, Real &result_d0, Real &result_d1,
+    Real &result_d2, const bool compute_d0, const bool compute_d1,
+    const bool compute_d2) const {
 
     Real a = 0.0, sum = 0.0, sum2 = 0.0;
 

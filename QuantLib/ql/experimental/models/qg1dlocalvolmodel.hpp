@@ -101,6 +101,12 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
         const Handle<YieldTermStructure> &yts = Handle<YieldTermStructure>(),
         bool numericalInversion = false) const;
 
+    Disposable<std::vector<Real> >
+    phi(const Real t, const std::vector<Real> &s, const Real T0,
+        const std::vector<Real> &fixedTimes, const std::vector<Real> &taus,
+        const Handle<YieldTermStructure> &yts = Handle<YieldTermStructure>(),
+        bool numericalInversion = false) const;
+
     /*! date based variants, only the forwarding curve from the swap index
         (if given) is used and no indexed coupons are used, see above */
     Real zerobond(const Date &maturiy, const Date &referenceDate, const Real x,
@@ -140,6 +146,11 @@ class Qg1dLocalVolModel : public TermStructureConsistentModel {
                     const std::vector<Real> &fixedTimes,
                     const std::vector<Real> &taus,
                     const Handle<YieldTermStructure> &yts, const Real s) const;
+
+    virtual Disposable<std::vector<Real> >
+    xi(const Real t, const Real T0, const std::vector<Real> &fixedTimes,
+       const std::vector<Real> &taus, const Handle<YieldTermStructure> &yts,
+       const std::vector<Real> &s) const;
 
     /*! numerical inversion of s with y = yApprox fixed,
         i.e. this is X(t,s) in Piterbarg's notation */
@@ -224,19 +235,6 @@ inline Real Qg1dLocalVolModel::sigma_r_0_0_dSdx_sqr(
     Real tmp = sigma_f(t, t, 0.0, 0.0) *
                dSwapRateDx(T0, t, fixedTimes, taus, 0.0, 0.0, yts);
     return tmp * tmp;
-}
-
-inline Real Qg1dLocalVolModel::phi(const Real t, const Real s, const Real T0,
-                                   const std::vector<Real> &fixedTimes,
-                                   const std::vector<Real> &taus,
-                                   const Handle<YieldTermStructure> &yts,
-                                   bool numericalInversion) const {
-    Real x = numericalInversion ? sInvX(t, T0, fixedTimes, taus, yts, s)
-                                : xi(t, T0, fixedTimes, taus, yts, s);
-    Real y = yApprox(t);
-    Real tmp =
-        dSwapRateDx(T0, t, fixedTimes, taus, x, y, yts) * sigma_f(t, t, x, y);
-    return tmp;
 }
 
 inline Real Qg1dLocalVolModel::sInvX_helper(
