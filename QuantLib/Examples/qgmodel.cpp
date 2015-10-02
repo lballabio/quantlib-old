@@ -29,7 +29,7 @@ int main() {
     std::vector<Real> lambda(10, 0.0050);
     std::vector<Real> alpha(10, 1.0);
     std::vector<Real> beta(10, 0.0);
-    std::vector<Real> kappa(10, 0.00);
+    std::vector<Real> kappa(10, 0.02);
 
     Qg1dLinearModel model(yts, stepDates, lambda, alpha, beta, kappa);
 
@@ -43,16 +43,16 @@ int main() {
         t += 0.01;
     }
 
-    // ===========================
-    // test kappa, h, G
-    // ===========================
+    // ==============================
+    // test kappa, h, G (for mr 0.02)
+    // ==============================
 
     std::cout.precision(16);
     t = 0.0;
     while (t < 10.0) {
-        // std::cout << t << " " << model.kappa(t) << " " << model.h(t) << " "
-        //           << std::exp(-0.02 * t) << " " << model.G(0.0, t) << " "
-        //           << -(exp(-0.02 * t) - 1.0) / 0.02 << std::endl;
+        std::cout << t << " " << model.kappa(t) << " " << model.h(t) << " "
+                  << std::exp(-0.02 * t) << " " << model.G(0.0, t) << " "
+                  << -(exp(-0.02 * t) - 1.0) / 0.02 << std::endl;
         t += 0.01;
     }
 
@@ -204,33 +204,33 @@ int main() {
         t = static_cast<Real>(i) * T0 / 10.0;
         for (Size j = 0; j < 10; ++j) {
             s = static_cast<Real>(j) / 10.0 * 0.20 - 0.10;
-            std::cout << t << " " << s << " "
-                      << model.phi(t, s, T0, times, taus,
-                                   Handle<YieldTermStructure>(), true)
-                      << " "
-                      << model.phi(t, s, T0, times, taus,
-                                   Handle<YieldTermStructure>(), false)
-                      << std::endl;
+            // std::cout << t << " " << s << " "
+            //           << model.phi(t, s, T0, times, taus,
+            //                        Handle<YieldTermStructure>(), true)
+            //           << " "
+            //           << model.phi(t, s, T0, times, taus,
+            //                        Handle<YieldTermStructure>(), false)
+            //           << std::endl;
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
     }
 
     // ====================================================
     // test vectorized approximated local vol for swap rate
     // ====================================================
 
-    // t = 0.0;
-    // std::vector<Real> svec(100);
-    // for(Size i=0;i<100;++i)
-    //     svec[i] = -0.10 + static_cast<Real>(i)*0.20/100;
-    // for (Size i = 0; i < 100; ++i) {
-    //     t = static_cast<Real>(i) * T0 / 100.0;
-    //     std::vector<Real> localVol = model.phi(t,svec,T0,times,taus);
-    //     for (Size j = 0; j < 100; ++j) {
-    //         std::cout << t << " " << svec[j] << " " << localVol[j] << std::endl;
-    //     }
-    //     std::cout << std::endl;
-    // }
+    t = 0.0;
+    std::vector<Real> svec(100);
+    for(Size i=0;i<100;++i)
+        svec[i] = -0.10 + static_cast<Real>(i)*0.20/100;
+    for (Size i = 0; i < 100; ++i) {
+        t = static_cast<Real>(i) * T0 / 100.0;
+        // std::vector<Real> localVol = model.phi(t,svec,T0,times,taus);
+        // for (Size j = 0; j < 100; ++j) {
+        //     std::cout << t << " " << svec[j] << " " << localVol[j] << std::endl;
+        // }
+        // std::cout << std::endl;
+    }
 
     // =======================================================
     // test xi vs numerical inversion
