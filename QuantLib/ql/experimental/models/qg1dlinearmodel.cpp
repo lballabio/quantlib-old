@@ -20,6 +20,7 @@
 #include <ql/experimental/models/qg1dlinearmodel.hpp>
 #include <ql/experimental/math/piecewiseintegral.hpp>
 #include <ql/math/integrals/segmentintegral.hpp>
+#include <ql/math/integrals/gausslobattointegral.hpp>
 
 namespace QuantLib {
 
@@ -49,7 +50,7 @@ void Qg1dLinearModel::initialize() {
     updateTimes();
     updateIntKappa();
     boost::shared_ptr<Integrator> baseIntegrator =
-        boost::make_shared<SegmentIntegral>(10);
+        boost::make_shared<GaussLobattoIntegral>(100,1E-8,1E-8);
     integrator_ = boost::make_shared<PiecewiseIntegral>(baseIntegrator,
                                                         volsteptimes_, true);
 }

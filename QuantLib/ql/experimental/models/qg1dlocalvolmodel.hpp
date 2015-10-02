@@ -38,6 +38,9 @@
 
 #include <iostream>
 
+// the integrator_ is used for h,G,yApprox,varSApprox => use different ones ?
+// for the linear model h is overwritten, so G, yApprox, varSApprox remain
+
 namespace QuantLib {
 
 class Qg1dLocalVolModel : public TermStructureConsistentModel {
