@@ -19,6 +19,7 @@
 
 #include <ql/experimental/models/qg1dlinearmodel.hpp>
 #include <ql/experimental/math/piecewiseintegral.hpp>
+#include <ql/math/integrals/segmentintegral.hpp>
 
 namespace QuantLib {
 
@@ -48,7 +49,7 @@ void Qg1dLinearModel::initialize() {
     updateTimes();
     updateIntKappa();
     boost::shared_ptr<Integrator> baseIntegrator =
-        boost::make_shared<SimpsonIntegral>(1E-10, 100);
+        boost::make_shared<SegmentIntegral>(10);
     integrator_ = boost::make_shared<PiecewiseIntegral>(baseIntegrator,
                                                         volsteptimes_, true);
 }
