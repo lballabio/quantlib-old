@@ -36,8 +36,6 @@
 #include <boost/function.hpp>
 #include <boost/bind.hpp>
 
-#include <iostream>
-
 // the integrator_ is used for h,G,yApprox,varSApprox => use different ones ?
 // for the linear model h is overwritten, so G, yApprox, varSApprox remain
 
