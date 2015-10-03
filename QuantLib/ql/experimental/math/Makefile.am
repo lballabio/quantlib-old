@@ -18,6 +18,7 @@ this_include_HEADERS = \
     multidimintegrator.hpp \
     multidimquadrature.hpp \
     numericaldifferentiation.hpp \
+	piecewisefunction.hpp \
 	piecewiseintegral.hpp \
     polarstudenttrng.hpp \
     randomsequencegenerator_multithreaded.hpp \
