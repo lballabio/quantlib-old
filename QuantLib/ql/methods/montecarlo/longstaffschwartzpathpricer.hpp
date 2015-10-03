@@ -3,6 +3,7 @@
 /*
  Copyright (C) 2006 Klaus Spanderen
  Copyright (C) 2015 Peter Caspers
+ Copyright (C) 2015 Thema Consulting SA
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -75,6 +76,8 @@ namespace QuantLib {
         Real operator()(const PathType& path) const;
         virtual void calibrate();
 
+        Real exerciseProbability() const;
+
       protected:
         virtual void post_processing(const Size i,
                                      const std::vector<StateType> &state,
@@ -83,6 +86,8 @@ namespace QuantLib {
         bool  calibrationPhase_;
         const boost::shared_ptr<EarlyExercisePathPricer<PathType> >
             pathPricer_;
+
+        mutable QuantLib::GeneralStatistics exerciseProbability_;
 
         boost::scoped_array<Array> coeff_;
         boost::scoped_array<DiscountFactor> dF_;
@@ -132,6 +137,10 @@ namespace QuantLib {
         }
 
         Real price = (*pathPricer_)(path, len_-1);
+
+        // Initialize with exercise on last date
+        bool exercised = (price != 0.0);
+
         for (Size i=len_-2; i>0; --i) {
             price*=dF_[i];
 
@@ -146,9 +155,14 @@ namespace QuantLib {
 
                 if (continuationValue < exercise) {
                     price = exercise;
+
+                    // Esercised
+                    exercised = true;
                 }
             }
         }
+
+        exerciseProbability_.add(exercised ? 1.0 : 0.0);
 
         return price*dF_[0];
     }
@@ -223,6 +237,13 @@ namespace QuantLib {
         // entering the calculation phase
         calibrationPhase_ = false;
     }
+
+    template <class PathType> inline
+    Real LongstaffSchwartzPathPricer<PathType>::exerciseProbability() const {
+        return exerciseProbability_.mean();
+    }
+
+
 }
 
 

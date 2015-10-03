@@ -4,6 +4,7 @@
  Copyright (C) 2006 Klaus Spanderen
  Copyright (C) 2007 StatPro Italia srl
  Copyright (C) 2015 Peter Caspers
+ Copyright (C) 2015 Thema Consulting SA
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -161,6 +162,8 @@ namespace QuantLib {
                                           requiredSamples_,
                                           maxSamples_);
         this->results_.value = this->mcModel_->sampleAccumulator().mean();
+        this->results_.additionalResults["exerciseProbability"] =
+            this->pathPricer_->exerciseProbability();
         if (RNG::allowsErrorEstimate) {
             this->results_.errorEstimate =
                 this->mcModel_->sampleAccumulator().errorEstimate();

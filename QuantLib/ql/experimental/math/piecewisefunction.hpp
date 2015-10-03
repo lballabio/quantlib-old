@@ -32,10 +32,10 @@
     Normally Y.size() should be X.size() + 1. If more values for Y are
     given, they are ignored. If less values are given the last given
     value is kept the same for the remaining intervals.
-    If X.size() is 0 a constant function taking the value Y[0] is 
+    If X.size() is 0 a constant function taking the value Y[0] is
     evaluated.
 
-    \warning If Y.size() is 0, an invalid access occurs. This 
+    \warning If Y.size() is 0, an invalid access occurs. This
              condition is not checked for performance reasons.
 */
 

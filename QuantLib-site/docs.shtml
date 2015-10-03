@@ -19,12 +19,13 @@
 <h1 class="center">Official QuantLib Documentation</h1>
 <ul>
 <li><strong>QuantLib reference manual</strong> [<a href=
-"reference/index.html">HTML</a>]
-</ul>
+"reference/index.html">HTML</a>]<br>
 The reference manual is also available for offline reading from the
 SourceForge <a href=
 "http://sourceforge.net/project/showfiles.php?group_id=12740">download
 page</a>.
+</li>
+</ul>
 
 <h1 class="center">Other information</h1>
 
@@ -34,6 +35,9 @@ page</a>.
 Available as an ebook from <a href="https://leanpub.com/implementingquantlib/">Leanpub</a>.
 Drafts are also posted on <a href="http://implementingquantlib.blogspot.com/">the
 accompanying blog</a>.
+</li>
+<li>Vasily Nekrasov, <strong>Notes on Getting Started with QuantLib</strong> (unfinished)<br>
+Available from <a href="http://www.yetanotherquant.com/">his web site</a>.
 </li>
 </ul>
 
