@@ -19,18 +19,11 @@
 
 #include <ql/experimental/models/qg1dlinearmodel.hpp>
 #include <ql/experimental/math/piecewiseintegral.hpp>
+#include <ql/experimental/math/piecewisefunction.hpp>
 #include <ql/math/integrals/segmentintegral.hpp>
 #include <ql/math/integrals/gausslobattointegral.hpp>
 
 namespace QuantLib {
-
-#define PIECEWISEFCT(Y)                                                        \
-    if (t < 0.0)                                                               \
-        return 0.0;                                                            \
-    return Y[std::min<Size>(                                                   \
-        std::upper_bound(volsteptimes_.begin(), volsteptimes_.end(), t) -      \
-            volsteptimes_.begin(),                                             \
-        Y.size() - 1)];
 
 Qg1dLinearModel::Qg1dLinearModel(const Handle<YieldTermStructure> &yts,
                                  const std::vector<Date> stepDates,
@@ -50,7 +43,7 @@ void Qg1dLinearModel::initialize() {
     updateTimes();
     updateIntKappa();
     boost::shared_ptr<Integrator> baseIntegrator =
-        boost::make_shared<GaussLobattoIntegral>(100,1E-8,1E-8);
+        boost::make_shared<GaussLobattoIntegral>(100, 1E-8, 1E-8);
     integrator_ = boost::make_shared<PiecewiseIntegral>(baseIntegrator,
                                                         volsteptimes_, true);
 }
@@ -83,13 +76,21 @@ void Qg1dLinearModel::updateIntKappa() const {
     }
 }
 
-Real Qg1dLinearModel::kappa(const Real t) const { PIECEWISEFCT(kappa_); }
+Real Qg1dLinearModel::kappa(const Real t) const {
+    return QL_PIECEWISE_FUNCTION(volsteptimes_, kappa_, t);
+}
 
-Real Qg1dLinearModel::lambda(const Real t) const { PIECEWISEFCT(lambda_); }
+Real Qg1dLinearModel::lambda(const Real t) const {
+    return QL_PIECEWISE_FUNCTION(volsteptimes_, lambda_, t);
+}
 
-Real Qg1dLinearModel::alpha(const Real t) const { PIECEWISEFCT(alpha_); }
+Real Qg1dLinearModel::alpha(const Real t) const {
+    return QL_PIECEWISE_FUNCTION(volsteptimes_, alpha_, t);
+}
 
-Real Qg1dLinearModel::beta(const Real t) const { PIECEWISEFCT(beta_); }
+Real Qg1dLinearModel::beta(const Real t) const {
+    return QL_PIECEWISE_FUNCTION(volsteptimes_, beta_, t);
+}
 
 Real Qg1dLinearModel::h(const Real t) const {
     if (t < 0.0)
