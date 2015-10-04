@@ -18,8 +18,8 @@ this_include_HEADERS = \
     multidimintegrator.hpp \
     multidimquadrature.hpp \
     numericaldifferentiation.hpp \
-	piecewisefunction.hpp \
-	piecewiseintegral.hpp \
+    piecewisefunction.hpp \
+    piecewiseintegral.hpp \
     polarstudenttrng.hpp \
     randomsequencegenerator_multithreaded.hpp \
     rngtraits_multithreaded.hpp \
@@ -35,7 +35,7 @@ libMath_la_SOURCES = \
     multidimintegrator.cpp \
     multidimquadrature.cpp \
     numericaldifferentiation.cpp \
-	piecewiseintegral.cpp \
+    piecewiseintegral.cpp \
     tcopulapolicy.cpp \
     zigguratrng.cpp
 
