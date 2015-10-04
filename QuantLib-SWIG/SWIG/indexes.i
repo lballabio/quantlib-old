@@ -2,6 +2,7 @@
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005, 2006, 2007 StatPro Italia srl
+ Copyright (C) 2015 Matthias Groncki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -201,8 +202,18 @@ class IborIndexPtr : public InterestRateIndexPtr {
             return boost::dynamic_pointer_cast<IborIndex>(*self)
                 ->forwardingTermStructure();
         }
+        IborIndexPtr clone(const Handle<YieldTermStructure>& h){
+            return boost::dynamic_pointer_cast<IborIndex>(*self)
+                ->clone(h);
+    }
     }
 };
+
+%inline %{
+    IborIndexPtr as_iborindex(const InterestRateIndexPtr& index) {
+        return boost::dynamic_pointer_cast<IborIndex>(index);
+    }
+%}
 
 %rename(OvernightIndex) OvernightIndexPtr;
 class OvernightIndexPtr : public IborIndexPtr {

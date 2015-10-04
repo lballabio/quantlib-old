@@ -32,6 +32,17 @@
 %include optimizers.i
 
 %{
+using QuantLib::VolatilityType;
+using QuantLib::ShiftedLognormal;
+using QuantLib::Normal;
+%}
+
+class VolatilityType {
+    public:
+        enum { ShiftedLognormal, Normal};
+};
+
+%{
 using QuantLib::BlackVolTermStructure;
 using QuantLib::LocalVolTermStructure;
 using QuantLib::OptionletVolatilityStructure;
