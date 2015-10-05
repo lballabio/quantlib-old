@@ -37,7 +37,7 @@
 #include <boost/bind.hpp>
 
 // the integrator_ is used for h,G,yApprox,varSApprox => use different ones ?
-// for the linear model h is overwritten, so G, yApprox, varSApprox remain
+// for the linear model h is overwritten
 
 namespace QuantLib {
 

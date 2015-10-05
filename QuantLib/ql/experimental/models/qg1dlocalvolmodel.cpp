@@ -27,7 +27,7 @@ namespace QuantLib {
 Qg1dLocalVolModel::Qg1dLocalVolModel(const Handle<YieldTermStructure> &yts)
     : TermStructureConsistentModel(yts) {
     // default integrator, may be changed in derived classes
-    integrator_ = boost::make_shared<GaussLobattoIntegral>(1E-10, 100);
+    integrator_ = boost::make_shared<GaussLobattoIntegral>(100, 1E-8, 1E-8);
 }
 
 Real Qg1dLocalVolModel::zerobond(const Real T, const Real t, const Real x,
