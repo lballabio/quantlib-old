@@ -72,4 +72,17 @@
 //#   define QL_ENABLE_SESSIONS
 #endif
 
+/* This is defined so that Singleton template is thread safe 
+only if the Boost version and architecture supports atomic address
+functionality without locks. Otherwise using atomic class may
+cause a performance decrease.
+Note: There is no support for thread safety and multiple sessions.
+*/
+#if defined(BOOST_ATOMIC_ADDRESS_LOCK_FREE) && !defined(QL_ENABLE_SESSIONS)
+#define QL_SINGLETON_THREAD_SAFE
+#elif !defined(QL_ENABLE_SESSIONS)
+/* Define this if the performance issue is not important or minimal*/
+//#define QL_SINGLETON_THREAD_SAFE
+#endif
+
 #endif
