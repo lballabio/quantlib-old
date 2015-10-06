@@ -75,6 +75,11 @@ export_zero_curve(ZeroCurve,Linear);
 // add interpolations as you wish, e.g.,
 // export_zero_curve(CubicZeroCurve,Cubic);
 
+%inline %{
+    ZeroCurvePtr as_zerocurve(const boost::shared_ptr<YieldTermStructure> & curve) {
+        return boost::dynamic_pointer_cast<QuantLib::ZeroCurve>(curve);
+    }
+%}
 
 
 #endif

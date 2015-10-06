@@ -2,6 +2,7 @@
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2007 StatPro Italia srl
+ Copyright (C) 2015 Matthias Groncki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -99,7 +100,7 @@ using QuantLib::CapFloorTermVolSurface;
 typedef boost::shared_ptr<CapFloorTermVolatilityStructure> CapFloorTermVolSurfacePtr;
 %}
 
-%rename(CapFloorTermVolSurface) CapFloorTermVolSurface;
+%rename(CapFloorTermVolSurface) CapFloorTermVolSurfacePtr;
 class CapFloorTermVolSurfacePtr : public boost::shared_ptr<CapFloorTermVolatilityStructure> {
 public:
     %extend{
@@ -238,4 +239,23 @@ public:
         }
     }
 };
+
+%{
+using QuantLib::StrippedOptionletAdapter;
+typedef boost::shared_ptr<OptionletVolatilityStructure>
+   StrippedOptionletAdapterPtr;
+%}
+
+%rename(StrippedOptionletAdapter) StrippedOptionletAdapterPtr;
+class StrippedOptionletAdapterPtr
+    : public boost::shared_ptr<OptionletVolatilityStructure> {
+  public:
+    %extend {
+        StrippedOptionletAdapterPtr(const boost::shared_ptr<StrippedOptionletBase> & stripper){
+            return new StrippedOptionletAdapterPtr(
+                new StrippedOptionletAdapter(stripper));
+        }
+    }
+};
+ 
 #endif
