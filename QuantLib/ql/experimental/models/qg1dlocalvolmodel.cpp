@@ -78,7 +78,7 @@ Real Qg1dLocalVolModel::xApprox(const Real t, const Real T0,
     Real s0, tmp1, tmp2;
     swapRate_d0_d1_d2(T0, 0.0, fixedTimes, taus, 0.0, 0.0, yts, s0, tmp1, tmp2,
                       true, false, false);
-    Real x0 = sInvX(0.0, T0, fixedTimes, taus, yts, s0);
+    Real x0 = sInvX(t, T0, fixedTimes, taus, yts, s0);
     Real y0 = yApprox(t);
     Real result0, dSdx, result2;
     swapRate_d0_d1_d2(T0, t, fixedTimes, taus, x0, y0, yts, result0, dSdx,
