@@ -22,7 +22,7 @@
         <StartupParameter name="Help File Path" value=".\QuantLibXL\Docs\QuantLibXL-docs-1.3.0.chm" />
         <StartupParameter name="Metadata Path" value=".\QuantLibAddin\gensrc\metadata" />
         <StartupParameter name="Set Evaluation Date" value="True" />
-        <StartupParameter name="Evaluation Date" value="2015-06-25" />
+        <StartupParameter name="Evaluation Date" value="2015-10-06" />
         <StartupParameter name="Default Currency" value="USD" />
         <StartupParameter name="Initialization Data Source" value="Excel" />
         <StartupParameter name="Open Main Checks" value="True" />
