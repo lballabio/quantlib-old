@@ -234,6 +234,36 @@ class OvernightIndexPtr : public IborIndexPtr {
     }
 };
 
+%{
+using QuantLib::Libor;
+typedef boost::shared_ptr<Index> LiborPtr;
+%}
+
+%rename(Libor) LiborPtr;
+class LiborPtr : public IborIndexPtr {
+  public:
+    %extend{
+        LiborPtr(const std::string& familyName,
+              const Period& tenor,
+              Natural settlementDays,
+              const Currency& currency,
+              const Calendar& financialCenterCalendar,
+              const DayCounter& dayCounter,
+              const Handle<YieldTermStructure>& h =
+                Handle<YieldTermStructure>()){
+            return new LiborPtr(
+                new Libor(familyName,
+                          tenor,
+                          settlementDays,
+                          currency,
+                          financialCenterCalendar,
+                          dayCounter,
+                          h));
+        }
+    }
+};
+
+
 %define export_xibor_instance(Name)
 %{
 using QuantLib::Name;
