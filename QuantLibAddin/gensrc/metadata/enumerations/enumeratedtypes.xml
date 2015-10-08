@@ -591,6 +591,10 @@
           <string>WeekendsOnly</string>
           <value>QuantLib::WeekendsOnly()</value>
         </EnumeratedType>
+        <EnumeratedType>
+          <string>weekends only</string>
+          <value>QuantLib::WeekendsOnly()</value>
+        </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
 
