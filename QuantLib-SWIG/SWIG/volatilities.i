@@ -38,10 +38,7 @@ using QuantLib::ShiftedLognormal;
 using QuantLib::Normal;
 %}
 
-class VolatilityType {
-    public:
-        enum { ShiftedLognormal, Normal};
-};
+enum VolatilityType { ShiftedLognormal, Normal};
 
 %{
 using QuantLib::BlackVolTermStructure;
