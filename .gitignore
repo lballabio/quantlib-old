@@ -191,6 +191,7 @@ QuantLib/Examples/smiledyn
 QuantLib/Examples/timingadj
 QuantLib/Examples/qgmodel
 QuantLib/Examples/qload_simplelib_test
+QuantLib/Examples/qload_lgmlib_test
 QuantLib/test-suite/main.cpp
 QuantLib/test-suite/quantlib-test-suite
 QuantLib/test-suite/quantlib-benchmark
@@ -226,11 +227,21 @@ QuantLibXL/Docs/doxywarnings.txt
 
 #OpenAD files
 !QuantLibOAD/simplelib/Makefile
+!QuantLibOAD/lgm/Makefile
 OAD_INTRINSICS.*
 OAD_active.f90
 iaddr.c
 oad_active.mod
 oad_intrinsics.mod
+OAD_cp.f90
+OAD_rev.f90
+OAD_tape.f90
+oad_cp.mod
+oad_rev.mod
+oad_tape.mod
+ad_inline.f
+ad_template.f
 w2f__types.*
 QuantLibOAD/simplelib/simplelib.pre.*
+QuantLibOAD/lgm/lgm.pre.*
 
