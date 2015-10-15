@@ -225,6 +225,24 @@ namespace QuantLibAddin {
             bool permanent);
     };
 
+    class FxSwapRateHelper : public RateHelper {
+    public:
+        FxSwapRateHelper(
+         const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
+         const QuantLib::Handle<QuantLib::Quote>& fwdPoint,
+         const QuantLib::Handle<QuantLib::Quote>& spotFx,
+         const QuantLib::Period& tenor,
+         QuantLib::Natural fixingDays,
+         const QuantLib::Calendar& calendar,
+         QuantLib::BusinessDayConvention convention,
+         bool endOfMonth,
+         bool isFxBaseCurrencyCollateralCurrency,
+         const QuantLib::Handle<QuantLib::YieldTermStructure>& collateralCurve,
+         bool permanent);
+
+    };
+
+
 
     // Processes the set of curve bootstrapping instruments
     // and selects a subset according to the given rules and parameters

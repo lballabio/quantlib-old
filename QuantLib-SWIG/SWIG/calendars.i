@@ -77,6 +77,8 @@ class Calendar {
   protected:
     Calendar();
   public:
+    bool isWeekend(Weekday w);
+    Date endOfMonth(const Date&);
     bool isBusinessDay(const Date&);
     bool isHoliday(const Date&);
     bool isEndOfMonth(const Date&);
