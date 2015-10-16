@@ -30,6 +30,17 @@
 %include stl.i
 
 %{
+#ifndef QL_HIGH_RESOLUTION_DATE
+    // They are not defined in the library, so we define them here
+    namespace QuantLib {
+        typedef int Hour;
+        typedef int Minute;
+        typedef int Second;
+        typedef int Millisecond;
+        typedef int Microsecond;
+    }
+#endif
+
 using QuantLib::Day;
 using QuantLib::Year;
 using QuantLib::Hour;
@@ -41,11 +52,13 @@ using QuantLib::Microsecond;
 
 typedef Integer Day;
 typedef Integer Year;
-typedef boost::posix_time::hours::hour_type Hour;
-typedef boost::posix_time::minutes::min_type Minute;
-typedef boost::posix_time::minutes::sec_type Second;
-typedef boost::posix_time::time_duration::fractional_seconds_type Millisecond;
-typedef boost::posix_time::time_duration::fractional_seconds_type Microsecond;
+// not really their type, but Integer is convertible
+// to it and SWIG knows about it.
+typedef Integer Hour;
+typedef Integer Minute;
+typedef Integer Second;
+typedef Integer Millisecond;
+typedef Integer Microsecond;
 
 #if defined(SWIGJAVA)
 %javaconst(1);
@@ -348,9 +361,19 @@ class Date {
   public:
     Date();
     Date(Day d, Month m, Year y);
-    Date(Day d, Month m, Year y,
-         Hour hours, Minute minutes, Second seconds,
-         Millisecond millisec = 0, Microsecond microsec = 0);   
+    %extend {
+        Date(Day d, Month m, Year y,
+             Hour hours, Minute minutes, Second seconds,
+             Millisecond millisec = 0, Microsecond microsec = 0) {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return new Date(d, m, y, hours, minutes, seconds,
+                            millisec, microsec);
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
+    }
     Date(BigInteger serialNumber);
     // access functions
     Weekday weekday() const;
@@ -358,14 +381,65 @@ class Date {
     Day dayOfYear() const;        // one-based
     Month month() const;
     Year year() const;
-    Hour hours() const;
-    Minute minutes() const;
-    Second seconds() const;
-    Millisecond milliseconds() const;
-    Microsecond microseconds() const;
+    %extend {
+        Hour hours() {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return self->hours();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
+        Minute minutes() {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return self->minutes();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
+        Second seconds() {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return self->seconds();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
+        Millisecond milliseconds() {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return self->milliseconds();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
+        Microsecond microseconds() {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return self->microseconds();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
 
-    Time fractionOfDay() const;
-    Time fractionOfSecond() const;
+        Time fractionOfDay() const {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return self->fractionOfDay();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
+        Time fractionOfSecond() const {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return self->fractionOfSecond();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
+    }
     
     BigInteger serialNumber() const;
     // static methods
@@ -373,8 +447,24 @@ class Date {
     static Date minDate();
     static Date maxDate();
     static Date todaysDate();
-    static Date localDateTime();
-    static Date universalDateTime();    
+    %extend {
+        static Date localDateTime() {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return Date::localDateTime();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+        }
+        static Date universalDateTime() {
+        %#ifdef QL_HIGH_RESOLUTION_DATE
+            return Date::universalDateTime();
+        %#else
+            throw std::runtime_error("QuantLib was not compiled "
+                                     "with intraday support");
+        %#endif
+         }
+    }
     static Date endOfMonth(const Date&);
     static bool isEndOfMonth(const Date&);
     static Date nextWeekday(const Date&, Weekday);
