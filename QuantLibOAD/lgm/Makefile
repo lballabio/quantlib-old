@@ -19,7 +19,7 @@ toolChain : lgm.f90
 plain: liblgm.so
 
 liblgm.so: lgm.o
-	${F90C} -shared -o $@ $^
+	${F90C} -shared -g -O3 -o liblgmad.so $^
 
 %.o: %.f90
 	${F90C} -g -O3 -o $@ -c $< -fpic
