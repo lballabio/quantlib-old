@@ -30,7 +30,7 @@ and <a href="http://www.compatibl.com/">CompatibL</a>.</p>
 <table>
   <tr><td>Peter Caspers, <i>Negative rates in QuantLib / AD beyond
         typedef and operator overloading</i></td></tr>
-  <tr><td>J&ouml;org Kienitz, <i>A Short History of SABR &mdash; From
+  <tr><td>J&ouml;rg Kienitz, <i>A Short History of SABR &mdash; From
         approximation formulas to PDEs and back</i></td></tr>
   <tr><td>Alexander Sokol, <i>Implementing AAD in QuantLib</i></td></tr>
   <tr><td>Eric Ehlers, <i>Cloud computing in QuantLib</i></td></tr>
