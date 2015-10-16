@@ -103,43 +103,45 @@ subroutine lgm_swaption_engine(n_times, times, modpar, n_expiries, &
 
            do i=0, 2*integration_points, 1
               yidx = ((center*sigma_0_t0+dble(i-integration_points)/dble(integration_points)* &
-                   stddevs*sigma_t0_t1)/sigma_0_t1 + stddevs) / (2.0d0*stddevs) * dble(2*integration_points+1)
+                   stddevs*sigma_t0_t1)/sigma_0_t1 + stddevs) / (2.0d0*stddevs) * dble(2*integration_points)
               yidx0 = floor(yidx)
               yidx1 = yidx0+1
               weight0 = yidx1 - yidx
               weight1 = yidx - yidx0
-              val(i) = weight0 * npv(min(max(yidx0,0),2*integration_points),1-swapflag) + &
-                   weight1 * npv(min(max(yidx1,0),2*integration_points),1-swapflag)
+              val(i) = (weight0 * npv(min(max(yidx0,0),2*integration_points),1-swapflag) + &
+                   weight1 * npv(min(max(yidx1,0),2*integration_points),1-swapflag))
            end do
 
            price = 0.0d0
-           do i=0, 2*integration_points-2, 2
-              x0 = z(i) * M_SQRT1_2
-              x1 = z(i+2) * M_SQRT1_2
+           do i=0, 2*integration_points-1, 1 ! 1 for linear, 2 for quadratic
               ! quadratic interpolation
-              c = val(i) / (2.0d0*h*h) + val(i+1) / (-h*h) + val(i+2) / (2.0d0*h*h)
-              d = val(i) * (-z(i+2)-z(i+1))/(2.0d0*h*h) + val(i+1) * (-z(i+2)-z(i))/ (-h*h) + &
-                   val(i+2) * (-z(i+1)-z(i)) / (2.0d0*h*h)
-              e = val(i)*z(i+1)*z(i+2)/(2.0d0*h*h) + val(i+1)*z(i)*z(i+2)/(-h*h) + &
-                   val(i+2)*z(i)*z(i+1)/(2.0d0*h*h)
-              ca = 2.0d0 * c
-              da = M_SQRT2 * d
-              price = price + (0.125d0 * (2.0d0 * ca + 4.0d0 * e) * erf(x1) - &
-                   1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x1 * x1) * &
-                   (2.0d0 * ca * x1 + 2.0d0 * da)) - &
-                   (0.125d0 * (2.0d0 * ca + 4.0d0 * e) * erf(x0) - &
-                   1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x0 * x0) * &
-                   (2.0d0 * ca * x0 + 2.0d0 * da))
-              ! linear interpolation
-              ! d = (val(i+1)-val(i))/(z(i+1)-z(i))
-              ! e = (val(i)*z(i+1)-val(i+1)*z(i)) / (z(i+1)-z(i))
+              ! x0 = z(i) * M_SQRT1_2
+              ! x1 = z(i+2) * M_SQRT1_2
+              ! c = val(i) / (2.0d0*h*h) + val(i+1) / (-h*h) + val(i+2) / (2.0d0*h*h)
+              ! d = val(i) * (-z(i+2)-z(i+1))/(2.0d0*h*h) + val(i+1) * (-z(i+2)-z(i))/ (-h*h) + &
+              !      val(i+2) * (-z(i+1)-z(i)) / (2.0d0*h*h)
+              ! e = val(i)*z(i+1)*z(i+2)/(2.0d0*h*h) + val(i+1)*z(i)*z(i+2)/(-h*h) + &
+              !      val(i+2)*z(i)*z(i+1)/(2.0d0*h*h)
+              ! ca = 2.0d0 * c
               ! da = M_SQRT2 * d
-              ! price = price + (0.5d0 * e * erf(x1) - &
+              ! price = price + (0.125d0 * (2.0d0 * ca + 4.0d0 * e) * erf(x1) - &
               !      1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x1 * x1) * &
-              !      (2.0d0 * da)) - &
-              !      (0.5d0 * e * erf(x0) - &
+              !      (2.0d0 * ca * x1 + 2.0d0 * da)) - &
+              !      (0.125d0 * (2.0d0 * ca + 4.0d0 * e) * erf(x0) - &
               !      1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x0 * x0) * &
-              !      (2.0d0 * da))
+              !      (2.0d0 * ca * x0 + 2.0d0 * da))
+              ! linear interpolation
+              x0 = z(i) * M_SQRT1_2
+              x1 = z(i+1) * M_SQRT1_2
+              d = (val(i+1)-val(i))/(z(i+1)-z(i))
+              e = (val(i)*z(i+1)-val(i+1)*z(i)) / (z(i+1)-z(i))
+              da = M_SQRT2 * d
+              price = price + (0.5d0 * e * erf(x1) - &
+                   1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x1 * x1) * &
+                   (2.0d0 * da)) - &
+                   (0.5d0 * e * erf(x0) - &
+                   1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x0 * x0) * &
+                   (2.0d0 * da))
            end do
            npv(k,swapflag) = price
         end if
