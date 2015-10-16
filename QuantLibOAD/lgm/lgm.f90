@@ -42,18 +42,14 @@ subroutine lgm_swaption_engine(n_times, times, modpar, n_expiries, &
   integer:: i, k, l, m
   double precision, dimension(0:2*integration_points,0:1):: npv
   double precision, dimension(0:2*integration_points):: val, z
-  double precision:: sigma_t0_t1, sigma_0_t0, sigma_0_t1
-  double precision:: center, yidx, a, b, coeff1, coeff2, da, x0, x1, price
+  double precision:: h, sigma_t0_t1, sigma_0_t0, sigma_0_t1
+  double precision:: center, yidx, c, d, e, ca, da, x0, x1, price
   double precision:: weight0, weight1, floatlegnpv, fixlegnpv
   double precision:: discount, forward, exercisevalue
 
   integer:: swapflag
 
   ! start of the calculation
-
-  write (*,*) '====== lgm f90 routine ======'
-
-  write (*,*) 'nfix =', n_fixs, ' cpn first=', fix_cpn(0), 'cpn last=', fix_cpn(n_fixs-1)
 
   do k=0, 2*integration_points,1
      npv(k,0) = 0.0d0
@@ -67,16 +63,14 @@ subroutine lgm_swaption_engine(n_times, times, modpar, n_expiries, &
   expiry0idx = expiries(n_expiries-1)
   expiry1idx = 0
 
+  h = stddevs / dble(integration_points)
   do k = 0, 2*integration_points, 1
-     z(k) = -stddevs + dble(k)/dble(2*integration_points) * 2.0d0 * stddevs
-     write (*,*) 'z(', k, ')=', z(k)
+     z(k) = -stddevs + dble(k) * h
   end do
-
-  write (*,*) 'number of times is ', n_times
 
   ! loop over expiry dates
   do idx = n_expiries-1, -1, -1
-     
+
      if (idx == -1) then
         expiry0idx = 0
      else
@@ -88,10 +82,6 @@ subroutine lgm_swaption_engine(n_times, times, modpar, n_expiries, &
         sigma_0_t1 = sqrt(modpar(n_times+expiry1idx))
         sigma_t0_t1 = sqrt(modpar(n_times+expiry1idx)-modpar(n_times+expiry0idx))
      end if
-
-     write (*,*), '========================================================'
-     write (*,*), 'idx ', idx, ' expiryindex ', expiry0idx, ' time ', times(expiry0idx)  
-     write (*,*), '========================================================'
 
      ! loop over integration points
 
@@ -123,24 +113,34 @@ subroutine lgm_swaption_engine(n_times, times, modpar, n_expiries, &
            end do
 
            price = 0.0d0
-           do i=0, 2*integration_points-1, 1
-              a = (val(i+1)-val(i))/(z(i+1)-z(i))
-              b = (val(i)*z(i+1)-val(i+1)*z(i)) / (z(i+1)-z(i))
-              da = M_SQRT2 * a
+           do i=0, 2*integration_points-2, 2
               x0 = z(i) * M_SQRT1_2
-              x1 = z(i+1) * M_SQRT1_2
-              price = price + (0.5d0 * b * erf(x1) - &
+              x1 = z(i+2) * M_SQRT1_2
+              ! quadratic interpolation
+              c = val(i) / (2.0d0*h*h) + val(i+1) / (-h*h) + val(i+2) / (2.0d0*h*h)
+              d = val(i) * (-z(i+2)-z(i+1))/(2.0d0*h*h) + val(i+1) * (-z(i+2)-z(i))/ (-h*h) + &
+                   val(i+2) * (-z(i+1)-z(i)) / (2.0d0*h*h)
+              e = val(i)*z(i+1)*z(i+2)/(2.0d0*h*h) + val(i+1)*z(i)*z(i+2)/(-h*h) + &
+                   val(i+2)*z(i)*z(i+1)/(2.0d0*h*h)
+              ca = 2.0d0 * c
+              da = M_SQRT2 * d
+              price = price + (0.125d0 * (2.0d0 * ca + 4.0d0 * e) * erf(x1) - &
                    1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x1 * x1) * &
-                   (2.0d0 * da)) - &
-                   (0.5d0 * b * erf(x0) - &
+                   (2.0d0 * ca * x1 + 2.0d0 * da)) - &
+                   (0.125d0 * (2.0d0 * ca + 4.0d0 * e) * erf(x0) - &
                    1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x0 * x0) * &
-                   (2.0d0 * da))
-              ! debug
-              ! simple integration
-              ! price = price + (val(i+1)+val(i))/2.0d0 * (z(i+1)-z(i)) * 1.0d0/sqrt(2.0d0*3.1415926535) * &
-              !      exp(- 0.5*(z(i)+z(i+1))/2.0d0*(z(i)+z(i+1))/2.0d0 )
+                   (2.0d0 * ca * x0 + 2.0d0 * da))
+              ! linear interpolation
+              ! d = (val(i+1)-val(i))/(z(i+1)-z(i))
+              ! e = (val(i)*z(i+1)-val(i+1)*z(i)) / (z(i+1)-z(i))
+              ! da = M_SQRT2 * d
+              ! price = price + (0.5d0 * e * erf(x1) - &
+              !      1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x1 * x1) * &
+              !      (2.0d0 * da)) - &
+              !      (0.5d0 * e * erf(x0) - &
+              !      1.0d0 / (4.0d0 * M_SQRTPI) * exp(-x0 * x0) * &
+              !      (2.0d0 * da))
            end do
-           write (*,*) 'roll back k', k, ' **** result **** ', price
            npv(k,swapflag) = price
         end if
 
@@ -169,8 +169,6 @@ subroutine lgm_swaption_engine(n_times, times, modpar, n_expiries, &
               fixlegnpv = fixlegnpv + fix_cpn(l) * discount
            end do
            exercisevalue = callput * (floatlegnpv - fixlegnpv)
-           ! write (*,*) 'k', k, 'fix', fixlegnpv, 'float', floatlegnpv, 'npv0',npv(k,swapflag), &
-           !      'execrise ', exercisevalue
            npv(k,swapflag) = max(npv(k,swapflag),exercisevalue)
         end if
 
