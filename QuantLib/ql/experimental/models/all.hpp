@@ -20,6 +20,7 @@
 #include <ql/experimental/models/lgmparametrization.hpp>
 #include <ql/experimental/models/lgmstateprocess.hpp>
 #include <ql/experimental/models/lgmpiecewisealphaconstantkappa.hpp>
+#include <ql/experimental/models/lgmswaptionengine_ad.hpp>
 #include <ql/experimental/models/longstaffschwartzproxypathpricer.hpp>
 #include <ql/experimental/models/mcgaussian1dnonstandardswaptionengine.hpp>
 #include <ql/experimental/models/proxynonstandardswaptionengine.hpp>
