@@ -72,15 +72,15 @@ int main() {
 
         boost::shared_ptr<PricingEngine> swaptionEngineGsr =
             boost::make_shared<Gaussian1dSwaptionEngine>(
-                gsr, 32, 4.0, false, false);
+                gsr, 64, 6.0, false, false);
 
         boost::shared_ptr<PricingEngine> swaptionEngineLgm =
             boost::make_shared<Gaussian1dSwaptionEngine>(
-                lgm, 32, 4.0, false, false);
+                lgm, 64, 6.0, false, false);
 
         swaption->setPricingEngine(swaptionEngineLgm);
         Real npvLgm = swaption->NPV();
-        // swaption->setPricingEngine(swaptionEngineGsr);
+        swaption->setPricingEngine(swaptionEngineGsr);
         Real npvGsr = swaption->NPV();
 
         std::clog.precision(16);
@@ -92,7 +92,7 @@ int main() {
         // ----------------------------------
 
         boost::shared_ptr<PricingEngine> swaptionEngineLgmAD =
-            boost::make_shared<LgmSwaptionEngineAD>(lgm, 128, 4.0);
+            boost::make_shared<LgmSwaptionEngineAD>(lgm, 64, 6.0);
 
         swaption->setPricingEngine(swaptionEngineLgmAD);
         Real npvLgmAD = swaption->NPV();
