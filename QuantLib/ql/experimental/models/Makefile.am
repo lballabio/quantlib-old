@@ -23,6 +23,7 @@ this_include_HEADERS = \
 	lgmparametrization.hpp \
 	lgmstateprocess.hpp \
 	lgmpiecewisealphaconstantkappa.hpp \
+	lgmswaptionengine_ad.hpp \
     longstaffschwartzproxypathpricer.hpp \
     mcgaussian1dnonstandardswaptionengine.hpp \
     proxynonstandardswaptionengine.hpp \
@@ -46,6 +47,7 @@ libModels_la_SOURCES = \
 	lgm1.cpp \
 	lgmfxpiecewisesigma.cpp \
 	lgmpiecewisealphaconstantkappa.cpp \
+	lgmswaptionengine_ad.cpp \
     longstaffschwartzproxypathpricer.cpp \
     mcgaussian1dnonstandardswaptionengine.cpp \
     proxynonstandardswaptionengine.cpp \
