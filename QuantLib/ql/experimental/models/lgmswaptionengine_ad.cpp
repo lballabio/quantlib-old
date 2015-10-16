@@ -149,51 +149,30 @@ void LgmSwaptionEngineAD::calculate() const {
         modpar.push_back(model_->termStructure()->discount(allTimes[i]));
     }
 
-    // debug outputs
-
-    for (Size i = 0; i < allDates.size(); ++i) {
-        std::cout << "alldates " << allDates[i] << " time " << allTimes[i]
-                  << " modpar(H)=" << modpar[i]
-                  << " zeta=" << modpar[i + allDates.size()]
-                  << " discount=" << modpar[i + allDates.size() * 2]
-                  << std::endl;
-    }
-
     for (Size i = 0; i < expiryDates.size(); ++i) {
         expiries.push_back(
             std::find(allDates.begin(), allDates.end(), expiryDates[i]) -
             allDates.begin());
-        std::cout << "expiry " << expiryDates[i] << " " << expiries.back()
-                  << " start fix " << fix_startidxes[i] << " float "
-                  << float_startidxes[i] << std::endl;
     }
     for (Size i = 0; i < floatt1Dates.size(); ++i) {
         floatt1s.push_back(
             std::find(allDates.begin(), allDates.end(), floatt1Dates[i]) -
             allDates.begin());
-        std::cout << "floatt1s " << floatt1Dates[i] << " " << floatt1s.back()
-                  << std::endl;
     }
     for (Size i = 0; i < floatt2Dates.size(); ++i) {
         floatt2s.push_back(
             std::find(allDates.begin(), allDates.end(), floatt2Dates[i]) -
             allDates.begin());
-        std::cout << "floatt2s " << floatt2Dates[i] << " " << floatt2s.back()
-                  << std::endl;
     }
     for (Size i = 0; i < floattpDates.size(); ++i) {
         floattps.push_back(
             std::find(allDates.begin(), allDates.end(), floattpDates[i]) -
             allDates.begin());
-        std::cout << "floattps " << floattpDates[i] << " " << floattps.back()
-                  << std::endl;
     }
     for (Size i = 0; i < fixtpDates.size(); ++i) {
         fixtps.push_back(
             std::find(allDates.begin(), allDates.end(), fixtpDates[i]) -
             allDates.begin());
-        std::cout << "fixtps " << fixtpDates[i] << " " << fixtps.back()
-                  << " fix cpn " << fix_cpn[i] << std::endl;
     }
 
     // call core computation routine and set results
