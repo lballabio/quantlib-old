@@ -10,6 +10,7 @@ subroutine lgm_swaption_engine(n_times, times, modpar, n_expiries, &
 
   ! constants
 
+  ! copied from QuantLib
   double precision, parameter:: M_SQRT2 = 1.41421356237309504880
   double precision, parameter:: M_SQRTPI = 1.77245385090551602792981
   double precision, parameter:: M_SQRT1_2 = 0.7071067811865475244008443621048490392848359376887
