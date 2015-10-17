@@ -65,6 +65,9 @@ template <class Impl> class Lgm : public Gaussian1dModel {
     const Real zerobondImpl(const Time T, const Time t, const Real y,
                             const Handle<YieldTermStructure> &yts,
                             const bool adjusted) const;
+    const Real deflatedZerobondImpl(const Time T, const Time t, const Real y,
+                                    const Handle<YieldTermStructure> &yts,
+                                    const bool adjusted) const;
 
   private:
     boost::shared_ptr<detail::LgmParametrization<Impl> > parametrization_;
@@ -86,20 +89,26 @@ Lgm<Impl>::numeraireImpl(const Time t, const Real y,
 }
 
 template <class Impl>
-inline const Real Lgm<Impl>::zerobondImpl(const Time T, const Time t,
-                                          const Real y,
-                                          const Handle<YieldTermStructure> &yts,
-                                          const bool) const {
+inline const Real
+Lgm<Impl>::deflatedZerobondImpl(const Time T, const Time t, const Real y,
+                                const Handle<YieldTermStructure> &yts,
+                                const bool) const {
     calculate();
-    // for reduced zero bonds this could be optimized
     Handle<YieldTermStructure> tmp = yts.empty() ? termStructure() : yts;
     Real x = y * stateProcess()->stdDeviation(0.0, 0.0, t) +
              stateProcess()->expectation(0.0, 0.0, t);
-    Real ht = parametrization_->H(t);
     Real hT = parametrization_->H(T);
     Real z = parametrization_->zeta(t);
-    return tmp->discount(T) / tmp->discount(t) *
-           std::exp((ht - hT) * x + 0.5 * (ht * ht - hT * hT) * z);
+    return tmp->discount(T) * std::exp(-hT * x - 0.5 * hT * hT * z);
+}
+
+template <class Impl>
+inline const Real Lgm<Impl>::zerobondImpl(const Time T, const Time t,
+                                          const Real y,
+                                          const Handle<YieldTermStructure> &yts,
+                                          const bool adjusted) const {
+    calculate();
+    return deflatedZerobondImpl(T, t, y, yts, adjusted) * numeraire(t, y, yts);
 }
 
 template <class Impl>

@@ -27,6 +27,11 @@
     TODO check if registration with the evaluation date is needed, shouldn't
     it be enough to register with the termstructure (as it is done in derived
     classes)
+
+    TODO for some models it is more efficient to compute the deflated zerobonds
+    for others not. Do we need a flag "prefer deflated zerobonds" maybe so that
+    implementations of engines etc. can choose the more efficient implementation
+    if both are suitable (e.g. for forward rate calculations) ?
 */
 
 // uncomment to enable NTL support (see below for more details and references)
@@ -94,11 +99,22 @@ class Gaussian1dModel : public TermStructureConsistentModel, public LazyObject {
         const Handle<YieldTermStructure> &yts = Handle<YieldTermStructure>(),
         const bool adjusted = false) const;
 
+    const Real deflatedZerobond(
+        const Time T, const Time t = 0.0, const Real y = 0.0,
+        const Handle<YieldTermStructure> &yts = Handle<YieldTermStructure>(),
+        const bool adjusted = false) const;
+
     const Real numeraire(const Date &referenceDate, const Real y = 0.0,
                          const Handle<YieldTermStructure> &yts =
                              Handle<YieldTermStructure>()) const;
 
     const Real zerobond(
+        const Date &maturity, const Date &referenceDate = Null<Date>(),
+        const Real y = 0.0,
+        const Handle<YieldTermStructure> &yts = Handle<YieldTermStructure>(),
+        const bool adjusted = false) const;
+
+    const Real deflatedZerobond(
         const Date &maturity, const Date &referenceDate = Null<Date>(),
         const Real y = 0.0,
         const Handle<YieldTermStructure> &yts = Handle<YieldTermStructure>(),
@@ -219,6 +235,11 @@ class Gaussian1dModel : public TermStructureConsistentModel, public LazyObject {
                                     const Handle<YieldTermStructure> &yts,
                                     const bool adjusted) const = 0;
 
+    virtual const Real
+    deflatedZerobondImpl(const Time T, const Time t, const Real y,
+                         const Handle<YieldTermStructure> &yts,
+                         const bool adjusted) const;
+
     void performCalculations() const {
         evaluationDate_ = Settings::instance().evaluationDate();
         enforcesTodaysHistoricFixings_ =
@@ -274,6 +295,20 @@ Gaussian1dModel::zerobond(const Time T, const Time t, const Real y,
 }
 
 inline const Real
+Gaussian1dModel::deflatedZerobond(const Time T, const Time t, const Real y,
+                                  const Handle<YieldTermStructure> &yts,
+                                  const bool adjusted) const {
+    return deflatedZerobondImpl(T, t, y, yts, adjusted);
+}
+
+inline const Real
+Gaussian1dModel::deflatedZerobondImpl(const Time T, const Time t, const Real y,
+                                      const Handle<YieldTermStructure> &yts,
+                                      const bool adjusted) const {
+    return zerobondImpl(T, t, y, yts, adjusted) / numeraire(t, y, yts);
+}
+
+inline const Real
 Gaussian1dModel::numeraire(const Date &referenceDate, const Real y,
                            const Handle<YieldTermStructure> &yts) const {
 
@@ -291,6 +326,18 @@ Gaussian1dModel::zerobond(const Date &maturity, const Date &referenceDate,
                         : 0.0,
                     y, yts, adjusted);
 }
+
+inline const Real Gaussian1dModel::deflatedZerobond(
+    const Date &maturity, const Date &referenceDate, const Real y,
+    const Handle<YieldTermStructure> &yts, const bool adjusted) const {
+
+    return deflatedZerobond(
+        termStructure()->timeFromReference(maturity),
+        referenceDate != Null<Date>()
+            ? termStructure()->timeFromReference(referenceDate)
+            : 0.0,
+        y, yts, adjusted);
 }
+} // namespace QuantLib
 
 #endif
