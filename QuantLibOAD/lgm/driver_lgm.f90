@@ -1,4 +1,8 @@
-subroutine lgm_swaption_engine_ad(n_times, times, res, dres)
+subroutine lgm_swaption_engine_ad(n_times, times, modpar, n_expiries, &
+     expiries, callput, n_floats, &
+     float_startidxes, float_mults, index_acctimes, float_spreads, float_t1s, float_t2s, float_tps, &
+     fix_startidxes, n_fixs, fix_cpn, fix_tps, integration_points, stddevs, res)
+
   use OAD_active
   use OAD_rev
 
@@ -8,9 +12,24 @@ subroutine lgm_swaption_engine_ad(n_times, times, res, dres)
   ! interface
 
   integer:: n_times
-  double precision:: times(0:n_times-1), res, dres(0:n_times-1)
+  double precision, dimension(0:n_times-1):: times
 
-  ! additional variables
+  ! concatenated model parameter array: H, zeta, discounts
+  double precision, dimension(0:3*n_times-1):: modpar
+
+  integer:: n_expiries, callput
+  integer, dimension(0:n_expiries-1):: expiries, fix_startidxes, float_startidxes
+  integer:: n_floats, n_fixs
+  double precision, dimension(0:n_floats-1):: float_mults, index_acctimes, float_spreads
+  integer, dimension(0:n_floats-1):: float_t1s, float_t2s
+  integer, dimension(0:n_floats-1):: float_tps
+  integer, dimension(0:n_fixs-1):: fix_tps
+  double precision, dimension(0:n_fixs-1):: fix_cpn
+
+  integer:: integration_points
+  double precision:: stddevs
+
+  double precision:: res
 
   integer:: i
 
