@@ -20,16 +20,16 @@
 #include <ql/experimental/models/lgmswaptionengine_ad.hpp>
 #include <ql/payoff.hpp>
 
-#include <iostream> // debug only
-
 namespace QuantLib {
 
 namespace {
 
-// ad library interface (plain library interface is the same except
-// for the last parameter which is missing there)
+// ad library interface
+// for the plain interface, remove ad_ from the method name
+// and the parameter dres from the parameter list
+// for a stub interface remove extern "C" and add a dummy
+// implementation (with just a return statement)
 extern "C" void lgm_swaption_engine_(
-    // extern "C" void lgm_swaption_engine_ad_(
     int *n_times, double *times, double *modpar, int *n_expiries, int *expiries,
     int *callput, int *n_floats, int *float_startidxes, double *float_mults,
     double *index_acctimes, double *float_spreads, int *float_t1s,
