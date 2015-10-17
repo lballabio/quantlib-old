@@ -29,7 +29,7 @@ int main() {
     std::vector<Real> lambda(10, 0.0050);
     std::vector<Real> alpha(10, 1.0);
     std::vector<Real> beta(10, 0.0);
-    std::vector<Real> kappa(10, 0.02);
+    std::vector<Real> kappa(10, 0.0);
 
     Qg1dLinearModel model(yts, stepDates, lambda, alpha, beta, kappa);
 
@@ -50,9 +50,9 @@ int main() {
     std::cout.precision(16);
     t = 0.0;
     while (t < 10.0) {
-        std::cout << t << " " << model.kappa(t) << " " << model.h(t) << " "
-                  << std::exp(-0.02 * t) << " " << model.G(0.0, t) << " "
-                  << -(exp(-0.02 * t) - 1.0) / 0.02 << std::endl;
+        // std::cout << t << " " << model.kappa(t) << " " << model.h(t) << " "
+        //           << std::exp(-0.02 * t) << " " << model.G(0.0, t) << " "
+        //           << -(exp(-0.02 * t) - 1.0) / 0.02 << std::endl;
         t += 0.01;
     }
 
@@ -116,14 +116,14 @@ int main() {
     // test swap rate derivative
     // ===========================
 
-    // std::cout << "dS/dx ( -0.02 ) = "
+    // std::cout << "dS/dx ( -0.10 ) = "
     //           << model.dSwapRateDx(startDate, startDate, index, 10 * Years,
-    //                                -0.02, y)
+    //                                -0.10, y)
     //           << " fd = "
     //           << (model.swapRate(startDate, startDate, index, 10 * Years,
-    //                              -0.02 + 0.0001, y) -
+    //                              -0.10 + 0.0001, y) -
     //               model.swapRate(startDate, startDate, index, 10 * Years,
-    //               -0.02,
+    //               -0.10,
     //                              y)) /
     //                  0.0001
     //           << std::endl;
@@ -138,14 +138,14 @@ int main() {
     //                              y)) /
     //                  0.0001
     //           << std::endl;
-    // std::cout << "dS/dx ( +0.02 ) = "
+    // std::cout << "dS/dx ( +0.10 ) = "
     //           << model.dSwapRateDx(startDate, startDate, index, 10 * Years,
-    //                                0.02, y)
+    //                                0.10, y)
     //           << " fd = "
     //           << (model.swapRate(startDate, startDate, index, 10 * Years,
-    //                              0.02 + 0.0001, y) -
+    //                              0.10 + 0.0001, y) -
     //               model.swapRate(startDate, startDate, index, 10 * Years,
-    //               0.02,
+    //               0.10,
     //                              y)) /
     //                  0.0001
     //           << std::endl;
@@ -225,10 +225,10 @@ int main() {
         svec[i] = -0.10 + static_cast<Real>(i)*0.20/100;
     for (Size i = 0; i < 100; ++i) {
         t = static_cast<Real>(i) * T0 / 100.0;
-        // std::vector<Real> localVol = model.phi(t,svec,T0,times,taus);
-        // for (Size j = 0; j < 100; ++j) {
-        //     std::cout << t << " " << svec[j] << " " << localVol[j] << std::endl;
-        // }
+        std::vector<Real> localVol = model.phi(t,svec,T0,times,taus);
+        for (Size j = 0; j < 100; ++j) {
+            // std::cout << t << " " << svec[j] << " " << localVol[j] << std::endl;
+        }
         // std::cout << std::endl;
     }
 
