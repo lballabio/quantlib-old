@@ -23,19 +23,18 @@
 namespace QuantLib {
 
 namespace {
-
 // ad library interface
 // for the plain interface, remove ad_ from the method name
 // and the parameter dres from the parameter list
 // for a stub interface remove extern "C" and add a dummy
 // implementation (with just a return statement)
-extern "C" void lgm_swaption_engine_(
+/*extern "C"*/ void lgm_swaption_engine_(
     int *n_times, double *times, double *modpar, int *n_expiries, int *expiries,
     int *callput, int *n_floats, int *float_startidxes, double *float_mults,
     double *index_acctimes, double *float_spreads, int *float_t1s,
     int *float_t2s, int *float_tps, int *fix_startidxes, int *n_fixs,
     double *fix_cpn, int *fix_tps, int *integration_points, double *stddevs,
-    double *res /*, double *dres*/);
+    double *res /*, double *dres*/) {}
 }
 
 void LgmSwaptionEngineAD::calculate() const {
