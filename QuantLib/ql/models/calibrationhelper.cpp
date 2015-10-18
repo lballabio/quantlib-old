@@ -48,7 +48,7 @@ namespace QuantLib {
         return solver.solve(f,accuracy,volatility_->value(),minVol,maxVol);
     }
 
-    Real CalibrationHelper::calibrationError() {
+    Real CalibrationHelper::calibrationError() const {
         Real error;
         
         switch (calibrationErrorType_) {
