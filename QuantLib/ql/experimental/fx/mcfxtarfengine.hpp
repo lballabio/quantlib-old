@@ -370,21 +370,14 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
     // this is the minimum number of points required for regression
     Size minRegPoints = 3;
 
-    // set the number format for logging output
-    // std::cerr << std::setprecision(12) << std::fixed;
-
     if (generateProxy_) {
         // create the buckets
-        // std::cerr << "Buckets for accumulated amounts" << std::endl;
         for (Size i = 0; i < nAccBuckets; ++i) {
             accBucketLimits_.push_back(
                 static_cast<Real>(i) / static_cast<Real>(nAccBuckets) *
                     (arguments_.target - arguments_.accumulatedAmount) +
                 arguments_.accumulatedAmount);
-            // std::cerr << "bucket;" << i << ";" << accBucketLimits_.back()
-            // << std::endl;
         }
-        // std::cerr << std::endl;
 
         // we set the first bucket limit to zero, which does not change
         // anything, but leaves no room that the given accumulated amount
@@ -427,9 +420,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
 
     // do the regression on appropriately merged data sets
     for (Size i = 0; i < arguments_.openFixingDates.size(); ++i) {
-        // std::cerr << "open Fixings index i=" << i << " (i.e. " << (i + 1)
-        //           << " open fixings left)" << std::endl;
-
         // get the data for the specific number of open fixing times
         std::vector<std::vector<std::pair<Real, Real> > > &tmp = data_[i];
 
@@ -440,10 +430,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
             numberOfDataPoints += tmp[j].size();
 
         // merge data if pieces are too small
-        // std::cerr << "total number of data points = " <<
-        // numberOfDataPoints
-        //           << std::endl;
-
         Size k0 = 0, k0Before = 0;
         do {
             std::vector<std::pair<Real, Real> > xTmp;
@@ -460,11 +446,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                     if (tmp[k0].back().first > spotMax)
                         spotMax = tmp[k0].back().first;
                 }
-                // std::cerr
-                //     << "collected accumulated amount segment with index
-                //     k="
-                //     << k0 << " yielding a total size of " << xTmp.size()
-                //     << std::endl;
                 k0++;
             } while (dFactor * xTmp.size() < numberOfDataPoints);
 
@@ -472,10 +453,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
             Size remainingDataPoints = 0;
             for (Size j = k0; j < tmp.size(); ++j)
                 remainingDataPoints += tmp[j].size();
-
-            // std::cerr << "remaining data points = " <<
-            // remainingDataPoints
-            //           << std::endl;
 
             // ... and join the rest of data if they are to few
             if (dFactor * remainingDataPoints < numberOfDataPoints) {
@@ -493,13 +470,7 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                     }
                 }
                 k0 = tmp.size();
-                // std::cerr << "merged also the rest of the data because"
-                //           << "it contains too few points, new total size
-                //           is "
-                //           << xTmp.size() << std::endl;
             }
-            // std::cerr << "data set statistics: min spot " << spotMin
-            //           << " max spot " << spotMax << std::endl;
 
             // we rearrange the data to get two segments for the spot
             bool isCall = arguments_.longPositionType == Option::Call;
@@ -519,13 +490,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                                          std::make_pair(cutoff, 0.0)) -
                         xTmp.begin();
                 sizeB = xTmp.size() - sizeA;
-                // std::cerr << std::setprecision(12)
-                //           << "cutoff factor=" << relCutoffTmp
-                //           << ", cutoff=" << cutoff
-                //           << ", segments size = " << sizeA << "," <<
-                //           sizeB
-                //           << " minimum size required " << minDataSegment
-                //           << std::endl;
                 criticalSize = isCall ? sizeB : sizeA;
                 if (((isCall && relCutoffTmp > 0.5) ||
                      (!isCall && relCutoffTmp < 0.5)) &&
@@ -536,12 +500,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                     else
                         relCutoffTmp /= std::min(cutoffShrinkFactor, 1.0);
                     cutoff = spotMin + relCutoffTmp * (spotMax - spotMin);
-                    // std::cerr << "too few data in critical segment "
-                    //           << " (" << criticalSize
-                    //           << "), adjust cutoff factor to " <<
-                    //           relCutoffTmp
-                    //           << " and cutoff to " << cutoff <<
-                    //           std::endl;
                 }
             } while (
                 ((isCall && relCutoffTmp > 0.5) ||
@@ -571,8 +529,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 xTmp[static_cast<int>(xTmp.size() * coreCutoff)].first;
             Real coreRegionMax =
                 xTmp[static_cast<int>(xTmp.size() * (1.0 - coreCutoff))].first;
-            // std::cerr << "Lower cutoff point set to " << lowerCutoff
-            //           << std::endl;
 
             // the function object
             boost::shared_ptr<FxTarf::Proxy::ProxyFunction> fct;
@@ -591,10 +547,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                     new QuadraticProxyFunction(
                         arguments_.longPositionType, cutoff, 0.0, 0.0, avg, 0.0,
                         0.0, avg, -QL_MAX_REAL, spotMin, spotMax));
-                // std::cerr
-                //     << "regression produced a constant function with
-                //     value "
-                //     << avg << std::endl;
             } else {
 
                 // final sanity check before regression
@@ -614,20 +566,8 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 GeneralLinearLeastSquares ls1(xTmp1, yTmp1, v);
                 Array result1 = ls1.coefficients();
 
-                // std::cerr << "regression results (set1 size " <<
-                // xTmp1.size()
-                //           << " set2 size " << xTmp2.size() << ")" <<
-                //           std::endl;
-                // std::cerr << "f1(x)=" << result1[0] << "+x*" <<
-                // result1[1]
-                //           << "+x**2*" << result1[2] << std::endl;
-
                 GeneralLinearLeastSquares ls2(xTmp2, yTmp2, v);
                 Array result2 = ls2.coefficients();
-
-                // std::cerr << "f2(x)=" << result2[0] << "+x*" <<
-                // result2[1]
-                //           << "+x**2*" << result2[2] << std::endl;
 
                 // check if the cutoff should be moved to the intersection
                 // point of the two overlapping functions
@@ -637,7 +577,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                 Real a2 = result2[2];
                 Real b2 = result2[1];
                 Real c2 = result2[0];
-                // std::cerr << "cutoff before adjustment = " << cutoff << " ";
                 if (close(a1, a2)) {
                     if (!close(b1, b2)) {
                         Real tmp = -(c1 - c2) / (b1 - b2);
@@ -659,8 +598,6 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
                     if (fabs((tmp2 - cutoff) / cutoff) < smoothInt)
                         cutoff = tmp2;
                 }
-                // std::cerr << "cutoff after adjustment = " << cutoff <<
-                // std::endl;
 
                 // make sure that lower cutoff is still left from cutoff
                 lowerCutoff = std::min(lowerCutoff, cutoff);
@@ -676,14 +613,8 @@ template <class RNG, class S> void McFxTarfEngine<RNG, S>::calculate() const {
             // accumulated amount segments
             for (Size kk = k0Before; kk < k0; ++kk) {
                 proxy_->functions[i][kk] = fct;
-                // std::cerr << "set computed function on indices "
-                //              "(openFixings,accAmount) = (" << i << "," <<
-                //              kk
-                //           << ")" << std::endl;
             }
             k0Before = k0;
-            // std::cerr << "done, proceed with next openFixing index
-            // ...\n\n";
         } while (k0 < tmp.size()); // do-while over accumulated amount buckets
     }                              // for openFixingTimes
 

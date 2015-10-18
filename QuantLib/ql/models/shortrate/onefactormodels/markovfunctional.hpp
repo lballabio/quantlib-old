@@ -336,6 +336,14 @@ namespace QuantLib {
                                 const Handle<YieldTermStructure> &yts,
                                 const bool adjusted) const;
 
+        const Real deflatedZerobondImpl(const Time T, const Time t,
+                                        const Real y,
+                                        const Handle<YieldTermStructure> &yts,
+                                        const Handle<YieldTermStructure> &ytsNumeraire,
+                                        const bool adjusted) const;
+
+        bool preferDeflatedZerobond() const { return true; }
+
         void generateArguments() {
             // if calculate triggers performCalculations, updateNumeraireTabulations
             // is called twice. If we can not check the lazy object status this seem
@@ -387,9 +395,6 @@ namespace QuantLib {
                                                const Array &y) const;
         const Disposable<Array> zerobondArray(const Time T, const Time t,
                                               const Array &y) const;
-
-        const Real deflatedZerobond(const Time T, const Time t = 0.0,
-                                    const Real y = 0.0) const;
 
         // the following methods (tagged internal) are indended only to produce
         // the volatility diagnostics in the model outputs

@@ -728,7 +728,7 @@ int main(int argc, char *argv[]) {
         printModelAdjuster(adjusterBasket, gsr->adjuster());
         printTiming(timer);
 
-        std::cout << "\nThe resulting option and underlying value" 
+        std::cout << "\nThe resulting option and underlying value"
                   << "\nin the adjusted Gsr model are:" << std::endl;
 
         Real npv9 = swaption4->NPV();

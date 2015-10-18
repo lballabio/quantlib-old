@@ -101,12 +101,6 @@ Real FxTarfPathPricer::operator()(const Path &path) const {
             std::vector<std::pair<Real, Real> >::iterator spotInd =
                 std::upper_bound(spotVec.begin(), spotVec.end(), spotNpv);
             spotVec.insert(spotInd, spotNpv);
-            // for testing only
-            // Real residualTime = fixingTimes_.back() - path.time(i);
-            // std::cout << openFixingsTmp << " " << path[i] << " " <<
-            // residualTime
-            //           << " " << accumulatedTmp << " " << pathNpvTmp
-            //           << std::endl;
         }
     }
 

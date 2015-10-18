@@ -117,6 +117,7 @@
 #include "libormarketmodelprocess.hpp"
 #include "linearleastsquaresregression.hpp"
 #include "jumpdiffusion.hpp"
+#include "lgm.hpp"
 #include "lookbackoptions.hpp"
 #include "lowdiscrepancysequences.hpp"
 #include "margrabeoption.hpp"

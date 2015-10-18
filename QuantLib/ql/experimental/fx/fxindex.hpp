@@ -39,7 +39,7 @@ class FxIndex : public Index, public Observer {
         settlementDays determine the spot date of the currency pair
         source is the asset or forein currency
         target is the numeraire or domestic currency
-        fixingCalendar is the calendar defining good days for the pair 
+        fixingCalendar is the calendar defining good days for the pair
         this class uses the exchange rate manager to retrieve spot values */
     FxIndex(const std::string &familyName, Natural fixingDays,
             const Currency &source, const Currency &target,

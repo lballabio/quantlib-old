@@ -68,6 +68,9 @@ template <class Impl> class Lgm : public Gaussian1dModel {
     const Real deflatedZerobondImpl(const Time T, const Time t, const Real y,
                                     const Handle<YieldTermStructure> &yts,
                                     const bool adjusted) const;
+    bool preferDeflatedZerobond() const {
+        return true;
+    }
 
   private:
     boost::shared_ptr<detail::LgmParametrization<Impl> > parametrization_;
