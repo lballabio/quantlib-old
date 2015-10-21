@@ -1,6 +1,7 @@
 
 /*
  Copyright (C) 2005, 2006 StatPro Italia srl
+ Copyright (C) 2015 Matthias Groncki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -50,6 +51,14 @@ class Name##Ptr : public boost::shared_ptr<YieldTermStructure> {
                                                         compounding,
                                                         frequency));
         }
+        const std::vector<Time>& times() {
+            typedef InterpolatedZeroCurve<Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->times();
+        }
+        const std::vector<Real>& data() {
+            typedef InterpolatedZeroCurve<Interpolator> Name;
+            return boost::dynamic_pointer_cast<Name>(*self)->data();
+        }
         const std::vector<Date>& dates() {
             typedef InterpolatedZeroCurve<Interpolator> Name;
             return boost::dynamic_pointer_cast<Name>(*self)->dates();
@@ -75,6 +84,11 @@ export_zero_curve(ZeroCurve,Linear);
 // add interpolations as you wish, e.g.,
 // export_zero_curve(CubicZeroCurve,Cubic);
 
+%inline %{
+    ZeroCurvePtr as_zerocurve(const boost::shared_ptr<YieldTermStructure> & curve) {
+        return boost::dynamic_pointer_cast<QuantLib::ZeroCurve>(curve);
+    }
+%}
 
 
 #endif

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+<!--#include virtual="qlmeta.inc"-->
+<meta name="author" content="StatPro Italia srl">
+<meta name="copyright" content="StatPro Italia srl (c) 2015">
+<meta name="description" content="Second QuantLib Workshop">
+<link rel="stylesheet" href="./styles/nosplash.css" type="text/css">
+<title>QuantLib User Meeting 2015</title>
+</head>
+<body>
+<div id="container">
+<!--#include virtual="header.inc"-->
+<div id="menu">
+<!--#include virtual="usermenu.inc"-->
+</div>
+<div id="content">
+
+<h1 class="center" id="qlws14">QuantLib User Meeting 2015</h1>
+
+<p>The QuantLib User Meeting 2015 will be held in D&uuml;sseldorf on
+November 30th and December 1st, thanks to the sponsorship of
+<a href="http://www.ikb.de/">IKB</a>
+and <a href="http://www.compatibl.com/">CompatibL</a>.</p>
+
+<p>Registration is free, but places are limited.  A PDF flyer is available with more information: <a href="/qlum15.pdf">download it here</a>.</p>
+
+<p>The proposed talks so far:</p>
+
+<table>
+  <tr><td>Peter Caspers, <i>Negative rates in QuantLib / AD beyond
+        typedef and operator overloading</i></td></tr>
+  <tr><td>J&ouml;rg Kienitz, <i>A Short History of SABR &mdash; From
+        approximation formulas to PDEs and back</i></td></tr>
+  <tr><td>Alexander Sokol, <i>Implementing AAD in QuantLib</i></td></tr>
+  <tr><td>Eric Ehlers, <i>Cloud computing in QuantLib</i></td></tr>
+  <tr><td>Klaus Spanderen, <i>Calibration of Stochastic Local
+        Volatility Models</i></td></tr>
+  <tr><td>Ferdinando M. Ametrano, <i>Parametric basis rate
+        curves</i></td></tr>
+  <tr><td>Sebastian Schlenkrich, <i>Multi-curve Pricing of
+        Non-Standard Tenor Vanilla Options in QuantLib</i></td></tr>
+  <tr><td>Andreas Pfadler, <i>Proof of concept for a modern,
+        distributed pricing architecture based on open source
+        components</i></td></tr>
+  <tr><td>Roland Lichters, <i>CSA Pricing using QuantLib</i></td></tr>
+  <tr><td>Luigi Ballabio, <i>Ship it! QuantLib, Docker, and IPython
+        Notebook</i></td></tr>
+</table>
+
+</div>
+
+<div id="menuafter">
+<!--#include virtual="usermenu.inc"-->
+</div>
+
+<div class="footer">
+<!--#include virtual="footer.inc"-->
+</div>
+
+</div>
+
+</body>
+</html>
