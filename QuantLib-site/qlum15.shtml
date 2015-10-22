@@ -23,27 +23,35 @@ November 30th and December 1st, thanks to the sponsorship of
 <a href="http://www.ikb.de/">IKB</a>
 and <a href="http://www.compatibl.com/">CompatibL</a>.</p>
 
-<p>Registration is free, but places are limited.  A PDF flyer is available with more information: <a href="/qlum15.pdf">download it here</a>.</p>
+<p>Registration is free, but places are limited.  A PDF flyer is
+available with more information: <a href="/qlum15.pdf">download it
+here</a>.</p>
 
-<p>The proposed talks so far:</p>
+<p>Schedule:</p>
 
+<h3>Monday, November 30th</h3>
 <table>
-  <tr><td>Peter Caspers, <i>Negative rates in QuantLib / AD beyond
-        typedef and operator overloading</i></td></tr>
   <tr><td>J&ouml;rg Kienitz, <i>A Short History of SABR &mdash; From
         approximation formulas to PDEs and back</i></td></tr>
   <tr><td>Alexander Sokol, <i>Implementing AAD in QuantLib</i></td></tr>
+  <tr><td>Ferdinando M. Ametrano and Paolo Mazzocchi, <i>Parametric basis rate
+        curves / Excel Rate Curve Framework</i></td></tr>
   <tr><td>Eric Ehlers, <i>Cloud computing in QuantLib</i></td></tr>
-  <tr><td>Klaus Spanderen, <i>Calibration of Stochastic Local
+  <tr><td>Klaus Spanderen and Johannes
+        G&ouml;ttker-Schnetmann, <i>Calibration of Stochastic Local
         Volatility Models</i></td></tr>
-  <tr><td>Ferdinando M. Ametrano, <i>Parametric basis rate
-        curves</i></td></tr>
-  <tr><td>Sebastian Schlenkrich, <i>Multi-curve Pricing of
-        Non-Standard Tenor Vanilla Options in QuantLib</i></td></tr>
+</table>
+
+<h3>Tuesday, December 1st</h3>
+<table>
+  <tr><td>Peter Caspers, <i>Negative rates in QuantLib / AD beyond
+        typedef and operator overloading</i></td></tr>
   <tr><td>Andreas Pfadler, <i>Proof of concept for a modern,
         distributed pricing architecture based on open source
         components</i></td></tr>
   <tr><td>Roland Lichters, <i>CSA Pricing using QuantLib</i></td></tr>
+  <tr><td>Sebastian Schlenkrich, <i>Multi-curve Pricing of
+        Non-Standard Tenor Vanilla Options in QuantLib</i></td></tr>
   <tr><td>Luigi Ballabio, <i>Ship it! QuantLib, Docker, and IPython
         Notebook</i></td></tr>
 </table>
