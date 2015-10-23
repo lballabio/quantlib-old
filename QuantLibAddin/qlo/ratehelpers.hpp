@@ -31,6 +31,7 @@
 #include <ql/time/businessdayconvention.hpp>
 #include <ql/time/frequency.hpp>
 #include <ql/instruments/futures.hpp>
+#include <ql/termstructures/bootstraphelper.hpp>
 
 namespace QuantLib {
     class YieldTermStructure;
@@ -131,6 +132,8 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::Quote>& spread,
             const QuantLib::Period& forwardStart,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
+            QuantLib::Pillar::Choice pillarChoice,
+            QuantLib::Date customPillar,
             bool permanent);
         SwapRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -145,6 +148,8 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::Quote>& spread,
             const QuantLib::Period& forwardStart,
             const QuantLib::Handle<QuantLib::YieldTermStructure>& discount,
+            QuantLib::Pillar::Choice pillarChoice,
+            QuantLib::Date customPillar,
             bool permanent);
      };
 
@@ -155,6 +160,8 @@ namespace QuantLibAddin {
             const QuantLib::Handle<QuantLib::Quote>& rate,
             QuantLib::Period periodToStart,
             const boost::shared_ptr<QuantLib::IborIndex>& iborIndex,
+            QuantLib::Pillar::Choice pillarChoice,
+            QuantLib::Date customPillar,
             bool permanent);
         FraRateHelper(
             const boost::shared_ptr<ObjectHandler::ValueObject>& properties,
@@ -166,6 +173,8 @@ namespace QuantLibAddin {
             QuantLib::BusinessDayConvention convention,
             bool endOfMonth,
             const QuantLib::DayCounter& dayCounter,
+            QuantLib::Pillar::Choice pillarChoice,
+            QuantLib::Date customPillar,
             bool permanent);
     };
 
