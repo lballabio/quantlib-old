@@ -2,6 +2,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2008 StatPro Italia srl
  Copyright (C) 2011 Lluis Pujol Bajador
+ Copyright (C) 2015 Matthias Groncki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -30,6 +31,14 @@
 %include interpolation.i
 %include indexes.i
 %include optimizers.i
+
+%{
+using QuantLib::VolatilityType;
+using QuantLib::ShiftedLognormal;
+using QuantLib::Normal;
+%}
+
+enum VolatilityType { ShiftedLognormal, Normal};
 
 %{
 using QuantLib::BlackVolTermStructure;

@@ -2,6 +2,7 @@
 /*
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2007 StatPro Italia srl
+ Copyright (C) 2015 Matthias Groncki
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -94,5 +95,167 @@ class CapFloorTermVolCurvePtr
     }
 };
 
+%{
+using QuantLib::CapFloorTermVolSurface;
+typedef boost::shared_ptr<CapFloorTermVolatilityStructure> CapFloorTermVolSurfacePtr;
+%}
 
+%rename(CapFloorTermVolSurface) CapFloorTermVolSurfacePtr;
+class CapFloorTermVolSurfacePtr : public boost::shared_ptr<CapFloorTermVolatilityStructure> {
+public:
+    %extend{
+        CapFloorTermVolSurfacePtr(Natural settlementDays,
+                               const Calendar& calendar,
+                               BusinessDayConvention bdc,
+                               const std::vector<Period>& optionTenors,
+                               const std::vector<Rate>& strikes,
+                               const std::vector<std::vector<Handle<Quote> > >& quotes,
+                               const DayCounter& dc = QuantLib::Actual365Fixed()){
+            return new CapFloorTermVolSurfacePtr(new CapFloorTermVolSurface(settlementDays, 
+            calendar,
+            bdc,
+            optionTenors,
+            strikes,
+            quotes,
+            dc));
+        }
+        CapFloorTermVolSurfacePtr(const Date& settlementDate,
+                               const Calendar& calendar,
+                               BusinessDayConvention bdc,
+                               const std::vector<Period>& optionTenors,
+                               const std::vector<Rate>& strikes,
+                               const std::vector<std::vector<Handle<Quote> > >& quotes,
+                               const DayCounter& dc = QuantLib::Actual365Fixed()){
+            return new CapFloorTermVolSurfacePtr(new CapFloorTermVolSurface(settlementDate, 
+            calendar,
+            bdc,
+            optionTenors,
+            strikes,
+            quotes,
+            dc));
+        }
+        CapFloorTermVolSurfacePtr(const Date& settlementDate,
+                               const Calendar& calendar,
+                               BusinessDayConvention bdc,
+                               const std::vector<Period>& optionTenors,
+                               const std::vector<Rate>& strikes,
+                               const Matrix& volatilities,
+                               const DayCounter& dc = QuantLib::Actual365Fixed()){
+            return new CapFloorTermVolSurfacePtr(new CapFloorTermVolSurface(settlementDate, 
+            calendar,
+            bdc,
+            optionTenors,
+            strikes,
+            volatilities,
+            dc));
+        }
+        CapFloorTermVolSurfacePtr(Natural settlementDays,
+                               const Calendar& calendar,
+                               BusinessDayConvention bdc,
+                               const std::vector<Period>& optionTenors,
+                               const std::vector<Rate>& strikes,
+                               const Matrix& volatilities,
+                               const DayCounter& dc = QuantLib::Actual365Fixed()){ 
+            return new CapFloorTermVolSurfacePtr(new CapFloorTermVolSurface(settlementDays, 
+            calendar,
+            bdc,
+            optionTenors,
+            strikes,
+            volatilities,
+            dc));
+        }
+    }
+};
+
+%{
+using QuantLib::StrippedOptionletBase;
+using QuantLib::VolatilityType;
+%}
+
+%ignore StrippedOptionletBase;
+class StrippedOptionletBase {
+public:
+    const std::vector<Rate>& optionletStrikes(Size i);
+    const std::vector<Volatility>& optionletVolatilities(Size i);
+    const std::vector<Date>& optionletFixingDates();
+    const std::vector<Time>& optionletFixingTimes();
+    Size optionletMaturities();
+    const std::vector<Rate>& atmOptionletRates();
+    DayCounter dayCounter();
+    Calendar calendar();
+    Natural settlementDays();
+    BusinessDayConvention businessDayConvention();
+};
+
+%template(StrippedOptionletBase) boost::shared_ptr<StrippedOptionletBase>;
+
+%{
+using QuantLib::OptionletStripper1;
+typedef boost::shared_ptr<StrippedOptionletBase> OptionletStripper1Ptr;
+%}
+
+%rename(OptionletStripper1) OptionletStripper1Ptr;
+class OptionletStripper1Ptr : public boost::shared_ptr<StrippedOptionletBase> {
+public:
+    %extend{
+        OptionletStripper1Ptr(const CapFloorTermVolSurfacePtr & parVolSurface,
+                              const IborIndexPtr &index,
+                              Rate switchStrikes = Null<Rate>(),
+                              Real accuracy = 1.0e-6, Natural maxIter = 100,
+                              const Handle<YieldTermStructure> &discount =
+                              Handle<YieldTermStructure>(),
+                              VolatilityType type = ShiftedLognormal,
+                              Real displacement = 0.0,
+                              bool dontThrow = false){
+            boost::shared_ptr<CapFloorTermVolSurface> surface = 
+                boost::dynamic_pointer_cast<CapFloorTermVolSurface>(parVolSurface);
+            boost::shared_ptr<IborIndex> idx =
+                boost::dynamic_pointer_cast<IborIndex>(index);
+            return new OptionletStripper1Ptr(new OptionletStripper1(surface,
+                                                                    idx,
+                                                                    switchStrikes,
+                                                                    accuracy,
+                                                                    maxIter,
+                                                                    discount,
+                                                                    type,
+                                                                    displacement,
+                                                                    dontThrow));
+        }
+        const Matrix& capFloorPrices() const {
+            return boost::dynamic_pointer_cast<OptionletStripper1>(*self)
+                ->capFloorPrices();
+        }
+        const Matrix& capFloorVolatilities() const {
+            return boost::dynamic_pointer_cast<OptionletStripper1>(*self)
+                ->capFloorVolatilities();
+        }
+        const Matrix& optionletPrices() const{
+            return boost::dynamic_pointer_cast<OptionletStripper1>(*self)
+                ->optionletPrices();
+        }
+        Rate switchStrike() const{
+            return boost::dynamic_pointer_cast<OptionletStripper1>(*self)
+                ->switchStrike();
+        }
+    }
+};
+
+%{
+using QuantLib::StrippedOptionletAdapter;
+typedef boost::shared_ptr<OptionletVolatilityStructure>
+   StrippedOptionletAdapterPtr;
+%}
+
+%rename(StrippedOptionletAdapter) StrippedOptionletAdapterPtr;
+class StrippedOptionletAdapterPtr
+    : public boost::shared_ptr<OptionletVolatilityStructure> {
+  public:
+    %extend {
+        StrippedOptionletAdapterPtr(const boost::shared_ptr<StrippedOptionletBase> & stripper){
+            return new StrippedOptionletAdapterPtr(
+                new StrippedOptionletAdapter(stripper));
+        }
+    }
+};
+ 
 #endif
