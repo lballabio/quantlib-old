@@ -359,12 +359,39 @@ namespace QuantLib {
         return phi(optionType*d2);
     }
 
+    Real blackFormulaAssetItmProbability(Option::Type optionType,
+                                        Real strike,
+                                        Real forward,
+                                        Real stdDev,
+                                        Real displacement) {
+        checkParameters(strike, forward, displacement);
+        if (stdDev==0.0)
+            return (forward*optionType > strike*optionType ? 1.0 : 0.0);
+
+        forward = forward + displacement;
+        strike = strike + displacement;
+        if (strike==0.0)
+            return (optionType==Option::Call ? 1.0 : 0.0);
+        Real d1 = std::log(forward/strike)/stdDev + 0.5*stdDev;
+        CumulativeNormalDistribution phi;
+        return phi(optionType*d1);
+    }
+
     Real blackFormulaCashItmProbability(
                         const boost::shared_ptr<PlainVanillaPayoff>& payoff,
                         Real forward,
                         Real stdDev,
                         Real displacement) {
         return blackFormulaCashItmProbability(payoff->optionType(),
+            payoff->strike(), forward, stdDev , displacement);
+    }
+
+    Real blackFormulaAssetItmProbability(
+                        const boost::shared_ptr<PlainVanillaPayoff>& payoff,
+                        Real forward,
+                        Real stdDev,
+                        Real displacement) {
+        return blackFormulaAssetItmProbability(payoff->optionType(),
             payoff->strike(), forward, stdDev , displacement);
     }
 

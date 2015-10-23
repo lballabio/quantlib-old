@@ -20,6 +20,8 @@ this_include_HEADERS = \
     smilesection.hpp \
     smilesectionutils.hpp \
     spreadedsmilesection.hpp \
+    smilesectionutils.hpp \
+    spreadedsmilesection.hpp \
     volatilitytype.hpp
 
 libVolTermStructures_la_SOURCES = \

@@ -1,7 +1,7 @@
 /* -*- mode: c++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 
 /*
- Copyright (C) 2013 Peter Caspers
+ Copyright (C) 2013, 2015 Peter Caspers
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -96,7 +96,8 @@ namespace QuantLib {
                     standardSwapBase->exogenousDiscount()
                         ? standardSwapBase->discountingTermStructure()
                         : standardSwapBase->forwardingTermStructure(),
-                    CalibrationHelper::RelativePriceError, Null<Real>(), 1.0, shift));
+                    CalibrationHelper::RelativePriceError, Null<Real>(), 1.0,
+                    swaptionVolatility->volatilityType() ,shift));
 
                 break;
             }
@@ -134,22 +135,9 @@ namespace QuantLib {
                 Real gamma = (npvp - 2.0 * npv + npvm) / (h * h);
 
                 QL_REQUIRE(npv * npv + delta * delta + gamma * gamma > 0.0,
-                           "(npv,delta,gamma) must have a positive norm");
-
-                // debug output
-                // std::cout << "EXOTIC npv " << npv << " delta " << delta
-                //           << " gamma " << gamma << std::endl;
-                // Real xtmp = -5.0;
-                // std::cout
-                //     << "********************************************EXERCISE "
-                //     << expiry << " ******************" << std::endl;
-                // std::cout << "globalExoticNpv;";
-                // while (xtmp <= 5.0 + QL_EPSILON) {
-                //     std::cout << underlyingNpv(expiry, xtmp) << ";";
-                //     xtmp += 0.1;
-                // }
-                // std::cout << std::endl;
-                // end debug output
+                           "(npv,delta,gamma) must have a positive norm (npv="
+                               << npv << ", delta=" << delta << ","
+                               << "gamma=" << gamma << ")");
 
                 // play safe, we restrict the maximum maturity so to easily fit
                 // in the date class restriction
@@ -225,7 +213,7 @@ namespace QuantLib {
                         ? standardSwapBase->discountingTermStructure()
                         : standardSwapBase->forwardingTermStructure(),
                     CalibrationHelper::RelativePriceError, solution[2],
-                    fabs(solution[0]),shift));
+                    fabs(solution[0]), swaptionVolatility->volatilityType(), shift));
                 break;
             }
 

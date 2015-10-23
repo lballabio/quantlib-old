@@ -75,10 +75,19 @@ namespace QuantLib {
         virtual const std::vector<Rate>& forwardRates() const = 0;
         virtual const std::vector<Rate>& coterminalSwapRates() const = 0;
         virtual const std::vector<Rate>& cmSwapRates(Size spanningForwards) const = 0;
-        Rate swapRate(Size begin,
-                      Size end) const;
 
-        virtual std::auto_ptr<CurveState> clone() const = 0;
+        // we are breaking the design here ... anyway:
+        // these methods work in every case and allow for a different
+        // frequency on the fixed leg (expressed in the number of forward
+        // rates spanned by one fixed period, e.g. 2 if we are working
+        // with 6m forwards and want yearly payments on the fixed side).
+
+        Rate swapRate(Size begin,
+                      Size end, Size step=1) const;
+
+		Rate swapAnnuity(Size i, Size begin, Size end, Size step=1) const;
+
+        virtual std::unique_ptr<CurveState> clone() const = 0;
         //@}
       protected:
         Size numberOfRates_;

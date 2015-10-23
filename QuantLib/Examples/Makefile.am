@@ -2,23 +2,31 @@
 AM_CPPFLAGS = -I${top_srcdir} -I${top_builddir}
 
 SUBDIRS = \
+	AswZSpreads \
     BasketLosses \
     BermudanSwaption \
+	BermudanSwaption2 \
     Bonds \
     CallableBonds \
+	CallableBonds2 \
     CDS \
     ConvertibleBonds \
+	CreditRiskPlus \
     DiscreteHedging \
     EquityOption \
     FittedBondCurve \
     FRA \
     Gaussian1dModels \
-    LatentModel \
+	KahaleSmileSection \
     MarketModels \
+	MultitenorVols \
+    LatentModel \
     MultidimIntegral \
     Replication \
     Repo \
-    Swap
+	SviSmileSection \
+    Swap \
+	Volaswap
 
 SUBDIR_CHECKS = $(SUBDIRS:%=%.check)
 

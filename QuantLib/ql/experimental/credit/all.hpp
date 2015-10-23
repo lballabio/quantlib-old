@@ -7,6 +7,8 @@
 #include <ql/experimental/credit/binomiallossmodel.hpp>
 #include <ql/experimental/credit/blackcdsoptionengine.hpp>
 #include <ql/experimental/credit/cdo.hpp>
+#include <ql/experimental/credit/cdolight.hpp>
+#include <ql/experimental/credit/cdolightengines.hpp>
 #include <ql/experimental/credit/cdsoption.hpp>
 #include <ql/experimental/credit/constantlosslatentmodel.hpp>
 #include <ql/experimental/credit/correlationstructure.hpp>

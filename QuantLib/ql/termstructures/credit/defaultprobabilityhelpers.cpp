@@ -41,13 +41,15 @@ namespace QuantLib {
                          Real recoveryRate,
                          const Handle<YieldTermStructure>& discountCurve,
                          bool settlesAccrual,
-                         bool paysAtDefaultTime)
+                         bool paysAtDefaultTime,
+						 const DayCounter& lastPeriodDayCounter,
+						 Integer upfrontSettlementDays)
     : RelativeDateDefaultProbabilityHelper(quote),
       tenor_(tenor), settlementDays_(settlementDays), calendar_(calendar),
       frequency_(frequency), paymentConvention_(paymentConvention),
       rule_(rule), dayCounter_(dayCounter), recoveryRate_(recoveryRate),
       discountCurve_(discountCurve),
-      settlesAccrual_(settlesAccrual), paysAtDefaultTime_(paysAtDefaultTime) {
+      settlesAccrual_(settlesAccrual), paysAtDefaultTime_(paysAtDefaultTime), lastPeriodDC_(lastPeriodDayCounter), upfrontSettlementDays_(upfrontSettlementDays) {
 
         initializeDates();
 
@@ -65,13 +67,15 @@ namespace QuantLib {
                          Real recoveryRate,
                          const Handle<YieldTermStructure>& discountCurve,
                          bool settlesAccrual,
-                         bool paysAtDefaultTime)
+                         bool paysAtDefaultTime,
+						 const DayCounter& lastPeriodDayCounter,
+						 Integer upfrontSettlementDays)
     : RelativeDateDefaultProbabilityHelper(quote),
       tenor_(tenor), settlementDays_(settlementDays), calendar_(calendar),
       frequency_(frequency), paymentConvention_(paymentConvention),
       rule_(rule), dayCounter_(dayCounter), recoveryRate_(recoveryRate),
       discountCurve_(discountCurve),
-      settlesAccrual_(settlesAccrual), paysAtDefaultTime_(paysAtDefaultTime) {
+      settlesAccrual_(settlesAccrual), paysAtDefaultTime_(paysAtDefaultTime), lastPeriodDC_(lastPeriodDayCounter), upfrontSettlementDays_(upfrontSettlementDays) {
 
         initializeDates();
 
@@ -97,6 +101,9 @@ namespace QuantLib {
         protectionStart_ = evaluationDate_ + settlementDays_;
         Date startDate = calendar_.adjust(protectionStart_,
                                           paymentConvention_);
+
+		if(rule_ == DateGeneration::CDS) startDate = protectionStart_; // for standard CDS the start date is not adjusted
+
         Date endDate = evaluationDate_ + tenor_;
 
         schedule_ =
@@ -126,11 +133,13 @@ namespace QuantLib {
                               Real recoveryRate,
                               const Handle<YieldTermStructure>& discountCurve,
                               bool settlesAccrual,
-                              bool paysAtDefaultTime)
+                              bool paysAtDefaultTime,
+							  const DayCounter& lastPeriodDayCounter,
+							  Integer upfrontSettlementDays)
     : CdsHelper(runningSpread, tenor, settlementDays, calendar,
                 frequency, paymentConvention, rule, dayCounter,
                 recoveryRate, discountCurve, settlesAccrual,
-                paysAtDefaultTime) {}
+                paysAtDefaultTime,lastPeriodDayCounter,upfrontSettlementDays) {}
 
     SpreadCdsHelper::SpreadCdsHelper(
                               Rate runningSpread,
@@ -144,11 +153,13 @@ namespace QuantLib {
                               Real recoveryRate,
                               const Handle<YieldTermStructure>& discountCurve,
                               bool settlesAccrual,
-                              bool paysAtDefaultTime)
+                              bool paysAtDefaultTime,
+							  const DayCounter& lastPeriodDayCounter,
+							  Integer upfrontSettlementDays)
     : CdsHelper(runningSpread, tenor, settlementDays, calendar,
                 frequency, paymentConvention, rule, dayCounter,
                 recoveryRate, discountCurve, settlesAccrual,
-                paysAtDefaultTime) {}
+                paysAtDefaultTime,lastPeriodDayCounter,upfrontSettlementDays) {}
 
     Real SpreadCdsHelper::impliedQuote() const {
         swap_->recalculate();
@@ -161,7 +172,9 @@ namespace QuantLib {
                                           schedule_, paymentConvention_,
                                           dayCounter_, settlesAccrual_,
                                           paysAtDefaultTime_,
-                                          protectionStart_));
+                                          protectionStart_,
+										  boost::shared_ptr<Claim>(),
+										  lastPeriodDC_,settlementDays_,upfrontSettlementDays_));
 
         swap_->setPricingEngine(boost::shared_ptr<PricingEngine>(
                                       new MidPointCdsEngine(probability_,
@@ -184,7 +197,8 @@ namespace QuantLib {
                               const Handle<YieldTermStructure>& discountCurve,
                               Natural upfrontSettlementDays,
                               bool settlesAccrual,
-                              bool paysAtDefaultTime)
+                              bool paysAtDefaultTime,
+							  const DayCounter& lastPeriodDayCounter)
     : CdsHelper(upfront, tenor, settlementDays, calendar,
                 frequency, paymentConvention, rule, dayCounter,
                 recoveryRate, discountCurve, settlesAccrual,
@@ -208,7 +222,8 @@ namespace QuantLib {
                               const Handle<YieldTermStructure>& discountCurve,
                               Natural upfrontSettlementDays,
                               bool settlesAccrual,
-                              bool paysAtDefaultTime)
+                              bool paysAtDefaultTime,
+							  const DayCounter& lastPeriodDayCounter)
     : CdsHelper(upfrontSpread, tenor, settlementDays, calendar,
                 frequency, paymentConvention, rule, dayCounter,
                 recoveryRate, discountCurve, settlesAccrual,
@@ -241,7 +256,9 @@ namespace QuantLib {
                                                 settlesAccrual_,
                                                 paysAtDefaultTime_,
                                                 protectionStart_,
-                                                upfrontDate_));
+                                                upfrontDate_,
+												boost::shared_ptr<Claim>(),
+												lastPeriodDC_));
 
         swap_->setPricingEngine(boost::shared_ptr<PricingEngine>(
                                       new MidPointCdsEngine(probability_,

@@ -112,10 +112,12 @@
 #include "integrals.hpp"
 #include "interestrates.hpp"
 #include "interpolations.hpp"
+#include "lgm.hpp"
 #include "libormarketmodel.hpp"
 #include "libormarketmodelprocess.hpp"
 #include "linearleastsquaresregression.hpp"
 #include "jumpdiffusion.hpp"
+#include "lgm.hpp"
 #include "lookbackoptions.hpp"
 #include "lowdiscrepancysequences.hpp"
 #include "margrabeoption.hpp"
@@ -130,6 +132,7 @@
 #include "mclongstaffschwartzengine.hpp"
 #include "mersennetwister.hpp"
 #include "money.hpp"
+#include "montecarlo_multithreaded.hpp"
 #include "noarbsabr.hpp"
 #include "nthtodefault.hpp"
 #include "numericaldifferentiation.hpp"
@@ -175,6 +178,8 @@
 #include "vpp.hpp"
 #include "zabr.hpp"
 
+#include "gsr.hpp"
+
 #include <iostream>
 #include <iomanip>
 
@@ -201,7 +206,7 @@ namespace {
     }
 
     void configure() {
-        /* if needed, either or both the lines below can be
+        /* if needed, a subset of the lines below can be
            uncommented and/or changed to run the test suite with a
            different configuration. In the future, we'll need a
            mechanism that doesn't force us to recompile (possibly a
@@ -210,6 +215,17 @@ namespace {
 
         //QuantLib::Settings::instance().includeReferenceDateCashFlows() = true;
         //QuantLib::Settings::instance().includeTodaysCashFlows() = boost::none;
+
+        /* does not throw evaluation date dependent errors */
+        QuantLib::Settings::instance().evaluationDate() =
+            QuantLib::Date(16, QuantLib::Sep, 2015);
+
+        /* throws 3 evaluation date dependent errors
+           (in MarketModelSmmCapletCalibrationTest,
+           MarketModelSmmCapletAlphaCalibrationTest and
+           MarketModelSmmAlphaCalibrationTest) */
+        // QuantLib::Settings::instance().evaluationDate() =
+        //     QuantLib::Date(29, QuantLib::Aug, 2015);
     }
 
 }
@@ -224,6 +240,10 @@ namespace QuantLib {
 
 test_suite* init_unit_test_suite(int, char* []) {
 
+    configure();
+
+    std::ostringstream settingsDesc;
+    settingsDesc << QuantLib::Settings::instance();
     std::string header =
         " Testing "
             #ifdef BOOST_MSVC
@@ -249,8 +269,9 @@ test_suite* init_unit_test_suite(int, char* []) {
             #else
             " undefined"
             #endif
+        "\n" + settingsDesc.str()
          ;
-    std::string rule = std::string(35, '=');
+    std::string rule = std::string(41, '=');
 
     BOOST_TEST_MESSAGE(rule);
     BOOST_TEST_MESSAGE(header);
@@ -258,7 +279,6 @@ test_suite* init_unit_test_suite(int, char* []) {
     test_suite* test = BOOST_TEST_SUITE("QuantLib test suite");
 
     test->add(QUANTLIB_TEST_CASE(startTimer));
-    test->add(QUANTLIB_TEST_CASE(configure));
 
     test->add(AmericanOptionTest::suite());
     test->add(ArrayTest::suite());
@@ -384,7 +404,9 @@ test_suite* init_unit_test_suite(int, char* []) {
     test->add(HimalayaOptionTest::suite());
     test->add(InflationCPICapFloorTest::suite());
     test->add(InflationVolTest::suite());
+    test->add(LgmTest::suite());
     test->add(MargrabeOptionTest::suite());
+    test->add(MonteCarloMultiThreadedTest::suite());
     test->add(NoArbSabrTest::suite());
     test->add(NthToDefaultTest::suite());
     test->add(NumericalDifferentiationTest::suite());

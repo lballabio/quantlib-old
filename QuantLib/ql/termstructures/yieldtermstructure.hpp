@@ -150,6 +150,7 @@ namespace QuantLib {
         //@{
         const std::vector<Date>& jumpDates() const;
         const std::vector<Time>& jumpTimes() const;
+        const std::vector<Handle<Quote> > &jumps() const;
         //@}
 
         //! \name Observer interface
@@ -203,6 +204,10 @@ namespace QuantLib {
 
     inline const std::vector<Time>& YieldTermStructure::jumpTimes() const {
         return this->jumpTimes_;
+    }
+
+    inline const std::vector<Handle<Quote> >& YieldTermStructure::jumps() const {
+        return this->jumps_;
     }
 
 }

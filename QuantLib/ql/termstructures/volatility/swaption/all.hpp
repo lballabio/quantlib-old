@@ -6,6 +6,7 @@
 #include <ql/termstructures/volatility/swaption/gaussian1dswaptionvolatility.hpp>
 #include <ql/termstructures/volatility/swaption/spreadedswaptionvol.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionconstantvol.hpp>
+#include <ql/termstructures/volatility/swaption/swaptionsinglesabrvol.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube1.hpp>
 #include <ql/termstructures/volatility/swaption/swaptionvolcube2.hpp>

@@ -11,11 +11,13 @@ this_include_HEADERS = \
     extendedblackvariancecurve.hpp \
     extendedblackvariancesurface.hpp \
     interestratevolsurface.hpp \
+    multiplicativesmilesection.hpp \
     noarbsabr.hpp \
     noarbsabrinterpolatedsmilesection.hpp \
     noarbsabrinterpolation.hpp \
     noarbsabrsmilesection.hpp \
     sabrvolsurface.hpp \
+    stickybpvolswaptioncube.hpp \
     sviinterpolatedsmilesection.hpp \
     sviinterpolation.hpp \
     svismilesection.hpp \
@@ -34,11 +36,13 @@ libVolatility_la_SOURCES = \
     extendedblackvariancecurve.cpp \
     extendedblackvariancesurface.cpp \
     interestratevolsurface.cpp \
+    multiplicativesmilesection.cpp \
     noarbsabr.cpp \
     noarbsabrabsprobs.cpp \
     noarbsabrinterpolatedsmilesection.cpp \
     noarbsabrsmilesection.cpp \
     sabrvolsurface.cpp \
+    stickybpvolswaptioncube.cpp \
     sviinterpolatedsmilesection.cpp \
     svismilesection.cpp \
     volcube.cpp \

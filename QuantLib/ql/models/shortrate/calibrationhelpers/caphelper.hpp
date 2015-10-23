@@ -44,7 +44,7 @@ namespace QuantLib {
                   CalibrationHelper::CalibrationErrorType errorType
                                     = CalibrationHelper::RelativePriceError);
         virtual void addTimesTo(std::list<Time>& times) const;
-        virtual Real modelValue() const;
+        virtual Real modelValue() const; 
         virtual Real blackPrice(Volatility volatility) const;
       private:
         void performCalculations() const;

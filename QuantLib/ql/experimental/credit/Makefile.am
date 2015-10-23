@@ -10,6 +10,8 @@ this_include_HEADERS = \
     binomiallossmodel.hpp \
     blackcdsoptionengine.hpp \
     cdo.hpp \
+    cdolight.hpp \
+    cdolightengines.hpp \
     cdsoption.hpp \
     constantlosslatentmodel.hpp \
     correlationstructure.hpp \
@@ -53,6 +55,8 @@ libCredit_la_SOURCES = \
     basket.cpp \
     blackcdsoptionengine.cpp \
     cdo.cpp \
+    cdolight.cpp \
+    cdolightengines.cpp \
     cdsoption.cpp \
     correlationstructure.cpp \
     defaultevent.cpp \

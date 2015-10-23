@@ -28,11 +28,23 @@ namespace QuantLib {
 
 FdmDupire1dOp::FdmDupire1dOp(const boost::shared_ptr<FdmMesher> &mesher,
                              const Array &localVolatility)
-    : mesher_(mesher), localVolatility_(localVolatility),
-      mapT_(SecondDerivativeOp(0, mesher)
-                .mult(0.5 * localVolatility * localVolatility)) {}
+    : mesher_(mesher),
+      localVolatilityFct_(boost::function<Disposable<Array>(Real)>()),
+      fct_(false), mapT_(SecondDerivativeOp(0, mesher)
+                             .mult(0.5 * localVolatility * localVolatility)) {}
 
-void FdmDupire1dOp::setTime(Time t1, Time t2) {}
+FdmDupire1dOp::FdmDupire1dOp(
+    const boost::shared_ptr<FdmMesher> &mesher,
+    const boost::function<Disposable<Array>(Real)> &localVolatilityFct)
+    : mesher_(mesher), localVolatilityFct_(localVolatilityFct), fct_(true),
+      mapT_(SecondDerivativeOp(0, mesher)) {}
+
+void FdmDupire1dOp::setTime(Time t1, Time t2) {
+    if (fct_) {
+        Array tmp = localVolatilityFct_(t1);
+        mapT_ = SecondDerivativeOp(0, mesher_).mult(0.5 * tmp * tmp);
+    }
+}
 
 Size FdmDupire1dOp::size() const { return 1; }
 

@@ -72,6 +72,7 @@ QL_TESTS = \
 	interestrates.hpp interestrates.cpp \
 	interpolations.hpp interpolations.cpp \
 	jumpdiffusion.hpp jumpdiffusion.cpp \
+	lgm.hpp lgm.cpp \
 	libormarketmodel.hpp libormarketmodel.cpp \
 	libormarketmodelprocess.hpp libormarketmodelprocess.cpp \
 	linearleastsquaresregression.hpp linearleastsquaresregression.cpp \
@@ -89,6 +90,7 @@ QL_TESTS = \
 	mclongstaffschwartzengine.hpp mclongstaffschwartzengine.cpp \
 	mersennetwister.hpp mersennetwister.cpp \
 	money.hpp money.cpp \
+    montecarlo_multithreaded.hpp montecarlo_multithreaded.cpp \
 	noarbsabr.hpp noarbsabr.cpp \
 	nthtodefault.hpp nthtodefault.cpp \
 	numericaldifferentiation.hpp numericaldifferentiation.cpp \

@@ -3,6 +3,7 @@
 
 #include <ql/models/marketmodels/callability/bermudanswaptionexercisevalue.hpp>
 #include <ql/models/marketmodels/callability/collectnodedata.hpp>
+#include <ql/models/marketmodels/callability/custombasissystem.hpp>
 #include <ql/models/marketmodels/callability/exercisevalue.hpp>
 #include <ql/models/marketmodels/callability/lsstrategy.hpp>
 #include <ql/models/marketmodels/callability/marketmodelbasissystem.hpp>

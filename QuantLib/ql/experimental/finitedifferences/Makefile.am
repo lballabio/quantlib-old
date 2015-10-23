@@ -14,9 +14,11 @@ this_include_HEADERS = \
 	fdmextoujumpmodelinnervalue.hpp \
 	fdmextoujumpop.hpp \
 	fdmextoujumpsolver.hpp \
+	fdmheat1dop.hpp \
 	fdmhestonfwdop.hpp \
 	fdmklugeextouop.hpp \
 	fdmklugeextousolver.hpp \
+	fdmsabrfpeop.hpp \
 	fdmsimple2dextousolver.hpp \
     fdmsimple3dextoujumpsolver.hpp \
 	fdmspreadpayoffinnervalue.hpp \
@@ -41,8 +43,10 @@ libMultiDimFDM_la_SOURCES = \
 	fdmextendedornsteinuhlenbeckop.cpp \
 	fdmextoujumpop.cpp \
 	fdmextoujumpsolver.cpp \
+	fdmheat1dop.cpp \
 	fdmhestonfwdop.cpp \
 	fdmklugeextouop.cpp \
+	fdmsabrfpeop.cpp \
 	fdmsquarerootfwdop.cpp \
 	fdmvppstartlimitstepcondition.cpp \
 	fdmvppstepcondition.cpp \

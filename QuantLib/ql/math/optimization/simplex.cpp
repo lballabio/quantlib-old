@@ -161,7 +161,7 @@ namespace QuantLib {
             if (simplexSize < xtol ||
                 endCriteria.checkMaxIterations(iterationNumber_, ecType)) {
                 endCriteria.checkStationaryPoint(0.0, 0.0,
-                    maxStationaryStateIterations_, ecType);
+                maxStationaryStateIterations_, ecType);   // PC this is probably not meant like this ? Use separate counter ?
                 endCriteria.checkMaxIterations(iterationNumber_, ecType);
                 x_ = vertices_[iLowest];
                 Real low = values_[iLowest];

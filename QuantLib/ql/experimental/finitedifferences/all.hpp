@@ -11,9 +11,11 @@
 #include <ql/experimental/finitedifferences/fdmextoujumpmodelinnervalue.hpp>
 #include <ql/experimental/finitedifferences/fdmextoujumpop.hpp>
 #include <ql/experimental/finitedifferences/fdmextoujumpsolver.hpp>
+#include <ql/experimental/finitedifferences/fdmheat1dop.hpp>
 #include <ql/experimental/finitedifferences/fdmhestonfwdop.hpp>
 #include <ql/experimental/finitedifferences/fdmklugeextouop.hpp>
 #include <ql/experimental/finitedifferences/fdmklugeextousolver.hpp>
+#include <ql/experimental/finitedifferences/fdmsabrfpeop.hpp>
 #include <ql/experimental/finitedifferences/fdmsimple2dextousolver.hpp>
 #include <ql/experimental/finitedifferences/fdmsimple3dextoujumpsolver.hpp>
 #include <ql/experimental/finitedifferences/fdmspreadpayoffinnervalue.hpp>

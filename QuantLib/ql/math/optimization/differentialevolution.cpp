@@ -356,4 +356,3 @@ namespace QuantLib {
     }
 
 }
-

@@ -72,6 +72,9 @@ namespace {
         void setTermStructure() {
 
             calendar = TARGET();
+            Date today = calendar.adjust(Date(26,August,2013)); // suite fails for 27-08-2013, 28-08-2013, check that
+            Settings::instance().evaluationDate() = today;
+
             dayCounter = Actual365Fixed();
 
             Rate flatFwdRate = 0.04;

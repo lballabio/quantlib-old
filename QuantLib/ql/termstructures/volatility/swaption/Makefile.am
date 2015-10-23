@@ -9,6 +9,7 @@ this_include_HEADERS = \
     gaussian1dswaptionvolatility.hpp \
     spreadedswaptionvol.hpp \
     swaptionconstantvol.hpp \
+    swaptionsinglesabrvol.hpp \
     swaptionvolcube.hpp \
     swaptionvolcube1.hpp \
     swaptionvolcube2.hpp \
@@ -22,6 +23,7 @@ libSwaptionVol_la_SOURCES = \
     gaussian1dswaptionvolatility.cpp \
     spreadedswaptionvol.cpp \
     swaptionconstantvol.cpp \
+    swaptionsinglesabrvol.cpp \
     swaptionvolcube.cpp \
     swaptionvolcube2.cpp \
     swaptionvoldiscrete.cpp \

@@ -157,6 +157,12 @@ namespace QuantLib {
                                         Real stdDev,
                                         Real displacement = 0.0);
 
+    Real blackFormulaAssetItmProbability(Option::Type optionType,
+                                        Real strike,
+                                        Real forward,
+                                        Real stdDev,
+                                        Real displacement = 0.0);
+
     /*! Black 1976 probability of being in the money (in the bond martingale
         measure), i.e. N(d2).
         It is a risk-neutral probability, not the real world one.
@@ -164,6 +170,12 @@ namespace QuantLib {
                  i.e. volatility*sqrt(timeToMaturity)
     */
     Real blackFormulaCashItmProbability(
+                        const boost::shared_ptr<PlainVanillaPayoff>& payoff,
+                        Real forward,
+                        Real stdDev,
+                        Real displacement = 0.0);
+
+    Real blackFormulaAssetItmProbability(
                         const boost::shared_ptr<PlainVanillaPayoff>& payoff,
                         Real forward,
                         Real stdDev,

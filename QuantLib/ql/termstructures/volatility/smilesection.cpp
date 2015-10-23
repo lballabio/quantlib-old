@@ -80,7 +80,7 @@ namespace QuantLib {
         if (volatilityType() == ShiftedLognormal)
             return blackFormula(type,strike,atm, fabs(strike+shift()) < QL_EPSILON ?
                             0.2 : sqrt(variance(strike)),discount,shift());
-        else
+        else 
             return bachelierBlackFormula(type,strike,atm,sqrt(variance(strike)),discount);
     }
 

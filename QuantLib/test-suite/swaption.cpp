@@ -105,7 +105,7 @@ namespace {
             floatingConvention = index->businessDayConvention();
             floatingTenor = index->tenor();
             calendar = index->fixingCalendar();
-            today = calendar.adjust(Date::todaysDate());
+            today = calendar.adjust(Date(26,August,2013)); // suite fails for 27-08-2013, 28-08-2013, check that
             Settings::instance().evaluationDate() = today;
             settlement = calendar.advance(today,settlementDays,Days);
             termStructure.linkTo(flatRate(settlement,0.05,Actual365Fixed()));

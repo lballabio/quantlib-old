@@ -38,6 +38,22 @@
 #include <vector>
 #include <iomanip>
 
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#endif
+
+#include <boost/lambda/lambda.hpp>
+
+#if defined(__GNUC__) && (((__GNUC__ == 4) && (__GNUC_MINOR__ >= 8)) || (__GNUC__ > 4))
+#pragma GCC diagnostic pop
+#endif
+
+#include <boost/lambda/bind.hpp>
+
+#include <ql/math/comparison.hpp>
+
+
 namespace QuantLib {
 
     //! 1-D array used in linear algebra.
@@ -642,8 +658,10 @@ namespace QuantLib {
         out << "[ ";
         if (!a.empty()) {
             for (Size n=0; n<a.size()-1; ++n)
+
                 out << std::setw(int(width)) << a[n] << "; ";
             out << std::setw(int(width)) << a.back();
+
         }
         out << " ]";
         return out;
