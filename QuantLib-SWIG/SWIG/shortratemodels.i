@@ -4,6 +4,7 @@
  Copyright (C) 2003, 2007, 2009 StatPro Italia srl
  Copyright (C) 2005 Dominic Thuillier
  Copyright (C) 2007 Luis Cota
+ Copyright (C) 2015 Gouthaman Balaraman
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -43,7 +44,8 @@ class ShortRateModel {
         const std::vector<boost::shared_ptr<CalibrationHelper> >&,
         OptimizationMethod&, const EndCriteria &,
         const Constraint& constraint = Constraint(),
-        const std::vector<Real>& weights = std::vector<Real>());
+        const std::vector<Real>& weights = std::vector<Real>(),
+        const std::vector<bool> & fixParameters = std::vector<bool>());
 };
 
 %template(ShortRateModel) boost::shared_ptr<ShortRateModel>;

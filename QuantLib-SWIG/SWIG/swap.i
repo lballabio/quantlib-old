@@ -2,6 +2,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2007 StatPro Italia srl
  Copyright (C) 2011 Lluis Pujol Bajador
+ Copyright (C) 2015 Gouthaman Balaraman
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -77,6 +78,16 @@ class VanillaSwapPtr : public SwapPtr {
     %rename("fair-spread")      fairSpread;
     %rename("fixed-leg-BPS")    fixedLegBPS;
     %rename("floating-leg-BPS") floatingLegBPS;
+	%rename ("fixed-leg-NPV") fixedLegNPV;
+	%rename ("floating-leg-NPV") floatingLegNPV;
+	%rename ("floating-leg") floatingLeg;
+	%rename ("fixed-leg") fixedLeg;
+	%rename ("fixed-schedule") fixedSchedule;
+	%rename ("floating-schedule") floatingSchedule;
+	%rename ("fixed-rate") fixedRate;
+	%rename ("fixed-day-count") fixedDayCount;
+	%rename ("floating-day-count") floatingDayCount;
+	
     #endif
   public:
     %extend {
@@ -110,6 +121,51 @@ class VanillaSwapPtr : public SwapPtr {
         Real floatingLegBPS() {
             return boost::dynamic_pointer_cast<VanillaSwap>(*self)
                  ->floatingLegBPS();
+        }	
+        Real fixedLegNPV() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->fixedLegNPV();
+        }
+        Real floatingLegNPV() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->floatingLegNPV();
+        }
+        // Inspectors 
+        const Leg& fixedLeg() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->fixedLeg();
+        }
+        const Leg& floatingLeg() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->floatingLeg();
+        }
+        Real nominal() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->nominal();
+        }
+        const Schedule& fixedSchedule() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->fixedSchedule();
+        }
+        const Schedule& floatingSchedule() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->floatingSchedule();
+        }
+        Rate fixedRate() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->fixedRate();
+        }
+        Spread spread() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->spread();
+        }
+        const DayCounter& floatingDayCount() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->floatingDayCount();
+        }
+        const DayCounter& fixedDayCount() {
+	        return boost::dynamic_pointer_cast<VanillaSwap> (*self)
+		        ->fixedDayCount();
         }
     }
 };
