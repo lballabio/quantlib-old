@@ -84,6 +84,31 @@
     #error using an old version of QuantLib, please update
 #endif
 
+#ifdef BOOST_MSVC
+#ifdef QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN
+#define BOOST_LIB_NAME boost_thread
+#include <boost/config/auto_link.hpp>
+#undef BOOST_LIB_NAME
+#define BOOST_LIB_NAME boost_system
+#include <boost/config/auto_link.hpp>
+#undef BOOST_LIB_NAME
+#endif
+#endif
+
+#if defined (SWIGJAVA) || defined (SWIGCSHARP) 
+  #ifndef QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN
+  #warning Quantlib has not been compiled with the thread-safe \
+           observer pattern being enabled. This can lead to spurious \
+           crashes or pure virtual function call within the JVM or .NET \
+           eco system due to the async garbage collector. Please consider \
+           to enable QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN \
+           in ql/userconfig.hpp under Windows or \
+           to set --enable-thread-safe-observer-pattern when using the \
+           GNU autoconf configure script.
+  #endif
+#endif
+
+
 // add here SWIG version check
 
 #if defined(_MSC_VER)         // Microsoft Visual C++ 6.0
