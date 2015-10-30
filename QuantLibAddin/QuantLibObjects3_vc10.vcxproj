@@ -78,10 +78,10 @@
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\build\vc100\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <EmbedManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</EmbedManifest>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc100-mt-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc100-mt-gd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc100-mt-sgd-1_6_0</TargetName>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc100-mt-s-1_6_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">QuantLibObjects-vc100-mt-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">QuantLibObjects-vc100-mt-gd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (static runtime)|Win32'">QuantLibObjects-vc100-mt-sgd-1_7_0</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (static runtime)|Win32'">QuantLibObjects-vc100-mt-s-1_7_0</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -721,8 +721,8 @@
     <ClInclude Include="qlo\serialization\register\serialization_forwardrateagreement.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_index.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_interpolation.hpp" />
-    <ClInclude Include="qlo\serialization\register\serialization_leg.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_latentmodels.hpp" />
+    <ClInclude Include="qlo\serialization\register\serialization_leg.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_marketmodelevolvers.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_marketmodels.hpp" />
     <ClInclude Include="qlo\serialization\register\serialization_mathf.hpp" />

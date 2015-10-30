@@ -5,8 +5,8 @@
 #SetCompressor /SOLID lzma
 
 !define APP "QuantLibXL"
-!define VER_NUMBER "1.6.0"
-!define VER_NUMBER_UNDERSCORE "1_6_0"
+!define VER_NUMBER "1.7.0"
+!define VER_NUMBER_UNDERSCORE "1_7_0"
 !define COMPILER "vc90"
 
 !define REV_NUMBER "-Rev17291"

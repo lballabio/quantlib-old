@@ -79,7 +79,7 @@ the import.
 <tt>QuantLibXL\\framework2\\QuantLibXL.xla</tt>.
 The addin contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc90-mt-1_6_0.xll
+QuantLibXL\xll\QuantLibXL-vc90-mt-1_7_0.xll
 QuantLibXL\framework2\addin\*.xla
 \endverbatim
 \li Invoke menu item <tt>QuantLibXL | Load | Serialization Demo</tt>.
@@ -104,7 +104,7 @@ QuantLibXL\framework2\xml\Swap.xml
 <tt>QuantLibXL\\framework2\\QuantLibXL.xla</tt>.
 The addin contains some startup code which should automatically load the following:
 \verbatim
-QuantLibXL\xll\QuantLibXL-vc90-mt-1_6_0.xll
+QuantLibXL\xll\QuantLibXL-vc90-mt-1_7_0.xll
 QuantLibXL\framework2\addin\*.xla
 \endverbatim
 \li Invoke menu item <tt>QuantLibXL | Load | Serialization Demo</tt>.
@@ -138,8 +138,8 @@ Open a DOS prompt in directory
 Invoke the executable. The output from the program should appear as follows:
 \verbatim
 Begin example program.
-QuantLibAddin version = 1.6.0
-ObjectHandler version = 1.6.0
+QuantLibAddin version = 1.7.0
+ObjectHandler version = 1.7.0
 SWAP PV = -39396.9
 Example of serializing to/from a buffer:
 XML =
@@ -196,8 +196,8 @@ The output from the program should appear as follows:
 QuantLibAddin\Clients\CppInstrumentIn>InstrumentIn-vc90-mt.exe
     40546 Swap Swap.xml MarketData.xml
 Begin example program.
-QuantLibAddin version = 1.6.0
-ObjectHandler version = 1.6.0
+QuantLibAddin version = 1.7.0
+ObjectHandler version = 1.7.0
 Instrument PV = -39396.9
 End example program.
 \endverbatim
@@ -212,8 +212,8 @@ End example program.
 program <tt>swap_out</tt>.  The output from the program should appear as follows:
 \verbatim
 Begin example program.
-QuantLibAddin version = 1.6.0
-ObjectHandler version = 1.6.0
+QuantLibAddin version = 1.7.0
+ObjectHandler version = 1.7.0
 SWAP PV = -39396.9
 Example of serializing to/from a buffer:
 XML =
@@ -270,8 +270,8 @@ The output from the program should appear as follows:
 QuantLibAddin\Clients\CppInstrumentIn>./instrument_in
     40546 Swap Swap.xml MarketData.xml
 Begin example program.
-QuantLibAddin version = 1.6.0
-ObjectHandler version = 1.6.0
+QuantLibAddin version = 1.7.0
+ObjectHandler version = 1.7.0
 Instrument PV = -39396.9
 End example program.
 \endverbatim

@@ -77,6 +77,8 @@ class Calendar {
   protected:
     Calendar();
   public:
+    bool isWeekend(Weekday w);
+    Date endOfMonth(const Date&);
     bool isBusinessDay(const Date&);
     bool isHoliday(const Date&);
     bool isEndOfMonth(const Date&);
@@ -192,6 +194,12 @@ namespace QuantLib {
         Indonesia(Market m = BEJ);
     };
 
+    class Israel : public Calendar {
+      public:
+        enum Market { Settlement, TASE };
+        Israel(Market m = Settlement);
+    };
+
     class Italy : public Calendar {
       public:
         enum Market { Settlement, Exchange };
@@ -215,6 +223,8 @@ namespace QuantLib {
         enum Market { Settlement, MOEX };
         Russia(Market m = Settlement);
     };
+
+    class Romania : public Calendar {};
 
     class SaudiArabia : public Calendar {
       public:

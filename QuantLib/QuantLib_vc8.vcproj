@@ -2168,6 +2168,14 @@
 			Name="math"
 			>
 			<File
+				RelativePath=".\ql\math\abcdmathfunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\math\abcdmathfunction.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ql\math\all.hpp"
 				>
 			</File>
@@ -2277,6 +2285,22 @@
 			</File>
 			<File
 				RelativePath="ql\math\modifiedbessel.hpp"
+				>
+			</File>
+			<File
+				RelativePath="ql\math\pascaltriangle.cpp"
+				>
+			</File>
+			<File
+				RelativePath="ql\math\pascaltriangle.hpp"
+				>
+			</File>
+			<File
+				RelativePath="ql\math\polynomialmathfunction.cpp"
+				>
+			</File>
+			<File
+				RelativePath="ql\math\polynomialmathfunction.hpp"
 				>
 			</File>
 			<File
@@ -2964,6 +2988,14 @@
 				</File>
 				<File
 					RelativePath=".\ql\math\optimization\endcriteria.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\math\optimization\goldstein.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\math\optimization\goldstein.hpp"
 					>
 				</File>
 				<File
@@ -5308,6 +5340,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ql\processes\gsrprocesscore.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ql\processes\gsrprocesscore.hpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ql\processes\hestonprocess.cpp"
 				>
 			</File>
@@ -6595,6 +6635,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\ql\time\calendars\israel.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\time\calendars\israel.hpp"
+					>
+				</File>
+				<File
 					RelativePath=".\ql\time\calendars\italy.cpp"
 					>
 				</File>
@@ -6652,6 +6700,14 @@
 				</File>
 				<File
 					RelativePath=".\ql\time\calendars\poland.hpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\time\calendars\romania.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\ql\time\calendars\romania.hpp"
 					>
 				</File>
 				<File

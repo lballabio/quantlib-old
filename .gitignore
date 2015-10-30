@@ -24,6 +24,7 @@ QuantLib/Docs/html/
 QuantLib/Docs/man/
 QuantLib/Examples/*/bin/
 QuantLib/Examples/*/build/
+QuantLib/Examples/*/*.trs
 QuantLib/build/
 QuantLib/lib/
 QuantLib/test-suite/bin/QuantLib-test-suite-*.manifest
@@ -141,6 +142,9 @@ testCaseCollection.xml
 *.log
 *.sdf
 *.opensdf
+*.pch
+*.idb
+*.ipch
 
 # Outputs
 QuantLib/Examples/BasketLosses/BasketLosses

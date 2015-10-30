@@ -118,7 +118,7 @@ namespace QuantLib {
                        io::ordinal(i+1) << " bond non tradable at " <<
                        bondSettlement << " settlement date (maturity"
                        " being " << bond->maturityDate() << ")");
-            maxDate_ = std::max(maxDate_, bondHelpers_[i]->latestDate());
+            maxDate_ = std::max(maxDate_, bondHelpers_[i]->pillarDate());
             bondHelpers_[i]->setTermStructure(
                                   const_cast<FittedBondDiscountCurve*>(this));
         }
@@ -127,9 +127,12 @@ namespace QuantLib {
     }
 
 
-    FittedBondDiscountCurve::FittingMethod::FittingMethod(bool constrainAtZero, const Array& weights,
-                                                          boost::shared_ptr<OptimizationMethod> optimizationMethod)
-    : constrainAtZero_(constrainAtZero), weights_(weights), optimizationMethod_(optimizationMethod) {}
+    FittedBondDiscountCurve::FittingMethod::FittingMethod(
+                     bool constrainAtZero,
+                     const Array& weights,
+                     boost::shared_ptr<OptimizationMethod> optimizationMethod)
+    : constrainAtZero_(constrainAtZero), weights_(weights),
+      calculateWeights_(weights.empty()), optimizationMethod_(optimizationMethod) {}
 
 
     void FittedBondDiscountCurve::FittingMethod::init() {
@@ -141,39 +144,46 @@ namespace QuantLib {
         Size n = curve_->bondHelpers_.size();
         costFunction_ = shared_ptr<FittingCost>(new FittingCost(this));
         costFunction_->firstCashFlow_.resize(n);
-        if(weights_.empty())
-        {
-            weights_ = Array(n);
+
+        for (Size i=0; i<curve_->bondHelpers_.size(); ++i) {
+            shared_ptr<Bond> bond = curve_->bondHelpers_[i]->bond();
+            const Leg& cf = bond->cashflows();
+            Date bondSettlement = bond->settlementDate();
+            for (Size k=0; k<cf.size(); ++k) {
+                if (!cf[k]->hasOccurred(bondSettlement, false)) {
+                    costFunction_->firstCashFlow_[i] = k;
+                    break;
+                }
+            }
+        }
+
+        if (calculateWeights_) {
+            if (weights_.empty())
+                weights_ = Array(n);
+
             Real squaredSum = 0.0;
             for (Size i=0; i<curve_->bondHelpers_.size(); ++i) {
                 shared_ptr<Bond> bond = curve_->bondHelpers_[i]->bond();
 
-                Leg leg = bond->cashflows();
                 Real cleanPrice = curve_->bondHelpers_[i]->quote()->value();
 
                 Date bondSettlement = bond->settlementDate();
                 Rate ytm = BondFunctions::yield(*bond, cleanPrice,
-                                            yieldDC, yieldComp, yieldFreq,
-                                            bondSettlement);
+                                                yieldDC, yieldComp, yieldFreq,
+                                                bondSettlement);
 
                 Time dur = BondFunctions::duration(*bond, ytm,
-                                               yieldDC, yieldComp, yieldFreq,
-                                               Duration::Modified,
-                                               bondSettlement);
+                                                   yieldDC, yieldComp, yieldFreq,
+                                                   Duration::Modified,
+                                                   bondSettlement);
                 weights_[i] = 1.0/dur;
                 squaredSum += weights_[i]*weights_[i];
-
-                const Leg& cf = bond->cashflows();
-                for (Size k=0; k<cf.size(); ++k) {
-                    if (!cf[k]->hasOccurred(bondSettlement, false)) {
-                        costFunction_->firstCashFlow_[i] = k;
-                        break;
-                    }
-                }
             }
             weights_ /= std::sqrt(squaredSum);
         }
-		QL_REQUIRE(weights_.size() == n, "Given weights do not cover all boostrapping helpers");
+
+        QL_REQUIRE(weights_.size() == n,
+                   "Given weights do not cover all boostrapping helpers");
     }
 
     void FittedBondDiscountCurve::FittingMethod::calculate() {
@@ -248,27 +258,29 @@ namespace QuantLib {
         Size n = fittingMethod_->curve_->bondHelpers_.size();
         Array values(n);
         for (Size i=0; i<n; ++i) {
+            shared_ptr<BondHelper> helper =
+                fittingMethod_->curve_->bondHelpers_[i];
 
-            boost::shared_ptr<Bond> bond =
-                            fittingMethod_->curve_->bondHelpers_[i]->bond();
+            shared_ptr<Bond> bond = helper->bond();
             Date bondSettlement = bond->settlementDate();
 
             // CleanPrice_i = sum( cf_k * d(t_k) ) - accruedAmount
-            Real modelPrice = - bond->accruedAmount(bondSettlement);
+            Real modelPrice = 0.0;
             const Leg& cf = bond->cashflows();
             for (Size k=firstCashFlow_[i]; k<cf.size(); ++k) {
                 Time tenor = dc.yearFraction(refDate, cf[k]->date());
                 modelPrice += cf[k]->amount() *
                                     fittingMethod_->discountFunction(x, tenor);
             }
+            if (helper->useCleanPrice())
+                modelPrice -= bond->accruedAmount(bondSettlement);
 
             // adjust price (NPV) for forward settlement
             if (bondSettlement != refDate ) {
                 Time tenor = dc.yearFraction(refDate, bondSettlement);
                 modelPrice /= fittingMethod_->discountFunction(x, tenor);
             }
-            Real marketPrice =
-                fittingMethod_->curve_->bondHelpers_[i]->quote()->value();
+            Real marketPrice = helper->quote()->value();
             Real error = modelPrice - marketPrice;
             Real weightedError = fittingMethod_->weights_[i] * error;
             values[i] = weightedError * weightedError;
