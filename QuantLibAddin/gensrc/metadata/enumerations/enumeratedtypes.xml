@@ -10,6 +10,7 @@
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2015 Maddalena Zanzi
     Copyright (C) 2015 Riccardo Barone
+    Copyright (C) 2015 Paolo Mazzocchi
   </enumeratedTypeCopyright>
 
   <EnumeratedTypeGroups>
@@ -588,6 +589,10 @@
         </EnumeratedType>
         <EnumeratedType>
           <string>WeekendsOnly</string>
+          <value>QuantLib::WeekendsOnly()</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>weekends only</string>
           <value>QuantLib::WeekendsOnly()</value>
         </EnumeratedType>
       </EnumeratedTypes>
@@ -1543,6 +1548,25 @@
         <EnumeratedType>
           <string>ASX</string>
           <value>QuantLib::Futures::ASX</value>
+        </EnumeratedType>
+      </EnumeratedTypes>
+    </EnumeratedTypeGroup>
+
+    <EnumeratedTypeGroup type='QuantLib::Pillar::Choice'>
+      <includeFile>oh/enumerations/typefactory.hpp</includeFile>
+      <constructor>true</constructor>
+      <EnumeratedTypes>
+        <EnumeratedType>
+          <string>LastRelevantDate</string>
+          <value>QuantLib::Pillar::LastRelevantDate</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>MaturityDate</string>
+          <value>QuantLib::Pillar::MaturityDate</value>
+        </EnumeratedType>
+        <EnumeratedType>
+          <string>CustomDate</string>
+          <value>QuantLib::Pillar::CustomDate</value>
         </EnumeratedType>
       </EnumeratedTypes>
     </EnumeratedTypeGroup>
