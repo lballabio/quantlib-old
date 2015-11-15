@@ -39,9 +39,12 @@
 #  define QL_LIB_TOOLSET "vc110"
 #elif (_MSC_VER == 1800)
 #  define QL_LIB_TOOLSET "vc120"
-#else
+#elif (_MSC_VER == 1900)
 #  define QL_LIB_TOOLSET "vc140"
+#else
+#  error "unknown Microsoft compiler"
 #endif
+
 
 #ifdef _M_X64
 #  define QL_LIB_PLATFORM "-x64"
