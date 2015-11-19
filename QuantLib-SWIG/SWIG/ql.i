@@ -97,14 +97,23 @@
 
 #if defined (SWIGJAVA) || defined (SWIGCSHARP) 
   #ifndef QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN
-  #warning Quantlib has not been compiled with the thread-safe \
-           observer pattern being enabled. This can lead to spurious \
-           crashes or pure virtual function call within the JVM or .NET \
-           eco system due to the async garbage collector. Please consider \
-           to enable QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN \
-           in ql/userconfig.hpp under Windows or \
-           to set --enable-thread-safe-observer-pattern when using the \
-           GNU autoconf configure script.
+    #ifdef BOOST_MSVC
+      #pragma message(\
+          "Quantlib has not been compiled with the thread-safe "           \
+          "observer pattern being enabled. This can lead to spurious "     \
+          "crashes or pure virtual function call within the JVM or .NET "  \
+          "ecosystem due to the async garbage collector. Please consider " \
+          "enabling QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN "               \
+          "in ql/userconfig.hpp.")
+    #else
+      #warning \
+          Quantlib has not been compiled with the thread-safe           \
+          observer pattern being enabled. This can lead to spurious     \
+          crashes or pure virtual function call within the JVM or .NET  \
+          ecosystem due to the async garbage collector. Please consider \
+          passing --enable-thread-safe-observer-pattern when using the  \
+          GNU autoconf configure script.
+    #endif
   #endif
 #endif
 
