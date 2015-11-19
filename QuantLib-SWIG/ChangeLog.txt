@@ -1,3 +1,22 @@
+commit 24717e499ad8958208c0845a8aa9345d2e838b25
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 19 Nov 2015 15:56:20 +0100
+
+    Use correct pragma to output message in Visual C++.
+
+ QuantLib-SWIG/SWIG/ql.i | 25 +++++++++++++++++--------
+ 1 file changed, 17 insertions(+), 8 deletions(-)
+
+commit 88496b021887b656659754c1b2964b2152f50321
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Fri, 13 Nov 2015 16:31:31 +0100
+
+    Update changelogs, news and contributors.
+
+ QuantLib-SWIG/ChangeLog.txt | 371 +++++++++++++++++++++++---------------------
+ QuantLib-SWIG/News.txt      |  18 ++-
+ 2 files changed, 206 insertions(+), 183 deletions(-)
+
 commit 63a50dc12693ab7a40955e3c3e95276fee4bdea6
 Author: Luigi Ballabio <luigi.ballabio@gmail.com>
 Date:   Thu, 12 Nov 2015 13:43:32 +0100
