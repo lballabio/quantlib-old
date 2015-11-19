@@ -14,12 +14,15 @@ QuantLib-SWIG is
     Copyright (C) 2010 Andrea Odetti
     Copyright (C) 2010, 2011 Lluis Pujol Bajador
     Copyright (C) 2011, 2012 Tawanda Gwena
-    Copyright (C) 2011, 2012, 2013, 2014 Klaus Spanderen
+    Copyright (C) 2011, 2012, 2013, 2014, 2015 Klaus Spanderen
     Copyright (C) 2012 Francis Duffy
     Copyright (C) 2013 Simon Shakeshaft
+    Copyright (C) 2014 Bitquant Research Laboratories (Asia) Ltd.
+    Copyright (C) 2014, 2015 Matthias Groncki
     Copyright (C) 2014 Simon Mazzucca
-    Copyright (C) 2014 Thema Consulting
+    Copyright (C) 2014, 2015 Thema Consulting
     Copyright (C) 2014 Wondersys srl
+    Copyright (C) 2015 Gouthaman Balaraman
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
