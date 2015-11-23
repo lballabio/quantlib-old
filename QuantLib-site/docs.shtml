@@ -116,9 +116,15 @@ the sponsorship of <a href="http://www.statpro.com/">StatPro</a>.</li>
 
 <h2 class="center">Papers</h2>
 <ul>
+<li><strong>Farmer's CMS Spread Option Formula for Negative Rates</strong>
+[<a href="http://ssrn.com/abstract=2686998">abstract/download</a>]<br>
+Peter Caspers (2015)</li>
 <li><strong>Derivatives Pricing using QuantLib: An Introduction</strong>
 [<a href="https://vineetv.wordpress.com/2015/04/03/wp-derivatives-pricing-using-quantlib/">abstract/download</a>]<br>
 Jayanth R. Varma, Vineet Virmani (2015)</li>
+<li><strong>Implementation of the ZABR Model</strong>
+[<a href="http://ssrn.com/abstract=2692048">abstract/download</a>]<br>
+Peter Caspers (2013)</li>
 <li><strong>Markov Functional One Factor Interest Rate Model
 Implementation in QuantLib</strong>
 [<a href="http://ssrn.com/abstract=2183721">abstract/download</a>]<br>
