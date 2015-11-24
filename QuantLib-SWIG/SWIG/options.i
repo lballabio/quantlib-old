@@ -1126,6 +1126,58 @@ class MCBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
 };
 
 %{
+using QuantLib::FdmSchemeDesc;
+%}
+
+struct FdmSchemeDesc {
+  enum FdmSchemeType { HundsdorferType, DouglasType, 
+                       CraigSneydType, ModifiedCraigSneydType, 
+                       ImplicitEulerType, ExplicitEulerType };
+  
+  FdmSchemeDesc(FdmSchemeType type, Real theta, Real mu);
+  
+  const FdmSchemeType type;
+  const Real theta, mu;
+
+  // some default scheme descriptions
+  static FdmSchemeDesc Douglas();
+  static FdmSchemeDesc ImplicitEuler();
+  static FdmSchemeDesc ExplicitEuler();
+  static FdmSchemeDesc CraigSneyd();
+  static FdmSchemeDesc ModifiedCraigSneyd(); 
+  static FdmSchemeDesc Hundsdorfer();
+  static FdmSchemeDesc ModifiedHundsdorfer();
+};
+
+%{
+using QuantLib::FdBlackScholesBarrierEngine;
+typedef boost::shared_ptr<PricingEngine> FdBlackScholesBarrierEnginePtr;
+%}
+
+%rename(FdBlackScholesBarrierEngine) FdBlackScholesBarrierEnginePtr;
+class FdBlackScholesBarrierEnginePtr : public boost::shared_ptr<PricingEngine> {
+  public:
+    %extend {
+        FdBlackScholesBarrierEnginePtr(const GeneralizedBlackScholesProcessPtr& process,
+                                       Size tGrid = 100, Size xGrid = 100, Size dampingSteps = 0,
+                                       const FdmSchemeDesc& schemeDesc = FdmSchemeDesc::Douglas(),
+                                       bool localVol = false, 
+                                       Real illegalLocalVolOverwrite = -Null<Real>()) {
+            boost::shared_ptr<GeneralizedBlackScholesProcess> bsProcess =
+                 boost::dynamic_pointer_cast<GeneralizedBlackScholesProcess>(
+                                                                     process);
+            QL_REQUIRE(bsProcess, "Black-Scholes process required");
+            return new FdBlackScholesBarrierEnginePtr(
+                            new FdBlackScholesBarrierEngine(bsProcess,
+                                                              tGrid,  xGrid, dampingSteps, 
+                                                              schemeDesc, localVol,
+                                                              illegalLocalVolOverwrite));
+        }
+  }
+};
+
+
+%{
 using QuantLib::AnalyticBinaryBarrierEngine;
 typedef boost::shared_ptr<PricingEngine> AnalyticBinaryBarrierEnginePtr;
 %}
