@@ -1,6 +1,14 @@
 
-Release 1.6.1 - July 2015
-Changes since release 1.6:
-- added support for Visual Studio 2015.
-- added support for x86 target in C# projects (thanks to Grant Bartel).
-
+Release 1.7 - November 2015
+Changes since release 1.6.2:
+- in sync with QuantLib 1.7.
+- added optimizer interface for Java/Scala (thanks to Klaus Spanderen).
+- exported new Romanian and Israelian calendars (thanks to Riccardo Barone).
+- exported barrier and double barrier engines (thanks to Riccardo Ghetta).
+- exported a few missing methods of the Calendar class (thanks to Benoit Barthelet).
+- exported OptionletStripper1 and StrippedOptionletAdapter (thanks to Matthias Groncki).
+- exported more inspectors for discount and zero curves (thanks to Matthias Groncki).
+- exported the Libor class and the IborIndex::clone method (thanks to Matthias Groncki).
+- exported additional methods for VanillaSwap (thanks to Gouthaman Balaraman).
+- exported fixed-parameter constraint for calibration in short rate models
+  (thanks to Gouthaman Balaraman).

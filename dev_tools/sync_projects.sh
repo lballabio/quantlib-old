@@ -100,4 +100,5 @@ rm -f ql.vcx.filters test-suite.vcx.filters
 rm -f ql.devcpp.files test-suite.devcpp.files
 
 cat sync.report
+rm -f sync.report
 
