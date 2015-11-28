@@ -48,6 +48,7 @@ class BondFunctions {
     %rename("atm-rate")                   atmRate;
     %rename("basis-point-value")          basisPointValue;
     %rename("yield-value-basis-point")    yieldValueBasisPoint;
+    %rename("z-spread") zSpread;
     #endif
   public:
     %extend {
@@ -309,6 +310,29 @@ class BondFunctions {
                         compounding,
                         frequency,
                         settlementDate);
+        }
+        static Spread zSpread(const BondPtr& bond,
+                              Real cleanPrice,
+                              const boost::shared_ptr<YieldTermStructure>& discountCurve,
+                              const DayCounter& dayCounter,
+                              Compounding compounding,
+                              Frequency frequency,
+                              Date settlementDate = Date(),
+                              Real accuracy = 1.0e-10,
+                              Size maxIterations = 100,
+                              Rate guess = 0.0){
+            return QuantLib::BondFunctions::zSpread(
+                        *(boost::dynamic_pointer_cast<Bond>(bond)),
+                        cleanPrice, 
+                        discountCurve, 
+                        dayCounter,
+                        compounding,
+                        frequency,
+                        settlementDate,
+                        accuracy,
+                        maxIterations,
+                        guess);
+            
         }
     }
 };

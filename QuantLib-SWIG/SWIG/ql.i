@@ -241,6 +241,7 @@
 %include volatilities.i
 %include volatilitymodels.i
 %include zerocurve.i
+%include forward.i
 
 // to be deprecated
 %include old_volatility.i
