@@ -94,12 +94,16 @@
     <Compile Include="AmericanExercise.cs" />
     <Compile Include="AmortizingPayment.cs" />
     <Compile Include="AnalyticBarrierEngine.cs" />
+    <Compile Include="AnalyticBinaryBarrierEngine.cs" />
     <Compile Include="AnalyticCapFloorEngine.cs" />
     <Compile Include="AnalyticContinuousGeometricAveragePriceAsianEngine.cs" />
     <Compile Include="AnalyticDigitalAmericanEngine.cs" />
+    <Compile Include="AnalyticDigitalAmericanKOEngine.cs" />
     <Compile Include="AnalyticDiscreteGeometricAveragePriceAsianEngine.cs" />
     <Compile Include="AnalyticDiscreteGeometricAverageStrikeAsianEngine.cs" />
     <Compile Include="AnalyticDividendEuropeanEngine.cs" />
+    <Compile Include="AnalyticDoubleBarrierBinaryEngine.cs" />
+    <Compile Include="AnalyticDoubleBarrierEngine.cs" />
     <Compile Include="AnalyticEuropeanEngine.cs" />
     <Compile Include="AnalyticHaganPricer.cs" />
     <Compile Include="AnalyticHestonEngine.cs" />
@@ -131,8 +135,10 @@
     <Compile Include="BGLCurrency.cs" />
     <Compile Include="BicubicSpline.cs" />
     <Compile Include="BilinearInterpolation.cs" />
+    <Compile Include="BinomialBarrierEngine.cs" />
     <Compile Include="BinomialConvertibleEngine.cs" />
     <Compile Include="BinomialDistribution.cs" />
+    <Compile Include="BinomialDoubleBarrierEngine.cs" />
     <Compile Include="BinomialVanillaEngine.cs" />
     <Compile Include="Bisection.cs" />
     <Compile Include="BivariateCumulativeNormalDistribution.cs" />
@@ -184,6 +190,7 @@
     <Compile Include="CapFloorTermVolatilityStructure.cs" />
     <Compile Include="CapFloorTermVolatilityStructureHandle.cs" />
     <Compile Include="CapFloorTermVolCurve.cs" />
+    <Compile Include="CapFloorTermVolSurface.cs" />
     <Compile Include="CapHelper.cs" />
     <Compile Include="CappedFlooredCmsCoupon.cs" />
     <Compile Include="CappedFlooredCoupon.cs" />
@@ -206,6 +213,7 @@
     <Compile Include="CmsRateBond.cs" />
     <Compile Include="CNYCurrency.cs" />
     <Compile Include="Collar.cs" />
+    <Compile Include="CompositeConstraint.cs" />
     <Compile Include="CompositeInstrument.cs" />
     <Compile Include="Compounding.cs" />
     <Compile Include="ConjugateGradient.cs" />
@@ -247,9 +255,11 @@
     <Compile Include="DefaultProbabilityHelperVector.cs" />
     <Compile Include="DefaultProbabilityTermStructure.cs" />
     <Compile Include="DefaultProbabilityTermStructureHandle.cs" />
+    <Compile Include="DeltaVolQuoteHandle.cs" />
     <Compile Include="DEMCurrency.cs" />
     <Compile Include="Denmark.cs" />
     <Compile Include="DepositRateHelper.cs" />
+    <Compile Include="DifferentialEvolution.cs" />
     <Compile Include="DirichletBC.cs" />
     <Compile Include="Discount.cs" />
     <Compile Include="DiscountCurve.cs" />
@@ -262,6 +272,8 @@
     <Compile Include="DKKCurrency.cs" />
     <Compile Include="DKKLibor.cs" />
     <Compile Include="DMinus.cs" />
+    <Compile Include="DoubleBarrier.cs" />
+    <Compile Include="DoubleBarrierOption.cs" />
     <Compile Include="DoubleVector.cs" />
     <Compile Include="DownRounding.cs" />
     <Compile Include="DPlus.cs" />
@@ -470,6 +482,7 @@
     <Compile Include="IQDCurrency.cs" />
     <Compile Include="IRRCurrency.cs" />
     <Compile Include="ISKCurrency.cs" />
+    <Compile Include="Israel.cs" />
     <Compile Include="Italy.cs" />
     <Compile Include="ITLCurrency.cs" />
     <Compile Include="JamshidianSwaptionEngine.cs" />
@@ -490,6 +503,7 @@
     <Compile Include="Leg.cs" />
     <Compile Include="LevenbergMarquardt.cs" />
     <Compile Include="LexicographicalView.cs" />
+    <Compile Include="Libor.cs" />
     <Compile Include="Linear.cs" />
     <Compile Include="LinearInterpolation.cs" />
     <Compile Include="LocalConstantVol.cs" />
@@ -568,6 +582,7 @@
     <Compile Include="OptimizationMethod.cs" />
     <Compile Include="Optimizer.cs" />
     <Compile Include="Option.cs" />
+    <Compile Include="OptionletStripper1.cs" />
     <Compile Include="OptionletVolatilityStructure.cs" />
     <Compile Include="OptionletVolatilityStructureHandle.cs" />
     <Compile Include="OvernightIndex.cs" />
@@ -601,6 +616,7 @@
     <Compile Include="Protection.cs" />
     <Compile Include="PTECurrency.cs" />
     <Compile Include="QlArray.cs" />
+    <Compile Include="QuantoDoubleBarrierOption.cs" />
     <Compile Include="QuantoEuropeanEngine.cs" />
     <Compile Include="QuantoForwardEuropeanEngine.cs" />
     <Compile Include="QuantoForwardVanillaOption.cs" />
@@ -620,6 +636,7 @@
     <Compile Include="RelinkableCalibratedModelHandle.cs" />
     <Compile Include="RelinkableCapFloorTermVolatilityStructureHandle.cs" />
     <Compile Include="RelinkableDefaultProbabilityTermStructureHandle.cs" />
+    <Compile Include="RelinkableDeltaVolQuoteHandle.cs" />
     <Compile Include="RelinkableLocalVolTermStructureHandle.cs" />
     <Compile Include="RelinkableOptionletVolatilityStructureHandle.cs" />
     <Compile Include="RelinkableQuoteHandle.cs" />
@@ -633,6 +650,7 @@
     <Compile Include="Ridder.cs" />
     <Compile Include="RiskStatistics.cs" />
     <Compile Include="ROLCurrency.cs" />
+    <Compile Include="Romania.cs" />
     <Compile Include="RONCurrency.cs" />
     <Compile Include="Rounding.cs" />
     <Compile Include="RUBCurrency.cs" />
@@ -682,6 +700,8 @@
     <Compile Include="StochasticProcessArray.cs" />
     <Compile Include="StochasticProcessVector.cs" />
     <Compile Include="Stock.cs" />
+    <Compile Include="StrippedOptionletAdapter.cs" />
+    <Compile Include="StrippedOptionletBase.cs" />
     <Compile Include="StrVector.cs" />
     <Compile Include="StudentDistribution.cs" />
     <Compile Include="StulzEngine.cs" />
@@ -700,6 +720,7 @@
     <Compile Include="SwaptionVolCube2.cs" />
     <Compile Include="Sweden.cs" />
     <Compile Include="SWIGTYPE_p_BlackVolTermStructure.cs" />
+    <Compile Include="SWIGTYPE_p_boost__shared_ptrT_DeltaVolQuote_t.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_EndCriteria_t.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_IborIndex_t.cs" />
     <Compile Include="SWIGTYPE_p_boost__shared_ptrT_OptimizationMethod_t.cs" />
@@ -728,6 +749,7 @@
     <Compile Include="SWIGTYPE_p_ShortRateModel.cs" />
     <Compile Include="SWIGTYPE_p_std__size_t.cs" />
     <Compile Include="SWIGTYPE_p_StochasticProcess.cs" />
+    <Compile Include="SWIGTYPE_p_StrippedOptionletBase.cs" />
     <Compile Include="SWIGTYPE_p_SwaptionVolatilityStructure.cs" />
     <Compile Include="SWIGTYPE_p_YieldTermStructure.cs" />
     <Compile Include="SWIGTYPE_p_YoYHelper.cs" />
@@ -770,13 +792,16 @@
     <Compile Include="USDLibor.cs" />
     <Compile Include="VanillaOption.cs" />
     <Compile Include="VanillaSwap.cs" />
+    <Compile Include="VannaVolgaDoubleBarrierEngine.cs" />
     <Compile Include="VarianceGammaEngine.cs" />
     <Compile Include="VarianceGammaProcess.cs" />
     <Compile Include="Vasicek.cs" />
     <Compile Include="VEBCurrency.cs" />
     <Compile Include="VNDCurrency.cs" />
+    <Compile Include="VolatilityType.cs" />
     <Compile Include="Weekday.cs" />
     <Compile Include="WeekendsOnly.cs" />
+    <Compile Include="WulinYongDoubleBarrierEngine.cs" />
     <Compile Include="YearOnYearInflationSwap.cs" />
     <Compile Include="YearOnYearInflationSwapHelper.cs" />
     <Compile Include="YieldTermStructure.cs" />

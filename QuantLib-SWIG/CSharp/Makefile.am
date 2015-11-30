@@ -10,7 +10,7 @@ if BUILD_MCS
 all-local: libNQuantLibc.so NQuantLib.dll
 
 libNQuantLibc.so: cpp/quantlib_wrap.o
-	g++ -shared cpp/quantlib_wrap.o -o libNQuantLibc.so -lQuantLib
+	g++ -shared cpp/quantlib_wrap.o -o libNQuantLibc.so `quantlib-config --libs`
 
 cpp/quantlib_wrap.o: $(BUILT_SOURCES)
 	g++ -c -fpic $(CXXFLAGS) cpp/quantlib_wrap.cpp -o cpp/quantlib_wrap.o

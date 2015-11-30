@@ -34,6 +34,7 @@
     Copyright (C) 2005 Plamen Neykov
     Copyright (C) 2005 Aurelien Chanudet
     Copyright (C) 2015 Maddalena Zanzi
+    Copyright (C) 2015 Paolo Mazzocchi
   </copyright>
   <Functions>
 
@@ -54,9 +55,43 @@
       </ReturnValue>
     </Member>
 
-    <Member name='qlRateHelperLatestDate' type='QuantLib::RateHelper'>
-      <description>returns the latest date for the given RateHelper object.</description>
-      <libraryFunction>latestDate</libraryFunction>
+    <Member name='qlRateHelperLatestRelevantDate' type='QuantLib::RateHelper'>
+      <description>returns the latest relevant date for the given RateHelper object.</description>
+      <libraryFunction>latestRelevantDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperPillarDate' type='QuantLib::RateHelper'>
+      <description>returns the pillar date for the given RateHelper object.</description>
+      <libraryFunction>pillarDate</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Date</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlRateHelperMaturityDate' type='QuantLib::RateHelper'>
+      <description>returns the maturity date for the given RateHelper object.</description>
+      <libraryFunction>maturityDate</libraryFunction>
       <SupportedPlatforms>
         <SupportedPlatform name='Excel'/>
         <SupportedPlatform name='Calc'/>
@@ -268,6 +303,16 @@
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID.</description>
           </Parameter>
+          <Parameter name='PillarDate' default='"MaturityDate"'>
+            <type>QuantLib::Pillar::Choice</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Pillar date can be: MaturityDate, LastRelevantDate or CustomDate.</description>
+          </Parameter>
+          <Parameter name='CustomPillarDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Custom Pillar Date.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -339,6 +384,16 @@
             <superType>libToHandle</superType>
             <tensorRank>scalar</tensorRank>
             <description>discounting YieldTermStructure object ID.</description>
+          </Parameter>
+          <Parameter name='PillarDate' default='"MaturityDate"'>
+            <type>QuantLib::Pillar::Choice</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Pillar date can be: MaturityDate, LastRelevantDate or CustomDate.</description>
+          </Parameter>
+          <Parameter name='CustomPillarDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Custom Pillar Date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -486,6 +541,16 @@
             <tensorRank>scalar</tensorRank>
             <description>IborIndex object ID.</description>
           </Parameter>
+          <Parameter name='PillarDate' default='"MaturityDate"'>
+            <type>QuantLib::Pillar::Choice</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Pillar date can be: MaturityDate, LastRelevantDate or CustomDate.</description>
+          </Parameter>
+          <Parameter name='CustomPillarDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Custom Pillar Date.</description>
+          </Parameter>
         </Parameters>
       </ParameterList>
     </Constructor>
@@ -540,6 +605,16 @@
             <type>QuantLib::DayCounter</type>
             <tensorRank>scalar</tensorRank>
             <description>DayCounter ID.</description>
+          </Parameter>
+          <Parameter name='PillarDate' default='"MaturityDate"'>
+            <type>QuantLib::Pillar::Choice</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Pillar date can be: MaturityDate, LastRelevantDate or CustomDate.</description>
+          </Parameter>
+          <Parameter name='CustomPillarDate' default='QuantLib::Date()'>
+            <type>QuantLib::Date</type>
+            <tensorRank>scalar</tensorRank>
+            <description>Custom Pillar Date.</description>
           </Parameter>
         </Parameters>
       </ParameterList>
@@ -830,6 +905,187 @@
         </Parameters>
       </ParameterList>
     </Constructor>
+
+    <Constructor name='qlFxSwapRateHelper'>
+      <libraryFunction>FxSwapRateHelper</libraryFunction>
+      <SupportedPlatforms>
+        <!--SupportedPlatform name='Excel' calcInWizard='false'/-->
+        <SupportedPlatform name='Excel'/>
+        <SupportedPlatform name='Calc'/>
+        <SupportedPlatform name='Cpp'/>
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters>
+          <Parameter name='FwdPoint' exampleValue='0.136565'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>forward point quote.</description>
+          </Parameter>
+          <Parameter name='SpotFx' exampleValue='1.076565'>
+            <type>QuantLib::Quote</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>fx spot quote.</description>
+          </Parameter>
+          <Parameter name='Tenor' exampleValue='3M'>
+            <type>QuantLib::Period</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fx swap length (e.g. 3M for three months).</description>
+          </Parameter>
+          <Parameter name='FixingDays' exampleValue='2'>
+            <type>QuantLib::Natural</type>
+            <tensorRank>scalar</tensorRank>
+            <description>fixing days (e.g. 2).</description>
+          </Parameter>
+          <Parameter name='Calendar' exampleValue='TARGET'>
+            <type>QuantLib::Calendar</type>
+            <tensorRank>scalar</tensorRank>
+            <description>holiday calendar (e.g. TARGET).</description>
+          </Parameter>
+          <Parameter name='Convention' exampleValue='Modified Following'>
+            <type>QuantLib::BusinessDayConvention</type>
+            <tensorRank>scalar</tensorRank>
+            <description>business day convention (e.g. Modified Following).</description>
+          </Parameter>
+          <Parameter name='EndOfMonth' exampleValue='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>End of Month rule (TRUE for end of month to end of month termination date, FALSE otherwise).</description>
+          </Parameter>
+          <Parameter name='IsFxBaseCurrencyCollateralCurrency' exampleValue='true'>
+            <type>bool</type>
+            <tensorRank>scalar</tensorRank>
+            <description>TRUE if the base currency of the fx currency pair is the one used as collateral, FALSE otherwise.</description>
+          </Parameter>
+          <Parameter name='CollateralCurve' exampleValue='EURON'>
+            <type>QuantLib::YieldTermStructure</type>
+            <superType>libToHandle</superType>
+            <tensorRank>scalar</tensorRank>
+            <description>collateral YieldTermStructure object ID.</description>
+          </Parameter>
+        </Parameters>
+      </ParameterList>
+    </Constructor>
+
+    <Member name='qlFxSwapRateHelperSpotValue' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the fx spot quote value for the given FxSwapRateHelper object.</description>
+      <libraryFunction>spot</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Real</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperTenor' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the tenor for the given FxSwapRateHelper object.</description>
+      <libraryFunction>tenor</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Period</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperFixingDays' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the number of fixing days for the given FxSwapRateHelper object.</description>
+      <libraryFunction>fixingDays</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Natural</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperCalendar' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the calendar for the given FxSwapRateHelper object.</description>
+      <libraryFunction>calendar</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::Calendar</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperBDC' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the business day convention for the given FxSwapRateHelper object.</description>
+      <libraryFunction>businessDayConvention</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>QuantLib::BusinessDayConvention</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperEOM' type='QuantLib::FxSwapRateHelper'>
+      <description>returns the end of month flag for the given FxSwapRateHelper object.</description>
+      <libraryFunction>endOfMonth</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
+
+    <Member name='qlFxSwapRateHelperIsBaseCurrencyCollateralCurrency' type='QuantLib::FxSwapRateHelper'>
+      <description>returns TRUE if the base currency of the fx currency pair is the one used as collateral, FALSE otherwise.</description>
+      <libraryFunction>isFxBaseCurrencyCollateralCurrency</libraryFunction>
+      <SupportedPlatforms>
+        <SupportedPlatform name='Excel'/>
+        <!--SupportedPlatform name='Calc'/-->
+        <!--SupportedPlatform name='Cpp'/-->
+      </SupportedPlatforms>
+      <ParameterList>
+        <Parameters/>
+      </ParameterList>
+      <ReturnValue>
+        <type>bool</type>
+        <tensorRank>scalar</tensorRank>
+      </ReturnValue>
+    </Member>
 
     <Procedure name='qlRateHelperSelection'>
       <description>selects rate helpers for bootstrapping.</description>
