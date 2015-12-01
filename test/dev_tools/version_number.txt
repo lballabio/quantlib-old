@@ -8,13 +8,13 @@ l  can be a,b,f for alpha, beta, final respectively;
    for 0.x releases f is the only choice that makes sense
 n  is an ordinal number; 0 is only allowed when l equals f
 
-e.g. R010300a2 stands for Release 1.3.0a2
+e.g. R010300a2 stands for Release 1.3.1a2
      R000501f0 stands for Release 0.5.1
 
 Since QuantLib 1.3, the tags are more readable. However, the above is
 still used in the code to check the version programmatically.
 
-The current version number is 1.8 - R010800f0
+The current version number is 1.9 - R010901a2
 
 This version number needs to be updated manually in:
 
@@ -26,3 +26,4 @@ This version number needs to be updated manually in:
     QuantLib-SWIG/SWIG/ql.i
 
     QuantLibXL/framework/QuantLibXL.xla
+
