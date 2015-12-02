@@ -18,42 +18,58 @@
 
 <h1 class="center" id="qlws14">QuantLib User Meeting 2015</h1>
 
-<p>The QuantLib User Meeting 2015 will be held in D&uuml;sseldorf on
+<p>The QuantLib User Meeting 2015 was held in D&uuml;sseldorf on
 November 30th and December 1st, thanks to the sponsorship of
 <a href="http://www.ikb.de/">IKB</a>
 and <a href="http://www.compatibl.com/">CompatibL</a>.</p>
 
-<p>Registration is free, but places are limited.  A PDF flyer is
-available with more information: <a href="/qlum15.pdf">download it
-here</a>.</p>
+<center>
+  <img src="/images/qlum15.jpg" width="80%" border="0" alt="group photo">
+</center>
 
-<p>Schedule:</p>
+<p>The slides for most of the the talks are available by clicking on
+their title. The missing ones will be added in the next few days.</p>
 
 <h3>Monday, November 30th</h3>
 <table>
-  <tr><td>J&ouml;rg Kienitz, <i>A Short History of SABR &mdash; From
-        approximation formulas to PDEs and back</i></td></tr>
+  <tr><td>J&ouml;rg Kienitz,
+          <i><a href="/slides/qlum15/kienitz.pdf">An Overview of
+          Negative Rates, SABR PDE and Approximation</a></i></td></tr>
   <tr><td>Alexander Sokol, <i>Implementing AAD in QuantLib</i></td></tr>
-  <tr><td>Ferdinando M. Ametrano and Paolo Mazzocchi, <i>Parametric basis rate
-        curves / Excel Rate Curve Framework</i></td></tr>
-  <tr><td>Eric Ehlers, <i>Cloud computing in QuantLib</i></td></tr>
-  <tr><td>Klaus Spanderen and Johannes
-        G&ouml;ttker-Schnetmann, <i>Calibration of Stochastic Local
-        Volatility Models</i></td></tr>
+  <tr><td>Ferdinando M. Ametrano and Paolo Mazzocchi,
+          <i><a href="https://speakerdeck.com/nando1970/the-abcd-of-forward-rate-bootstrapping">The
+          abcd of Forward Rate Bootstrapping</a> / Excel Rate Curve
+          Framework</i></td></tr>
+  <tr><td>Eric Ehlers,
+          <i><a href="/slides/qlum15/ehlers.pdf">Cloud computing in
+          QuantLib</a></i></td></tr>
+  <tr><td>Klaus Spanderen and Johannes G&ouml;ttker-Schnetmann,
+          <i><a href="/slides/qlum15/spanderen.pdf">Calibration of
+          Heston Local Volatility Models</a></i> (with a few
+          <a href="/slides/qlum15/spanderen.zip">animations</a> not
+          included in the slides)</td></tr>
 </table>
 
 <h3>Tuesday, December 1st</h3>
 <table>
-  <tr><td>Peter Caspers, <i>Negative rates in QuantLib / AD beyond
-        typedef and operator overloading</i></td></tr>
-  <tr><td>Andreas Pfadler, <i>Proof of concept for a modern,
-        distributed pricing architecture based on open source
-        components</i></td></tr>
-  <tr><td>Roland Lichters, <i>CSA Pricing using QuantLib</i></td></tr>
-  <tr><td>Sebastian Schlenkrich, <i>Multi-curve Pricing of
-        Non-Standard Tenor Vanilla Options in QuantLib</i></td></tr>
-  <tr><td>Luigi Ballabio, <i>Ship it! QuantLib, Docker, and IPython
-        Notebook</i></td></tr>
+  <tr><td>Peter Caspers,
+      <i><a href="/slides/qlum15/caspers1.pdf">Negative rates in
+      QuantLib</a> / <a href="/slides/qlum15/caspers2.pdf">AD beyond
+      typedef and operator overloading</a></i></td></tr>
+  <tr><td>Andreas Pfadler,
+      <i><a href="/slides/qlum15/pfadler.pdf">Proof of concept for a
+      modern, distributed pricing architecture based on open source
+      components</a></i></td></tr>
+  <tr><td>Roland Lichters,
+      <i><a href="/slides/qlum15/lichters.pdf">CSA Pricing using
+      QuantLib</a></i></td></tr>
+  <tr><td>Sebastian Schlenkrich,
+      <i><a href="/slides/qlum15/schlenkrich.pdf">Multi-curve Pricing
+      of Non-Standard Tenor Vanilla Options in
+      QuantLib</a></i></td></tr>
+  <tr><td>Luigi Ballabio,
+      <i><a href="https://www.youtube.com/watch?v=LZbsxs_VGtQ">Ship
+      it! QuantLib, IPython Notebook, and Docker</a></i></td></tr>
 </table>
 
 </div>
