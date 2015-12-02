@@ -6,6 +6,6 @@ WriteMakefile(
 	      'OBJECT'  => 'quantlib_wrap.o',  # Object files
 	      'MAKEFILE' => 'Makefile.quantlib',
 	      'FIRST_MAKEFILE' => 'Makefile.quantlib',
-	      'VERSION' => '1.9'
+	      'VERSION' => '1.8'
 	      );
 
