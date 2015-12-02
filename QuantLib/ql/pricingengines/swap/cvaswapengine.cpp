@@ -31,14 +31,22 @@ namespace QuantLib {
   CounterpartyAdjSwapEngine::CounterpartyAdjSwapEngine(
       const Handle<YieldTermStructure>& discountCurve,
       const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
-      Real ctptyRecoveryRate)
+      Real ctptyRecoveryRate,
+      const Handle<DefaultProbabilityTermStructure>& invstDTS,
+      Real invstRecoveryRate)
   : baseSwapEngine_(Handle<PricingEngine>(
       boost::make_shared<DiscountingSwapEngine>(discountCurve))),
       // to turn into a template arg and factory through constructors
       discountCurve_(discountCurve), 
       defaultTS_(ctptyDTS), 
-      ctptyRecoveryRate_(ctptyRecoveryRate)
-  {};
+    ctptyRecoveryRate_(ctptyRecoveryRate),
+    invstDTS_(invstDTS),
+    invstRecoveryRate_(invstRecoveryRate)
+  {
+      registerWith(discountCurve);
+      registerWith(ctptyDTS);
+      registerWith(invstDTS);
+  };
 
 
   void CounterpartyAdjSwapEngine::calculate() const {
@@ -51,7 +59,8 @@ namespace QuantLib {
         boost::make_shared<BlackSwaptionEngine>(discountCurve_,
             volRates);
 
-    Real cumOptVal = 0.;
+    Real cumOptVal = 0., 
+        cumPutVal = 0.;
     // Vanilla swap so 0 leg is floater
 
     std::vector<Date>::const_iterator iFD = 
@@ -84,47 +93,69 @@ namespace QuantLib {
     Real baseSwapNPV =  dynamic_cast<const Swap::results *>(
       baseSwapEngine_->getResults())->value;
 
+    VanillaSwap::Type reversedType = arguments_.type == VanillaSwap::Payer ? 
+        VanillaSwap::Receiver : VanillaSwap::Payer;
+
     // Swaplet options summatory:
     while(nextFD != arguments_.fixedPayDates.end()) {
 
 	        // iFD coupon not fixed, create swaptionlet:
       boost::shared_ptr<IborIndex> swapIndex = 
-	boost::dynamic_pointer_cast<IborIndex>(
+    	boost::dynamic_pointer_cast<IborIndex>(
           boost::dynamic_pointer_cast<FloatingRateCoupon>(
-	    arguments_.legs[1][0])->index());
+	        arguments_.legs[1][0])->index());
 
       // Alternatively one could cap this period to, say, 1M 
       Period swapPeriod = boost::dynamic_pointer_cast<FloatingRateCoupon>(
         arguments_.legs[1][0])->index()->tenor();
 
       Period baseSwapsTenor(arguments_.fixedPayDates.back().serialNumber() 
-	- swapletStart.serialNumber(), Days);
+	    - swapletStart.serialNumber(), Days);
       boost::shared_ptr<VanillaSwap> swaplet = MakeVanillaSwap(
         baseSwapsTenor,
         swapIndex, 
         baseSwapFairRate // strike
         )
-	.withType(arguments_.type)
-	.withNominal(arguments_.nominal)
-	.withSettlementDays(2)
+	    .withType(arguments_.type)
+	    .withNominal(arguments_.nominal)
+	    .withSettlementDays(2)
         .withEffectiveDate(swapletStart)
         .withTerminationDate(arguments_.fixedPayDates.back());
+      boost::shared_ptr<VanillaSwap> revSwaplet = MakeVanillaSwap(
+        baseSwapsTenor,
+        swapIndex, 
+        baseSwapFairRate // strike
+        )
+	    .withType(reversedType)
+	    .withNominal(arguments_.nominal)
+	    .withSettlementDays(2)
+        .withEffectiveDate(swapletStart)
+        .withTerminationDate(arguments_.fixedPayDates.back());
+
       Swaption swaptionlet(swaplet, 
         boost::make_shared<EuropeanExercise>(swapletStart));
+      Swaption putSwaplet(revSwaplet, 
+        boost::make_shared<EuropeanExercise>(swapletStart));
       swaptionlet.setPricingEngine(spationletEngine);
+      putSwaplet.setPricingEngine(spationletEngine);
 
+      // atm underlying swap means that the value of put = value
+      // call so this double pricing is not needed
       cumOptVal += swaptionlet.NPV() * defaultTS_->defaultProbability(
-	swapletStart, *nextFD);
+          swapletStart, *nextFD);
+      cumPutVal += putSwaplet.NPV()  * invstDTS_->defaultProbability(
+	      swapletStart, *nextFD);
 
       swapletStart = *nextFD;
       nextFD++;
     }
   
-    results_.value = baseSwapNPV - (1.-ctptyRecoveryRate_) * cumOptVal;
+    results_.value = baseSwapNPV - (1.-ctptyRecoveryRate_) * cumOptVal
+        + (1.-invstRecoveryRate_) * cumPutVal;
 
     results_.fairRate =  -baseSwapRate * (dynamic_cast<const Swap::results *>(
       baseSwapEngine_->getResults())->legNPV[1] - 
-      (1.-ctptyRecoveryRate_) * cumOptVal )
+      (1.-ctptyRecoveryRate_) * cumOptVal + (1.-invstRecoveryRate_) * cumPutVal )
       /  dynamic_cast<const Swap::results *>(
         baseSwapEngine_->getResults())->legNPV[0];
   }

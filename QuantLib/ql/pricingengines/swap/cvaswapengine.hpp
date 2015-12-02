@@ -30,7 +30,8 @@
 
 namespace QuantLib {
 
-  /*! Unilateral counterparty adjusted swap pricing engine.
+  /*! Bilateral (CVA and DVA) default adjusted swap pricing 
+    engine. Based on:
     See sect. II-5 in: Risk Neutral Pricing of Counterparty Risk
     D. Brigo, M. Masetti, 2004
     or in "A Formula for Interest Rate Swaps Valuation under
@@ -40,14 +41,18 @@ namespace QuantLib {
     Using an object for the option engine. It might be more adecute
     to use a template. Using a type avoids resetting arguments and 
     results to the outside object with all the notifications passed.
+
+    to do: Compute fair rate through iteration instead of the 
+    current approximation .
    */
-  class CounterpartyAdjSwapEngine : public VanillaSwap::engine { ///  ?????  : public Swap::engine
+  class CounterpartyAdjSwapEngine : public VanillaSwap::engine {
     public:
-      // TODO: Registrations:
       CounterpartyAdjSwapEngine(
           const Handle<YieldTermStructure>& discountCurve,
           const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
-          Real ctptyRecoveryRate);
+          Real ctptyRecoveryRate,
+          const Handle<DefaultProbabilityTermStructure>& invstDTS,
+          Real invstRecoveryRate);
 
       // write another constructor with issuer and event type.
 
@@ -58,6 +63,8 @@ namespace QuantLib {
       Handle<YieldTermStructure> discountCurve_;
       Handle<DefaultProbabilityTermStructure> defaultTS_;	  
       Real ctptyRecoveryRate_;
+      Handle<DefaultProbabilityTermStructure> invstDTS_;	  
+      Real invstRecoveryRate_;
   };
 
 }

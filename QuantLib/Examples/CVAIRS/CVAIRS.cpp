@@ -134,22 +134,37 @@ int main(int, char* []) {
                    Actual360(), 
                    TARGET()))));
 
+        Handle<DefaultProbabilityTermStructure> riskLessDTS(
+            boost::shared_ptr<DefaultProbabilityTermStructure>(
+                 new InterpolatedHazardRateCurve<BackwardFlat>(
+                   defaultTSDates, 
+                   std::vector<Real>(defaultTSDates.size(), 1.e-12),
+                   Actual360(), 
+                   TARGET())));
+        Real riskLessRR = 0.999;
+
         boost::shared_ptr<PricingEngine> ctptySwapCvaLow = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
-                 Handle<YieldTermStructure>(swapTS), defaultIntensityTS[0], 
-                     ctptyRRLow);
+                Handle<YieldTermStructure>(swapTS), defaultIntensityTS[0], 
+                ctptyRRLow, riskLessDTS, riskLessRR);
+        /*
+                 Handle<YieldTermStructure>(swapTS),  
+                 riskLessDTS, riskLessRR, defaultIntensityTS[0], 
+                 ctptyRRLow);
+        */
         boost::shared_ptr<PricingEngine> ctptySwapCvaMedium = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
                  Handle<YieldTermStructure>(swapTS), defaultIntensityTS[1],
-                     ctptyRRMedium);
+                     ctptyRRMedium, riskLessDTS, riskLessRR);
         boost::shared_ptr<PricingEngine> ctptySwapCvaHigh = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
                  Handle<YieldTermStructure>(swapTS), defaultIntensityTS[2],
-                     ctptyRRHigh);
+                     ctptyRRHigh, riskLessDTS, riskLessRR);
         
         defaultIntensityTS[0]->enableExtrapolation();
         defaultIntensityTS[1]->enableExtrapolation();
         defaultIntensityTS[2]->enableExtrapolation();
+        riskLessDTS->enableExtrapolation();
 
         /// SWAP RISKY REPRICE----------------------------------------------
 
@@ -190,7 +205,7 @@ int main(int, char* []) {
             .withNominal(100.)
             .withType(swapType));
 
-        cout << " ---- Correction in the contract fix rate ---" << endl;
+        cout << "-- Correction in the contract fix rate in bp --" << endl;
         /* The paper plots correction to be substracted, here is printed
            with its sign 
         */
