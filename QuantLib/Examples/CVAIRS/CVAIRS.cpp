@@ -225,18 +225,36 @@ int main(int, char* []) {
             riskySwaps[i].setPricingEngine(ctptySwapCvaLow);
             cout << " | " << setw(6) 
                  << 10000.*(riskySwaps[i].fairRate() - nonRiskyFair);
+            // cout << " | " << setw(6) << riskySwaps[i].NPV() ;
 
             // Medium Risk:
             riskySwaps[i].setPricingEngine(ctptySwapCvaMedium);
             cout << " | " << setw(6) 
                  << 10000.*(riskySwaps[i].fairRate() - nonRiskyFair);
+            // cout << " | " << setw(6) << riskySwaps[i].NPV() ;
 
             riskySwaps[i].setPricingEngine(ctptySwapCvaHigh);
             cout << " | " << setw(6) 
                  << 10000.*(riskySwaps[i].fairRate() - nonRiskyFair);
+            // cout << " | " << setw(6) << riskySwaps[i].NPV() ;
 
             cout << endl;
         }
+
+        cout << endl;
+
+        Real seconds  = timer.elapsed();
+        Integer hours = Integer(seconds/3600);
+        seconds -= hours * 3600;
+        Integer minutes = Integer(seconds/60);
+        seconds -= minutes * 60;
+        cout << "Run completed in ";
+        if (hours > 0)
+            cout << hours << " h ";
+        if (hours > 0 || minutes > 0)
+            cout << minutes << " m ";
+        cout << fixed << setprecision(0)
+             << seconds << " s" << endl;
 
         return 0;
     } catch (exception& e) {
