@@ -20,19 +20,14 @@
 #ifndef quantlib_cva_swap_engine_hpp
 #define quantlib_cva_swap_engine_hpp
 
+#include <ql/handle.hpp>
 #include <ql/instruments/vanillaswap.hpp>
-#include <ql/instruments/swaption.hpp>
-
-//temporary, type is fixed:
-/* ***************************************************************
-#include <ql/pricingengines/swap/discountingswapengine.hpp>
-#include <ql/termstructures/defaulttermstructure.hpp>
-#include <ql/pricingengines/swaption/blackswaptionengine.hpp>
-*/
 
 namespace QuantLib {
 
     class DefaultProbabilityTermStructure;
+    class YieldTermStructure;
+    class Quote;
 
   /*! Bilateral (CVA and DVA) default adjusted vanilla swap pricing
     engine. Collateral is not considered. No wrong way risk is 
@@ -48,18 +43,20 @@ namespace QuantLib {
 
     to do: Compute fair rate through iteration instead of the 
     current approximation .
+
+    to do: writes Issuer based constructors (event type)
    */
   class CounterpartyAdjSwapEngine : public VanillaSwap::engine {
     public:
       
       CounterpartyAdjSwapEngine(
           const Handle<YieldTermStructure>& discountCurve,
-          const Handle<Swaption::engine>& swaptionEngine,
+          const Handle<PricingEngine>& swaptionEngine,
           const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
           Real ctptyRecoveryRate,
-          const Handle<DefaultProbabilityTermStructure>& invstDTS,
-          Real invstRecoveryRate);
-    
+          const Handle<DefaultProbabilityTermStructure>& invstDTS =
+              Handle<DefaultProbabilityTermStructure>(),
+          Real invstRecoveryRate = 0.999);
       /*! Creates an engine with a black volatility model for the 
         exposure.
        */
@@ -68,8 +65,9 @@ namespace QuantLib {
           const Volatility blackVol,
           const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
           Real ctptyRecoveryRate,
-          const Handle<DefaultProbabilityTermStructure>& invstDTS,
-          Real invstRecoveryRate);
+          const Handle<DefaultProbabilityTermStructure>& invstDTS =
+              Handle<DefaultProbabilityTermStructure>(),
+          Real invstRecoveryRate = 0.999);
       /*! Creates an engine with a black volatility model for the 
         exposure.
        */
@@ -78,14 +76,14 @@ namespace QuantLib {
           const Handle<Quote>& blackVol,
           const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
           Real ctptyRecoveryRate,
-          const Handle<DefaultProbabilityTermStructure>& invstDTS,
-          Real invstRecoveryRate);
-      // write another constructor with issuer and event type.
+          const Handle<DefaultProbabilityTermStructure>& invstDTS =
+              Handle<DefaultProbabilityTermStructure>(),
+          Real invstRecoveryRate = 0.999);
 
       void calculate() const;
     private:
       Handle<PricingEngine> baseSwapEngine_;
-      Handle<Swaption::engine> swaptionletEngine_;
+      Handle<PricingEngine> swaptionletEngine_;
       Handle<YieldTermStructure> discountCurve_;
       Handle<DefaultProbabilityTermStructure> defaultTS_;	  
       Real ctptyRecoveryRate_;

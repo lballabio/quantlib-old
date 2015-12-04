@@ -26,6 +26,18 @@
 using namespace std;
 using namespace QuantLib;
 
+#ifdef BOOST_MSVC
+#  ifdef QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN
+#    include <ql/auto_link.hpp>
+#    define BOOST_LIB_NAME boost_system
+#    include <boost/config/auto_link.hpp>
+#    undef BOOST_LIB_NAME
+#    define BOOST_LIB_NAME boost_thread
+#    include <boost/config/auto_link.hpp>
+#    undef BOOST_LIB_NAME
+#  endif
+#endif
+
 #if defined(QL_ENABLE_SESSIONS)
 namespace QuantLib {
 
@@ -133,42 +145,43 @@ int main(int, char* []) {
                    intesitiesVHigh,
                    Actual360(), 
                    TARGET()))));
-
-        Handle<DefaultProbabilityTermStructure> riskLessDTS(
+        /*
+        Handle<DefaultProbabilityTermStructure> invstDTS(
             boost::shared_ptr<DefaultProbabilityTermStructure>(
                  new InterpolatedHazardRateCurve<BackwardFlat>(
                    defaultTSDates, 
-                   std::vector<Real>(defaultTSDates.size(), 1.e-12),
+                   std::vector<Real>(defaultTSDates.size(), 0.1),
                    Actual360(), 
                    TARGET())));
-        Real riskLessRR = 0.999;
+        Real riskLessRR = 0.1999;
+        */
         
-        Volatility blackVol = 0.15;
+        Volatility blackVol = 0.15;   
         boost::shared_ptr<PricingEngine> ctptySwapCvaLow = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
                  Handle<YieldTermStructure>(swapTS), 
-                     blackVol, defaultIntensityTS[0], 
-                     ctptyRRLow, riskLessDTS, riskLessRR);
-        /*
-                 Handle<YieldTermStructure>(swapTS),  
-                 riskLessDTS, riskLessRR, defaultIntensityTS[0], 
-                 ctptyRRLow);
-        */
+                 blackVol,
+                 defaultIntensityTS[0], 
+                 ctptyRRLow
+                 );//, riskLessDTS, riskLessRR);
+
         boost::shared_ptr<PricingEngine> ctptySwapCvaMedium = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
                  Handle<YieldTermStructure>(swapTS), 
-                     blackVol, defaultIntensityTS[1],
-                     ctptyRRMedium, riskLessDTS, riskLessRR);
+                 blackVol, 
+                 defaultIntensityTS[1],
+                 ctptyRRMedium);//, riskLessDTS, riskLessRR);
         boost::shared_ptr<PricingEngine> ctptySwapCvaHigh = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
                  Handle<YieldTermStructure>(swapTS), 
-                     blackVol, defaultIntensityTS[2],
-                     ctptyRRHigh, riskLessDTS, riskLessRR);
+                 blackVol,
+                 defaultIntensityTS[2],
+                 ctptyRRHigh);//, riskLessDTS, riskLessRR);
         
         defaultIntensityTS[0]->enableExtrapolation();
         defaultIntensityTS[1]->enableExtrapolation();
         defaultIntensityTS[2]->enableExtrapolation();
-        riskLessDTS->enableExtrapolation();
+        //riskLessDTS->enableExtrapolation();
 
         /// SWAP RISKY REPRICE----------------------------------------------
 
@@ -198,7 +211,9 @@ int main(int, char* []) {
         std::vector<VanillaSwap> riskySwaps;
         for(Size i=0; i<sizeof(ternorsSwapMkt)/sizeof(Size); i++) 
             riskySwaps.push_back(MakeVanillaSwap(ternorsSwapMkt[i]*Years,
-                yieldIndxS, ratesSwapmkt[i], 0*Days)
+                yieldIndxS,
+                ratesSwapmkt[i], 
+                0*Days)
             .withSettlementDays(2)
             .withFixedLegDayCount(fixedLegDayCounter)
             .withFixedLegTenor(Period(fixedLegFrequency))
@@ -229,18 +244,18 @@ int main(int, char* []) {
             riskySwaps[i].setPricingEngine(ctptySwapCvaLow);
             cout << " | " << setw(6) 
                  << 10000.*(riskySwaps[i].fairRate() - nonRiskyFair);
-            // cout << " | " << setw(6) << riskySwaps[i].NPV() ;
+            //cout << " | " << setw(6) << riskySwaps[i].NPV() ;
 
             // Medium Risk:
             riskySwaps[i].setPricingEngine(ctptySwapCvaMedium);
             cout << " | " << setw(6) 
                  << 10000.*(riskySwaps[i].fairRate() - nonRiskyFair);
-            // cout << " | " << setw(6) << riskySwaps[i].NPV() ;
+            //cout << " | " << setw(6) << riskySwaps[i].NPV() ;
 
             riskySwaps[i].setPricingEngine(ctptySwapCvaHigh);
             cout << " | " << setw(6) 
                  << 10000.*(riskySwaps[i].fairRate() - nonRiskyFair);
-            // cout << " | " << setw(6) << riskySwaps[i].NPV() ;
+            //cout << " | " << setw(6) << riskySwaps[i].NPV() ;
 
             cout << endl;
         }

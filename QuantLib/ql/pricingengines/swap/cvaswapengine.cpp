@@ -27,30 +27,32 @@
 #include <ql/exercise.hpp>
 #include <ql/pricingengines/swap/discountingswapengine.hpp>
 #include <ql/termstructures/defaulttermstructure.hpp>
+#include <ql/termstructures/credit/flathazardrate.hpp>
 #include <ql/pricingengines/swaption/blackswaptionengine.hpp>
 
 namespace QuantLib {
   
   CounterpartyAdjSwapEngine::CounterpartyAdjSwapEngine(
       const Handle<YieldTermStructure>& discountCurve,
-      const Handle<Swaption::engine>& swaptionEngine,
+      const Handle<PricingEngine>& swaptionEngine,
       const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
       Real ctptyRecoveryRate,
       const Handle<DefaultProbabilityTermStructure>& invstDTS,
       Real invstRecoveryRate)
   : baseSwapEngine_(Handle<PricingEngine>(
       boost::make_shared<DiscountingSwapEngine>(discountCurve))),
-      // to turn into a template arg and factory through constructors
     discountCurve_(discountCurve), 
     swaptionletEngine_(swaptionEngine),
     defaultTS_(ctptyDTS), 
     ctptyRecoveryRate_(ctptyRecoveryRate),
-    invstDTS_(invstDTS),
+    invstDTS_(invstDTS.empty() ? Handle<DefaultProbabilityTermStructure>(
+        boost::make_shared<FlatHazardRate>(0, ctptyDTS->calendar(), 1.e-12, 
+        ctptyDTS->dayCounter()) ) : invstDTS ),
     invstRecoveryRate_(invstRecoveryRate)
   {
       registerWith(discountCurve);
       registerWith(ctptyDTS);
-      registerWith(invstDTS);
+      registerWith(invstDTS_);
       registerWith(swaptionEngine);
   }
 
@@ -63,19 +65,20 @@ namespace QuantLib {
         Real invstRecoveryRate)
   : baseSwapEngine_(Handle<PricingEngine>(
       boost::make_shared<DiscountingSwapEngine>(discountCurve))),
-      // to turn into a template arg and factory through constructors
     discountCurve_(discountCurve), 
-    swaptionletEngine_(Handle<Swaption::engine>(
+    swaptionletEngine_(Handle<PricingEngine>(
       boost::make_shared<BlackSwaptionEngine>(discountCurve,
         blackVol))),
     defaultTS_(ctptyDTS), 
     ctptyRecoveryRate_(ctptyRecoveryRate),
-    invstDTS_(invstDTS),
+    invstDTS_(invstDTS.empty() ? Handle<DefaultProbabilityTermStructure>(
+        boost::make_shared<FlatHazardRate>(0, ctptyDTS->calendar(), 1.e-12, 
+        ctptyDTS->dayCounter()) ) : invstDTS ),
     invstRecoveryRate_(invstRecoveryRate)
   {
       registerWith(discountCurve);
       registerWith(ctptyDTS);
-      registerWith(invstDTS);
+      registerWith(invstDTS_);
   }
 
   CounterpartyAdjSwapEngine::CounterpartyAdjSwapEngine(
@@ -87,23 +90,25 @@ namespace QuantLib {
         Real invstRecoveryRate)
   : baseSwapEngine_(Handle<PricingEngine>(
       boost::make_shared<DiscountingSwapEngine>(discountCurve))),
-      // to turn into a template arg and factory through constructors
     discountCurve_(discountCurve), 
-    swaptionletEngine_(Handle<Swaption::engine>(
+    swaptionletEngine_(Handle<PricingEngine>(
       boost::make_shared<BlackSwaptionEngine>(discountCurve,
         blackVol))),
     defaultTS_(ctptyDTS), 
     ctptyRecoveryRate_(ctptyRecoveryRate),
-    invstDTS_(invstDTS),
+    invstDTS_(invstDTS.empty() ? Handle<DefaultProbabilityTermStructure>(
+        boost::make_shared<FlatHazardRate>(0, ctptyDTS->calendar(), 1.e-12, 
+        ctptyDTS->dayCounter()) ) : invstDTS ),
     invstRecoveryRate_(invstRecoveryRate)
   {
       registerWith(discountCurve);
       registerWith(ctptyDTS);
-      registerWith(invstDTS);
+      registerWith(invstDTS_);
       registerWith(blackVol);
   }
 
   void CounterpartyAdjSwapEngine::calculate() const {
+      // both DTS, YTS ref dates and pricing date consistency checks?
     Date priceDate = defaultTS_->referenceDate();
 
     Real cumOptVal = 0., 
@@ -131,22 +136,20 @@ namespace QuantLib {
     baseSwapEngine_->calculate();
 
     Rate baseSwapRate = boost::dynamic_pointer_cast<FixedRateCoupon>(
-	            arguments_.legs[0][0])->rate();
-    Rate baseSwapFairRate = -baseSwapRate * 
-      dynamic_cast<const Swap::results *>(
-        baseSwapEngine_->getResults())->legNPV[1]   
-        /  dynamic_cast<const Swap::results *>(
-      baseSwapEngine_->getResults())->legNPV[0];
-    Real baseSwapNPV =  dynamic_cast<const Swap::results *>(
-      baseSwapEngine_->getResults())->value;
+	    arguments_.legs[0][0])->rate();
+
+    const Swap::results * vSResults =  
+        dynamic_cast<const Swap::results *>(baseSwapEngine_->getResults());
+    Rate baseSwapFairRate = -baseSwapRate * vSResults->legNPV[1] / 
+        vSResults->legNPV[0];
+    Real baseSwapNPV = vSResults->value;
 
     VanillaSwap::Type reversedType = arguments_.type == VanillaSwap::Payer ? 
         VanillaSwap::Receiver : VanillaSwap::Payer;
 
     // Swaplet options summatory:
     while(nextFD != arguments_.fixedPayDates.end()) {
-
-	        // iFD coupon not fixed, create swaptionlet:
+      // iFD coupon not fixed, create swaptionlet:
       boost::shared_ptr<IborIndex> swapIndex = 
     	boost::dynamic_pointer_cast<IborIndex>(
           boost::dynamic_pointer_cast<FloatingRateCoupon>(
@@ -200,11 +203,17 @@ namespace QuantLib {
     results_.value = baseSwapNPV - (1.-ctptyRecoveryRate_) * cumOptVal
         + (1.-invstRecoveryRate_) * cumPutVal;
 
-    results_.fairRate =  -baseSwapRate * (dynamic_cast<const Swap::results *>(
+    results_.fairRate =  -baseSwapRate * (vSResults->legNPV[1] 
+        - (1.-ctptyRecoveryRate_) * cumOptVal + 
+          (1.-invstRecoveryRate_) * cumPutVal )
+      / vSResults->legNPV[0];
+    /*
+ (dynamic_cast<const Swap::results *>(
       baseSwapEngine_->getResults())->legNPV[1] - 
       (1.-ctptyRecoveryRate_) * cumOptVal + (1.-invstRecoveryRate_) * cumPutVal )
       /  dynamic_cast<const Swap::results *>(
         baseSwapEngine_->getResults())->legNPV[0];
+    */
   }
 
 
