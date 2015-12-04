@@ -142,11 +142,13 @@ int main(int, char* []) {
                    Actual360(), 
                    TARGET())));
         Real riskLessRR = 0.999;
-
+        
+        Volatility blackVol = 0.15;
         boost::shared_ptr<PricingEngine> ctptySwapCvaLow = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
-                Handle<YieldTermStructure>(swapTS), defaultIntensityTS[0], 
-                ctptyRRLow, riskLessDTS, riskLessRR);
+                 Handle<YieldTermStructure>(swapTS), 
+                     blackVol, defaultIntensityTS[0], 
+                     ctptyRRLow, riskLessDTS, riskLessRR);
         /*
                  Handle<YieldTermStructure>(swapTS),  
                  riskLessDTS, riskLessRR, defaultIntensityTS[0], 
@@ -154,11 +156,13 @@ int main(int, char* []) {
         */
         boost::shared_ptr<PricingEngine> ctptySwapCvaMedium = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
-                 Handle<YieldTermStructure>(swapTS), defaultIntensityTS[1],
+                 Handle<YieldTermStructure>(swapTS), 
+                     blackVol, defaultIntensityTS[1],
                      ctptyRRMedium, riskLessDTS, riskLessRR);
         boost::shared_ptr<PricingEngine> ctptySwapCvaHigh = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
-                 Handle<YieldTermStructure>(swapTS), defaultIntensityTS[2],
+                 Handle<YieldTermStructure>(swapTS), 
+                     blackVol, defaultIntensityTS[2],
                      ctptyRRHigh, riskLessDTS, riskLessRR);
         
         defaultIntensityTS[0]->enableExtrapolation();

@@ -24,42 +24,68 @@
 #include <ql/instruments/swaption.hpp>
 
 //temporary, type is fixed:
+/* ***************************************************************
 #include <ql/pricingengines/swap/discountingswapengine.hpp>
 #include <ql/termstructures/defaulttermstructure.hpp>
 #include <ql/pricingengines/swaption/blackswaptionengine.hpp>
+*/
 
 namespace QuantLib {
 
-  /*! Bilateral (CVA and DVA) default adjusted swap pricing 
-    engine. Based on:
-    See sect. II-5 in: Risk Neutral Pricing of Counterparty Risk
-    D. Brigo, M. Masetti, 2004
-    or in "A Formula for Interest Rate Swaps Valuation under
-      Counterparty Risk in presence of Netting Agreements"
-    D. Brigo and M. Masetti; May 4, 2005
+    class DefaultProbabilityTermStructure;
 
-    Using an object for the option engine. It might be more adecute
-    to use a template. Using a type avoids resetting arguments and 
-    results to the outside object with all the notifications passed.
+  /*! Bilateral (CVA and DVA) default adjusted vanilla swap pricing
+    engine. Collateral is not considered. No wrong way risk is 
+    considered (rates and counterparty default are uncorrelated).
+    Based on:
+    Sorensen,  E.H.  and  Bollier,  T.F.,  Pricing  swap  default 
+    risk. Financial Analysts Journal, 1994, 50, 23–33
+    Also see sect. II-5 in: Risk Neutral Pricing of Counterparty Risk
+    D. Brigo, M. Masetti, 2004
+    or in sections 3 and 4 of "A Formula for Interest Rate Swaps 
+      Valuation under Counterparty Risk in presence of Netting Agreements"
+    D. Brigo and M. Masetti; May 4, 2005
 
     to do: Compute fair rate through iteration instead of the 
     current approximation .
    */
   class CounterpartyAdjSwapEngine : public VanillaSwap::engine {
     public:
+      
       CounterpartyAdjSwapEngine(
           const Handle<YieldTermStructure>& discountCurve,
+          const Handle<Swaption::engine>& swaptionEngine,
           const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
           Real ctptyRecoveryRate,
           const Handle<DefaultProbabilityTermStructure>& invstDTS,
           Real invstRecoveryRate);
-
+    
+      /*! Creates an engine with a black volatility model for the 
+        exposure.
+       */
+      CounterpartyAdjSwapEngine(
+          const Handle<YieldTermStructure>& discountCurve,
+          const Volatility blackVol,
+          const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
+          Real ctptyRecoveryRate,
+          const Handle<DefaultProbabilityTermStructure>& invstDTS,
+          Real invstRecoveryRate);
+      /*! Creates an engine with a black volatility model for the 
+        exposure.
+       */
+      CounterpartyAdjSwapEngine(
+          const Handle<YieldTermStructure>& discountCurve,
+          const Handle<Quote>& blackVol,
+          const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
+          Real ctptyRecoveryRate,
+          const Handle<DefaultProbabilityTermStructure>& invstDTS,
+          Real invstRecoveryRate);
       // write another constructor with issuer and event type.
 
       void calculate() const;
     private:
       Handle<PricingEngine> baseSwapEngine_;
-      //////  Handle<Swaption::engine> spationletEngine_;
+      Handle<Swaption::engine> swaptionletEngine_;
       Handle<YieldTermStructure> discountCurve_;
       Handle<DefaultProbabilityTermStructure> defaultTS_;	  
       Real ctptyRecoveryRate_;

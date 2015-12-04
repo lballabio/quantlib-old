@@ -25,11 +25,15 @@
 #include <ql/indexes/iborindex.hpp>
 #include <ql/instruments/makevanillaswap.hpp>
 #include <ql/exercise.hpp>
+#include <ql/pricingengines/swap/discountingswapengine.hpp>
+#include <ql/termstructures/defaulttermstructure.hpp>
+#include <ql/pricingengines/swaption/blackswaptionengine.hpp>
 
 namespace QuantLib {
-
+  
   CounterpartyAdjSwapEngine::CounterpartyAdjSwapEngine(
       const Handle<YieldTermStructure>& discountCurve,
+      const Handle<Swaption::engine>& swaptionEngine,
       const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
       Real ctptyRecoveryRate,
       const Handle<DefaultProbabilityTermStructure>& invstDTS,
@@ -37,8 +41,9 @@ namespace QuantLib {
   : baseSwapEngine_(Handle<PricingEngine>(
       boost::make_shared<DiscountingSwapEngine>(discountCurve))),
       // to turn into a template arg and factory through constructors
-      discountCurve_(discountCurve), 
-      defaultTS_(ctptyDTS), 
+    discountCurve_(discountCurve), 
+    swaptionletEngine_(swaptionEngine),
+    defaultTS_(ctptyDTS), 
     ctptyRecoveryRate_(ctptyRecoveryRate),
     invstDTS_(invstDTS),
     invstRecoveryRate_(invstRecoveryRate)
@@ -46,18 +51,60 @@ namespace QuantLib {
       registerWith(discountCurve);
       registerWith(ctptyDTS);
       registerWith(invstDTS);
-  };
+      registerWith(swaptionEngine);
+  }
 
+    CounterpartyAdjSwapEngine::CounterpartyAdjSwapEngine(
+        const Handle<YieldTermStructure>& discountCurve,
+        const Volatility blackVol,
+        const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
+        Real ctptyRecoveryRate,
+        const Handle<DefaultProbabilityTermStructure>& invstDTS,
+        Real invstRecoveryRate)
+  : baseSwapEngine_(Handle<PricingEngine>(
+      boost::make_shared<DiscountingSwapEngine>(discountCurve))),
+      // to turn into a template arg and factory through constructors
+    discountCurve_(discountCurve), 
+    swaptionletEngine_(Handle<Swaption::engine>(
+      boost::make_shared<BlackSwaptionEngine>(discountCurve,
+        blackVol))),
+    defaultTS_(ctptyDTS), 
+    ctptyRecoveryRate_(ctptyRecoveryRate),
+    invstDTS_(invstDTS),
+    invstRecoveryRate_(invstRecoveryRate)
+  {
+      registerWith(discountCurve);
+      registerWith(ctptyDTS);
+      registerWith(invstDTS);
+  }
+
+  CounterpartyAdjSwapEngine::CounterpartyAdjSwapEngine(
+        const Handle<YieldTermStructure>& discountCurve,
+        const Handle<Quote>& blackVol,
+        const Handle<DefaultProbabilityTermStructure>& ctptyDTS,
+        Real ctptyRecoveryRate,
+        const Handle<DefaultProbabilityTermStructure>& invstDTS,
+        Real invstRecoveryRate)
+  : baseSwapEngine_(Handle<PricingEngine>(
+      boost::make_shared<DiscountingSwapEngine>(discountCurve))),
+      // to turn into a template arg and factory through constructors
+    discountCurve_(discountCurve), 
+    swaptionletEngine_(Handle<Swaption::engine>(
+      boost::make_shared<BlackSwaptionEngine>(discountCurve,
+        blackVol))),
+    defaultTS_(ctptyDTS), 
+    ctptyRecoveryRate_(ctptyRecoveryRate),
+    invstDTS_(invstDTS),
+    invstRecoveryRate_(invstRecoveryRate)
+  {
+      registerWith(discountCurve);
+      registerWith(ctptyDTS);
+      registerWith(invstDTS);
+      registerWith(blackVol);
+  }
 
   void CounterpartyAdjSwapEngine::calculate() const {
-    // test dates , ref dates, etc....
-
     Date priceDate = defaultTS_->referenceDate();
-    //temporarilt fixed engine for intiial tests
-    Volatility volRates = 0.15;
-    boost::shared_ptr<Swaption::engine> spationletEngine = 
-        boost::make_shared<BlackSwaptionEngine>(discountCurve_,
-            volRates);
 
     Real cumOptVal = 0., 
         cumPutVal = 0.;
@@ -136,8 +183,8 @@ namespace QuantLib {
         boost::make_shared<EuropeanExercise>(swapletStart));
       Swaption putSwaplet(revSwaplet, 
         boost::make_shared<EuropeanExercise>(swapletStart));
-      swaptionlet.setPricingEngine(spationletEngine);
-      putSwaplet.setPricingEngine(spationletEngine);
+      swaptionlet.setPricingEngine(swaptionletEngine_.currentLink());
+      putSwaplet.setPricingEngine(swaptionletEngine_.currentLink());
 
       // atm underlying swap means that the value of put = value
       // call so this double pricing is not needed
