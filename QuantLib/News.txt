@@ -1,145 +1,121 @@
 
-Changes for QuantLib 1.6:
+Changes for QuantLib 1.7:
 =========================
 
-QuantLib 1.6 includes over 50 pull requests from several contributors.
+QuantLib 1.7 includes over 50 pull requests from several contributors.
 
 The most notable changes are included below.
 A detailed list of changes is available in ChangeLog.txt.
 
 
-PORTABILITY
+INTEREST RATES
 
-- Enable successful compilation with Boost 1.58 and either gcc or clang.
+- Added rate helper to bootstrap on cross-currency swaps (thanks to
+  Maddalena Zanzi). The curve to be bootstrapped can be the one for
+  either of the two currencies.
 
-- Enable multi-processor compilation on Visual C++ as a project switch
-  (thanks to Giorgio Pazmandi).
+- Added the possibility for bootstrap helpers to define their pillar
+  date in different ways (thanks to Paolo Mazzocchi).  For each
+  helper, the date of the corresponding node can be defined as the
+  maturity date of the corresponding instrument, as the latest date
+  used on the term structure to price the instrument, or as a custom
+  date. Currently, the feature is enabled for FRAs and swaps.
 
-DATE/TIME
+- Added the possibility to pass weight when fitting a bond discount
+  curve. Also, it is now possible to fit a spread over an existing
+  term structure (thanks to Andres Hernandez).
 
-- Added Moscow Exchange calendar (thanks to Dmitri Nesteruk).
+INFLATION
 
-- Added 70th anniversary of anti-Japanese day to Chinese calendar
-  (thanks to Cheng Li).
+- Added Kerkhof seasonality model (thanks to Bernd Lewerenz).
 
-- Fixed Chinese New Year date for 2010 (thanks to Cheng Li).
-
-- Added nearest-trading-day business day convention (thanks to
-  Francois Botha).
-
-- Prevented normalization of a 7-days period to a 1-week period, since
-  this doesn't apply to business days (thanks to Paolo Mazzocchi).
-
-- Allowed schedules built with a vector of dates to be used for coupon
-  generation, given that the required information was provided (thanks
-  to Peter Caspers).
-
-- Added support for Australian Security Exchange (ASX) dates (thanks
-  to Maddalena Zanzi).
-
-- Added ECB dates for April and June 2016 (thanks to Paolo Mazzocchi).
-
-INSTRUMENTS
-
-- Extended digital American options to handle knock-off case (thanks
-  to Riccardo Ghetta).
-
-- Extended barrier options to handle KIKO/KOKI barriers (thanks to
-  Riccardo Ghetta).
-
-- Added Ikeda/Kunitomo engine, binomial engine and binary/digital
-  engine for double-barrier option (thanks to Riccardo Ghetta).
-
-- Added Bachelier engine for caps/floors based on normal volatility
-  (thanks to Michael von den Driesch).
-
-- Allowed non strike/type payoffs in finite-differences engine for
-  vanilla options (thanks to Joseph Wang).
-
-- Fixed settlement days of BTP bonds.
-
-- Fixed generation of schedule for OIS and vanilla swaps.
-
-- Added support for ASX dates to futures rate helper (thanks to
-  Maddalena Zanzi).
-
-MODELS
-
-- Moved Markov functional model, GSR model, Gaussian 1D model and
-  related engines, processes and term structures from the experimental
-  folder to the code library (thanks to Peter Caspers).
-
-CASH FLOWS
-
-- Added CMS-spread coupons, including digital (thanks to Peter Caspers).
-
-INDEXES
-
-- Added CMS-spread index (thanks to Peter Caspers).
-
-- Fixed day-count convention for Fed Funds rate.
-
-TERM STRUCTURES
-
-- Fixed bug where a valid previous curve state could be a bad guess
-  for the next and lead to a bootstrap failure.
-
-- Allow negative adjustment for futures rate helpers (thanks to Paolo
-  Mazzocchi).
+- Retrieve inflation fixings from the first day of the month (thanks
+  to Gerardo Ballabio). This avoids the need to store them for each
+  day of the corresponding month.
 
 VOLATILITY
 
-- Added support for normal and displaced lognormal volatility to
-  optionlet stripper (thanks to Michael von den Driesch).
+- Improve consistency between caplet stripping and pricing (thanks to
+  Michael von den Driesch)
 
-- Allowed calibration of the alpha of the SABR model to the ATM point
-  while keeping beta, nu and rho fixed (thanks to Peter Caspers).
+INSTRUMENTS
 
-- Added Chambers-Nawalkha implied-volatility approximation (thanks to
-  Peter Caspers).
+- Fixed usage of dividend yield in double-barrier formula (Thanks to
+  Dean Raf for the heads-up).
 
-- Added displaced lognormal swaption volatilities (thanks to Peter
+- Fixed perturbation formula for barrier options.
+
+MODELS
+
+- Refine update behavior of GSR model. Depending on the market change,
+  only the appropriate recalculations are performed (thanks to Peter
   Caspers).
 
-- Allowed the optionlet boostrap to continue if one caplet can no be
-  matched (thanks to Peter Caspers).
+- Improve calibration of Heston model (thanks to Peter Caspers).
 
-- Added flat-extrapolation option to swaption ATM volatility matrix
-  (thanks to Peter Caspers).
+MONTE CARLO
 
-- Implied swaption volatility cube for Gaussian 1-D model (thanks to
-  Peter Caspers).
+- Added the possibility to return the estimated exercise probability
+  from a Longstaff-Schwartz engine (thanks to Giorgio Pazmandi).
+
+SETTINGS
+
+- Added the possibility to temporarily disable notifications to
+  observers (thanks to Chris Higgs). When re-enabled, any pending
+  notifications are sent.
+
+DATE/TIME
+
+- Added Romanian and Israelian calendars (thanks to Riccardo Barone).
+
+- Added ECB reserve maintenance periods for 2016 (thanks to Paolo
+  Mazzocchi).
+
+- Updated South Korean calendar until the end of 2032 (thanks to Paolo
+  Mazzocchi and Faycal El Karaa).
+
+- Added new Mountain Day holiday for Japan (thanks to Aaron Stephanic
+  for the heads-up).
+
+- Remove MLK day from list of US holidays before 1983 (thanks to John
+  Orford for the heads-up).
+
+- Added Christmas Eve to BOVESPA holidays (thanks to Daniel Beren for
+  the heads-up).
 
 MATH
 
-- Allowed user-defined Jacobian in optimization (thanks to Peter Caspers).
+- Added polynomial and abcd functions.
 
-MISCELLANEA
+- Added Pascal triangle coefficients.
 
-- Added IDR, MYR, RUB and VND currencies (thanks to Lucy King).
+- Replaced home-grown implementation of incremental statistics with
+  Boost implementation (thanks to Peter Caspers).
 
-DEPRECATED FEATURES
+- Added Goldstein line-search method (thanks to Cheng Li).
 
-- Removed deprecated methods and constructors from the
-  BlackVarianceTermStructure, BlackVolTermStructure,
-  CapFloorTermVolatilityStructure, DateParser,
-  FittedBondDiscountCurve, GeneralLinearLeastSquares, Handle,
-  LocalVolTermStructure, OptionletVolatilityStructure, Settings,
-  SwaptionVolatilityStructure and VolatilityTermStructure classes.
 
-EXPERIMENTAL FOLDER
+NEW OPT-IN FEATURES
 
-The ql/experimental folder contains code which is still not fully
-integrated with the library or even fully tested, but is released in
-order to get user feedback.  Experimental classes are considered
-unstable; their interfaces might change in future releases.
+These features are disabled by default and can be enabled by defining
+a macro or passing a flag to `./configure`.  Feedback is appreciated.
 
-Changes and new contributions for this release were:
+- Added intraday component to dates (thanks to Klaus Spanderen).  Date
+  specifications now include hours, minutes, seconds, milliseconds and
+  microseconds.  Day counters are aware of the added data and include
+  them in results.
+  The feature can be enabled by uncommenting the
+  `QL_HIGH_RESOLUTION_DATE` macro in `ql/userconfig.hpp` on Visual C++
+  or by passing the `--enable-intraday` flag to `./configure` on other
+  systems.
 
-- Finite-difference meshers based on multi-dimensional integrals
-  (thanks to Klaus Spanderen).
+- Added thread-safe implementation of the Observer pattern (thanks to
+  Klaus Spanderen). This can be used to avoid crashes when using
+  QuantLib from languages (such as C# or Java) that run a garbage
+  collector in a separate thread.
+  The feature requires Boost 1.58 or later and can be enabled by
+  uncommenting the `QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN` macro in
+  `ql/userconfig.hpp` on Visual C++ or by passing the
+  `--enable-thread-safe-observer-pattern` to `./configure` on other
+  systems.
 
-- SVI interpolation and a corresponding smile section (thanks to Peter
-  Caspers).
-
-- ZABR volatility model (thanks to Peter Caspers).

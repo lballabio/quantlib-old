@@ -132,6 +132,12 @@ namespace QuantLibAddin {
         bool permanent)
     : Interpolation(properties, x, yh, permanent)
     {
+        // This constructor does not compile under gcc because of problems with
+        // static const template arguments.
+#ifdef __GNUC__
+        QL_FAIL("class QuantLibAddin::MixedLinearCubicInterpolation is not "
+            "supported under gcc");
+#else
         libraryObject_ = shared_ptr<QuantLib::Extrapolator>(new
             QuantLib::MixedLinearCubicInterpolation(
                                                 x_.begin(), x_.end(),
@@ -143,6 +149,7 @@ namespace QuantLibAddin {
             dynamic_pointer_cast<QuantLib::Interpolation>(libraryObject_);
         qlMixedLinearCubicInterpolation_ =
             dynamic_pointer_cast<QuantLib::MixedLinearCubicInterpolation>(libraryObject_);
+#endif
     }
 
     CubicInterpolation::CubicInterpolation(

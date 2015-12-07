@@ -75,7 +75,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibObjects-vc90-mt-1_6_0.lib"
+				OutputFile="lib\QuantLibObjects-vc90-mt-1_7_0.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -156,7 +156,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibObjects-vc90-mt-s-1_6_0.lib"
+				OutputFile="lib\QuantLibObjects-vc90-mt-s-1_7_0.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -235,7 +235,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibObjects-vc90-mt-sgd-1_6_0.lib"
+				OutputFile="lib\QuantLibObjects-vc90-mt-sgd-1_7_0.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool
@@ -314,7 +314,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="lib\QuantLibObjects-vc90-mt-gd-1_6_0.lib"
+				OutputFile="lib\QuantLibObjects-vc90-mt-gd-1_7_0.lib"
 				SuppressStartupBanner="true"
 			/>
 			<Tool

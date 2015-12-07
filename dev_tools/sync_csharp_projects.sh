@@ -47,4 +47,5 @@ diff -b csharp.vc1x.files csharp.ref.files >> sync.report
 rm -f csharp.*.files
 
 cat sync.report
+rm -f sync.report
 

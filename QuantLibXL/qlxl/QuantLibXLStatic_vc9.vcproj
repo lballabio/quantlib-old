@@ -79,16 +79,16 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc90-mt-sgd-1_6_0.xll"
+				OutputFile="..\xll\QuantLibXL-vc90-mt-sgd-1_7_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\xll\QuantLibXL-vc90-mt-sgd-1_6_0.pdb"
+				ProgramDatabaseFile="..\xll\QuantLibXL-vc90-mt-sgd-1_7_0.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-sgd-1_6_0.lib"
+				ImportLibrary=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-sgd-1_7_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -179,16 +179,16 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc90-mt-gd-1_6_0.xll"
+				OutputFile="..\xll\QuantLibXL-vc90-mt-gd-1_7_0.xll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\xll\QuantLibXL-vc90-mt-gd-1_6_0.pdb"
+				ProgramDatabaseFile="..\xll\QuantLibXL-vc90-mt-gd-1_7_0.pdb"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-gd-1_6_0.lib"
+				ImportLibrary=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-gd-1_7_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -281,17 +281,17 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc90-mt-s-1_6_0.xll"
+				OutputFile="..\xll\QuantLibXL-vc90-mt-s-1_7_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\xll\QuantLibXL-vc90-mt-s-1_6_0.pdb"
+				ProgramDatabaseFile="..\xll\QuantLibXL-vc90-mt-s-1_7_0.pdb"
 				OptimizeReferences="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-s-1_6_0.lib"
+				ImportLibrary=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-s-1_7_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -384,17 +384,17 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="odbc32.lib odbccp32.lib Ws2_32.lib advapi32.lib"
-				OutputFile="..\xll\QuantLibXL-vc90-mt-1_6_0.xll"
+				OutputFile="..\xll\QuantLibXL-vc90-mt-1_7_0.xll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../ObjectHandler/lib,../../QuantLib/lib,../../QuantLibAddin/lib,../../log4cxx/msvc/lib"
 				GenerateManifest="true"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="..\xll\QuantLibXL-vc90-mt-1_6_0.pdb"
+				ProgramDatabaseFile="..\xll\QuantLibXL-vc90-mt-1_7_0.pdb"
 				OptimizeReferences="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-1_6_0.lib"
+				ImportLibrary=".\buildStatic\vc90\$(ConfigurationName)/QuantLibAddinStatic-vc90-mt-1_7_0.lib"
 				TargetMachine="1"
 			/>
 			<Tool

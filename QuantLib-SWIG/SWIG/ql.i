@@ -80,9 +80,43 @@
 %{
 #include <ql/quantlib.hpp>
 
-#if QL_HEX_VERSION < 0x010700f0
+#if QL_HEX_VERSION < 0x010800f0
     #error using an old version of QuantLib, please update
 #endif
+
+#ifdef BOOST_MSVC
+#ifdef QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN
+#define BOOST_LIB_NAME boost_thread
+#include <boost/config/auto_link.hpp>
+#undef BOOST_LIB_NAME
+#define BOOST_LIB_NAME boost_system
+#include <boost/config/auto_link.hpp>
+#undef BOOST_LIB_NAME
+#endif
+#endif
+
+#if defined (SWIGJAVA) || defined (SWIGCSHARP) 
+  #ifndef QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN
+    #ifdef BOOST_MSVC
+      #pragma message(\
+          "Quantlib has not been compiled with the thread-safe "           \
+          "observer pattern being enabled. This can lead to spurious "     \
+          "crashes or pure virtual function call within the JVM or .NET "  \
+          "ecosystem due to the async garbage collector. Please consider " \
+          "enabling QL_ENABLE_THREAD_SAFE_OBSERVER_PATTERN "               \
+          "in ql/userconfig.hpp.")
+    #else
+      #warning \
+          Quantlib has not been compiled with the thread-safe           \
+          observer pattern being enabled. This can lead to spurious     \
+          crashes or pure virtual function call within the JVM or .NET  \
+          ecosystem due to the async garbage collector. Please consider \
+          passing --enable-thread-safe-observer-pattern when using the  \
+          GNU autoconf configure script.
+    #endif
+  #endif
+#endif
+
 
 // add here SWIG version check
 

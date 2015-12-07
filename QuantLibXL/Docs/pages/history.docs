@@ -28,6 +28,14 @@ implementation of QuantLibAddin.  For a summary of updates to the core
 QuantLibAddin project, please refer to
 <a href="http://www.quantlibaddin.org/history.html">http://www.quantlibaddin.org/history.html</a>
 
+<strong>Release 1.6.0 - August 2015</strong>
+
+- 8 new functions / 1,080 in total
+- The XLL is provided for 32- or 64-bit Excel.
+- This release includes the updated VBA Framework application (at present this
+  does not work correctly under 64-bit Excel).
+- QuantLibXL 1.6.0 is compatible with either QuantLib 1.6.0 or 1.6.1.
+
 <strong>Release 1.5.0 - April 2015</strong>
 
 - 55 new functions / 1072 in total

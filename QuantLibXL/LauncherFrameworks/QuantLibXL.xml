@@ -64,8 +64,8 @@
   </GroupBoxes>
   
   <Components>
-    <Component path="C:\Projects\QuantLib\trunk\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-1_6_0.xll" />
-    <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_6_0.xll" />
+    <Component path="C:\Projects\QuantLib\trunk\ObjectHandler\xll\ObjectHandler-xll-vc90-mt-1_7_0.xll" />
+    <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\xll\QuantLibXLDynamic-vc90-mt-1_7_0.xll" />
     <Component path="C:\Projects\QuantLib\trunk\QuantLibXL\framework2\QuantLibXL.xla" />
   </Components>
 
