@@ -43,12 +43,25 @@ namespace QuantLib {
 
     to do: Compute fair rate through iteration instead of the 
     current approximation .
-
-    to do: writes Issuer based constructors (event type)
+    to do: write Issuer based constructors (event type)
+    to do: Check consistency between option engine discount and the one given
    */
   class CounterpartyAdjSwapEngine : public VanillaSwap::engine {
     public:
-      
+      //! \name Constructors
+      //@{
+      //! 
+      /*! Creates the engine from an arbitrary swaption engine.
+        If the investor default model is not given a default 
+        free one is assumed.
+        @param discountCurve Used in pricing.
+        @param swaptionEngine Determines the volatility and thus the 
+        exposure model.
+        @param ctptyDTS Counterparty default curve.
+        @param ctptyRecoveryRate Counterparty recovey rate.
+        @param invstDTS Investor (swap holder) default curve.
+        @param invstRecoveryRate Investor recovery rate.
+       */
       CounterpartyAdjSwapEngine(
           const Handle<YieldTermStructure>& discountCurve,
           const Handle<PricingEngine>& swaptionEngine,
@@ -59,6 +72,14 @@ namespace QuantLib {
           Real invstRecoveryRate = 0.999);
       /*! Creates an engine with a black volatility model for the 
         exposure.
+        If the investor default model is not given a default 
+        free one is assumed.
+        @param discountCurve Used in pricing.
+        @param blackVol Black volatility used in the exposure model.
+        @param ctptyDTS Counterparty default curve.
+        @param ctptyRecoveryRate Counterparty recovey rate.
+        @param invstDTS Investor (swap holder) default curve.
+        @param invstRecoveryRate Investor recovery rate.
        */
       CounterpartyAdjSwapEngine(
           const Handle<YieldTermStructure>& discountCurve,
@@ -69,8 +90,16 @@ namespace QuantLib {
               Handle<DefaultProbabilityTermStructure>(),
           Real invstRecoveryRate = 0.999);
       /*! Creates an engine with a black volatility model for the 
-        exposure.
-       */
+        exposure. The volatility is given as a quote.
+        If the investor default model is not given a default 
+        free one is assumed.
+        @param discountCurve Used in pricing.
+        @param blackVol Black volatility used in the exposure model.
+        @param ctptyDTS Counterparty default curve.
+        @param ctptyRecoveryRate Counterparty recovey rate.
+        @param invstDTS Investor (swap holder) default curve.
+        @param invstRecoveryRate Investor recovery rate.
+      */
       CounterpartyAdjSwapEngine(
           const Handle<YieldTermStructure>& discountCurve,
           const Handle<Quote>& blackVol,
@@ -79,7 +108,7 @@ namespace QuantLib {
           const Handle<DefaultProbabilityTermStructure>& invstDTS =
               Handle<DefaultProbabilityTermStructure>(),
           Real invstRecoveryRate = 0.999);
-
+      //@}
       void calculate() const;
     private:
       Handle<PricingEngine> baseSwapEngine_;

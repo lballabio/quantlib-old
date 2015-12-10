@@ -69,17 +69,17 @@ int main(int, char* []) {
         Settings::instance().evaluationDate() = todaysDate;
 
         boost::shared_ptr<IborIndex>  yieldIndx(new Euribor3M());
-        Size ternorsSwapMkt[] = {5, 10, 15, 20, 25, 30};
+        Size tenorsSwapMkt[] = {5, 10, 15, 20, 25, 30};
         
         // rates ignoring counterparty risk:
         Rate ratesSwapmkt[] = {.03249, .04074, .04463, .04675, .04775, .04811};
 
         vector<boost::shared_ptr<RateHelper> > swapHelpers;
-        for(Size i=0; i<sizeof(ternorsSwapMkt)/sizeof(Size); i++)
+        for(Size i=0; i<sizeof(tenorsSwapMkt)/sizeof(Size); i++)
             swapHelpers.push_back(boost::make_shared<SwapRateHelper>(
                 Handle<Quote>(boost::shared_ptr<Quote>(
                                    new SimpleQuote(ratesSwapmkt[i]))),
-                    ternorsSwapMkt[i] * Years,
+                    tenorsSwapMkt[i] * Years,
                     TARGET(),
                     Quarterly,
                     ModifiedFollowing,
@@ -145,17 +145,7 @@ int main(int, char* []) {
                    intesitiesVHigh,
                    Actual360(), 
                    TARGET()))));
-        /*
-        Handle<DefaultProbabilityTermStructure> invstDTS(
-            boost::shared_ptr<DefaultProbabilityTermStructure>(
-                 new InterpolatedHazardRateCurve<BackwardFlat>(
-                   defaultTSDates, 
-                   std::vector<Real>(defaultTSDates.size(), 0.1),
-                   Actual360(), 
-                   TARGET())));
-        Real riskLessRR = 0.1999;
-        */
-        
+
         Volatility blackVol = 0.15;   
         boost::shared_ptr<PricingEngine> ctptySwapCvaLow = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
@@ -163,25 +153,25 @@ int main(int, char* []) {
                  blackVol,
                  defaultIntensityTS[0], 
                  ctptyRRLow
-                 );//, riskLessDTS, riskLessRR);
+                 );
 
         boost::shared_ptr<PricingEngine> ctptySwapCvaMedium = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
                  Handle<YieldTermStructure>(swapTS), 
                  blackVol, 
                  defaultIntensityTS[1],
-                 ctptyRRMedium);//, riskLessDTS, riskLessRR);
+                 ctptyRRMedium);
         boost::shared_ptr<PricingEngine> ctptySwapCvaHigh = 
             boost::make_shared<CounterpartyAdjSwapEngine>(
                  Handle<YieldTermStructure>(swapTS), 
                  blackVol,
                  defaultIntensityTS[2],
-                 ctptyRRHigh);//, riskLessDTS, riskLessRR);
+                 ctptyRRHigh);
         
         defaultIntensityTS[0]->enableExtrapolation();
         defaultIntensityTS[1]->enableExtrapolation();
         defaultIntensityTS[2]->enableExtrapolation();
-        //riskLessDTS->enableExtrapolation();
+
 
         /// SWAP RISKY REPRICE----------------------------------------------
 
@@ -195,22 +185,14 @@ int main(int, char* []) {
         Frequency floatingLegFrequency = Quarterly;
         Spread spread = 0.0;
 
-        /* We are using an unilateral engine and the price is not symmetric.
-           We consider only the counterparty to be risky but not us; and 
-           this we do independently of the directionality.
-         */
         VanillaSwap::Type swapType = 
             //VanillaSwap::Receiver ;
             VanillaSwap::Payer;
         boost::shared_ptr<IborIndex> yieldIndxS(
              new Euribor3M(Handle<YieldTermStructure>(swapTS)));
-
-        Date swapSettlement = todaysDate + 2 * Days;
-        Date maturity = swapSettlement + ternorsSwapMkt[0]*Years;
-
         std::vector<VanillaSwap> riskySwaps;
-        for(Size i=0; i<sizeof(ternorsSwapMkt)/sizeof(Size); i++) 
-            riskySwaps.push_back(MakeVanillaSwap(ternorsSwapMkt[i]*Years,
+        for(Size i=0; i<sizeof(tenorsSwapMkt)/sizeof(Size); i++) 
+            riskySwaps.push_back(MakeVanillaSwap(tenorsSwapMkt[i]*Years,
                 yieldIndxS,
                 ratesSwapmkt[i], 
                 0*Days)
@@ -234,7 +216,7 @@ int main(int, char* []) {
             riskySwaps[i].setPricingEngine(riskFreeEngine);
             // should recover the input here:
             Real nonRiskyFair = riskySwaps[i].fairRate();
-            cout << ternorsSwapMkt[i];
+            cout << tenorsSwapMkt[i];
             cout << setw(5);
 
             cout << " | " << io::rate(nonRiskyFair);

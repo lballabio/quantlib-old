@@ -108,7 +108,15 @@ namespace QuantLib {
   }
 
   void CounterpartyAdjSwapEngine::calculate() const {
-      // both DTS, YTS ref dates and pricing date consistency checks?
+      /* both DTS, YTS ref dates and pricing date consistency 
+         checks? settlement... */
+    QL_REQUIRE(!discountCurve_.empty(),
+                 "no discount term structure set");
+    QL_REQUIRE(!defaultTS_.empty(),
+                 "no ctpty default term structure set");
+    QL_REQUIRE(!swaptionletEngine_.empty(),
+                 "no swap option engine set");
+
     Date priceDate = defaultTS_->referenceDate();
 
     Real cumOptVal = 0., 
@@ -168,7 +176,7 @@ namespace QuantLib {
         )
 	    .withType(arguments_.type)
 	    .withNominal(arguments_.nominal)
-	    .withSettlementDays(2)
+          ////////	    .withSettlementDays(2)
         .withEffectiveDate(swapletStart)
         .withTerminationDate(arguments_.fixedPayDates.back());
       boost::shared_ptr<VanillaSwap> revSwaplet = MakeVanillaSwap(
@@ -178,7 +186,7 @@ namespace QuantLib {
         )
 	    .withType(reversedType)
 	    .withNominal(arguments_.nominal)
-	    .withSettlementDays(2)
+          /////////	    .withSettlementDays(2)
         .withEffectiveDate(swapletStart)
         .withTerminationDate(arguments_.fixedPayDates.back());
 
@@ -207,13 +215,7 @@ namespace QuantLib {
         - (1.-ctptyRecoveryRate_) * cumOptVal + 
           (1.-invstRecoveryRate_) * cumPutVal )
       / vSResults->legNPV[0];
-    /*
- (dynamic_cast<const Swap::results *>(
-      baseSwapEngine_->getResults())->legNPV[1] - 
-      (1.-ctptyRecoveryRate_) * cumOptVal + (1.-invstRecoveryRate_) * cumPutVal )
-      /  dynamic_cast<const Swap::results *>(
-        baseSwapEngine_->getResults())->legNPV[0];
-    */
+
   }
 
 
