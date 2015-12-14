@@ -5,6 +5,7 @@
  Copyright (C) 2007 François du Vignaud
  Copyright (C) 2007 Katiuscia Manzoni
  Copyright (C) 2007 Giorgio Facchinetti
+ Copyright (C) 2015 Michael von den Driesch
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -31,8 +32,9 @@
 
 namespace QuantLib {
 
-    class CapFloor;
     class SimpleQuote;
+    class CapFloor;
+    class PricingEngine;
 
     typedef std::vector<std::vector<boost::shared_ptr<CapFloor> > > CapFloorMatrix;
 
@@ -68,6 +70,7 @@ namespace QuantLib {
 
         mutable CapFloorMatrix capFloors_;
         mutable std::vector<std::vector<boost::shared_ptr<SimpleQuote> > > volQuotes_;
+        mutable std::vector<std::vector<boost::shared_ptr<PricingEngine> > > capFloorEngines_;
         bool floatingSwitchStrike_;
         mutable bool capFlooMatrixNotInitialized_;
         mutable Rate switchStrike_;
