@@ -125,9 +125,12 @@ namespace ObjectHandler {
 
     private:
         static FunctionCall *instance_;
+#pragma warning(push)
+#pragma warning(disable: 4251)
         std::string functionName_;
         std::string address_;
         std::string refStr_;
+#pragma warning(pop)
         Xloper xCaller_;
         Xloper xReftext_;
         Xloper xMulti_;
