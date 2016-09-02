@@ -3,6 +3,7 @@
  Copyright (C) 2000, 2001, 2002, 2003 RiskMap srl
  Copyright (C) 2003, 2004, 2005 StatPro Italia srl
  Copyright (C) 2008 Tito Ingargiola
+ Copyright (C) 2014 Felix Lee       
 
  This file is part of QuantLib, a free-software/open-source library
  for financial quantitative analysts and developers - http://quantlib.org/
@@ -21,6 +22,7 @@
 #ifndef quantlib_montecarlo_tools_i
 #define quantlib_montecarlo_tools_i
 
+%include <boost_shared_ptr.i>
 %include stochasticprocess.i
 %include linearalgebra.i
 %include randomnumbers.i
@@ -264,5 +266,112 @@ class GaussianMultiPathGenerator {
 	Sample<MultiPath> antithetic() const;
 };
 
+/************* Wrap the boost::shared_ptr **********/
+%shared_ptr(PathGeneratorPseudoRandom)
+%shared_ptr(PathPricer<Path>)
+
+%{
+using QuantLib::PathGenerator;
+typedef QuantLib::PathGenerator<PseudoRandom::rsg_type> PathGeneratorPseudoRandom;
+
+using QuantLib::PathPricer;
+using QuantLib::Path;
+
+using QuantLib::MonteCarloModel;
+using QuantLib::SingleVariate;
+using QuantLib::PseudoRandom;
+typedef QuantLib::MonteCarloModel<SingleVariate,PseudoRandom>
+    MonteCarloModelSingleVariatePseudoRandom;
+%}
+
+/************* Path generators *********************/
+    class PathGeneratorPseudoRandom {
+      public:
+        typedef Sample<Path> sample_type;
+        // constructors
+        PathGeneratorPseudoRandom(const boost::shared_ptr<StochasticProcess>&,
+                      Time length,
+                      Size timeSteps,
+                      const InverseCumulativeRsg<RandomSequenceGenerator<MersenneTwisterUniformRng>,
+                                                 InverseCumulativeNormal>& generator,
+                      bool brownianBridge);
+        PathGeneratorPseudoRandom(const boost::shared_ptr<StochasticProcess>&,
+                      const TimeGrid& timeGrid,
+                      const InverseCumulativeRsg<RandomSequenceGenerator<MersenneTwisterUniformRng>,
+                                                 InverseCumulativeNormal>& generator,
+                      bool brownianBridge);
+        //! \name inspectors
+        //@{
+        const sample_type& next() const;
+        const sample_type& antithetic() const;
+        Size size() const { return dimension_; }
+        const TimeGrid& timeGrid() const { return timeGrid_; }
+        //@}
+      private:
+        const sample_type& next(bool antithetic) const;
+        bool brownianBridge_;
+        InverseCumulativeRsg<RandomSequenceGenerator<MersenneTwisterUniformRng>,
+                             InverseCumulativeNormal> generator_;
+        Size dimension_;
+        TimeGrid timeGrid_;
+        boost::shared_ptr<StochasticProcess1D> process_;
+        mutable sample_type next_;
+        mutable std::vector<Real> temp_;
+        BrownianBridge bb_;
+    };
+
+/************* Path pricer *********************/
+%feature("director") PathPricer;
+
+    template<class PathType, class ValueType=Real>
+    class PathPricer {
+      public:
+        virtual ~PathPricer() {}
+        virtual ValueType operator()(const PathType& path) const=0;
+    };
+
+%template(PathPricerPath) PathPricer<Path>;
+
+/************* Monte Carlo Model **************/
+    class MonteCarloModelSingleVariatePseudoRandom {
+      public:
+        typedef PathGeneratorPseudoRandom path_generator_type;
+        typedef PathPricer<Path> path_pricer_type;
+        typedef typename path_generator_type::sample_type sample_type;
+        typedef typename path_pricer_type::result_type result_type;
+        typedef Statistics stats_type;
+        // constructor
+        MonteCarloModelSingleVariatePseudoRandom(
+                  const boost::shared_ptr<path_generator_type>& pathGenerator,
+                  const boost::shared_ptr<path_pricer_type>& pathPricer,
+                  const stats_type& sampleAccumulator,
+                  bool antitheticVariate,
+                  const boost::shared_ptr<path_pricer_type>& cvPathPricer
+                        = boost::shared_ptr<path_pricer_type>(),
+                  result_type cvOptionValue = result_type(),
+                  const boost::shared_ptr<path_generator_type>& cvPathGenerator
+                        = boost::shared_ptr<path_generator_type>())
+        : pathGenerator_(pathGenerator), pathPricer_(pathPricer),
+          sampleAccumulator_(sampleAccumulator),
+          isAntitheticVariate_(antitheticVariate),
+          cvPathPricer_(cvPathPricer), cvOptionValue_(cvOptionValue),
+          cvPathGenerator_(cvPathGenerator) {
+            if (!cvPathPricer_)
+                isControlVariate_ = false;
+            else
+                isControlVariate_ = true;
+        }
+        void addSamples(Size samples);
+        const stats_type& sampleAccumulator(void) const;
+      private:
+        boost::shared_ptr<path_generator_type> pathGenerator_;
+        boost::shared_ptr<path_pricer_type> pathPricer_;
+        stats_type sampleAccumulator_;
+        bool isAntitheticVariate_;
+        boost::shared_ptr<path_pricer_type> cvPathPricer_;
+        result_type cvOptionValue_;
+        bool isControlVariate_;
+        boost::shared_ptr<path_generator_type> cvPathGenerator_;
+    };
 
 #endif
