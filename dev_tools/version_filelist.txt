@@ -1,0 +1,40 @@
+QuantLib-SWIG/Guile/setup.scm
+1
+(define version "$RELEASE_VERSION")
+QuantLib-SWIG/MzScheme/setup.scm
+1
+(define version "$RELEASE_VERSION")
+QuantLib-SWIG/Perl/Makefile.PL
+1
+'VERSION' => '$RELEASE_VERSION'
+QuantLib-SWIG/Python/setup.py
+1
+version          = "$RELEASE_VERSION",
+QuantLib-SWIG/R/DESCRIPTION
+1
+Version: $RELEASE_VERSION
+QuantLib-SWIG/Ruby/setup.rb
+1
+Version = "$RELEASE_VERSION"
+QuantLib-SWIG/SWIG/ql.i
+1
+#if QL_HEX_VERSION < $HEX_VERSION
+QuantLib-SWIG/configure.ac
+1
+AC_INIT([QuantLib-SWIG], [$RELEASE_VERSION],
+QuantLib/Announce.txt
+1
+Version $RELEASE_VERSION has been released and is available for download at
+QuantLib/configure.ac
+1
+AC_INIT([QuantLib], [$RELEASE_VERSION],
+QuantLib/ql/version.hpp
+4
+#define QL_VERSION "$RELEASE_VERSION-debug"
+#define QL_VERSION "$RELEASE_VERSION"
+#define QL_HEX_VERSION $HEX_VERSION
+#define QL_LIB_VERSION "$RELEASE_LIB_VERSION"
+dev_tools/version_number.txt
+2
+The current version number is $RELEASE_VERSION - 
+- $RELEASE_TAG_VERSION
