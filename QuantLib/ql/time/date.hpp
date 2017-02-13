@@ -274,7 +274,7 @@ namespace QuantLib {
 
     /*! \relates Date */
     std::ostream& operator<<(std::ostream&, const Date&);
-
+	std::istream& operator>>(std::istream&, const Date&);
     namespace detail {
 
         struct short_date_holder {
