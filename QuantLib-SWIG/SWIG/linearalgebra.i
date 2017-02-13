@@ -1009,7 +1009,8 @@ class DefaultLexicographicalView {
                 for (Size i=0; i<self->xSize(); i++) {
                     if (i != 0)
                         s << ",";
-                    s << (*self)[i][j];
+                    Array::value_type value = (*self)[i][j];
+                    s << value;
                 }
             }
             s << "\n";
