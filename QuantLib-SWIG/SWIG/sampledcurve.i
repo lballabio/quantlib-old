@@ -39,6 +39,9 @@ class SampledCurve {
     void shiftGrid(Real s);
     void scaleGrid(Real s);
     void regrid(const Array &);
+    Real firstDerivativeAtCenter();
+    Real secondDerivativeAtCenter();
+    SampledCurve derivative() const;
 };
 
 
