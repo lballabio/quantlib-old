@@ -105,41 +105,19 @@ typedef boost::shared_ptr<YieldTermStructure> ZeroSpreadedTermStructurePtr;
 typedef boost::shared_ptr<YieldTermStructure> ForwardSpreadedTermStructurePtr;
 %}
 
-//%rename(ZeroSpreadedTermStructure) ZeroSpreadedTermStructurePtr;
-//class ZeroSpreadedTermStructurePtr
-//    : public boost::shared_ptr<YieldTermStructure> {
-//  public:
-//    %extend {
-//        ZeroSpreadedTermStructurePtr(
-//                                const Handle<YieldTermStructure>& curveHandle,
-//                                const Handle<Quote>& spreadHandle) {
-//            return new ZeroSpreadedTermStructurePtr(
-//                new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
-//        }
-//    }
-//};
-
-//***************************************************************************************
-
 %rename(ZeroSpreadedTermStructure) ZeroSpreadedTermStructurePtr;
-
 class ZeroSpreadedTermStructurePtr
     : public boost::shared_ptr<YieldTermStructure> {
   public:
     %extend {
         ZeroSpreadedTermStructurePtr(
                                 const Handle<YieldTermStructure>& curveHandle,
-                                const Handle<Quote>& spreadHandle,
-                                Compounding comp = QuantLib::Continuous,
-                                Frequency freq = QuantLib::NoFrequency,
-                                const DayCounter& dc = QuantLib::DayCounter()) {
+                                const Handle<Quote>& spreadHandle) {
             return new ZeroSpreadedTermStructurePtr(
-                new ZeroSpreadedTermStructure(curveHandle,spreadHandle, comp, freq, dc));
+                new ZeroSpreadedTermStructure(curveHandle,spreadHandle));
         }
     }
 };
-
-//***************************************************************************************
 
 %rename(ForwardSpreadedTermStructure) ForwardSpreadedTermStructurePtr;
 class ForwardSpreadedTermStructurePtr
