@@ -153,6 +153,7 @@ QuantLib/Examples/Bonds/Bonds
 QuantLib/Examples/CDS/CDS
 QuantLib/Examples/CallableBonds/CallableBonds
 QuantLib/Examples/ConvertibleBonds/ConvertibleBonds
+QuantLib/Examples/CVAIRS/CVAIRS
 QuantLib/Examples/DiscreteHedging/DiscreteHedging
 QuantLib/Examples/EquityOption/EquityOption
 QuantLib/Examples/FRA/FRA
