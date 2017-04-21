@@ -93,8 +93,8 @@ namespace QuantLib {
                const Real spotShift_delta = 0.0001 * spotFX_->value();
                const Real sigmaShift_vanna = 0.0001;
 
-               QL_REQUIRE(arguments_.barrierType==DoubleBarrier::KnockIn || 
-                          arguments_.barrierType==DoubleBarrier::KnockOut, 
+               QL_REQUIRE(arguments_.barrierType==DoubleBarrier::KnockIn ||
+                          arguments_.barrierType==DoubleBarrier::KnockOut,
                           "Only same type barrier supported");
 
                Handle<Quote> x0Quote(  //used for shift
@@ -151,7 +151,7 @@ namespace QuantLib {
                const boost::shared_ptr<StrikedTypePayoff> payoff =
                   boost::dynamic_pointer_cast<StrikedTypePayoff>(arguments_.payoff);
                Real strikeVol = interpolation(payoff->strike());
-               //vannila option price
+               //vanilla option price
                Real vanillaOption = blackFormula(payoff->optionType(), payoff->strike(),
                                             x0Quote->value()* foreignTS_->discount(T_)/ domesticTS_->discount(T_),
                                             strikeVol * sqrt(T_),
@@ -346,7 +346,7 @@ namespace QuantLib {
                        }
                        else{
                            //capfloored by (0, vanilla)
-                           outPrice = std::max(0.0, std::min(vanillaOption , outPrice));
+                           outPrice = std::max(0.0, std::min(vanillaOption, outPrice));
                            inPrice = vanillaOption - outPrice;
                        }
 
