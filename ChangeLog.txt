@@ -1,0 +1,21 @@
+commit 1412269383681d135e89eba7e57996d40e3aa699
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 2 Feb 2017 16:22:22 +0100
+
+    Prevent error during bootstrapping test.
+    
+    This prevents the errors reported in #189.
+
+ test-suite/piecewiseyieldcurve.cpp | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+commit e3f8a1fd9ba65fc6e9745838b4f2a4e9dde75e9c
+Author: Luigi Ballabio <luigi.ballabio@gmail.com>
+Date:   Thu, 5 Jan 2017 12:44:01 +0100
+
+    Bump version number to 1.9.2.
+
+ Announce.txt   | 2 +-
+ configure.ac   | 2 +-
+ ql/version.hpp | 8 ++++----
+ 3 files changed, 6 insertions(+), 6 deletions(-)
